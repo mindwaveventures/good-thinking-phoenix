@@ -108,6 +108,18 @@ DATABASES = {
     }
 }
 
+# Setting up project to use bcrypt hashing
+# For more info see:
+# https://docs.djangoproject.com/en/1.11/topics/auth/passwords/#using-bcrypt-with-django
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
