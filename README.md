@@ -21,6 +21,15 @@ Clone the repository and cd into it (make sure you don't have another project ca
 git clone https://github.com/ldmw/app.git && cd app
 ```
 
+Ensure to have the following environment variables in your `$PATH`
+
+```bash
+export CMS_PG_USER=<cms_postgres_username>
+export CMS_PG_PASS=<cms_postgres_password>
+export CMS_HOST=<cms_host>
+export CMS_PORT=<cms_port>
+```
+
 (Ensure postgres is running with: `postgres -D /usr/local/var/postgres/`)
 
 #### Main app setup
@@ -70,6 +79,16 @@ Set up the database:
 ```bash
 python manage.py migrate
 ```
+
+If you get the error `FATAL: database "cms" does not exist`
+
+You can create this database with:
+
+```bash
+psql -U $CMS_PG_USER -c "create database cms"
+```
+
+Then run this command again
 
 Create an admin account:
 

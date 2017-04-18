@@ -17,6 +17,10 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+PG_USER = os.environ['CMS_PG_USER']
+PG_PASS = os.environ['CMS_PG_PASS']
+HOST = os.environ['CMS_HOST']
+PORT = os.environ['CMS_PORT']
 
 
 # Quick-start development settings - unsuitable for production
@@ -94,8 +98,13 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cms',
+        'USER': PG_USER,
+        'PASSWORD': PG_PASS,
+        'HOST': HOST,  # Set to empty string for localhost.
+        'PORT': PORT,  # Set to empty string for default.
+        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
     }
 }
 
