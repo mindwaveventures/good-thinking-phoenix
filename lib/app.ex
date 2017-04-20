@@ -10,6 +10,8 @@ defmodule App do
     children = [
       # Start the Ecto repository
       supervisor(App.Repo, []),
+      # Start the Ecto CMS repository
+      supervisor(App.CMSRepo, []),
       # Start the endpoint when the application starts
       supervisor(App.Endpoint, []),
       # Start your own worker by calling: App.Worker.start_link(arg1, arg2, arg3)
