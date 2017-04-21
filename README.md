@@ -4,6 +4,13 @@ Built using the _PETE_ stack [`Phoenix`, `Elixir`](http://www.phoenixframework.o
 
 This project works in tandem with the lmdw cms, for the admin section of the project see: https://github.com/ldmw/cms
 
+### Project Overview
+
+![ldmw-application-architecture-diagram](https://cloud.githubusercontent.com/assets/194400/25229096/cd075eb6-25c6-11e7-8233-5712d55a20fe.png)
+
+Click on image to see large version.
+To edit: https://docs.google.com/drawings/d/1NX710eQ_1fJgxctvF3--KOO4S-m-_lOouWg1V_lPtXY
+
 ### Installation and Setup
 
 To get up and running - make sure you have installed:
