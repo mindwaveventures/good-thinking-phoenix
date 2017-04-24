@@ -1,3 +1,10 @@
 <div>
   <%= raw(@body) %>
+  <%= for %{id: id, title: title} <- @tags do %>
+    <%= link title, to: homepage_path(@conn, :show, id) %></p>
+  <% end %>
+</div>
+
+<div>
+  <%= raw(@footer) %>
 </div>
