@@ -59,3 +59,17 @@ mix phoenix.server
 
 The project should now be running at `https://localhost:4000`
 
+If you get the error:
+
+```bash
+ERROR 42501 (insufficient_privilege): permission denied for relation wagtailcore_page
+```
+
+You will need to grant access to the user "postgres"
+
+To do so try running this command:
+```bash
+$ psql -u $CMS_PG_USER -d cms -c "grant all privileges on all tables in schema public to postgres"
+```
+
+And try starting the server again
