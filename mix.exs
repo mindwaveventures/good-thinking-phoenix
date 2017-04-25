@@ -9,6 +9,13 @@ defmodule App.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     build_embedded: Mix.env == :prod,
+     start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test,
+                         "coveralls.detail": :test,
+                         "coveralls.post": :test,
+                         "coveralls.html": :test],
      aliases: aliases(),
      deps: deps()]
   end
@@ -32,10 +39,16 @@ defmodule App.Mixfile do
   defp deps do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
+     {:poison, "~> 2.0"},
+     {:comeonin, "~> 2.0"},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:excoveralls, "~> 0.6.2"},
+     {:ex_doc, "~> 0.11", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"}]
   end
