@@ -1,0 +1,3 @@
+<div>
+  <%= raw(@content) %>
+</div>

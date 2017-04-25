@@ -1,3 +1,6 @@
 <div>
   <%= raw(@body) %>
+  <%= for name <- @tags do %>
+    <%= link name, to: article_path(@conn, :show, name) %></p>
+  <% end %>
 </div>
