@@ -47,6 +47,7 @@ defmodule App.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:credo, "~> 0.7.2", only: [:dev, :test]},
      {:excoveralls, "~> 0.6.2"},
      {:ex_doc, "~> 0.11", only: :dev},
      {:gettext, "~> 0.11"},
