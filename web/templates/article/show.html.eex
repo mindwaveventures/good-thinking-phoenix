@@ -1,0 +1,5 @@
+<h2><%= String.capitalize @tag %> Articles</h2>
+
+<%= for article <- @articles do %>
+  <%= raw(article) %>
+<% end %>

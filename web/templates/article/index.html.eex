@@ -1,0 +1,5 @@
+<h2>Listing Articles</h2>
+
+<%= for article <- @articles do %>
+  <%= raw(article) %>
+<% end %>

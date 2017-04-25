@@ -1,6 +1,6 @@
 <div>
   <%= raw(@body) %>
-  <%= for {id, name} <- @tags do %>
-    <%= link name, to: homepage_path(@conn, :show, id) %></p>
+  <%= for name <- @tags do %>
+    <%= link name, to: article_path(@conn, :show, name) %></p>
   <% end %>
 </div>
