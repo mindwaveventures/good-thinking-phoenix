@@ -18,7 +18,7 @@ defmodule App.HomepageController do
     render conn, "index.html", body: body, tags: tags
   end
 
-  def get_body() do
+  def get_body do
     id_query = from page in "wagtailcore_page",
       where: page.url_path == "/home/",
       select: page.id

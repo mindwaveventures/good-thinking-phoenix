@@ -21,7 +21,6 @@ defmodule App.ArticleController do
       where: a.page_ptr_id == apt.content_object_id,
       select: a.body
 
-
     case articles = CMSRepo.all(article_query) do
       [] ->
         conn
