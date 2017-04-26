@@ -18,10 +18,3 @@ config :app, App.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-# Configure cms database
-config :app, App.CMSRepo,
-  adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("CMS_DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: false
-
