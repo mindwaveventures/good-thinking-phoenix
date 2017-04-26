@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ldmw/app.svg?branch=master)](https://travis-ci.org/ldmw/app)
+[![codecov](https://codecov.io/gh/ldmw/app/branch/master/graph/badge.svg)](https://codecov.io/gh/ldmw/app)
+
 # app
 
 Built using the _PETE_ stack [`Phoenix`, `Elixir`](http://www.phoenixframework.org/), [`Tachyons`](http://tachyons.io/), and [`Elm`](http://elm-lang.org/)
