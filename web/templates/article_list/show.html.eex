@@ -1,0 +1,7 @@
+<h2><%= String.capitalize @tag %> Articles</h2>
+
+<%= for article <- @articles do %>
+  <div>
+    <%= link article.heading, to: article_path(@conn, :show, article.id) %>
+  </div>
+<% end %>
