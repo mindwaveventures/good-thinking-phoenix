@@ -10,7 +10,7 @@ defmodule App.ArticleListControllerTest do
   test "lists all entries on index", %{conn: conn} do
     with_mock CMSRepo, [all: fn(_) -> @articles end] do
       conn = get conn, article_list_path(conn, :index)
-      assert html_response(conn, 200) =~ "All Articles"
+      assert html_response(conn, 200) =~ "All Resources"
     end
   end
 
