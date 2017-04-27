@@ -8,7 +8,8 @@ defmodule App.HomepageController do
 
     tag_query = from h in "articles_articlepagetag",
       join: tag in "taggit_tag",
-      where: h.tag_id == tag.id,
+      join: l in "resource_links_resourcelinkpagetag",
+      where: h.tag_id == tag.id or l.tag_id == tag.id,
       select: tag.name,
       order_by: tag.id,
       distinct: tag.id

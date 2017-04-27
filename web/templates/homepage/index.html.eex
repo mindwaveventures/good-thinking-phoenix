@@ -1,6 +1,6 @@
 <div>
   <%= raw(@body) %>
   <%= for name <- @tags do %>
-    <%= link name, to: article_list_path(@conn, :show, name) %></p>
+    <%= link String.replace(name, "-", " "), to: article_list_path(@conn, :show, name) %></p>
   <% end %>
 </div>
