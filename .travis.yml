@@ -15,7 +15,7 @@ before_script:
   - mix do ecto.create, ecto.migrate
   - psql -c "create database cms"
   - git clone https://github.com/ldmw/cms.git && cd cms
-  - pip install -r requirements.txt
+  - pip install --user -r requirements.txt
   - python manage.py migrate
   - cd ..
 script:
