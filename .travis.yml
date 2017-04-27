@@ -14,9 +14,10 @@ env:
 before_script:
   - mix do ecto.create, ecto.migrate
   - psql -c "create database cms"
-  - git clone https://github.com/ldmw/cms.git && cd cms
+  - git clone -b dumpdata https://github.com/ldmw/cms.git && cd cms
   - pip install --user -r requirements.txt
   - python manage.py migrate
+  - python manage.py loaddata dumpdata.json
   - cd ..
 script:
   - mix do deps.get, compile --warnings-as-errors, coveralls.json, credo --strict

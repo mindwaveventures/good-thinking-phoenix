@@ -51,7 +51,6 @@ defmodule App.Mixfile do
      {:excoveralls, "~> 0.6.2"},
      {:ex_doc, "~> 0.11", only: :dev},
      {:gettext, "~> 0.11"},
-     {:mock, "~> 0.2.0", only: :test},
      {:cowboy, "~> 1.0"}]
   end
 
