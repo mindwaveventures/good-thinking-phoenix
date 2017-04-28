@@ -50,17 +50,19 @@ body {
 }
 
 .b--lm-orange {
-  background-color: #FAB781;
+  border-color: #FAB781;
 }
 
 .b--lm-dark-blue {
-  background-color: #242E50;
+  border-color: #242E50;
 }
 
 .b--lm-white {
-  background-color: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .b--lm-turquoise {
-  background-color: #009EE2;
+  border-color: #009EE2;
+}
+
 }
