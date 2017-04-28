@@ -15,6 +15,10 @@ body {
   position:relative;
 }
 
+.button {
+  border: none;
+}
+
 /*color palette*/
 
 .lm-bg-orange {
@@ -43,6 +47,14 @@ body {
 
 .lm-white {
   color: #FFFFFF;
+}
+
+.lm-white-hover:hover {
+  color: #FFFFFF;
+}
+
+.lm-b--white-hover:hover {
+  border-color: #FFFFFF;
 }
 
 .lm-turquoise {
