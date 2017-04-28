@@ -13,6 +13,7 @@ defmodule App.ArticleListController do
     resources =
       CMSRepo.all(article_query) ++ CMSRepo.all(link_query)
       |> Enum.sort(&(&1[:id] <= &2[:id]))
+      |> IO.inspect
 
     render conn, "index.html", resources: resources
   end
