@@ -12,7 +12,7 @@ defmodule App.ArticleController do
     render conn, "index.html", articles: articles
   end
 
-  def show(conn, %{"tag" => tag}) do
+  def show(conn, %{"id" => tag}) do
     article_query = from t in "taggit_tag",
       where: t.name == ^tag,
       join: apt in "articles_articlepagetag",
