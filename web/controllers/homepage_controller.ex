@@ -6,9 +6,9 @@ defmodule App.HomepageController do
   def index(conn, _params) do
     body = get_body()
 
-    tag_query = from h in "articles_articlepagetag",
-      join: tag in "taggit_tag",
-      join: l in "resource_links_resourcelinkpagetag",
+    tag_query = from tag in "taggit_tag",
+      full_join: h in "articles_categorytag",
+      full_join: l in "resources_categorytag",
       where: h.tag_id == tag.id or l.tag_id == tag.id,
       select: tag.name,
       order_by: tag.id,

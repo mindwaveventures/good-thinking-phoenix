@@ -7,19 +7,20 @@ defmodule App.ArticleListController do
     article_query = from a in "articles_articlepage",
       select: %{id: a.page_ptr_id, heading: a.heading}
 
-    link_query = from l in "resource_links_resourcelinkpage",
+    link_query = from l in "resources_resourcepage",
       select: %{id: l.page_ptr_id, heading: l.heading, url: l.resource_url}
 
     resources =
       CMSRepo.all(article_query) ++ CMSRepo.all(link_query)
       |> Enum.sort(&(&1[:id] <= &2[:id]))
+      |> IO.inspect
 
     render conn, "index.html", resources: resources
   end
 
   def show(conn, %{"tag" => tag}) do
-    article_query = create_tag_query(tag, "articles_articlepage")
-    link_query = create_tag_query(tag, "resource_links_resourcelinkpage")
+    article_query = create_tag_query(tag, "articles")
+    link_query = create_tag_query(tag, "resources")
 
     resources =
       CMSRepo.all(article_query) ++ CMSRepo.all(link_query)
@@ -38,17 +39,18 @@ defmodule App.ArticleListController do
   def create_tag_query(tag, type) do
     query = from t in "taggit_tag",
       where: t.name == ^tag,
-      join: apt in ^"#{type}tag",
+      join: apt in ^"#{type}_categorytag",
       where: apt.tag_id == t.id,
-      join: a in ^type,
+      join: a in ^"#{type}_#{String.slice(type, 0..-2)}page",
       where: a.page_ptr_id == apt.content_object_id
 
-    if type == "resource_links_resourcelinkpage" do
+    if type == "resources" do
       query
         |> select([t, apt, a], %{
           id: a.page_ptr_id,
           heading: a.heading,
-          url: a.resource_url
+          url: a.resource_url,
+          body: a.body
         })
     else
       query
