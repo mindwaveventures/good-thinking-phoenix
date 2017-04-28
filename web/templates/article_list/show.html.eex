@@ -5,6 +5,11 @@
     <div>
       <h3><%= resource[:heading] %></h3>
       <%= link resource.url, to: resource.url %>
+      <div>
+        <%= for tag <- resource.tags do %>
+          <%= link tag, to: article_list_path(@conn, :show, tag) %>
+        <% end %>
+      </div>
       <%= raw(resource[:body]) %>
     </div>
   <%= else %>
