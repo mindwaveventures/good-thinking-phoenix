@@ -1,6 +1,12 @@
 <div>
   <%= raw(@body) %>
-  <%= for name <- @tags do %>
-    <%= link String.replace(name, "-", " "), to: article_list_path(@conn, :show, name) %></p>
+  <h4>What sleep issues have you been affected with recently?</h4>
+  <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+    <%= select f, :tag, @tags %>
+    <%= submit "Submit" %>
+  <% end %>
+
+  <%= if assigns[:resources] do %>
+    <%= render "show.html", assigns %>
   <% end %>
 </div>

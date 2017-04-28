@@ -7,7 +7,7 @@
       <%= link resource.url, to: resource.url %>
       <div>
         <%= for tag <- resource.tags do %>
-          <%= link tag, to: article_list_path(@conn, :show, tag) %>
+          <span><%= tag %></span>
         <% end %>
       </div>
       <%= raw(resource[:body]) %>
