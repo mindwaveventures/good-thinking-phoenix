@@ -1,1 +1,66 @@
 /* This file is for your main application css. */
+
+/*fonts*/
+
+body {
+  font-family: 'century-gothic', sans-serif;
+  color: #242F4F;
+  min-height: 100%;
+  height: 100%;
+}
+
+/*elements*/
+.container {
+  min-height:100vh;
+  position:relative;
+}
+
+/*color palette*/
+
+.lm-bg-orange {
+  background-color: #FAB781;
+}
+
+.lm-bg-dark-blue {
+  background-color: #242E50;
+}
+
+.lm-bg-white {
+  background-color: #FFFFFF;
+}
+
+.lm-bg-turquoise {
+  background-color: #009EE2;
+}
+
+.lm-orange {
+  color: #FAB781;
+}
+
+.lm-dark-blue {
+  color: #242E50;
+}
+
+.lm-white {
+  color: #FFFFFF;
+}
+
+.lm-turquoise {
+  color: #009EE2;
+}
+
+.b--lm-orange {
+  background-color: #FAB781;
+}
+
+.b--lm-dark-blue {
+  background-color: #242E50;
+}
+
+.b--lm-white {
+  background-color: #FFFFFF;
+}
+
+.b--lm-turquoise {
+  background-color: #009EE2;
+}
