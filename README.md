@@ -14,6 +14,14 @@ This project works in tandem with the lmdw cms, for the admin section of the pro
 Click on image to see large version.
 To edit: https://docs.google.com/drawings/d/1NX710eQ_1fJgxctvF3--KOO4S-m-_lOouWg1V_lPtXY
 
+### Project Design
+
+See: zpl.io/ZDwoAh
+
+<img src="https://cloud.githubusercontent.com/assets/16775804/25523681/8262a5d4-2bff-11e7-8023-cd9ba51e6d99.png" />
+<img src="https://cloud.githubusercontent.com/assets/16775804/25523711/a48659d0-2bff-11e7-8391-93f402894bdb.png" />
+<img src="https://cloud.githubusercontent.com/assets/16775804/25523736/c2ecb324-2bff-11e7-87ce-647ee45e152b.png" />
+
 ### Installation and Setup
 
 To get up and running - make sure you have installed:
