@@ -19,6 +19,15 @@ body {
   border: none;
 }
 
+.cover-img {
+  background-image: url("/images/background-img.png");
+}
+
+/* Phoenix flash messages */
+.alert:empty {
+  display: none;
+}
+
 /*color palette*/
 
 .lm-bg-orange {
