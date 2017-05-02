@@ -6,7 +6,11 @@
     <%= submit "Submit" %>
   <% end %>
 
+  <%= raw(@alphatext) %>
+
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
+
+  <%= raw(@footer) %>
 </div>

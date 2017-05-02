@@ -4,17 +4,20 @@ defmodule App.HomepageController do
   alias App.CMSRepo
 
   def index(conn, _params) do
-    render conn, "index.html", body: get_body(), tags: get_tags()
+    render conn, "index.html",
+      body: get_content(:body), tags: get_tags(),
+      footer: get_content(:footer), alphatext: get_content(:alphatext)
   end
 
-  def get_body do
+  def get_content(content) do
     query = from page in "wagtailcore_page",
       where: page.url_path == "/home/",
       join: h in "home_homepage",
       where: h.page_ptr_id == page.id,
-      select: h.body
+      select: %{alphatext: h.alphatext, body: h.body, footer: h.footer}
 
     CMSRepo.one(query)
+      |> Map.get(content)
   end
 
   def get_tags do
@@ -55,7 +58,9 @@ defmodule App.HomepageController do
           |> put_status(404)
           |> render(App.ErrorView, "404.html")
       _ -> render conn, "index.html",
-        tag: tag, resources: all_resources, body: get_body(), tags: get_tags()
+        tag: tag, resources: all_resources,
+        body: get_content(:body), tags: get_tags(),
+        footer: get_content(:footer), alphatext: get_content(:alphatext)
     end
   end
 
