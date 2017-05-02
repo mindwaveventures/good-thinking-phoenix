@@ -49,10 +49,10 @@
           </ul>
           <p class="f5 lh-copy sans-serif">Take this button for example: </p>
 
-          <%= App.ComponentHelpers.component "primary_button", value: "Click Me!" %>
+          <%= component "primary_button", value: "Click Me!" %>
 
           <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
-          <img src="https://cloud.githubusercontent.com/assets/16775804/25539067/53832f84-2c3d-11e7-9c35-861ac45c4428.png"/>
+          <img src="https://cloud.githubusercontent.com/assets/16775804/25627939/3be0fae2-2f5c-11e7-9589-acbd8974c756.png"/>
           <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
           <!-- INSERT IMAGE HERE -->
 
@@ -61,9 +61,9 @@
           <h2 class="f3">Buttons</h1>
             <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
-            <%= App.ComponentHelpers.component "primary_button", value: "Primary" %>
+            <%= component "primary_button", value: "Primary" %>
             <div class="dib w-20 pv3 ma2 lm-bg-dark-blue tc">
-              <%= App.ComponentHelpers.component "secondary_button", value: "Secondary" %>
+              <%= component "secondary_button", value: "Secondary" %>
             </div>
 
     </section>

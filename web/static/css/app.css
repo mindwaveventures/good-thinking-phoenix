@@ -76,7 +76,7 @@ body {
   color: #FFFFFF;
 }
 
-.lm-b--white-hover:hover {
+.b--lm-white-hover:hover {
   border-color: #FFFFFF;
 }
 
@@ -98,6 +98,12 @@ body {
 
 .b--lm-turquoise {
   border-color: #009EE2;
+}
+
+footer p a {
+  padding: 0 2em 0 2em;
+  text-decoration: none;
+  color: #242E50;
 }
 
 .select-box {

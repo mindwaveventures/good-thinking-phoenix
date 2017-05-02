@@ -54,6 +54,7 @@ defmodule App.Web do
       import App.Router.Helpers
       import App.ErrorHelpers
       import App.Gettext
+      import App.ComponentHelpers
     end
   end
 

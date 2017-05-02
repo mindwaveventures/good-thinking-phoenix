@@ -1,5 +1,5 @@
-<div class="pa1 lm-bg-dark-blue lm-white w-100">
-  <p class="">
+<div class="pa3 f5-l f5-m f6 lm-bg-dark-blue lm-white w-100">
+  <p class="ma0">
     <strong>ALPHA:</strong>
     This is a prototype - your
     <a href="#" class="underline lm-white">feedback</a>
@@ -8,32 +8,47 @@
   </p>
 </div>
 
-<div class="pt4 cover-img tl ph4 lm-white">
-  <div>
-    <img src="/images/London_Minds_logo.png" class="w-50" />
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l cover-img tl lm-white cover lh-copy">
+  <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+  <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
     <%= raw(@body) %>
   </div>
-</div>
+</section>
 
-<%= if assigns[:resources] do %>
-  <%= render "show.html", assigns %>
-<% end %>
+<section class="pa4 tc-ns tracked">
+  <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
 
-<h4>What sleep issues have you been affected with recently?</h4>
-<%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
-  <div class="select-box">
-    <%= select f, :tag, @tags %>
+  <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+    <div class="select-box">
+      <%= select f, :tag, @tags %>
+    </div>
+    <%= submit "Submit" %>
+  <% end %>
+  
+  <%= if assigns[:resources] do %>
+    <%= render "show.html", assigns %>
+  <% end %>
+</section>
+
+<section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
+  <div class="mh3 mv3 w-60-m w-50-l center">
+    <h2 class="f5 f4-ns tracked">ALPHA</h2>
+    <h2 class="f5 f4-ns i">what does it mean?</h2>
+    <p>
+      Lorem ipsum donor sit amet consectetur adipiscing eros justo bibendium. Proin sodales pulvinar tempor.
+    </p>
+    <p>
+      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.
+    </p>
   </div>
-  <%= submit "Submit" %>
-<% end %>
 
-<div class="lm-white lm-bg-dark-blue pa1">
-  <div class="lm-dark-blue lm-bg-white">
+  <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw(@alphatext) %>
+    <input type="text" name="" value="Your email address" class="b--grey br2 pa1 mb2">
+    <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
   </div>
-  <!--Add 'Take part' button class="absolute"-->
-</div>
+</section>
 
-<footer class="w-100">
+<footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
   <%= raw(@footer) %>
 </footer>
