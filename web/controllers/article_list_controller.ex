@@ -17,7 +17,7 @@ defmodule App.ArticleListController do
     render conn, "index.html", resources: resources
   end
 
-  def show(conn, %{"id" => tag}) do
+  def show(conn, %{"tag" => tag}) do
     article_query = create_tag_query(tag, "articles_articlepage")
     link_query = create_tag_query(tag, "resource_links_resourcelinkpage")
 
