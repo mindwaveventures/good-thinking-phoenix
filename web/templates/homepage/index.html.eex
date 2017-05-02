@@ -15,15 +15,18 @@
   </div>
 </div>
 
-<%= if assigns[:resources] do %>
-<%= render "show.html", assigns %>
-<% end %>
+<section class="pa4 tc-ns tracked">
+  <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
 
-<h4>What sleep issues have you been affected with recently?</h4>
-<%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
-<%= select f, :tag, @tags %>
-<%= submit "Submit" %>
-<% end %>
+  <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+    <%= select f, :tag, @tags %>
+    <%= submit "Submit" %>
+  <% end %>
+
+  <%= if assigns[:resources] do %>
+    <%= render "show.html", assigns %>
+  <% end %>
+</section>
 
 <section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
   <div class="mh3 mv3 w-60-m w-50-l center">
