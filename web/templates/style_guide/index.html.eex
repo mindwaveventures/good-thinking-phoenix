@@ -53,7 +53,7 @@
 
           <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
           <img src="https://cloud.githubusercontent.com/assets/16775804/25539067/53832f84-2c3d-11e7-9c35-861ac45c4428.png"/>
-          <!-- <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/views/component_helpers/button.ex</code>:</p> -->
+          <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
           <!-- INSERT IMAGE HERE -->
 
           <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
@@ -66,24 +66,4 @@
               <%= App.ComponentHelpers.component "secondary_button", value: "Secondary" %>
             </div>
 
-            <!-- <h2 class="f3">Links</h2>
-            <p class="measure f5 lh-copy sans-serif">Our basic anchor components.</p> -->
-
-            <!-- <h2 class="f3 mt6 pt4">Partials Standard Components</h1>
-            <p class="f5 lh-copy sans-serif">Partials are small templates.
-            They are used to contain a collection of elements that are always used together.
-            Partials can contain helper standard components. In the context of standard components,
-            we are interested in partials that are reused and inserted in numerous places across a project.</p>
-            <p class="measure f5 lh-copy sans-serif">To use a partial you need to do 3 things:</p>
-
-            <ul class="f5 lh-copy sans-serif">
-            <li>Find or create a new partial within <code>web/templates/tip/index.html.eex</code></li>
-            <li>Define your partial inside your views:<code>web/views/tip_view.ex</code></li>
-            <li>Create any functions needed in <code>web/views/component_view.ex</code></li>
-            <li>Render the partial in your html where you wish to position it.</li>
-          </ul>
-
-        </div>
-        <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use partials:</p>
-      </div> -->
     </section>
