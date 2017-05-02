@@ -8,12 +8,12 @@
   </p>
 </div>
 
-<div class="pt4 cover-img tl ph4 lm-white">
-  <div>
-    <img src="/images/London_Minds_logo.png" class="w-50" />
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l cover-img tl lm-white cover lh-copy">
+  <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+  <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
     <%= raw(@body) %>
   </div>
-</div>
+</section>
 
 <section class="pa4 tc-ns tracked">
   <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
