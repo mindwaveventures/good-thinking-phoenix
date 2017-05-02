@@ -58,7 +58,9 @@ defmodule App.HomepageController do
           |> put_status(404)
           |> render(App.ErrorView, "404.html")
       _ -> render conn, "index.html",
-        tag: tag, resources: all_resources, body: get_content(:body), tags: get_tags()
+        tag: tag, resources: all_resources,
+        body: get_content(:body), tags: get_tags(),
+        footer: get_content(:footer), alphatext: get_content(:alphatext)
     end
   end
 
