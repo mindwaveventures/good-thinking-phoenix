@@ -5,7 +5,8 @@ defmodule App.HomepageController do
 
   def index(conn, _params) do
     render conn, "index.html",
-      body: get_content(:body), tags: get_tags(),
+      body: get_content(:body), cat_tags: get_tags("category"),
+      aud_tags: get_tags("audience"), con_tags: get_tags("content"),
       footer: get_content(:footer), alphatext: get_content(:alphatext)
   end
 
@@ -20,10 +21,10 @@ defmodule App.HomepageController do
       |> Map.get(content)
   end
 
-  def get_tags do
+  def get_tags(type) do
     tag_query = from tag in "taggit_tag",
-      full_join: h in "articles_categorytag",
-      full_join: l in "resources_categorytag",
+      full_join: h in ^"articles_#{type}tag",
+      full_join: l in ^"resources_#{type}tag",
       where: h.tag_id == tag.id or l.tag_id == tag.id,
       select: tag.name,
       order_by: tag.id,
@@ -32,7 +33,26 @@ defmodule App.HomepageController do
     CMSRepo.all(tag_query)
   end
 
-  def show(conn, %{"tags" => %{"tag" => tag}}) do
+  def show(conn, params) do
+    %{
+      "category" => %{"category" => tag},
+      "audience" => audience,
+      "content" => content
+    } = params
+
+    true_tuples = fn e ->
+      case e do
+        {_t, "true"} -> true
+        {_t, "false"} -> false
+      end
+    end
+
+    second_value = fn {a, "true"} -> a end
+
+    audience_filter = Enum.filter_map(audience, true_tuples, second_value)
+
+    content_filter = Enum.filter_map(content, true_tuples, second_value)
+
     article_query = create_tag_query(tag, "articles")
 
     link_query = create_tag_query(tag, "resources")
@@ -50,6 +70,7 @@ defmodule App.HomepageController do
     all_resources =
       articles ++ resources
       |> Enum.map(&(get_all_tags(&1)))
+      |> filter_tags(audience_filter, content_filter)
       |> Enum.sort(&(&1[:id] <= &2[:id]))
 
     case resources do
@@ -58,10 +79,18 @@ defmodule App.HomepageController do
           |> put_status(404)
           |> render(App.ErrorView, "404.html")
       _ -> render conn, "index.html",
-        tag: tag, resources: all_resources,
-        body: get_content(:body), tags: get_tags(),
-        footer: get_content(:footer), alphatext: get_content(:alphatext)
+        tag: tag, resources: all_resources, body: get_content(:body),
+        cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
+        con_tags: get_tags("content"),footer: get_content(:footer),
+        alphatext: get_content(:alphatext)
     end
+  end
+
+  def filter_tags(resources, audience_filter, content_filter) do
+    Enum.filter(resources, fn e ->
+      Enum.all?(audience_filter, fn a -> a in e.tags end) and
+      Enum.all?(content_filter, fn c -> c in e.tags end)
+    end)
   end
 
   def create_tag_query(tag, type) do

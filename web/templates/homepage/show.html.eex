@@ -5,9 +5,9 @@
     <div>
       <h3><%= resource[:heading] %></h3>
       <%= link resource.url, to: resource.url %>
-      <div>
+      <div class="mt2">
         <%= for tag <- resource.tags do %>
-          <span><%= tag %></span>
+          <span class="ba br2 ph1"><%= tag %></span>
         <% end %>
       </div>
       <%= raw(resource[:body]) %>
