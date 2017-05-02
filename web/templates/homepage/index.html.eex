@@ -8,40 +8,30 @@
   </p>
 </div>
 
-<!-- Cover div -->
-<!-- <div class="lm-white lm-bg-dark-blue h4 ">
-
-</div> -->
-
 <div class="pt4 cover-img tl ph4 lm-white">
   <div>
     <img src="/images/London_Minds_logo.png" class="w-50" />
     <%= raw(@body) %>
-    <h4>What sleep issues have you been affected with recently?</h4>
-    <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
-      <%= select f, :tag, @tags %>
-      <%= submit "Submit" %>
-    <% end %>
-
-    <%= raw(@alphatext) %>
-
-    <%= if assigns[:resources] do %>
-      <%= render "show.html", assigns %>
-    <% end %>
-
-    <%= raw(@footer) %>
   </div>
 </div>
 
-<div class="lm-white lm-bg-dark-blue h-20 relative">
+<%= if assigns[:resources] do %>
+<%= render "show.html", assigns %>
+<% end %>
 
-  <div class="lm-dark-blue">
+<h4>What sleep issues have you been affected with recently?</h4>
+<%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+<%= select f, :tag, @tags %>
+<%= submit "Submit" %>
+<% end %>
 
+<div class="lm-white lm-bg-dark-blue pa1">
+  <div class="lm-dark-blue lm-bg-white">
+    <%= raw(@alphatext) %>
   </div>
   <!--Add 'Take part' button class="absolute"-->
 </div>
 
-<!-- Add white footer -->
 <footer class="w-100">
-
+  <%= raw(@footer) %>
 </footer>
