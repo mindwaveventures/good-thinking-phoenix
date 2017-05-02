@@ -18,13 +18,32 @@
 <section class="pa4 tc-ns tracked">
   <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
 
-  <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+<%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
+  <%= inputs_for f, :category, [as: :category], fn fcat -> %>
     <div class="select-box">
-      <%= select f, :tag, @tags %>
+      <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"] %>
     </div>
-    <%= submit "Submit" %>
   <% end %>
-  
+
+  <h4>I want to see content for:</h4>
+  <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
+    <%= for tag <- @aud_tags do %>
+      <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag] %>
+      <%= label fa, String.to_atom(tag) %>
+    <% end %>
+  <% end %>
+
+  <h4>Show me:</h4>
+  <%= inputs_for f, :content, [as: :content], fn fcon -> %>
+    <%= for tag <- @con_tags do %>
+      <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag] %>
+      <%= label fcon, String.to_atom(tag) %>
+    <% end %>
+  <% end %>
+
+  <%= submit "Submit" %>
+<% end %>
+
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
