@@ -19,10 +19,12 @@
   <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
 
   <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
-    <%= select f, :tag, @tags %>
+    <div class="select-box">
+      <%= select f, :tag, @tags %>
+    </div>
     <%= submit "Submit" %>
   <% end %>
-
+  
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
