@@ -25,12 +25,24 @@
 <%= submit "Submit" %>
 <% end %>
 
-<div class="lm-white lm-bg-dark-blue pa1">
-  <div class="lm-dark-blue lm-bg-white">
-    <%= raw(@alphatext) %>
+<section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
+  <div class="mh3 mv3 w-60-m w-50-l center">
+    <h2 class="f5 f4-ns tracked">ALPHA</h2>
+    <h2 class="f5 f4-ns i">what does it mean?</h2>
+    <p>
+      Lorem ipsum donor sit amet consectetur adipiscing eros justo bibendium. Proin sodales pulvinar tempor.
+    </p>
+    <p>
+      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.
+    </p>
   </div>
-  <!--Add 'Take part' button class="absolute"-->
-</div>
+
+  <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
+    <%= raw(@alphatext) %>
+    <input type="text" name="" value="Your email address" class="b--grey br2 pa1 mb2">
+    <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
+  </div>
+</section>
 
 <footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
   <%= raw(@footer) %>
