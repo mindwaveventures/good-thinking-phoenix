@@ -19,6 +19,11 @@ body {
   border: none;
 }
 
+/* Phoenix flash messages */
+.alert:empty {
+  display: none;
+}
+
 /*color palette*/
 
 .lm-bg-orange {
