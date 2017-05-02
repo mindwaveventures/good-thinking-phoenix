@@ -3,10 +3,24 @@
 /*fonts*/
 
 body {
-  font-family: 'century-gothic', sans-serif;
+  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif; 
   color: #242F4F;
   min-height: 100%;
   height: 100%;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url(/fonts/segoe/SEGOEUI.TTF) format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*elements*/
@@ -84,6 +98,44 @@ body {
 
 .b--lm-turquoise {
   border-color: #009EE2;
+}
+
+.select-box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #242e50;
+}
+
+.select-box select {
+  background-color: #fff;
+  color: grey;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em;  
+  border: 0;
+  margin: 0;
+  border-radius: 2px;
+  text-indent: 0.01px;
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.select-box::before,
+.select-box::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.select-box::after {
+  color: #fab781;
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
 }
 
 /* Styleguide */
