@@ -30,7 +30,8 @@ defmodule App.ArticleListController do
         conn
           |> put_status(404)
           |> render(App.ErrorView, "404.html")
-      _ -> render conn, "show.html", tag: tag, resources: resources
+      _ -> render conn, "show.html",
+        tag: tag, resources: resources, title: String.capitalize(tag)
     end
   end
 
