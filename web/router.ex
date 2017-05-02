@@ -17,8 +17,7 @@ defmodule App.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", HomepageController, :index
-    get "/articles", ArticleListController, :index
-    get "/articles/:tag", ArticleListController, :show
+    post "/", HomepageController, :show
     get "/article/:id", ArticleController, :show
   end
 
