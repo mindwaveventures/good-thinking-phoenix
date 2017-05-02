@@ -32,6 +32,6 @@
   <!--Add 'Take part' button class="absolute"-->
 </div>
 
-<footer class="w-100">
+<footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
   <%= raw(@footer) %>
 </footer>
