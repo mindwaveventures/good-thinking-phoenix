@@ -86,6 +86,12 @@ body {
   border-color: #009EE2;
 }
 
+footer p a {
+  padding: 0 2em 0 2em;
+  text-decoration: none;
+  color: #242E50;
+}
+
 /* Styleguide */
 
 code {
