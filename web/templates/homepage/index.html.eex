@@ -1,3 +1,14 @@
+
+<!-- Build aplha banner -->
+
+<p class="lm-bg-dark-blue lm-white w-100 ma1">ALPHA: This is a prototype - your feedback will help us to improve it. Find out more</p>
+
+<!-- Cover div -->
+<div class="lm-white lm-bg-dark-blue h-20">
+
+</div>
+
+
 <div>
   <%= raw(@body) %>
   <h4>What sleep issues have you been affected with recently?</h4>
@@ -14,3 +25,16 @@
 
   <%= raw(@footer) %>
 </div>
+
+<div class="lm-white lm-bg-dark-blue h-20 relative">
+
+  <div class="lm-dark-blue">
+
+  </div>
+  <!--Add 'Take part' button class="absolute"-->
+</div>
+
+<!-- Add white footer -->
+<footer class="w-100">
+
+</footer>
