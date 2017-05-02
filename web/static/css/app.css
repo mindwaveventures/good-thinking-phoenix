@@ -3,10 +3,24 @@
 /*fonts*/
 
 body {
-  font-family: 'century-gothic', sans-serif;
+  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif; 
   color: #242F4F;
   min-height: 100%;
   height: 100%;
+}
+
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url(/fonts/segoe/SEGOEUI.TTF) format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /*elements*/
