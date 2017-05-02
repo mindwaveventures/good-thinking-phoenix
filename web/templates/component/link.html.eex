@@ -1,0 +1,1 @@
+<%= link @value, class: "link lm-dark-blue underline-hover #{assigns[:class]}", id: assigns[:id] %>

@@ -1,0 +1,2 @@
+<!--For use on dark backgrounds-->
+<%= submit @value, class: "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover lm-b--white-hover lm-orange pointer ba bw1 b--lm-orange bg-white #{assigns[:class]}", id: assigns[:id] %>

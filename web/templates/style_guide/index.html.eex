@@ -1,0 +1,69 @@
+<section class="flex-auto flex flex-column flex-row-ns bg-white black-70">
+  <div class="fl w-100 w-100-ns pa2 mw7 center">
+    <h3 class="f6 ttu tracked mt5">Styleguide</h3>
+    <p class="measure f5 lh-copy sans-serif">Welcome to the London Minds styleguide. This is where we document the components that make up the London Minds application.</p>
+    <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper or partial to correctly generate the markup (with Tachyons classes).</p>
+
+    <div class="bg-white pv4 h-25">
+      <h2 class="f3">Color Palette</h2>
+      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.lm-orange</code>, <code>.lm-bg-dark-blue</code> (background colours) or <code>.b--lm-turquoise</code> (border colours).</p>
+      <ul class="list pl0 ml0">
+        <li class="fl w-100 w-50-m w-25-l mb1">
+          <div class="fl w-40 pv4 lm-bg-orange"></div>
+          <div class="fl w-60 lh-copy pl2 pt2">
+            <b class="db">orange</b>
+            <code class="f6">#FAB781</code>
+          </div>
+        </li>
+        <li class="fl w-100 w-50-m w-25-l mb1">
+          <div class="fl w-40 pv4 lm-bg-dark-blue"></div>
+          <div class="fl w-60 lh-copy pl2 pt2">
+            <b class="db">dark blue</b>
+            <code class="f6">#242E50</code>
+          </div>
+        </li>
+        <li class="fl w-100 w-50-m w-25-l mb1">
+          <div class="fl w-40 pv4 lm-bg-white"></div>
+          <div class="fl w-60 lh-copy pl2 pt2">
+            <b class="db">white</b>
+            <code class="f6">#FFFFFF</code>
+          </div>
+        </li>
+        <li class="fl w-100 w-50-m w-25-l mb1">
+          <div class="fl w-40 pv4 lm-bg-turquoise"></div>
+          <div class="fl w-60 lh-copy pl2 pt2">
+            <b class="db">turquoise</b>
+            <code class="f6">#009EE2</code>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-white pv4">
+      <h2 class="f3">Helper Function Standard Components</h1>
+        <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
+          They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button. </p>
+          <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 2 things:</p>
+          <ul class="f5 lh-copy sans-serif">
+            <li>Find an existing component in <code>web/templates/component/</code> or create/amend your own</li>
+            <li>Call the function in your html where you wish to position the component.</li>
+          </ul>
+          <p class="f5 lh-copy sans-serif">Take this button for example: </p>
+
+          <%= App.ComponentHelpers.component "primary_button", value: "Click Me!" %>
+
+          <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
+          <img src="https://cloud.githubusercontent.com/assets/16775804/25539067/53832f84-2c3d-11e7-9c35-861ac45c4428.png"/>
+          <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
+          <!-- INSERT IMAGE HERE -->
+
+          <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
+
+          <h2 class="f3">Buttons</h1>
+            <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
+
+            <%= App.ComponentHelpers.component "primary_button", value: "Primary" %>
+            <div class="dib w-20 pv3 ma2 lm-bg-dark-blue tc">
+              <%= App.ComponentHelpers.component "secondary_button", value: "Secondary" %>
+            </div>
+
+    </section>
