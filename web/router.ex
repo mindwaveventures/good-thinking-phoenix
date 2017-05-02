@@ -19,6 +19,7 @@ defmodule App.Router do
     get "/", HomepageController, :index
     post "/", HomepageController, :show
     get "/article/:id", ArticleController, :show
+    get "/styleguide", StyleGuideController, :index
   end
 
   # Other scopes may use custom stacks.
