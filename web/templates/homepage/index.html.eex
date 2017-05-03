@@ -15,8 +15,8 @@
   </div>
 </section>
 
-<section class="pa4 tc-ns tracked">
-  <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
+<section class="pa4 tc-ns">
+  <h2 class="mt0 f5 f4-ns tracked">What sleep issues have you been affected with recently?</h2>
 
 <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
   <%= inputs_for f, :category, [as: :category], fn fcat -> %>
