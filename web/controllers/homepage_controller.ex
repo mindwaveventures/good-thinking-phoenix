@@ -3,6 +3,8 @@ defmodule App.HomepageController do
   import Ecto.Query, only: [from: 2, select: 3]
   alias App.CMSRepo
 
+  @google_sheet_url Application.get_env(:app, :google_sheet_url)
+
   def index(conn, _params) do
     render conn, "index.html",
       body: get_content(:body), cat_tags: get_tags("category"),
@@ -137,7 +139,7 @@ defmodule App.HomepageController do
   end
 
   def submit_email(conn, %{"email" => %{"email" => email}}) do
-    url = "https://script.google.com/macros/s/AKfycbxMlS6B15_ONAFj-5ZWbI_DC4tzI83sk9o9BM83ZYt9SS05ZRA/exec"
+    url = @google_sheet_url
 
     HTTPotion.post url, [body: "email=" <> URI.encode_www_form(email),
       headers: ["User-Agent": "App", "Content-Type": "application/x-www-form-urlencoded"]]
