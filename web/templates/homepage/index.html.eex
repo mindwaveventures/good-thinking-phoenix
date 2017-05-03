@@ -15,12 +15,12 @@
   </div>
 </section>
 
-<section class="pa4 tc-ns tracked">
-  <h2 class="mt0 f5 f4-ns">What sleep issues have you been affected with recently?</h2>
+<section class="pa4 tc-ns">
+  <h2 class="mt0 f5 f4-ns tracked">What sleep issues have you been affected with recently?</h2>
 
 <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
   <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-    <div class="select-box">
+    <div class="select-box v-mid dib relative b--lm-dark-blue br1 ba">
       <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"] %>
     </div>
   <% end %>
@@ -63,7 +63,7 @@
 
   <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw(@alphatext) %>
-    <input type="text" name="" value="Your email address" class="b--grey br2 pa1 mb2">
+    <input type="text" name="" placeholder="Your email address" class="b--lm-grey br2 pa2 mb2-l mb4 f5 fw3">
     <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
   </div>
 </section>
