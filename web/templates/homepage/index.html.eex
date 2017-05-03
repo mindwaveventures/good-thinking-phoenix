@@ -73,7 +73,7 @@
     <%= form_for @conn, homepage_path(@conn, :submit_email), [as: :email], fn f -> %>
       <%= label(f, :email, "Email") %>
       <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3") %>
-      <%= submit "Take part", class: "absolute bottom--1 right-2" %>
+      <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
     <% end %>
   </div>
 </section>
