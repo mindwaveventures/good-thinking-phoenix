@@ -135,4 +135,15 @@ defmodule App.HomepageController do
 
     Map.merge(%{tags: CMSRepo.all(query)}, resource)
   end
+
+  def submit_email(conn, %{"email" => %{"email" => email}}) do
+    url = "https://script.google.com/macros/s/AKfycbxMlS6B15_ONAFj-5ZWbI_DC4tzI83sk9o9BM83ZYt9SS05ZRA/exec"
+
+    HTTPotion.post url, [body: "email=" <> URI.encode_www_form(email),
+      headers: ["User-Agent": "App", "Content-Type": "application/x-www-form-urlencoded"]]
+
+    conn
+      |> put_flash(:info, "Email collected")
+      |> redirect(to: homepage_path(conn, :index))
+  end
 end
