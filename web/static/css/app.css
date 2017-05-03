@@ -156,6 +156,12 @@ footer p a {
   margin-top: -.5em;
 }
 
+/* Landing Page - Resources */
+
+.lh-tag {
+  line-height: 2.4;
+}
+
 /* Styleguide */
 
 code {
