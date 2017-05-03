@@ -20,7 +20,7 @@
 
 <%= form_for @conn, homepage_path(@conn, :show), [as: :tags],  fn f -> %>
   <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-    <div class="select-box">
+    <div class="select-box v-mid dib relative b--lm-dark-blue br1 ba">
       <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"] %>
     </div>
   <% end %>
