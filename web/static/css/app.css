@@ -60,6 +60,10 @@ body {
   background-color: #009EE2;
 }
 
+.lm-bg-grey {
+  background-color: #c2c2c2;
+}
+
 .lm-orange {
   color: #FAB781;
 }
@@ -84,6 +88,10 @@ body {
   color: #009EE2;
 }
 
+.lm-grey {
+  color: #c2c2c2;
+}
+
 .b--lm-orange {
   border-color: #FAB781;
 }
@@ -98,6 +106,10 @@ body {
 
 .b--lm-turquoise {
   border-color: #009EE2;
+}
+
+.b--lm-grey {
+  border: solid 1px #c2c2c2;
 }
 
 footer p a {
