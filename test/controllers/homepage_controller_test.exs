@@ -1,11 +1,22 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase
 
-  test "GET /", %{conn: conn} do
+  setup config do
+    login_user(config)
+  end
+
+  @tag login_as: "me@test.com"
+  test "GET / - Logged in", %{conn: conn} do
     conn = get conn, "/"
     assert html_response(conn, 200) =~ "<!DOCTYPE html>"
   end
 
+  test "GET / - Not logged in", %{conn: conn} do
+    conn = get conn, "/"
+    assert html_response(conn, 302) =~ "sessions/new"
+  end
+
+  @tag login_as: "me@test.com"
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, homepage_path(conn, :index)
     assert html_response(conn, 200) =~ "sleep issues"

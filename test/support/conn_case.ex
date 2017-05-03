@@ -26,6 +26,7 @@ defmodule App.ConnCase do
       import Ecto.Query
 
       import App.Router.Helpers
+      import App.TestHelpers
 
       # The default endpoint for testing
       @endpoint App.Endpoint
