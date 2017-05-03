@@ -118,29 +118,22 @@ footer p a {
   color: #242E50;
 }
 
-.select-box {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid #242e50;
-}
+
+/* Landing Page - Resources dropdown */
 
 .select-box select {
   background-color: #fff;
   color: grey;
-  font-size: inherit;
   padding: .5em;
-  padding-right: 2.5em;  
+  padding-right: 2.5em;
   border: 0;
   margin: 0;
-  border-radius: 2px;
   text-indent: 0.01px;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
 }
 
 .select-box::before,
 .select-box::after {
-  content: "";
   position: absolute;
   pointer-events: none;
 }
@@ -156,7 +149,7 @@ footer p a {
   margin-top: -.5em;
 }
 
-/* Landing Page - Resources */
+/* Landing Page - resource tags */
 
 .lh-tag {
   line-height: 2.4;
