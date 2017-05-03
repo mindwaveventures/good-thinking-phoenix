@@ -31,6 +31,12 @@ defmodule App.Router do
     resources "/sessions", SessionController, only: [:new, :create]
   end
 
+  scope "/", App do
+    pipe_through :browser
+
+    resources "/sessions", SessionController, only: [:new, :create]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", App do
   #   pipe_through :api
