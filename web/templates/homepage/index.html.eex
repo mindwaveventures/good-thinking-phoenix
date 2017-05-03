@@ -63,7 +63,7 @@
 
   <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw(@alphatext) %>
-    <input type="text" name="" value="Your email address" class="b--grey br2 pa1 mb2">
+    <input type="text" name="" value="Your email address" class="b--lm-grey br2 pa2 mb2-l mb4 lm-grey f5 fw3">
     <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
   </div>
 </section>
