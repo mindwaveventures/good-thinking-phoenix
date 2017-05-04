@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/ldmw/app.svg?branch=master)](https://travis-ci.org/ldmw/app)
+[![Build Status](https://travis-ci.org/LDMW/app.svg?branch=master)](https://travis-ci.org/LDMW/app)
 [![codecov](https://codecov.io/gh/ldmw/app/branch/master/graph/badge.svg)](https://codecov.io/gh/ldmw/app)
+[![Deps Status](https://beta.hexfaktor.org/badge/all/github/ldmw/app.svg?branch=master)]
 
 # app
 
@@ -80,10 +81,23 @@ You will need to grant access to the user "postgres"
 
 To do so try running this command:
 ```bash
-$ psql -u $CMS_PG_USER -d cms -c "grant all privileges on all tables in schema public to postgres"
+$ psql -d cms -c "grant all privileges on all tables in schema public to postgres"
 ```
 
 And try starting the server again
+
+If you get the error:
+
+```bash
+column articles_articlepage.heading does not exist
+LINE 1: ...reated_at", "articles_articlepage"."page_ptr_id", "articles_...
+```
+
+You can fix this with:
+
+```bash
+$ psql -d cms -c "alter table articles_articlepage add column heading varchar not null default ''"
+```
 
 ### Local testing
 
