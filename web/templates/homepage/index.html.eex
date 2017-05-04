@@ -28,16 +28,20 @@
   <h4>I want to see content for:</h4>
   <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
     <%= for tag <- @aud_tags do %>
-      <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag] %>
-      <%= label fa, String.to_atom(tag) %>
+      <div class="dib">
+        <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag], class: "checked-fill dn" %>
+        <%= label fa, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+      </div>
     <% end %>
   <% end %>
 
   <h4>Show me:</h4>
   <%= inputs_for f, :content, [as: :content], fn fcon -> %>
     <%= for tag <- @con_tags do %>
-      <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag] %>
-      <%= label fcon, String.to_atom(tag) %>
+    <div class="dib">
+      <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag], class: "checked-fill dn" %>
+        <%= label fcon, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+      </div>
     <% end %>
   <% end %>
 
