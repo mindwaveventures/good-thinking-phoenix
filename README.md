@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ldmw/app.svg?branch=master)](https://travis-ci.org/ldmw/app)
+[![Build Status](https://travis-ci.org/LDMW/app.svg?branch=master)](https://travis-ci.org/LDMW/app)
 [![codecov](https://codecov.io/gh/ldmw/app/branch/master/graph/badge.svg)](https://codecov.io/gh/ldmw/app)
 [![Deps Status](https://beta.hexfaktor.org/badge/all/github/ldmw/app.svg?branch=master)]
 
