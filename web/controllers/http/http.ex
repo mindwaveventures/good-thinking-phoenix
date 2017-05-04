@@ -1,4 +1,5 @@
 defmodule App.Http.Http do
+  @moduledoc false
   @google_sheet_url Application.get_env(:app, :google_sheet_url)
 
   def post_spreadsheet(email) do
