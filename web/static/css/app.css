@@ -23,6 +23,10 @@ body {
   font-style: normal;
 }
 
+.font {
+  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif; 
+}
+
 /*elements*/
 .container {
   min-height:100vh;
