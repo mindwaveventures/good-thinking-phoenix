@@ -16,5 +16,7 @@ config :app, App.Repo,
   password: "postgres",
   database: "app_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  ownership_timeout: 10 * 60 * 1000
+
 

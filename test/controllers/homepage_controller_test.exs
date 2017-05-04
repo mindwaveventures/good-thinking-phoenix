@@ -12,7 +12,18 @@ defmodule App.HomepageControllerTest do
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
-    conn = post conn, homepage_path(conn, :show, %{"tags" => %{"tag" => "not_found"}})
+    params = %{"audience" => %{"audience" => "false"},
+               "category" => %{"category" => "not_found"},
+               "content" => %{"content" => "false"}}
+    conn = post conn, homepage_path(conn, :show, params)
     assert html_response(conn, 404)
+  end
+
+  test "categories for insomnia", %{conn: conn} do
+    params = %{"audience" => %{"audience" => "false"},
+               "category" => %{"category" => "insomnia"},
+               "content" => %{"content" => "false"}}
+    conn = post conn, homepage_path(conn, :show, params)
+    assert html_response(conn, 200)
   end
 end
