@@ -44,8 +44,9 @@
       </div>
     <% end %>
   <% end %>
-
-  <%= submit "Submit" %>
+  <div class="pv3">
+      <%= component "primary_button", value: "Submit" %>
+  </div>
 <% end %>
 
   <%= if assigns[:resources] do %>
