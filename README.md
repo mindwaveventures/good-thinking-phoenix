@@ -85,6 +85,18 @@ $ psql -u $CMS_PG_USER -d cms -c "grant all privileges on all tables in schema p
 
 And try starting the server again
 
+### Local testing
+
+Ensure that your have the most up to date `dumpdata.json` file from the dumpdata branch on the cms repo
+
+To do so, ensure you are on the `dumpdata` branch and `git pull origin dumpdata`
+
+Then run:
+```bash
+python manage.py loaddata dumpdata.json
+```
+
 ### Deployment
 
 The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/admin/). When we're happy this is working, we will push manually to the production site.
+

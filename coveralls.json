@@ -3,7 +3,9 @@
     "minimum_coverage": 100
   },
   "skip_files": [
+    "lib/app.ex",
     "web/channels",
+    "web/router.ex",
     "test/support/model_case.ex",
     "test/support/channel_case.ex",
     "web/web.ex",
