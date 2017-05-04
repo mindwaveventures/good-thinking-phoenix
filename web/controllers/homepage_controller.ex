@@ -17,8 +17,9 @@ defmodule App.HomepageController do
       where: h.page_ptr_id == page.id,
       select: %{alphatext: h.alphatext, body: h.body, footer: h.footer}
 
-    CMSRepo.one(query)
-      |> Map.get(content)
+    query
+    |> CMSRepo.one()
+    |> Map.get(content)
   end
 
   def get_tags(type) do
@@ -81,7 +82,7 @@ defmodule App.HomepageController do
       _ -> render conn, "index.html",
         tag: tag, resources: all_resources, body: get_content(:body),
         cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
-        con_tags: get_tags("content"),footer: get_content(:footer),
+        con_tags: get_tags("content"), footer: get_content(:footer),
         alphatext: get_content(:alphatext)
     end
   end
