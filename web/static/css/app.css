@@ -42,8 +42,6 @@ body {
   display: none;
 }
 
-/* Tag Styled Checkbox Label*/
-
 .checked-fill:checked~label {
   background-color: #FAB781;
  }
