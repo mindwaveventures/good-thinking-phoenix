@@ -84,3 +84,7 @@ $ psql -u $CMS_PG_USER -d cms -c "grant all privileges on all tables in schema p
 ```
 
 And try starting the server again
+
+### Deployment
+
+The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/admin/). When we're happy this is working, we will push manually to the production site.
