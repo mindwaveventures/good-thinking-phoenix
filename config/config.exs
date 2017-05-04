@@ -34,3 +34,5 @@ config :app, App.CMSRepo,
   database: "cms",
   hostname: "localhost",
   pool_size: 10
+
+config :app, :http, App.Http.Http
