@@ -1,13 +1,14 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   import Ecto.Query, only: [from: 2, select: 3]
-  alias App.CMSRepo
+  alias App.{CMSRepo, Resources}
 
   def index(conn, _params) do
     render conn, "index.html",
       body: get_content(:body), cat_tags: get_tags("category"),
       aud_tags: get_tags("audience"), con_tags: get_tags("content"),
-      footer: get_content(:footer), alphatext: get_content(:alphatext)
+      footer: get_content(:footer), alphatext: get_content(:alphatext),
+      resources: Resources.get_all_resources("resource")
   end
 
   def get_content(content) do
@@ -54,9 +55,9 @@ defmodule App.HomepageController do
 
     content_filter = Enum.filter_map(content, true_tuples, second_value)
 
-    article_query = create_tag_query(tag, "articles")
+    article_query = Resources.create_tag_query(tag, "articles")
 
-    link_query = create_tag_query(tag, "resources")
+    link_query = Resources.create_tag_query(tag, "resources")
 
     articles =
       article_query
@@ -70,8 +71,8 @@ defmodule App.HomepageController do
 
     all_resources =
       articles ++ resources
-      |> Enum.map(&(get_all_tags(&1)))
-      |> filter_tags(audience_filter, content_filter)
+      |> Enum.map(&(Resources.get_all_tags(&1)))
+      |> Resources.filter_tags(audience_filter, content_filter)
       |> Enum.sort(&(&1[:id] <= &2[:id]))
 
     case resources do
@@ -85,54 +86,5 @@ defmodule App.HomepageController do
         con_tags: get_tags("content"), footer: get_content(:footer),
         alphatext: get_content(:alphatext)
     end
-  end
-
-  def filter_tags(resources, audience_filter, content_filter) do
-    Enum.filter(resources, fn e ->
-      Enum.all?(audience_filter, fn a -> a in e.tags end) and
-      Enum.all?(content_filter, fn c -> c in e.tags end)
-    end)
-  end
-
-  def create_tag_query(tag, type) do
-    query = from t in "taggit_tag",
-      where: t.name == ^tag,
-      join: cat in ^"#{type}_categorytag",
-      where: cat.tag_id == t.id,
-      join: a in ^"#{type}_#{String.slice(type, 0..-2)}page",
-      where: a.page_ptr_id == cat.content_object_id
-
-    if type == "resources" do
-      query
-        |> select([t, cat, a], %{
-          id: a.page_ptr_id,
-          heading: a.heading,
-          url: a.resource_url,
-          body: a.body
-        })
-    else
-      query
-        |> select([t, cat, a], %{
-          id: a.page_ptr_id,
-          heading: a.heading
-        })
-    end
-  end
-
-  def get_all_tags(resource) do
-    query = from t in "taggit_tag",
-      left_join: cat in ^"#{resource.type}_categorytag",
-      on: t.id == cat.tag_id,
-      left_join: cot in ^"#{resource.type}_contenttag",
-      on: t.id == cot.tag_id,
-      left_join: aut in ^"#{resource.type}_audiencetag",
-      on: t.id == aut.tag_id,
-      where: ^resource.id == cat.content_object_id
-      or ^resource.id == cot.content_object_id
-      or ^resource.id == aut.content_object_id,
-      select: t.name,
-      distinct: t.name
-
-    Map.merge(%{tags: CMSRepo.all(query)}, resource)
   end
 end
