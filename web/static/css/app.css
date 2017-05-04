@@ -60,6 +60,10 @@ body {
   background-color: #009EE2;
 }
 
+.lm-bg-grey {
+  background-color: #c2c2c2;
+}
+
 .lm-orange {
   color: #FAB781;
 }
@@ -84,6 +88,10 @@ body {
   color: #009EE2;
 }
 
+.lm-grey {
+  color: #c2c2c2;
+}
+
 .b--lm-orange {
   border-color: #FAB781;
 }
@@ -100,35 +108,32 @@ body {
   border-color: #009EE2;
 }
 
+.b--lm-grey {
+  border: solid 1px #c2c2c2;
+}
+
 footer p a {
   padding: 0 2em 0 2em;
   text-decoration: none;
   color: #242E50;
 }
 
-.select-box {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid #242e50;
-}
+
+/* Landing Page - Resources dropdown */
 
 .select-box select {
   background-color: #fff;
   color: grey;
-  font-size: inherit;
   padding: .5em;
-  padding-right: 2.5em;  
+  padding-right: 2.5em;
   border: 0;
   margin: 0;
-  border-radius: 2px;
   text-indent: 0.01px;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
 }
 
 .select-box::before,
 .select-box::after {
-  content: "";
   position: absolute;
   pointer-events: none;
 }
@@ -142,6 +147,12 @@ footer p a {
   right: 1.2em;
   top: 50%;
   margin-top: -.5em;
+}
+
+/* Landing Page - resource tags */
+
+.lh-tag {
+  line-height: 2.4;
 }
 
 /* Styleguide */
