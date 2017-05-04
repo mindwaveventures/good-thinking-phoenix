@@ -95,3 +95,8 @@ Then run:
 ```bash
 python manage.py loaddata dumpdata.json
 ```
+
+### Deployment
+
+The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/admin/). When we're happy this is working, we will push manually to the production site.
+
