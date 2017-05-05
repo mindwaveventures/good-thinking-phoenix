@@ -3,7 +3,7 @@
 /*fonts*/
 
 body {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif; 
+  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
   color: #242F4F;
   min-height: 100%;
   height: 100%;
@@ -45,6 +45,10 @@ body {
 .checked-fill:checked~label {
   background-color: #FAB781;
  }
+
+.checked-fill:focus~label {
+  outline: auto 5px -webkit-focus-ring-color;
+}
 
 /*color palette*/
 
