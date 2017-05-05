@@ -21,7 +21,7 @@ defmodule App.AuthTest do
   test "authenticate_user continues when the current_user exists", %{conn: conn} do
     conn =
       conn
-      |> assign(:current_user, %App.User{})
+      |> assign(:current_user, %User{})
       |> Auth.authenticate_user([])
 
     refute conn.halted
