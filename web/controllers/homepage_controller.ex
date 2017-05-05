@@ -142,11 +142,19 @@ defmodule App.HomepageController do
     Map.merge(%{tags: CMSRepo.all(query)}, resource)
   end
 
+  def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
+    handle_email(conn, "Suggestions", suggestions)
+  end
+
   def submit_email(conn, %{"email" => %{"email" => email}}) do
-    @http.post_spreadsheet(email)
+    handle_email(conn, "Email", email)
+  end
+
+  defp handle_email(conn, type, data) do
+    @http.post_spreadsheet(data)
 
     conn
-      |> put_flash(:info, "Email collected")
+      |> put_flash(:info, "#{type} collected")
       |> redirect(to: homepage_path(conn, :index))
   end
 end
