@@ -26,7 +26,7 @@ defmodule App.Mixfile do
   def application do
     [mod: {App, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :httpotion]]
   end
 
   # Specifies which paths to compile per environment.
@@ -45,6 +45,7 @@ defmodule App.Mixfile do
      {:bamboo_smtp, "~> 1.2.1"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
+     {:httpotion, "~> 3.0.2"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:credo, "~> 0.7.2", only: [:dev, :test]},
