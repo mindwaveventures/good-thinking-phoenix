@@ -19,4 +19,5 @@ config :app, App.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   ownership_timeout: 10 * 60 * 1000
 
+config :app, :http, App.Http.TestHttp
 

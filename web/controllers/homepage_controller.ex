@@ -3,6 +3,8 @@ defmodule App.HomepageController do
   import Ecto.Query, only: [from: 2, select: 3]
   alias App.{CMSRepo, Resources}
 
+  @http Application.get_env(:app, :http)
+
   def index(conn, _params) do
     render conn, "index.html",
       body: get_content(:body), cat_tags: get_tags("category"),
@@ -86,5 +88,13 @@ defmodule App.HomepageController do
         con_tags: get_tags("content"), footer: get_content(:footer),
         alphatext: get_content(:alphatext)
     end
+  end
+
+  def submit_email(conn, %{"email" => %{"email" => email}}) do
+    @http.post_spreadsheet(email)
+
+    conn
+      |> put_flash(:info, "Email collected")
+      |> redirect(to: homepage_path(conn, :index))
   end
 end
