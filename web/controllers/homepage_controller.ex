@@ -55,9 +55,9 @@ defmodule App.HomepageController do
 
     content_filter = Enum.filter_map(content, true_tuples, second_value)
 
-    article_query = Resources.create_tag_query(tag, "articles")
+    article_query = Resources.create_tag_query(tag, "article")
 
-    link_query = Resources.create_tag_query(tag, "resources")
+    link_query = Resources.create_tag_query(tag, "resource")
 
     articles =
       article_query
@@ -71,9 +71,9 @@ defmodule App.HomepageController do
 
     all_resources =
       articles ++ resources
-      |> Enum.map(&(Resources.get_all_tags(&1)))
+      |> Enum.map(&Resources.get_all_tags/1)
       |> Resources.filter_tags(audience_filter, content_filter)
-      |> Enum.sort(&(&1[:id] <= &2[:id]))
+      |> Enum.sort(&(&1[:priority] <= &2[:priority]))
 
     case resources do
       [] ->

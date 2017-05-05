@@ -1,4 +1,8 @@
 defmodule App.Resources do
+  @moduledoc """
+  # Functions for querying CMS Database for resources
+  """
+
   use App.Web, :controller
 
   alias App.CMSRepo
@@ -9,31 +13,33 @@ defmodule App.Resources do
         id: r.page_ptr_id,
         heading: r.heading,
         url: r.resource_url,
-        body: r.body
+        body: r.body,
+        priority: r.priority
       }
 
       query
       |> CMSRepo.all
       |> Enum.map(&(Map.merge(&1, %{type: "#{type}s"})))
-      |> Enum.map(&(get_all_tags(&1)))
-      |> Enum.sort(&(&1[:id] <= &2[:id]))
+      |> Enum.map(&get_all_tags/1)
+      |> Enum.sort(&(&1[:priority] <= &2[:priority]))
   end
 
   def create_tag_query(tag, type) do
     query = from t in "taggit_tag",
       where: t.name == ^tag,
-      join: cat in ^"#{type}_categorytag",
+      join: cat in ^"#{type}s_categorytag",
       where: cat.tag_id == t.id,
-      join: a in ^"#{type}_#{String.slice(type, 0..-2)}page",
+      join: a in ^"#{type}s_#{type}page",
       where: a.page_ptr_id == cat.content_object_id
 
-    if type == "resources" do
+    if type == "resource" do
       query
         |> select([t, cat, a], %{
           id: a.page_ptr_id,
           heading: a.heading,
           url: a.resource_url,
-          body: a.body
+          body: a.body,
+          priority: a.priority
         })
     else
       query
