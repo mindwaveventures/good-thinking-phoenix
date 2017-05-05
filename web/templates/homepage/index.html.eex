@@ -56,6 +56,12 @@
   <% end %>
 </section>
 
+<section class="lm-bg-grey pa1 ph3 pb4 pb5-l">
+  <%= raw(@lookingfor) %>
+  <textarea placeholder="-- add your suggestions for new topics --" class="h4"></textarea>
+  <%= component "primary_button", value: ">", class: "right-2" %>
+</section>
+
 <section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
   <div class="mh3 mv3 w-60-m w-50-l center" id="alpha">
     <h2 class="f5 f4-ns tracked">ALPHA</h2>
@@ -73,7 +79,7 @@
     <%= form_for @conn, homepage_path(@conn, :submit_email), [as: :email], fn f -> %>
       <%= label(f, :email, "Email") %>
       <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3") %>
-      <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-2" %>
+      <%= component "primary_button", value: "Take part", class: "bottom--1 right-2" %>
     <% end %>
   </div>
 </section>

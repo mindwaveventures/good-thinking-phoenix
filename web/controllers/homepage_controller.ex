@@ -9,7 +9,8 @@ defmodule App.HomepageController do
     render conn, "index.html",
       body: get_content(:body), cat_tags: get_tags("category"),
       aud_tags: get_tags("audience"), con_tags: get_tags("content"),
-      footer: get_content(:footer), alphatext: get_content(:alphatext)
+      footer: get_content(:footer), alphatext: get_content(:alphatext),
+      lookingfor: get_content(:lookingfor)
   end
 
   def get_content(content) do
@@ -17,7 +18,10 @@ defmodule App.HomepageController do
       where: page.url_path == "/home/",
       join: h in "home_homepage",
       where: h.page_ptr_id == page.id,
-      select: %{alphatext: h.alphatext, body: h.body, footer: h.footer}
+      select: %{alphatext: h.alphatext,
+                body: h.body,
+                footer: h.footer,
+                lookingfor: h.lookingfor}
 
     query
     |> CMSRepo.one()
@@ -85,7 +89,7 @@ defmodule App.HomepageController do
         tag: tag, resources: all_resources, body: get_content(:body),
         cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
         con_tags: get_tags("content"), footer: get_content(:footer),
-        alphatext: get_content(:alphatext)
+        alphatext: get_content(:alphatext), lookingfor: get_content(:lookingfor)
     end
   end
 
