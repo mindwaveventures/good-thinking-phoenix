@@ -28,8 +28,8 @@
   <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
     <%= for tag <- @aud_tags do %>
       <div class="dib">
-        <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag], class: "checked-fill absolute o-0" %>
-        <%= label fa, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+        <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag], class: "checked-fill dn" %>
+        <%= label fa, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib pointer" %>
       </div>
     <% end %>
   <% end %>
@@ -37,9 +37,9 @@
   <h4>Show me:</h4>
   <%= inputs_for f, :content, [as: :content], fn fcon -> %>
     <%= for tag <- @con_tags do %>
-    <div class="dib">
-      <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag], class: "checked-fill absolute o-0" %>
-        <%= label fcon, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+      <div class="dib">
+        <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag], class: "checked-fill dn" %>
+        <%= label fcon, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib pointer" %>
       </div>
     <% end %>
   <% end %>
