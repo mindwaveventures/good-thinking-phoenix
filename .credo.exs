@@ -49,7 +49,7 @@
       checks: [
         {Credo.Check.Consistency.ExceptionNames},
         {Credo.Check.Consistency.LineEndings},
-        {Credo.Check.Consistency.MultiAliasImportRequireUse},
+        {Credo.Check.Consistency.MultiAliasImportRequireUse, false},
         {Credo.Check.Consistency.ParameterPatternMatching},
         {Credo.Check.Consistency.SpaceAroundOperators},
         {Credo.Check.Consistency.SpaceInParentheses},
