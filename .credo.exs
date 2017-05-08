@@ -20,7 +20,7 @@
         # You can give explicit globs or simply directories.
         # In the latter case `**/*.{ex,exs}` will be used.
         included: ["lib/", "src/", "web/", "apps/"],
-        excluded: ["lib/app.ex"]
+        excluded: ["lib/app.ex", "web/views/info_view.ex"]
       },
       #
       # If you create your own checks, you must specify the source files for

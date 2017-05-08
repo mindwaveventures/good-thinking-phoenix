@@ -16,8 +16,6 @@ defmodule App.InfoController do
 
     data = CMSRepo.one(query)
 
-    IO.inspect Regex.run(~r/<embed\salt=\"(.+)\".+embedtype=\"image\".+format=\"(.+)\".+id=+\"(.+)\"\/>/, data.body)
-
     render conn, "index.html", heading: data.heading, body: data.body
   end
 end
