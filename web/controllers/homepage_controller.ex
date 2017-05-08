@@ -1,6 +1,6 @@
 defmodule App.HomepageController do
   use App.Web, :controller
-  import Ecto.Query, only: [from: 2, select: 3]
+  import Ecto.Query, only: [from: 2]
   alias App.{CMSRepo, Resources}
 
   @http Application.get_env(:app, :http)
@@ -10,6 +10,7 @@ defmodule App.HomepageController do
       body: get_content(:body), cat_tags: get_tags("category"),
       aud_tags: get_tags("audience"), con_tags: get_tags("content"),
       footer: get_content(:footer), alphatext: get_content(:alphatext),
+      lookingfor: get_content(:lookingfor),
       resources: Resources.get_all_resources("resource")
   end
 
@@ -18,7 +19,10 @@ defmodule App.HomepageController do
       where: page.url_path == "/home/",
       join: h in "home_homepage",
       where: h.page_ptr_id == page.id,
-      select: %{alphatext: h.alphatext, body: h.body, footer: h.footer}
+      select: %{alphatext: h.alphatext,
+                body: h.body,
+                footer: h.footer,
+                lookingfor: h.lookingfor}
 
     query
     |> CMSRepo.one()
@@ -86,15 +90,23 @@ defmodule App.HomepageController do
         tag: tag, resources: all_resources, body: get_content(:body),
         cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
         con_tags: get_tags("content"), footer: get_content(:footer),
-        alphatext: get_content(:alphatext)
+        alphatext: get_content(:alphatext), lookingfor: get_content(:lookingfor)
     end
   end
 
+  def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
+    handle_email(conn, "Suggestions", suggestions)
+  end
+
   def submit_email(conn, %{"email" => %{"email" => email}}) do
-    @http.post_spreadsheet(email)
+    handle_email(conn, "Email", email)
+  end
+
+  defp handle_email(conn, type, data) do
+    @http.post_spreadsheet(data)
 
     conn
-      |> put_flash(:info, "Email collected")
+      |> put_flash(:info, "#{type} collected")
       |> redirect(to: homepage_path(conn, :index))
   end
 end

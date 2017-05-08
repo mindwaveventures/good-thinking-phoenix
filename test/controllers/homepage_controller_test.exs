@@ -27,8 +27,14 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 200)
   end
 
-  test "submit_email", %{conn: conn} do
+  test "submit_email of email address", %{conn: conn} do
     params = %{"email" => %{"email" => "test@me.com"}}
+    conn = post conn, homepage_path(conn, :submit_email, params)
+    assert html_response(conn, 302)
+  end
+
+  test "submit_email of suggestions", %{conn: conn} do
+    params = %{"suggestions" => %{"suggestions" => "suggestions"}}
     conn = post conn, homepage_path(conn, :submit_email, params)
     assert html_response(conn, 302)
   end
