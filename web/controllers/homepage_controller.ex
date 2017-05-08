@@ -10,7 +10,8 @@ defmodule App.HomepageController do
       body: get_content(:body), cat_tags: get_tags("category"),
       aud_tags: get_tags("audience"), con_tags: get_tags("content"),
       footer: get_content(:footer), alphatext: get_content(:alphatext),
-      lookingfor: get_content(:lookingfor), resources: Resources.get_all_resources("resource")
+      lookingfor: get_content(:lookingfor),
+      resources: Resources.get_all_resources("resource")
   end
 
   def get_content(content) do
