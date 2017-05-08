@@ -1,6 +1,6 @@
 defmodule App.HomepageController do
   use App.Web, :controller
-  import Ecto.Query, only: [from: 2, select: 3]
+  import Ecto.Query, only: [from: 2]
   alias App.{CMSRepo, Resources}
 
   @http Application.get_env(:app, :http)
@@ -91,6 +91,10 @@ defmodule App.HomepageController do
         con_tags: get_tags("content"), footer: get_content(:footer),
         alphatext: get_content(:alphatext), lookingfor: get_content(:lookingfor)
     end
+  end
+
+  def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
+    handle_email(conn, "Suggestions", suggestions)
   end
 
   def submit_email(conn, %{"email" => %{"email" => email}}) do
