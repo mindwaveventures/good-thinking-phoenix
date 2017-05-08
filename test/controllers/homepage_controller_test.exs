@@ -22,6 +22,7 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 200) =~ "sleep issues"
   end
 
+  @tag login_as: "me@test.com"
   test "renders page not found when id is nonexistent", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "not_found"},
@@ -30,6 +31,7 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 404)
   end
 
+  @tag login_as: "me@test.com"
   test "categories for insomnia", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "insomnia"},
