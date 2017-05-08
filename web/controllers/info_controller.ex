@@ -16,6 +16,12 @@ defmodule App.InfoController do
 
     data = CMSRepo.one(query)
 
-    render conn, "index.html", heading: data.heading, body: data.body
+    case data do
+      nil ->
+        conn
+        |> put_status(404)
+        |> render(App.ErrorView, "404.html")
+      _ -> render conn, "index.html", heading: data.heading, body: data.body
+    end
   end
 end

@@ -32,7 +32,7 @@ defmodule App.InfoView do
         _ -> ""
       end
 
-      "<img src=\"#{static_path(conn, img_src)}\"" <>
+      "<img src=\"#{static_path(conn, img_src)}\" " <>
       "alt=\"#{alt}\" class=\"#{img_class}\" />"
     end
 end
