@@ -1,4 +1,6 @@
 defmodule App.User do
+  @moduledoc false
+
   use App.Web, :model
 
   alias Comeonin.Bcrypt

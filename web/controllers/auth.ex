@@ -1,4 +1,6 @@
 defmodule App.Auth do
+  @moduledoc false
+
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Phoenix.Controller

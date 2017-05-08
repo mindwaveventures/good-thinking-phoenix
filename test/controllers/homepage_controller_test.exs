@@ -1,9 +1,7 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase
 
-  setup config do
-    login_user(config)
-  end
+  setup config, do: login_user(config)
 
   @tag login_as: "me@test.com"
   test "GET / - Logged in", %{conn: conn} do

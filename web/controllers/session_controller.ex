@@ -7,7 +7,7 @@ defmodule App.SessionController do
     case conn.assigns[:current_user] do
       nil ->
         render conn, "new.html"
-      user ->
+      _user ->
         redirect(conn, to: homepage_path(conn, :index))
       end
   end
