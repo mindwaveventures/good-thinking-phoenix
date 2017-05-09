@@ -46,6 +46,10 @@ body {
   display: none;
 }
 
+.checked-fill {
+  top:6px;
+}
+
 .checked-fill:checked~label {
   background-color: #FAB781;
  }
