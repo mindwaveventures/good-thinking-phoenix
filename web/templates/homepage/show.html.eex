@@ -14,6 +14,16 @@
         <% end %>
       </div>
       <%= raw(resource[:body]) %>
+      <div>
+        <p>Is this useful?</p>
+        <span>Likes: <%= resource.likes %></span>
+        <%= form_for @conn, homepage_path(@conn, :like, resource.id), [as: :like], fn _f -> %>
+          <%= submit "Like" %>
+        <%= end %>
+        <%= form_for @conn, homepage_path(@conn, :dislike, resource.id), [as: :dislike], fn _f -> %>
+          <%= submit "Dislike" %>
+        <%= end %>
+      </div>
     </div>
   <%= else %>
     <div>
