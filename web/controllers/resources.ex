@@ -30,7 +30,7 @@ defmodule App.Resources do
     query = from l in Likes,
             where: l.article_id == ^article_id,
             select: l.like_value
-    likes = Repo.all(query) |> Enum.sum
+    likes = query |> Repo.all |> Enum.sum
     Map.merge(map, %{likes: likes})
   end
 

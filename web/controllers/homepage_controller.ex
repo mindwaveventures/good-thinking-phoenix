@@ -119,9 +119,10 @@ defmodule App.HomepageController do
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
     changeset = Likes.changeset(%Likes{}, like_params)
-    case like = Repo.get_by(Likes, article_id: article_id, user_hash: user_hash) do
+    like = Repo.get_by(Likes, article_id: article_id, user_hash: user_hash)
+    case like do
       nil -> Repo.insert!(changeset)
-      _ -> Likes.changeset(like, like_params) |> Repo.update!
+      _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
   end
 
