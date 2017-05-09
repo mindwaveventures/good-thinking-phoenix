@@ -4,6 +4,9 @@ defmodule App.HomepageController do
   alias App.{CMSRepo, Resources}
 
   @http Application.get_env(:app, :http)
+  @google_sheet_url_email Application.get_env(:app, :google_sheet_url_email)
+  @google_sheet_url_suggestion Application.get_env(
+    :app, :google_sheet_url_suggestion)
 
   def index(conn, _params) do
     render conn, "index.html",
@@ -95,18 +98,18 @@ defmodule App.HomepageController do
   end
 
   def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
-    handle_email(conn, "Suggestions", suggestions)
+    handle_email(conn, "suggestions", suggestions, @google_sheet_url_suggestion)
   end
 
   def submit_email(conn, %{"email" => %{"email" => email}}) do
-    handle_email(conn, "Email", email)
+    handle_email(conn, "email", email, @google_sheet_url_email)
   end
 
-  defp handle_email(conn, type, data) do
-    @http.post_spreadsheet(data)
+  defp handle_email(conn, type, data, url) do
+    @http.post_spreadsheet(data, url, type)
 
     conn
-      |> put_flash(:info, "#{type} collected")
+      |> put_flash(:info, "#{String.capitalize(type)} collected")
       |> redirect(to: homepage_path(conn, :index))
   end
 end

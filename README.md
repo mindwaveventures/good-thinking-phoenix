@@ -37,8 +37,11 @@ To get up and running - make sure you have installed:
 
 Ensure to have the following environement variables in your path:
 ```bash
-export GOOGLE_SHEET_URL=<google_sheet_url>
+export GOOGLE_SHEET_URL_EMAIL=<google_sheet_url_email>
+export GOOGLE_SHEET_URL_SUGGESTION=<google_sheet_url_suggestion>
 ```
+
+See the google drive for these
 
 Clone the repository and cd into it (make sure you don't have another project called `app`):
 
