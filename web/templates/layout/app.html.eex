@@ -13,6 +13,15 @@
 
   <body>
     <div class="container">
+      <div class="pa3 f5-l f5-m f6 lm-bg-dark-blue lm-white w-100">
+        <p class="ma0">
+          <strong>ALPHA:</strong>
+          This is a prototype - your
+          <a href="mailto:sarah@londonminds.co.uk" class="underline lm-white">feedback</a>
+          will help us to improve it.
+          <a href="/#alpha" class="underline lm-white">Find out more</a>
+        </p>
+      </div>
       <p class="alert" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert" role="alert"><%= get_flash(@conn, :error) %></p>
 
