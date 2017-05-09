@@ -46,31 +46,35 @@
       </ul>
     </div>
     <div class="bg-white pv4">
-      <h2 class="f3">Helper Function Standard Components</h1>
-        <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
-          They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button. </p>
-          <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 2 things:</p>
-          <ul class="f5 lh-copy sans-serif">
-            <li>Find an existing component in <code>web/templates/component/</code> or create/amend your own</li>
-            <li>Call the function in your html where you wish to position the component.</li>
-          </ul>
-          <p class="f5 lh-copy sans-serif">Take this button for example: </p>
+      <h2 class="f3">Helper Function Standard Components</h2>
+      <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
+        They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button.
+      </p>
+      <p class="f5 lh-copy sans-serif">
+        To use a helper standard component you need to do 2 things:
+      </p>
+      <ul class="f5 lh-copy sans-serif">
+        <li>Find an existing component in <code>web/templates/component/</code> or create/amend your own</li>
+        <li>Call the function in your html where you wish to position the component.</li>
+      </ul>
 
-          <%= component "primary_button", value: "Click Me!" %>
+      <p class="f5 lh-copy sans-serif">Take this button for example: </p>
+      <%= component "primary_button", value: "Click Me!" %>
+      <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25627939/3be0fae2-2f5c-11e7-9589-acbd8974c756.png"/>
+      <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
+      <!-- INSERT IMAGE HERE -->
 
-          <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
-          <img src="https://cloud.githubusercontent.com/assets/16775804/25627939/3be0fae2-2f5c-11e7-9589-acbd8974c756.png"/>
-          <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
-          <!-- INSERT IMAGE HERE -->
+      <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
 
-          <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
+      <h2 class="f3">Buttons</h2>
+      <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
-          <h2 class="f3">Buttons</h1>
-            <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
-
-            <%= component "primary_button", value: "Primary" %>
-            <div class="dib w-20 pv3 ma2 lm-bg-dark-blue tc">
-              <%= component "secondary_button", value: "Secondary" %>
-            </div>
-
-    </section>
+      <div class="dib w-80 pv3 ma2 lm-bg-dark-blue tc">
+        <%= for file <- render_example_components() do %>
+          <%= render App.ComponentView, file %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
