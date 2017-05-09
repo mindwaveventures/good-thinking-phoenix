@@ -58,6 +58,13 @@ body {
   outline: auto 5px -webkit-focus-ring-color;
 }
 
+.unchecked {
+  background-image: url(/images/White_Plus.png);
+  background-position: right 9px top 50%;
+  background-size: 15px;
+  background-repeat: no-repeat;
+}
+
 /*color palette*/
 
 .lm-bg-orange {
