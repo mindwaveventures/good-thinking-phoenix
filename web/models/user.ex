@@ -4,6 +4,7 @@ defmodule App.User do
   use App.Web, :model
 
   alias Comeonin.Bcrypt
+  alias Ecto.Changeset
 
   schema "users" do
     field :username, :string
@@ -13,21 +14,21 @@ defmodule App.User do
 
   def changeset(model, params \\ :invalid) do
     model
-    |> cast(params, ~w[username])
-    |> validate_required([:username])
+    |> cast(params, [:username])
+    |> validate_required(:username)
   end
 
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, ~w(password))
-    |> validate_required([:password])
+    |> cast(params, [:password])
+    |> validate_required(:password)
     |> put_pass_hash()
   end
 
   defp put_pass_hash(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+      %Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Bcrypt.hashpwsalt(pass))
       _ ->
         changeset
