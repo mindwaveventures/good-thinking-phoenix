@@ -1,0 +1,3 @@
+<%= raw(@heading) %>
+
+<%= @body |> renderImage(@conn) |> raw %>

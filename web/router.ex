@@ -21,6 +21,7 @@ defmodule App.Router do
     post "/email", HomepageController, :submit_email
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
+    get "/info/:page", InfoController, :index
   end
 
   # Other scopes may use custom stacks.
