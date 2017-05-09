@@ -7,6 +7,7 @@ defmodule App.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug App.Auth, repo: App.Repo
   end
 
   pipeline :api do
@@ -14,7 +15,7 @@ defmodule App.Router do
   end
 
   scope "/", App do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :authenticate_user]
 
     get "/", HomepageController, :index
     post "/", HomepageController, :show
@@ -22,6 +23,12 @@ defmodule App.Router do
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
     get "/info/:page", InfoController, :index
+  end
+
+  scope "/", App do
+    pipe_through :browser
+
+    resources "/sessions", SessionController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

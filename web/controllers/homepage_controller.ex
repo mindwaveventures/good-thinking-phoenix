@@ -28,7 +28,7 @@ defmodule App.HomepageController do
                 lookingfor: h.lookingfor}
 
     query
-    |> CMSRepo.one()
+    |> CMSRepo.one
     |> Map.get(content)
   end
 
