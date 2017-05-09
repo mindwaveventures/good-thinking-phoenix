@@ -81,6 +81,7 @@ defmodule App.HomepageController do
     all_resources =
       articles ++ resources
       |> Enum.map(&Resources.get_all_tags/1)
+      |> Enum.map(&Resources.get_all_likes/1)
       |> Resources.filter_tags(audience_filter, content_filter)
       |> Enum.sort(&(&1[:priority] <= &2[:priority]))
 
