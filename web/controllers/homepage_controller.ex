@@ -1,7 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   import Ecto.Query, only: [from: 2]
-  alias App.{CMSRepo, Resources}
+  alias App.{CMSRepo, Repo, Resources, Likes}
 
   @http Application.get_env(:app, :http)
   @google_sheet_url_email Application.get_env(:app, :google_sheet_url_email)
@@ -81,6 +81,7 @@ defmodule App.HomepageController do
     all_resources =
       articles ++ resources
       |> Enum.map(&Resources.get_all_tags/1)
+      |> Enum.map(&Resources.get_all_likes/1)
       |> Resources.filter_tags(audience_filter, content_filter)
       |> Enum.sort(&(&1[:priority] <= &2[:priority]))
 
@@ -93,7 +94,35 @@ defmodule App.HomepageController do
         tag: tag, resources: all_resources, body: get_content(:body),
         cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
         con_tags: get_tags("content"), footer: get_content(:footer),
-        alphatext: get_content(:alphatext), lookingfor: get_content(:lookingfor)
+        alphatext: get_content(:alphatext),
+        lookingfor: get_content(:lookingfor)
+    end
+  end
+
+  def like(conn, %{"article_id" => article_id}) do
+    handle_like(conn, article_id, 1)
+    conn
+      |> put_flash(:info, "Liked!")
+      |> redirect(to: homepage_path(conn, :index))
+  end
+
+  def dislike(conn, %{"article_id" => article_id}) do
+    handle_like(conn, article_id, -1)
+    conn
+      |> put_flash(:info, "Disliked!")
+      |> redirect(to: homepage_path(conn, :index))
+  end
+
+  def handle_like(params, article_id, like_value) do
+    %{req_cookies: %{"_app_key" => user_hash}} = params
+    like_params = %{user_hash: user_hash,
+                    article_id: String.to_integer(article_id),
+                    like_value: like_value}
+    changeset = Likes.changeset(%Likes{}, like_params)
+    like = Repo.get_by(Likes, article_id: article_id, user_hash: user_hash)
+    case like do
+      nil -> Repo.insert!(changeset)
+      _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
   end
 
