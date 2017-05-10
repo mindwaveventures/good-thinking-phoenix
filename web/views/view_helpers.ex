@@ -13,9 +13,9 @@ defmodule App.ViewHelpers do
   @embed_regex ~r/<embed\salt=\"([^\"]+)\"\sembedtype=\"image\"\sformat=\"([^\"]+)\"\sid=+\"([^\"]+)\"\/>/
   @link_regex ~r/<a\sid=\"([^\"]+)\"\slinktype=\"page\">([^<]+)<\/a>/
 
-  def renderImage(html_string, conn) do
+  def render_image(html_string, conn) do
     Regex.replace(@embed_regex, html_string,
-    &get_img_tag(conn, &1, &2, &3, &4), global: true
+      &get_img_tag(conn, &1, &2, &3, &4), global: true
     )
   end
 
@@ -37,8 +37,7 @@ defmodule App.ViewHelpers do
         _ -> "w-50"
       end
 
-    img_tag = "<img src=\"#{static_path(conn, img_src)}\" " <>
-      "alt=\"#{alt}\" class=\"#{img_class}\" />"
+    img_tag = ~s(<img src="#{static_path(conn, img_src)}" alt="#{alt}" class="#{img_class}" />)
 
     case align do
       "fullwidth" -> "<div class=\"w-100 tc\">#{img_tag}</div>"
@@ -46,7 +45,7 @@ defmodule App.ViewHelpers do
     end
   end
 
-  def renderLink(html_string) do
+  def render_link(html_string) do
     Regex.replace(@link_regex, html_string, &get_a_tag/3, global: true)
   end
 
@@ -59,6 +58,6 @@ defmodule App.ViewHelpers do
 
     data = CMSRepo.one(link_query)
 
-    "<a href=\"/#{data.content}/#{data.page}\">#{text}</a>"
+    ~s(<a href="/#{data.content}/#{data.page}">#{text}</a>)
   end
 end
