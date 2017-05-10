@@ -1,13 +1,3 @@
-<div class="pa3 f5-l f5-m f6 lm-bg-dark-blue lm-white w-100">
-  <p class="ma0">
-    <strong>ALPHA:</strong>
-    This is a prototype - your
-    <a href="mailto:sarah@londonminds.co.uk" class="underline lm-white">feedback</a>
-    will help us to improve it.
-    <a href="#alpha" class="underline lm-white">Find out more</a>
-  </p>
-</div>
-
 <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l cover-img tl lm-white cover lh-copy">
   <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
   <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
@@ -63,6 +53,14 @@
     <%= textarea(f, :suggestions, placeholder: "-- add your suggestions for new topics --", class: "h4") %>
     <%= component "primary_button", value: "Take part", class: "right-2" %>
   <% end %>
+</section>
+
+<section class="pa1">
+  <div class="ba b--lm-orange ph3">
+    <p class="mv2">
+      If you are needing <span class="b">urgent support</span> please <%= link "click here", to: "info/crisis", class: "lm-turquoise" %>
+    </p>
+  </div>
 </section>
 
 <section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
