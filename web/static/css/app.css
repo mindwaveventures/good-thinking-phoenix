@@ -24,7 +24,7 @@ body {
 }
 
 .font {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif; 
+  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
 }
 
 /*elements*/
@@ -121,7 +121,7 @@ body {
 }
 
 .b--lm-grey {
-  border: solid 1px #c2c2c2;
+  border-color: #c2c2c2;
 }
 
 footer p a {
@@ -165,6 +165,34 @@ footer p a {
 
 .lh-tag {
   line-height: 2.4;
+}
+
+/* Landing Page - resource like buttons */
+
+.like {
+  background-image: url("../images/Thumbs_up_normal.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.like:hover {
+  background-image: url("../images/Thumbs_up_hover.svg");
+}
+
+.dislike {
+  background-image: url("../images/Thumbs_down_normal.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dislike:hover {
+  background-image: url("../images/Thumbs_down_hover.svg");
+}
+
+.share {
+  background-image: url("../images/Share.svg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Styleguide */
