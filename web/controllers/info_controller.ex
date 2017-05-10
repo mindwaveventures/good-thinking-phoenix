@@ -1,7 +1,7 @@
 defmodule App.InfoController do
   use App.Web, :controller
 
-  import Ecto.Query, only: [from: 2, select: 3]
+  import Ecto.Query, only: [from: 2]
 
   alias App.CMSRepo
 

@@ -5,7 +5,7 @@ defmodule App.Resources do
 
   use App.Web, :controller
 
-  alias App.CMSRepo
+  alias App.{CMSRepo, Repo, Likes}
 
   def get_all_resources(type) do
     query = from r in "#{type}s_#{type}page",
@@ -21,7 +21,17 @@ defmodule App.Resources do
       |> CMSRepo.all
       |> Enum.map(&(Map.merge(&1, %{type: "#{type}s"})))
       |> Enum.map(&get_all_tags/1)
+      |> Enum.map(&get_all_likes/1)
       |> Enum.sort(&(&1[:priority] <= &2[:priority]))
+  end
+
+  def get_all_likes(map) do
+    %{id: article_id} = map
+    query = from l in Likes,
+            where: l.article_id == ^article_id,
+            select: l.like_value
+    likes = query |> Repo.all |> Enum.sum
+    Map.merge(map, %{likes: likes})
   end
 
   def create_tag_query(tag, type) do

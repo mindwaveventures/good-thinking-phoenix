@@ -3,7 +3,7 @@
 </div>
 <%= for resource <- @resources do %>
   <%= if resource[:url] do %>
-    <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center">
+    <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
       <h2 class="mv0"><%= resource[:heading] %></h2>
       <div class="overflow-x-scroll">
         <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
@@ -14,6 +14,16 @@
         <% end %>
       </div>
       <%= raw(resource[:body]) %>
+      <div>
+        <p>Is this useful?</p>
+        <span>Likes: <%= resource.likes %></span>
+        <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like], fn _f -> %>
+          <%= submit "Like" %>
+        <%= end %>
+        <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike], fn _f -> %>
+          <%= submit "Dislike" %>
+        <%= end %>
+      </div>
     </div>
   <%= else %>
     <div>
