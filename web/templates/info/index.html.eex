@@ -1,3 +1,14 @@
-<%= raw(@heading) %>
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l">
+  <a href="/">
+    <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+  </a>
+  <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
+    <%= raw(@heading) %>
+  </div>
+</section>
 
-<%= @body |> renderImage(@conn) |> raw %>
+<section class="f6 pt5-l ph4 ph5-m ph6-l pb4">
+  <div class="br1 shadow-2 ph3 pt1 pb2 tl w-60-ns center">
+    <%= @body |> renderImage(@conn) |> raw %>
+  </div>
+</section>
