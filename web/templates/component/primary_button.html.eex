@@ -1,1 +1,5 @@
-<%= submit @value, class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button #{assigns[:class]}", id: assigns[:id] %>
+<%= if assigns[:to] do %>
+  <%= link @value, to: @to, class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button #{assigns[:class]}", id: assigns[:id] %>
+<%= else %>
+  <%= submit @value, class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button #{assigns[:class]}", id: assigns[:id] %>
+<% end %>
