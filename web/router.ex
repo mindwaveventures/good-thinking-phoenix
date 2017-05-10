@@ -20,6 +20,8 @@ defmodule App.Router do
     get "/", HomepageController, :index
     post "/", HomepageController, :show
     post "/email", HomepageController, :submit_email
+    post "/like/:article_id", HomepageController, :like
+    post "/dislike/:article_id", HomepageController, :dislike
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
     get "/info/:page", InfoController, :index
