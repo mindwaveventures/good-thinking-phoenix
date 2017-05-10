@@ -12,7 +12,7 @@
   <%= component "secondary_button", value: "Take assessment", to: "/info/coming-soon"%>
 </section>
 
-<section class="pa4 tc-ns" id="results">
+<section class="tc-ns" id="results">
   <label for="tags_category_category">
     <h2 class="mt0 f5 f4-ns tracked ph4">What sleep issues have you been affected with recently?</h2>
   </label>
