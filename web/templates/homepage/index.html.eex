@@ -46,14 +46,16 @@
   <% end %>
 </section>
 
-<section class="lm-bg-grey pa1 ph3 pb4 pb5-l">
+<section class="lm-bg-grey pa1 ph3 pb4 pb5-l" id="suggestion_form">
   <%= raw(@lookingfor) %>
-  <%= form_for @conn, homepage_path(@conn, :submit_email), [as: :suggestions], fn f -> %>
+  <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#suggestion_form", [as: :suggestions], fn f -> %>
     <%= label(f, :suggestions, "Suggestions", class: "dn") %>
     <%= textarea(f, :suggestions, placeholder: "-- add your suggestions for new topics --", class: "h4") %>
     <%= component "primary_button", value: "Take part", class: "right-2" %>
   <% end %>
+  <p class="alert" role="alert"><%= get_flash(@conn, :suggestions) %></p>
 </section>
+
 
 <section class="pa1">
   <div class="ba b--lm-orange ph3">
@@ -63,7 +65,7 @@
   </div>
 </section>
 
-<section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l">
+<section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l" id="email_form">
   <div class="mh3 mv3 w-60-m w-50-l center" id="alpha">
     <h2 class="f5 f4-ns tracked">ALPHA</h2>
     <h2 class="f5 f4-ns i">what does it mean?</h2>
@@ -77,11 +79,12 @@
 
   <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw(@alphatext) %>
-    <%= form_for @conn, homepage_path(@conn, :submit_email), [as: :email], fn f -> %>
+    <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
       <%= label(f, :email, "Email") %>
       <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3") %>
       <%= component "primary_button", value: "Take part", class: "bottom--1 right-2" %>
     <% end %>
+    <p class="alert" role="alert"><%= get_flash(@conn, :email) %></p>
   </div>
 </section>
 

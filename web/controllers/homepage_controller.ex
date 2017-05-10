@@ -138,7 +138,7 @@ defmodule App.HomepageController do
     @http.post_spreadsheet(data, url, type)
 
     conn
-      |> put_flash(:info, "#{String.capitalize(type)} collected")
+      |> put_flash(String.to_atom(type), "#{String.capitalize(type)} collected")
       |> redirect(to: homepage_path(conn, :index))
   end
 end
