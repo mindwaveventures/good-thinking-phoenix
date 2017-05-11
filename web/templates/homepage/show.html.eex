@@ -5,7 +5,7 @@
   <%= for resource <- @resources do %>
     <%= if resource[:url] do %>
       <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
-        <h2 class="mv0"><%= resource[:heading] %></h2>
+        <h2 class="mt0 mb1"><%= resource[:heading] %></h2>
         <div class="overflow-x-scroll">
           <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
         </div>
