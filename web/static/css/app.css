@@ -187,7 +187,6 @@ footer p a {
 
 .like {
   background-image: url("../images/Thumbs_up_normal.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -197,7 +196,6 @@ footer p a {
 
 .dislike {
   background-image: url("../images/Thumbs_down_normal.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -207,7 +205,6 @@ footer p a {
 
 .share {
   background-image: url("../images/Share.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
