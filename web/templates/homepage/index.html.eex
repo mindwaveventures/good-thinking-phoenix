@@ -5,8 +5,8 @@
   </div>
 </section>
 
-<section class="pt1 pb3 pt5-l ph4 ph5-m ph6-l lm-bg-dark-blue tc">
-  <p class="white tl">
+<section class="pt1 pb3 ph4 ph5-m ph6-l lm-bg-dark-blue tc">
+  <p class="white tl tc-l">
     Take our <span class="b">clinically approved</span> sleep self-assessment
   </p>
   <%= component "secondary_button", value: "Take assessment", to: "/info/coming-soon"%>
