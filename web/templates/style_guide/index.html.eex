@@ -4,7 +4,7 @@
     <p class="measure f5 lh-copy sans-serif">Welcome to the London Minds styleguide. This is where we document the components that make up the London Minds application.</p>
     <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper or partial to correctly generate the markup (with Tachyons classes).</p>
 
-    <div class="bg-white pv4 h-25">
+    <div class="bg-white pt4 pb4 pb0-l h-25">
       <h2 class="f3">Color Palette</h2>
       <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.lm-orange</code>, <code>.lm-bg-dark-blue</code> (background colours) or <code>.b--lm-turquoise</code> (border colours).</p>
       <ul class="list pl0 ml0">
@@ -45,7 +45,7 @@
         </li>
       </ul>
     </div>
-    <div class="bg-white pv4">
+    <div class="bg-white pb4 pt4 pt0-l">
       <h2 class="f3">Helper Function Standard Components</h2>
       <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
         They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button.
