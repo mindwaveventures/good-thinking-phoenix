@@ -24,5 +24,11 @@ defmodule App.StyleGuideView do
       File.read!("./web/templates/component/#{file}")
     end)
   end
+  def render_whole_component() do
+    component_eg = render_example_components()
+    component_code = components_to_code()
+    tuple_of_lists = [component_eg, component_code]
+    List.zip([component_eg, component_code])
+  end
 
 end
