@@ -1,6 +1,19 @@
 defmodule App.StyleGuideView do
+  @moduledoc false
   use App.Web, :view
 
+  @doc """
+  ## Get Example Files
+
+    iex> App.StyleGuideView.get_example_files("./test/views/example_components")
+    ["primary_button_test_example.html.eex",
+    "secondary_button_test_example.html.eex"]
+    iex> App.StyleGuideView.get_example_files("./test/views/")
+    ["example_components"]
+    iex> App.StyleGuideView.get_example_files("./test/controllers")
+    []
+
+  """
 
   def get_example_files(file_path) do
     # Get a list of file names and filter it for those containing the word 'example'
