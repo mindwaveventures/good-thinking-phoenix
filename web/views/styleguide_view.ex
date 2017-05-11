@@ -14,7 +14,9 @@ defmodule App.StyleGuideView do
   """
 
   def get_example_files(file_path) do
-    elem(File.ls(file_path), 1)
+    file_path
+    |> File.ls
+    |> elem(1)
     |> Enum.filter(fn file ->
       String.contains?( file, "example")
     end)
@@ -30,7 +32,8 @@ defmodule App.StyleGuideView do
   """
 
   def render_example_components(file_path) do
-    get_example_files(file_path)
+    file_path
+    |> get_example_files
     |> Enum.map(fn file ->
       String.trim_trailing(file, ".eex")
     end)
@@ -46,7 +49,8 @@ defmodule App.StyleGuideView do
   """
 
   def components_to_code(file_path) do
-    get_example_files(file_path)
+    file_path
+    |> get_example_files
     |> Enum.map(fn file ->
       File.read!("#{file_path}/#{file}")
     end)
