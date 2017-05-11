@@ -107,6 +107,10 @@ You can fix this with:
 $ psql -d cms -c "alter table articles_articlepage add column heading varchar not null default ''"
 ```
 
+#### Password
+
+The site is currently password protected. To add the user on your local version, run `export ADMIN_PASSWORD="whatever you want your password to be" && mix run priv/repo/seeds.exs`. YOu can then log in with the user `ldmw` and your password.
+
 ### Local testing
 
 Ensure that your have the most up to date `dumpdata.json` file from the dumpdata branch on the cms repo
@@ -121,3 +125,7 @@ python manage.py loaddata dumpdata.json
 ### Deployment
 
 The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/). When we're happy this is working, we will push manually to the production site.
+
+### CMS
+
+The documentation for the CMS (Creating pages, tags etc) can be found at https://github.com/LDMW/cms#cms
