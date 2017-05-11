@@ -71,11 +71,15 @@
       <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
       <%= for {file_name, component_code} <- render_whole_component("./web/templates/component") do %>
-      <article>
-        <div class="dib w-30 pv3 mv2 lm-bg-dark-blue lm-white tc">
+      <article class="tc">
+        <div class="dib center br2 w-100 h-25 pv3 mt4 mb3 lm-bg-dark-blue lm-white tc shadow-5">
+          <h3 class="tl mt1 ph3 bb">Example Component</h3>
           <%= render App.ComponentView, file_name %>
         </div>
-        <code><%= component_code %></code>
+        <div class="dib center br2 w-100 h-25 pv3 lm-bg-light-grey code shadow-5">
+          <h3 class="tl mt1 bb ph3">Component Code</h3>
+          <code><%= component_code %></code>
+        </div>
       </article>
       <% end %>
 
