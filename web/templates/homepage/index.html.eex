@@ -12,41 +12,47 @@
   <%= component "secondary_button", value: "Take assessment", to: "/info/coming-soon"%>
 </section>
 
-<section class="pa4 tc-ns" id="results">
+<section class="tc-ns" id="results">
   <label for="tags_category_category">
-    <h2 class="mt0 f5 f4-ns tracked">What sleep issues have you been affected with recently?</h2>
+    <h2 class="mt0 f5 f4-ns tracked ph4">What sleep issues have you been affected with recently?</h2>
   </label>
 
 <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
   <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-    <div class="select-box v-mid dib relative b--lm-dark-blue br1 ba">
+    <div class="select-box v-mid dib relative b--lm-dark-blue br1 ba mh4">
       <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"] %>
     </div>
   <% end %>
 
-  <h4>I want to see content for:</h4>
-  <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
-    <%= for tag <- @aud_tags do %>
-      <div class="dib">
+  <div class="lm-bg-dark-blue lm-white">
+    <h4 class="ph4 pt4">I want to see content for:</h4>
+    <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
+    <div class="tc">
+      <%= for tag <- @aud_tags do %>
+      <div class="dib relative">
         <%= checkbox fa, String.to_atom(tag), value: @conn.body_params["audience"][tag], class: "checked-fill absolute o-0" %>
-        <%= label fa, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+        <%= label fa, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 mv1 dib pointer border-box unchecked" %>
       </div>
+      <% end %>
+    </div>
     <% end %>
-  <% end %>
 
-  <h4>Show me:</h4>
-  <%= inputs_for f, :content, [as: :content], fn fcon -> %>
-    <%= for tag <- @con_tags do %>
-    <div class="dib">
-      <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag], class: "checked-fill absolute o-0" %>
-        <%= label fcon, String.to_atom(tag), class: "b--lm-orange ba br2 ph2 pv1 dib" %>
+    <h4 class="ph4 pt4">Show me:</h4>
+    <%= inputs_for f, :content, [as: :content], fn fcon -> %>
+    <div class="tc ph3">
+      <%= for tag <- @con_tags do %>
+      <div class="dib relative">
+        <%= checkbox fcon, String.to_atom(tag), value: @conn.body_params["content"][tag], class: "checked-fill absolute o-0" %>
+        <%= label fcon, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
       </div>
+      <% end %>
+    </div>
     <% end %>
-  <% end %>
-  <div class="pv3">
-      <%= component "primary_button", value: "Submit" %>
+    <div class="ph4 pv3">
+      <%= component "primary_button", value: "Search" %>
+    </div>
+    <% end %>
   </div>
-<% end %>
 
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>

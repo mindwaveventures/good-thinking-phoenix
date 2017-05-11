@@ -46,12 +46,27 @@ body {
   display: none;
 }
 
+.checked-fill {
+  top:6px;
+}
+
 .checked-fill:checked~label {
-  background-color: #FAB781;
+  background-image: url(/images/Orange_Tick.png);
+  background-color: white;
+  color: #242E50;
+  border-color: #FAB781;
+  border-width: .125rem;
  }
 
 .checked-fill:focus~label {
   outline: auto 5px -webkit-focus-ring-color;
+}
+
+.unchecked {
+  background-image: url(/images/White_Plus.png);
+  background-position: right 9px top 50%;
+  background-size: 15px;
+  background-repeat: no-repeat;
 }
 
 /*color palette*/
