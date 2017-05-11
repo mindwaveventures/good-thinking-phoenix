@@ -1,6 +1,6 @@
 <div class="pa3">
   <div class="w-60-ns center">
-    <p class="fw9 tl">Showing <%= number_of_results(@resources) %></p>
+    <p class="tl b">Showing <%= number_of_results(@resources) %></p>
   </div>
   <%= for resource <- @resources do %>
     <%= if resource[:url] do %>

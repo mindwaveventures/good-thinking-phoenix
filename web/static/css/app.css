@@ -3,8 +3,9 @@
 /*fonts*/
 
 body {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
-  color: #242F4F;
+  font-family: 'NunitoSans', Arial, sans-serif;
+  letter-spacing: 0.7px;
+  color: #242E50;
   min-height: 100%;
   height: 100%;
   margin: 0;
@@ -19,13 +20,17 @@ body {
 
 @font-face {
   font-family: 'Segoe UI';
-  src: url(/fonts/segoe/SEGOEUI.TTF) format('truetype');
+  src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 .font {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
+  font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Segoe UI', sans-serif;
 }
 
 /*elements*/
@@ -40,6 +45,10 @@ body {
 
 .cover-img {
   background-image: url("/images/background-img.png");
+}
+
+.cover-img p {
+  letter-spacing: 1.5px;
 }
 
 /* Phoenix flash messages */
