@@ -70,7 +70,7 @@
       <h2 class="f3">Buttons</h2>
       <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
-      <%= for {file_name, component_code} <- render_whole_component() do %>
+      <%= for {file_name, component_code} <- render_whole_component("./web/templates/component") do %>
       <article>
         <div class="dib w-30 pv3 mv2 lm-bg-dark-blue lm-white tc">
           <%= render App.ComponentView, file_name %>
