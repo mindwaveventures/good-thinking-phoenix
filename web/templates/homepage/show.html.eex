@@ -14,15 +14,20 @@
         <% end %>
       </div>
       <%= raw(resource[:body]) %>
-      <div>
-        <p>Is this useful?</p>
-        <span>Likes: <%= resource.likes %></span>
-        <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like], fn _f -> %>
-          <%= submit "Like" %>
-        <%= end %>
-        <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike], fn _f -> %>
-          <%= submit "Dislike" %>
-        <%= end %>
+      <div class="bt b--lm-grey">
+        <p class="b">Would you recommend this?</p>
+        <div class="w-60 dib">
+          <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30 ph2"], fn _f -> %>
+            <button type="submit" class="like w-100 h2 bn bg-white"></button>
+          <%= end %>
+          <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
+          <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30 ph2"], fn _f -> %>
+            <button type="submit" class="dislike w-100 h2 bn bg-white"></button>
+          <%= end %>
+        </div>
+        <div class="dib tr w-30">
+          <button class="share w-30 h2 bn bg-white"></button>
+        </div>
       </div>
     </div>
   <%= else %>
