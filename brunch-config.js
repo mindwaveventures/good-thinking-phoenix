@@ -22,7 +22,11 @@ exports.config = {
     stylesheets: {
       joinTo: "css/app.css",
       order: {
-        after: ["web/static/css/app.css"] // concat app.css last
+        before: [
+          "web/static/css/app.css",
+          "web/static/tachyons-word-break.min.css",
+          "web/static/tachyons.min.css"
+        ] // concat app.css last
       }
     },
     templates: {

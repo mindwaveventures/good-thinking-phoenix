@@ -4,7 +4,7 @@
   "scripts": {
     "deploy": "brunch build --production",
     "watch": "brunch watch --stdin",
-    "postinstall": "cp node_modules/tachyons/css/tachyons.min.css web/static/css/",
+    "postinstall": "cp node_modules/tachyons*/css/tachyons*.min.css web/static/css/",
     "coverage": "mix coveralls",
     "accessibility": "pa11y localhost:4000 -i notice",
     "lint": "mix credo --strict"
@@ -12,7 +12,8 @@
   "dependencies": {
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
-    "tachyons": "^4.7.1"
+    "tachyons": "^4.7.1",
+    "tachyons-word-break": "^3.0.4"
   },
   "devDependencies": {
     "babel-brunch": "~6.0.0",
