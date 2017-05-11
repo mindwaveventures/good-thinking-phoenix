@@ -3,8 +3,9 @@
 /*fonts*/
 
 body {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
-  color: #242F4F;
+  font-family: 'NunitoSans', Arial, sans-serif;
+  letter-spacing: 0.7px;
+  color: #242E50;
   min-height: 100%;
   height: 100%;
   margin: 0;
@@ -19,13 +20,17 @@ body {
 
 @font-face {
   font-family: 'Segoe UI';
-  src: url(/fonts/segoe/SEGOEUI.TTF) format('truetype');
+  src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 .font {
-  font-family: 'Segoe UI','NunitoSans',Arial,sans-serif;
+  font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Segoe UI', sans-serif;
 }
 
 /*elements*/
@@ -40,6 +45,10 @@ body {
 
 .cover-img {
   background-image: url("/images/background-img.png");
+}
+
+.cover-img p {
+  letter-spacing: 1.5px;
 }
 
 /* Phoenix flash messages */
@@ -154,7 +163,6 @@ footer p a {
   color: #242e50;
   padding: .5em;
   padding-right: 2.5em;
-  border: 0;
   margin: 0;
   text-indent: 0.01px;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
@@ -187,7 +195,6 @@ footer p a {
 
 .like {
   background-image: url("../images/Thumbs_up_normal.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -197,7 +204,6 @@ footer p a {
 
 .dislike {
   background-image: url("../images/Thumbs_down_normal.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -207,7 +213,6 @@ footer p a {
 
 .share {
   background-image: url("../images/Share.svg");
-  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -219,4 +224,8 @@ code {
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
+}
+
+.h2.5 {
+  height: 3rem;
 }
