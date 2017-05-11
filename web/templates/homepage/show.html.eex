@@ -11,7 +11,7 @@
         </div>
         <div class="mt1">
           <%= for tag <- resource.tags do %>
-          <span class="b--lm-orange ba br2 ph2 pv1 lh-tag"><%= tag %></span>
+          <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= tag %></span>
           <% end %>
         </div>
         <%= raw(resource[:body]) %>
