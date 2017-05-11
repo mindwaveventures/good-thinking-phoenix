@@ -25,8 +25,8 @@
     "uglify-js-brunch": "~2.0.1"
   },
   "pre-commit": [
-    "coverage",
     "accessibility",
-    "lint"
+    "lint",
+    "coverage"
   ]
 }
