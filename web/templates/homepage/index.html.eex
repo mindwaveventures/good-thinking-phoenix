@@ -97,8 +97,8 @@
   <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw(@alphatext) %>
     <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
-      <%= label(f, :email, "Email") %>
-      <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3") %>
+      <%= label f, :email, "Email:", class: "db mv1" %>
+      <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3 ba") %>
       <%= component "primary_button", value: "Take part", class: "bottom--1 right-2" %>
     <% end %>
     <p class="alert" role="alert"><%= get_flash(@conn, :email) %></p>
