@@ -59,17 +59,20 @@
   <% end %>
 </section>
 
-<section class="pa4 tc-ns pa1 ph3 pb4 pb5-l" id="suggestion_form">
-  <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center">
+<section class="pa4 tc-ns tl-m pa1 ph3 ph5-m ph6-l pb4 pb5-l w-100" id="suggestion_form">
+  <div class="pt3 pb2 mt4 tl center ma0-ns">
     <%= raw(@lookingfor) %>
+  </div>
+  <div>
     <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#suggestion_form", [as: :suggestions], fn f -> %>
-      <%= label(f, :suggestions, "Suggestions", class: "dn") %>
-      <%= textarea(f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 w-100 ba bw1 b--gray pa3") %>
-      <div class="dib w-100">
-        <%= component "primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
-      </div>
+    <%= label(f, :suggestions, "Suggestions", class: "dn") %>
+    <%= textarea(f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 w-100 ba bw1 b--gray pa3") %>
+    <div class="dib w-100">
+      <%= component "primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
+    </div>
     <% end %>
     <p class="alert" role="alert"><%= get_flash(@conn, :suggestions) %></p>
+  </div>
   </div>
 </section>
 
