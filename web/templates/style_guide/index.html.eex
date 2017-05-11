@@ -59,11 +59,11 @@
       </ul>
 
       <p class="f5 lh-copy sans-serif">Take this button for example: </p>
-      <%= component "primary_button", value: "Click Me!" %>
+      <%= render App.ComponentView, "primary_button_example.html"%>
       <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
-      <img src="https://cloud.githubusercontent.com/assets/16775804/25627939/3be0fae2-2f5c-11e7-9589-acbd8974c756.png"/>
+      <code><%= File.read!("./web/templates/component/primary_button_example.html.eex") %></code>
       <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
-      <!-- INSERT IMAGE HERE -->
+      <code><%= File.read!("./web/templates/component/primary_button.html.eex") %></code>
 
       <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
 
