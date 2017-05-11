@@ -1,6 +1,0 @@
-<!--For use on dark backgrounds-->
-<%= if assigns[:to] do %>
-  <%= link @value, to: @to, class: "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover b--lm-white-hover lm-orange pointer ba bw1 b--lm-orange bg-white #{assigns[:class]}", id: assigns[:id] %>
-<%= else %>
-  <%= submit @value, class: "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover b--lm-white-hover lm-orange pointer ba bw1 b--lm-orange bg-white #{assigns[:class]}", id: assigns[:id] %>
-<% end %>
