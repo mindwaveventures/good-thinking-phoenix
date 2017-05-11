@@ -153,7 +153,6 @@ footer p a {
   color: #242e50;
   padding: .5em;
   padding-right: 2.5em;
-  border: 0;
   margin: 0;
   text-indent: 0.01px;
   -webkit-appearance: button; /* hide default arrow in chrome OSX */
@@ -218,4 +217,8 @@ code {
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
+}
+
+.h2.5 {
+  height: 3rem;
 }
