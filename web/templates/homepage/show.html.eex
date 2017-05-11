@@ -1,38 +1,40 @@
-<div class="w-60-ns center">
-  <p class="fw9 tl">Showing <%= number_of_results(@resources) %></p>
-</div>
-<%= for resource <- @resources do %>
-  <%= if resource[:url] do %>
-    <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
-      <h2 class="mv0"><%= resource[:heading] %></h2>
-      <div class="overflow-x-scroll">
-        <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
-      </div>
-      <div class="mt1">
-        <%= for tag <- resource.tags do %>
+<div class="pa3">
+  <div class="w-60-ns center">
+    <p class="fw9 tl">Showing <%= number_of_results(@resources) %></p>
+  </div>
+  <%= for resource <- @resources do %>
+    <%= if resource[:url] do %>
+      <div class="br1 shadow-2 ph3 pt3 pb2 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
+        <h2 class="mv0"><%= resource[:heading] %></h2>
+        <div class="overflow-x-scroll">
+          <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
+        </div>
+        <div class="mt1">
+          <%= for tag <- resource.tags do %>
           <span class="b--lm-orange ba br2 ph2 pv1 lh-tag"><%= tag %></span>
-        <% end %>
-      </div>
-      <%= raw(resource[:body]) %>
-      <div class="bt b--lm-grey">
-        <p class="b">Would you recommend this?</p>
-        <div class="w-60 dib">
-          <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30 ph2"], fn _f -> %>
+          <% end %>
+        </div>
+        <%= raw(resource[:body]) %>
+        <div class="bt b--lm-grey">
+          <p class="b">Would you recommend this?</p>
+          <div class="w-60 dib">
+            <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30 ph2"], fn _f -> %>
             <button type="submit" class="like w-100 h2 bn bg-white"></button>
-          <%= end %>
-          <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
-          <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30 ph2"], fn _f -> %>
+            <%= end %>
+            <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
+            <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30 ph2"], fn _f -> %>
             <button type="submit" class="dislike w-100 h2 bn bg-white"></button>
-          <%= end %>
-        </div>
-        <div class="dib tr w-30">
-          <button class="share w-30 h2 bn bg-white"></button>
+            <%= end %>
+          </div>
+          <div class="dib tr w-30">
+            <button class="share w-30 h2 bn bg-white"></button>
+          </div>
         </div>
       </div>
-    </div>
-  <%= else %>
-    <div>
-      <%= link resource.heading, to: article_path(@conn, :show, resource.id) %>
-    </div>
+      <%= else %>
+      <div>
+        <%= link resource.heading, to: article_path(@conn, :show, resource.id) %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
