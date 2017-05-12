@@ -25,13 +25,18 @@ defmodule App.Resources do
       |> Enum.sort(&(&1[:priority] <= &2[:priority]))
   end
 
-  def get_all_likes(map) do
-    %{id: article_id} = map
-    query = from l in Likes,
+  def get_all_likes(%{id: article_id} = map) do
+    likequery = from l in Likes,
             where: l.article_id == ^article_id,
+            where: l.like_value == 1,
             select: l.like_value
-    likes = query |> Repo.all |> Enum.sum
-    Map.merge(map, %{likes: likes})
+    likes = likequery |> Repo.all |> Enum.sum
+    dislikequery = from l in Likes,
+            where: l.article_id == ^article_id,
+            where: l.like_value == -1,
+            select: l.like_value
+    dislikes = dislikequery |> Repo.all |> Enum.sum
+    Map.merge(map, %{likes: likes, dislikes: dislikes})
   end
 
   def create_tag_query(tag, type) do
