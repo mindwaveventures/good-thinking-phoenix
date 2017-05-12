@@ -7,6 +7,6 @@ defmodule App.ComponentHelpers do
   alias App.ComponentView
 
   def component(template, assigns) do
-    ComponentView.render("#{template}.html", assigns)
+    ComponentView.render "#{template}.html", assigns
   end
 end
