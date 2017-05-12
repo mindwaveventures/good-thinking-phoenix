@@ -17,14 +17,15 @@
         <%= raw(resource[:body]) %>
         <div class="bt b--lm-grey">
           <p class="b">Would you recommend this?</p>
-          <div class="w-30 dib">
-            <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
-            <button type="submit" class="like w-100 h2 bn bg-white fl p0 bg-left"></button>
-            <%= end %>
+          <div class="w-50 mw4 dib">
             <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
-            <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30"], fn _f -> %>
-            <button type="submit" class="dislike w-100 h2 bn bg-white fr p0 bg-right"></button>
+            <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
+              <button type="submit" class="like w-100 h2 bn bg-white fl p0 bg-left"></button>
             <%= end %>
+            <%= form_for @conn, homepage_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30"], fn _f -> %>
+              <button type="submit" class="dislike w-100 h2 bn bg-white fr p0 bg-right"></button>
+            <%= end %>
+            <div class="dib mb3 v-mid tl"><span><%= resource.dislikes %></span></div>
           </div>
           <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right"></button>
         </div>
