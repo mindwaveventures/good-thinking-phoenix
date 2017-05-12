@@ -113,8 +113,8 @@ defmodule App.HomepageController do
       |> redirect(to: homepage_path(conn, :index))
   end
 
-  def handle_like(params, article_id, like_value) do
-    %{req_cookies: %{"_app_key" => user_hash}} = params
+  def handle_like(conn, article_id, like_value) do
+    %{cookies: %{"_app_key" => user_hash}} = conn
     like_params = %{user_hash: user_hash,
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
