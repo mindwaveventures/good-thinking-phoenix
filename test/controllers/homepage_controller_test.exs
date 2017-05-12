@@ -1,26 +1,16 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase
 
-  setup config, do: login_user(config)
-
-  @tag login_as: "me@test.com"
-  test "GET / - Logged in", %{conn: conn} do
+  test "GET /", %{conn: conn} do
     conn = get conn, "/"
     assert html_response(conn, 200) =~ "<!DOCTYPE html>"
   end
 
-  test "GET / - Not logged in", %{conn: conn} do
-    conn = get conn, "/"
-    assert html_response(conn, 302) =~ "sessions/new"
-  end
-
-  @tag login_as: "me@test.com"
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, homepage_path(conn, :index)
     assert html_response(conn, 200) =~ "sleep issues"
   end
 
-  @tag login_as: "me@test.com"
   test "renders page not found when id is nonexistent", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "not_found"},
@@ -29,7 +19,6 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 404)
   end
 
-  @tag login_as: "me@test.com"
   test "categories for insomnia", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "insomnia"},
