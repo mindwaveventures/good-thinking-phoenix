@@ -3,8 +3,8 @@ defmodule App.HomepageController do
   import Ecto.Query, only: [from: 2]
   alias App.{CMSRepo, Repo, Resources, Likes}
 
-  @http Application.get_env(:app, :http)
-  @google_sheet_url_email Application.get_env(:app, :google_sheet_url_email)
+  @http Application.get_env :app, :http
+  @google_sheet_url_email Application.get_env :app, :google_sheet_url_email
   @google_sheet_url_suggestion Application.get_env(
     :app, :google_sheet_url_suggestion)
 
@@ -41,7 +41,7 @@ defmodule App.HomepageController do
       order_by: tag.id,
       distinct: tag.id
 
-    CMSRepo.all(tag_query)
+    CMSRepo.all tag_query
   end
 
   def show(conn, params) do
@@ -100,42 +100,43 @@ defmodule App.HomepageController do
   end
 
   def like(conn, %{"article_id" => article_id}) do
-    handle_like(conn, article_id, 1)
+    handle_like conn, article_id, 1
     conn
       |> put_flash(:info, "Liked!")
       |> redirect(to: homepage_path(conn, :index))
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
-    handle_like(conn, article_id, -1)
+    handle_like conn, article_id, -1
     conn
       |> put_flash(:info, "Disliked!")
       |> redirect(to: homepage_path(conn, :index))
   end
 
-  def handle_like(conn, article_id, like_value) do
-    %{cookies: %{"_app_key" => user_hash}} = conn
-    like_params = %{user_hash: user_hash,
+  def handle_like(%{cookies: %{"_app_key" => hash}},
+                  article_id,
+                  like_value) do
+    like_params = %{user_hash: hash,
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
-    changeset = Likes.changeset(%Likes{}, like_params)
-    like = Repo.get_by(Likes, article_id: article_id, user_hash: user_hash)
-    case like do
+    changeset = Likes.changeset %Likes{}, like_params
+
+    case like = Repo.get_by Likes, article_id: article_id, user_hash: hash do
       nil -> Repo.insert!(changeset)
       _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
   end
 
   def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
-    handle_email(conn, "suggestions", suggestions, @google_sheet_url_suggestion)
+    handle_email conn, "suggestions", suggestions, @google_sheet_url_suggestion
   end
 
   def submit_email(conn, %{"email" => %{"email" => email}}) do
-    handle_email(conn, "email", email, @google_sheet_url_email)
+    handle_email conn, "email", email, @google_sheet_url_email
   end
 
   defp handle_email(conn, type, data, url) do
-    @http.post_spreadsheet(data, url, type)
+    @http.post_spreadsheet data, url, type
 
     conn
       |> put_flash(String.to_atom(type), "#{String.capitalize(type)} collected")
