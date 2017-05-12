@@ -1,6 +1,6 @@
 <div class="pa3">
   <div class="w-60-ns center">
-    <p class="tl b">Showing <%= number_of_results(@resources) %></p>
+    <p class="tl b">Showing <%= number_of_results @resources %></p>
   </div>
   <%= for resource <- @resources do %>
     <%= if resource[:url] do %>
@@ -14,7 +14,7 @@
           <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= tag %></span>
           <% end %>
         </div>
-        <%= raw(resource[:body]) %>
+        <%= raw resource[:body] %>
         <div class="bt b--lm-grey">
           <p class="b">Would you recommend this?</p>
           <div class="w-50 mw4 dib">

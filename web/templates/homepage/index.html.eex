@@ -1,7 +1,7 @@
 <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l cover-img tl lm-white cover lh-copy">
   <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
   <div class="w-40-l pt5-l pb4 w-60-m f4-m f5">
-    <%= raw(@body) %>
+    <%= raw @body %>
   </div>
 </section>
 
@@ -64,17 +64,17 @@
 
 <section class="pa4 tc-ns tl-m pa1 ph3 ph5-m ph6-l pb4 pb5-l w-100" id="suggestion_form">
   <div class="pt3 pb2 mt4 tl center ma0-ns">
-    <%= raw(@lookingfor) %>
+    <%= raw @lookingfor %>
   </div>
   <div>
     <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#suggestion_form", [as: :suggestions], fn f -> %>
-    <%= label(f, :suggestions, "Suggestions", class: "dn") %>
-    <%= textarea(f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3") %>
+    <%= label f, :suggestions, "Suggestions", class: "dn" %>
+    <%= textarea f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3" %>
     <div class="dib w-100">
       <%= component "primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
     </div>
     <% end %>
-    <p class="alert" role="alert"><%= get_flash(@conn, :suggestions) %></p>
+    <p class="alert" role="alert"><%= get_flash @conn, :suggestions %></p>
   </div>
   </div>
 </section>
@@ -101,16 +101,16 @@
   </div>
 
   <div class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
-    <%= raw(@alphatext) %>
+    <%= raw @alphatext %>
     <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
       <%= label f, :email, "Email:", class: "db mv1" %>
-      <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3 ba") %>
+      <%= email_input f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3 ba" %>
       <%= component "primary_button", value: "Take part", class: "bottom--1 right-2" %>
     <% end %>
-    <p class="alert" role="alert"><%= get_flash(@conn, :email) %></p>
+    <p class="alert" role="alert"><%= get_flash @conn, :email %></p>
   </div>
 </section>
 
 <footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
-  <%= raw(@footer) %>
+  <%= raw @footer %>
 </footer>
