@@ -36,7 +36,7 @@ defmodule App.Resources do
             where: l.like_value == -1,
             select: l.like_value
     dislikes = dislikequery |> Repo.all |> Enum.sum
-    Map.merge(map, %{likes: likes, dislikes: dislikes})
+    Map.merge map, %{likes: likes, dislikes: dislikes}
   end
 
   def create_tag_query(tag, type) do
@@ -79,13 +79,21 @@ defmodule App.Resources do
       select: t.name,
       distinct: t.name
 
-    Map.merge(%{tags: CMSRepo.all(query)}, resource)
+    Map.merge %{tags: CMSRepo.all(query)}, resource
   end
 
+  @doc """
+    iex> resources = [%{tags: ["tag1", "tag2"]}, %{tags: ["tag2"]}, %{tags: []}]
+    iex> audience_filter = ["tag1"]
+    iex> content_filter = []
+    iex> App.Resources.filter_tags(resources, audience_filter, content_filter)
+    [%{tags: ["tag1", "tag2"]}]
+  """
+
   def filter_tags(resources, audience_filter, content_filter) do
-    Enum.filter(resources, fn e ->
-      Enum.all?(audience_filter, fn a -> a in e.tags end) and
-      Enum.all?(content_filter, fn c -> c in e.tags end)
-    end)
+    filters = audience_filter ++ content_filter
+    Enum.filter(resources, &filter_tags_filter(&1, filters))
   end
+
+  defp filter_tags_filter(%{tags: tags}, filters), do: Enum.all?(filters, &(&1 in tags))
 end
