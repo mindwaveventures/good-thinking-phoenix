@@ -5,7 +5,7 @@
   </div>
 </section>
 
-<section class="pt1 pb3 ph4 ph5-m ph6-l lm-bg-dark-blue tc">
+<section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc">
   <p class="white tl tc-l">
     Take our <span class="b">clinically approved</span> sleep self-assessment
   </p>
@@ -13,18 +13,21 @@
 </section>
 
 <section class="tc-ns" id="results">
-  <label for="tags_category_category">
-    <h2 class="f5 f4-ns tracked ph4">What sleep issues have you been affected with recently?</h2>
-  </label>
+  <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
+  <div class="pv4-l">
+    <label for="tags_category_category">
+      <h2 class="f5 f4-ns tracked ph4">What sleep issues have you been affected with recently?</h2>
+    </label>
 
-<%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
-  <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-    <div class="select-box v-mid dib relative mh4">
-      <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"], class: "ba f5 bw1 b--lm-dark-blue h2.5 w5" %>
-    </div>
-  <% end %>
-
-  <div class="lm-bg-dark-blue lm-white">
+    <%= inputs_for f, :category, [as: :category], fn fcat -> %>
+      <div class="tc">
+        <div class="select-box v-mid dib relative mh4 tc">
+          <%= select fcat, :category, @cat_tags, value: @conn.body_params["category"]["category"], class: "ba bw1 b--lm-dark-blue h2.5 w5" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="lm-bg-dark-blue lm-white pb3-l">
     <h4 class="ph4 pt4">I want to see content for:</h4>
     <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
     <div class="tc">
@@ -48,7 +51,7 @@
       <% end %>
     </div>
     <% end %>
-    <div class="ph4 pv3">
+    <div class="ph4 pv3 tc">
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
     <% end %>
