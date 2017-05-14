@@ -13,7 +13,7 @@
       <%= label f, :password, class: "db w-60 w-50-m  w-50-l center tl mb1 fw9" %>
       <%= password_input f, :password, class: "form-control w-60 w-50-m w-50-l b--lm-orange ba br2 mb3 font" %>
     </div>
-    <%= component "primary_button", value: "Log in", class: "mt3" %>
+    <%= component "buttons/primary_button", value: "Log in", class: "mt3" %>
     <% end %>
   </section>
 </section>

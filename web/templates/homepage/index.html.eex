@@ -9,7 +9,7 @@
   <p class="white tl tc-l">
     Take our <span class="b">clinically approved</span> sleep self-assessment
   </p>
-  <%= component "secondary_button", value: "Take assessment", to: "/info/coming-soon"%>
+  <%= component "link/secondary_button", value: "Take assessment", to: "/info/coming-soon"%>
 </section>
 
 <section class="tc-ns" id="results">
@@ -49,7 +49,7 @@
     </div>
     <% end %>
     <div class="ph4 pv3">
-      <%= component "primary_button", value: "Search" %>
+      <%= component "buttons/primary_button", value: "Search" %>
     </div>
     <% end %>
   </div>
@@ -68,7 +68,7 @@
     <%= label(f, :suggestions, "Suggestions", class: "dn") %>
     <%= textarea(f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3") %>
     <div class="dib w-100">
-      <%= component "primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
+      <%= component "buttons/primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
     </div>
     <% end %>
     <p class="alert" role="alert"><%= get_flash(@conn, :suggestions) %></p>
@@ -102,7 +102,7 @@
     <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
       <%= label f, :email, "Email:", class: "db mv1" %>
       <%= email_input(f, :email, placeholder: "Your Email Address", class: "b--lm-grey br2 pa2 mb2-l mb4 f5 fw3 ba") %>
-      <%= component "primary_button", value: "Take part", class: "bottom--1 right-2" %>
+      <%= component "buttons/primary_button", value: "Take part", class: "bottom--1 right-2" %>
     <% end %>
     <p class="alert" role="alert"><%= get_flash(@conn, :email) %></p>
   </div>
