@@ -1,1 +1,0 @@
-<%= component "secondary_button", value: "I'm a Secondary Button" %>
