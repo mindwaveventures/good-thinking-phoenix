@@ -60,9 +60,11 @@ defmodule App.StyleGuideView do
   """
 
   def render_whole_component(file_path) do
+    category = get_category(file_path)
     component_eg = render_example_components(file_path)
     component_code = components_to_code(file_path)
-    List.zip([component_eg, component_code])
+
+    List.zip([category, component_eg, component_code])
   end
 
 end
