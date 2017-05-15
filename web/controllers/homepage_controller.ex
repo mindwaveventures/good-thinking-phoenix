@@ -9,12 +9,18 @@ defmodule App.HomepageController do
     :app, :google_sheet_url_suggestion)
 
   def index(conn, _params) do
-    render conn, "index.html",
-      body: get_content(:body), cat_tags: get_tags("category"),
-      aud_tags: get_tags("audience"), con_tags: get_tags("content"),
-      footer: get_content(:footer), alphatext: get_content(:alphatext),
-      lookingfor: get_content(:lookingfor),
-      resources: Resources.get_all_resources("resource")
+    render conn, "index.html", content: get_content(), tags: get_tags(),
+    resources: Resources.get_all_resources("resource")
+  end
+
+  def get_content do
+    [:body, :footer, :alphatext, :lookingfor]
+    |> Map.new(&({&1, get_content(&1)}))
+  end
+
+  def get_tags do
+    [:category, :audience, :content]
+    |> Map.new(&({&1, get_tags(Atom.to_string(&1))}))
   end
 
   def get_content(content) do
@@ -48,6 +54,14 @@ defmodule App.HomepageController do
   defp true_tuples({_t, "false"}), do: false
   defp second_value({a, "true"}), do: a
 
+  @types ["article", "resource"]
+  defp handle_article_or_resource(tag, type) when type in @types do
+    tag
+    |> Resources.create_tag_query(type)
+    |> CMSRepo.all
+    |> Enum.map(&(Map.merge(&1, %{type: "#{type}s"})))
+  end
+
   def show(conn, params) do
     %{
       "category" => %{"category" => tag},
@@ -58,18 +72,8 @@ defmodule App.HomepageController do
     audience_filter = Enum.filter_map(audience, &true_tuples/1, &second_value/1)
     content_filter = Enum.filter_map(content, &true_tuples/1, &second_value/1)
 
-    article_query = Resources.create_tag_query(tag, "article")
-    link_query = Resources.create_tag_query(tag, "resource")
-
-    articles =
-      article_query
-      |> CMSRepo.all
-      |> Enum.map(&(Map.merge(&1, %{type: "articles"})))
-
-    resources =
-      link_query
-      |> CMSRepo.all
-      |> Enum.map(&(Map.merge(&1, %{type: "resources"})))
+    articles = handle_article_or_resource(tag, "article")
+    resources = handle_article_or_resource(tag, "resource")
 
     all_resources =
       articles ++ resources
@@ -84,11 +88,8 @@ defmodule App.HomepageController do
           |> put_status(404)
           |> render(App.ErrorView, "404.html")
       _ -> render conn, "index.html",
-        tag: tag, resources: all_resources, body: get_content(:body),
-        cat_tags: get_tags("category"), aud_tags: get_tags("audience"),
-        con_tags: get_tags("content"), footer: get_content(:footer),
-        alphatext: get_content(:alphatext),
-        lookingfor: get_content(:lookingfor)
+        content: get_content(), tags: get_tags(),
+        resources: all_resources, tag: tag
     end
   end
 
