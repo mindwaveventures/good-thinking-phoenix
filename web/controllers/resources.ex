@@ -15,10 +15,10 @@ defmodule App.Resources do
   end
 
   @types ["article", "resource"]
-  def handle_article_or_resource(tag, type) when type in @types do
+  def handle_article_or_resource(tag, type, session_id) when type in @types do
     tag
     |> create_tag_query(type)
-    |> get_resources(type)
+    |> get_resources(type, session_id)
   end
 
   def get_content(content) do
@@ -58,11 +58,11 @@ defmodule App.Resources do
     CMSRepo.all tag_query
   end
 
-  def get_all_filtered_resources(tag, filters) do
+  def get_all_filtered_resources(tag, filters, session_id) do
     filter = Enum.filter_map(filters, &true_tuples/1, &first_value/1)
 
     ["article", "resource"]
-    |> Enum.map(&(handle_article_or_resource(tag, &1)))
+    |> Enum.map(&(handle_article_or_resource(tag, &1, session_id)))
     |> Enum.concat
     |> Enum.filter(fn %{tags: tags} ->
       Enum.all?(filter, &(&1 in tags))
@@ -81,25 +81,25 @@ defmodule App.Resources do
       }
   end
 
-  def get_resources(query, type) do
+  def get_resources(query, type, session_id) do
     query
       |> CMSRepo.all
       |> Enum.map(&get_all_tags(&1, type))
-      |> Enum.map(&get_all_likes/1)
+      |> Enum.map(&get_all_likes(&1, session_id))
   end
 
-  def get_all_likes(%{id: article_id} = map) do
+  def get_all_likes(%{id: article_id} = map, session_id) do
     likequery = from l in Likes,
             where: l.article_id == ^article_id,
-            where: l.like_value == 1,
-            select: l.like_value
-    likes = likequery |> Repo.all |> Enum.sum
-    dislikequery = from l in Likes,
-            where: l.article_id == ^article_id,
-            where: l.like_value == -1,
-            select: l.like_value
-    dislikes = dislikequery |> Repo.all |> Enum.sum
-    Map.merge map, %{likes: likes, dislikes: dislikes}
+            select: %{value: l.like_value, session_id: l.user_hash}
+    likesdata = likequery |> Repo.all
+    likes = Enum.filter_map(likesdata, &(&1.value > 0), &(&1.value)) |> Enum.sum
+    dislikes = Enum.filter_map(likesdata, &(&1.value < 0), &(&1.value)) |> Enum.sum
+    liked = case Enum.find(likesdata, &(&1.session_id == session_id)) do
+      nil -> "none"
+      %{value: value} -> value
+    end
+    Map.merge map, %{likes: likes, dislikes: dislikes, liked: liked}
   end
 
   # getting all resources tagged by category tag
