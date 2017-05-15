@@ -95,5 +95,7 @@ defmodule App.Resources do
     Enum.filter(resources, &filter_tags_filter(&1, filters))
   end
 
-  defp filter_tags_filter(%{tags: tags}, filters), do: Enum.all?(filters, &(&1 in tags))
+  defp filter_tags_filter(%{tags: tags}, filters) do
+    Enum.all?(filters, &(&1 in tags))
+  end
 end
