@@ -44,6 +44,10 @@ defmodule App.HomepageController do
     CMSRepo.all tag_query
   end
 
+  defp true_tuples({_t, "true"}), do: true
+  defp true_tuples({_t, "false"}), do: false
+  defp second_value({a, "true"}), do: a
+
   def show(conn, params) do
     %{
       "category" => %{"category" => tag},
@@ -51,21 +55,10 @@ defmodule App.HomepageController do
       "content" => content
     } = params
 
-    true_tuples = fn e ->
-      case e do
-        {_t, "true"} -> true
-        {_t, "false"} -> false
-      end
-    end
-
-    second_value = fn {a, "true"} -> a end
-
-    audience_filter = Enum.filter_map(audience, true_tuples, second_value)
-
-    content_filter = Enum.filter_map(content, true_tuples, second_value)
+    audience_filter = Enum.filter_map(audience, &true_tuples/1, &second_value/1)
+    content_filter = Enum.filter_map(content, &true_tuples/1, &second_value/1)
 
     article_query = Resources.create_tag_query(tag, "article")
-
     link_query = Resources.create_tag_query(tag, "resource")
 
     articles =
@@ -101,19 +94,21 @@ defmodule App.HomepageController do
 
   def like(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, 1
-    conn
-      |> put_flash(:info, "Liked!")
-      |> redirect(to: homepage_path(conn, :index))
+    handle_like_redirect conn, "Liked!"
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, -1
+    handle_like_redirect conn, "Disliked!"
+  end
+
+  defp handle_like_redirect(conn, flash) do
     conn
-      |> put_flash(:info, "Disliked!")
+      |> put_flash(:info, flash)
       |> redirect(to: homepage_path(conn, :index))
   end
 
-  def handle_like(%{cookies: %{"_app_key" => hash}},
+  defp handle_like(%{cookies: %{"_app_key" => hash}},
                   article_id,
                   like_value) do
     like_params = %{user_hash: hash,
