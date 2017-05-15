@@ -27,6 +27,14 @@ defmodule App.HomepageController do
     |> Map.new(&({&1, Resources.get_tags(&1)}))
   end
 
+  @types ["article", "resource"]
+  defp handle_article_or_resource(tag, type) when type in @types do
+    tag
+    |> Resources.create_tag_query(type)
+    |> CMSRepo.all
+    |> Enum.map(&(Map.merge(&1, %{type: "#{type}s"})))
+  end
+
   def show(conn, params) do
     %{
       "category" => %{"category" => tag},
