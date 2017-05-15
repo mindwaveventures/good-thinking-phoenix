@@ -13,7 +13,7 @@ body {
 
 @font-face {
   font-family: 'NunitoSans';
-  src: url('/fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
+  src: url('/fonts/nunito/NunitoSans-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -243,6 +243,10 @@ code {
 
 .h2.5 {
   height: 3rem;
+}
+
+#email_form h2 {
+  font-family: 'Segoe UI-Bold';
 }
 
 #alphasection ul {
