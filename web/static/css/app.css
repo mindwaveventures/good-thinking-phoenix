@@ -243,3 +243,11 @@ code {
   content: "- ";
   text-indent: -30px;
 }
+
+.bg--lm-green {
+  background-color: #E2F6D6;
+}
+
+.b--lm-green {
+  border-color: #81c03d;
+}
