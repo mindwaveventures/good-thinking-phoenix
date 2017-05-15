@@ -1,0 +1,24 @@
+<section class="lm-white lm-bg-dark-blue pa1 ph3 pb4 pb5-l" id="email_form">
+  <div class="mh3 mv3 w-60-m w-50-l center" id="alpha">
+    <h2 class="f4 f4-ns mb0">ALPHA</h2>
+    <h2 class="f5 f4-ns mt1">what does it mean?</h2>
+    <p>
+      Lorem ipsum donor sit amet consectetur adipiscing eros justo bibendium. Proin sodales pulvinar tempor.
+    </p>
+    <p>
+      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.
+    </p>
+  </div>
+
+  <div id="alphasection" class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
+    <%= raw @content.alphatext %>
+    <%= form_for @conn, homepage_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
+      <%= label f, :email, "Email:", class: "db mv1" %>
+      <%= email_input(f, :email, class: "br2 pa2 mb2-l mb3 f5 fw3 ba w-100") %>
+      <p class="alert ma0 mb4 pa3 ba bw1-ns bg--lm-green b--lm-green" role="alert"><%= get_flash(@conn, :email) %></p>
+      <div class="relative w-100 mt3">
+        <%= component "primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
+      </div>
+    <% end %>
+  </div>
+</section>
