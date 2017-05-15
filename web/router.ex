@@ -24,6 +24,7 @@ defmodule App.Router do
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
     get "/info/:page", InfoController, :index
+    get "/coming-soon", ComingSoonController, :index
   end
 
   # Other scopes may use custom stacks.
