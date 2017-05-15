@@ -19,6 +19,7 @@
           <p class="b">Would you recommend this?</p>
           <div class="w-50 mw4 dib">
             <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
+            <span><%= resource.liked %></span>
             <%= form_for @conn, homepage_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
               <button type="submit" class="like w-100 h2 bn bg-white fl p0 bg-left"></button>
             <%= end %>

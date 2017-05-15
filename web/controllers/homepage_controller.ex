@@ -10,7 +10,7 @@ defmodule App.HomepageController do
   def index(conn, _params) do
     resources = "resource"
       |> Resources.all_query
-      |> Resources.get_resources("resource")
+      |> Resources.get_resources("resource", conn.cookies["_app_key"])
       |> Resources.sort_priority
 
     render conn, "index.html", content: get_content(),
@@ -44,7 +44,7 @@ defmodule App.HomepageController do
           |> Enum.map(&Map.to_list/1)
           |> Enum.concat
 
-        all_resources = Resources.get_all_filtered_resources(tag, filters)
+        all_resources = Resources.get_all_filtered_resources(tag, filters, conn.cookies["_app_key"])
         render conn, "index.html",
           content: get_content(), tags: get_tags(),
           resources: all_resources, tag: tag
