@@ -1,7 +1,6 @@
 defmodule App.HomepageController do
   use App.Web, :controller
-  import Ecto.Query, only: [from: 2]
-  alias App.{CMSRepo, Repo, Resources, Likes, ErrorView}
+  alias App.{Repo, Resources, Likes, ErrorView}
 
   @http Application.get_env :app, :http
   @google_sheet_url_email Application.get_env :app, :google_sheet_url_email
@@ -9,57 +8,23 @@ defmodule App.HomepageController do
     :app, :google_sheet_url_suggestion)
 
   def index(conn, _params) do
-    render conn, "index.html", content: get_content(), tags: get_tags(),
-    resources: Resources.get_all_resources("resource")
+    resources = "resource"
+      |> Resources.all_query
+      |> Resources.get_resources("resource")
+      |> Resources.sort_priority
+
+    render conn, "index.html", content: get_content(),
+                 tags: get_tags(), resources: resources
   end
 
   def get_content do
     [:body, :footer, :alphatext, :lookingfor]
-    |> Map.new(&({&1, get_content(&1)}))
+    |> Map.new(&({&1, Resources.get_content(&1)}))
   end
 
   def get_tags do
     [:category, :audience, :content]
-    |> Map.new(&({&1, get_tags(Atom.to_string(&1))}))
-  end
-
-  def get_content(content) do
-    query = from page in "wagtailcore_page",
-      where: page.url_path == "/home/",
-      join: h in "home_homepage",
-      where: h.page_ptr_id == page.id,
-      select: %{alphatext: h.alphatext,
-                body: h.body,
-                footer: h.footer,
-                lookingfor: h.lookingfor}
-
-    query
-    |> CMSRepo.one
-    |> Map.get(content)
-  end
-
-  def get_tags(type) do
-    tag_query = from tag in "taggit_tag",
-      full_join: h in ^"articles_#{type}tag",
-      full_join: l in ^"resources_#{type}tag",
-      where: h.tag_id == tag.id or l.tag_id == tag.id,
-      select: tag.name,
-      order_by: tag.id,
-      distinct: tag.id
-
-    CMSRepo.all tag_query
-  end
-
-  defp true_tuples({_t, "true"}), do: true
-  defp true_tuples({_t, "false"}), do: false
-  defp second_value({a, "true"}), do: a
-
-  @types ["article", "resource"]
-  defp handle_article_or_resource(tag, type) when type in @types do
-    tag
-    |> Resources.create_tag_query(type)
-    |> CMSRepo.all
-    |> Enum.map(&(Map.merge(&1, %{type: "#{type}s"})))
+    |> Map.new(&({&1, Resources.get_tags(&1)}))
   end
 
   def show(conn, params) do
@@ -69,27 +34,20 @@ defmodule App.HomepageController do
       "content" => content
     } = params
 
-    audience_filter = Enum.filter_map(audience, &true_tuples/1, &second_value/1)
-    content_filter = Enum.filter_map(content, &true_tuples/1, &second_value/1)
-
-    articles = handle_article_or_resource(tag, "article")
-    resources = handle_article_or_resource(tag, "resource")
-
-    all_resources =
-      articles ++ resources
-      |> Enum.map(&Resources.get_all_tags/1)
-      |> Enum.map(&Resources.get_all_likes/1)
-      |> Resources.filter_tags(audience_filter, content_filter)
-      |> Enum.sort(&(&1[:priority] <= &2[:priority]))
-
-    case resources do
-      [] ->
+    case Resources.check_tag(tag) do
+      {:error, _} ->
         conn
           |> put_status(404)
           |> render(ErrorView, "404.html")
-      _ -> render conn, "index.html",
-        content: get_content(), tags: get_tags(),
-        resources: all_resources, tag: tag
+      {:ok, _} ->
+        filters = [audience, content]
+          |> Enum.map(&Map.to_list/1)
+          |> Enum.concat
+
+        all_resources = Resources.get_all_filtered_resources(tag, filters)
+        render conn, "index.html",
+          content: get_content(), tags: get_tags(),
+          resources: all_resources, tag: tag
     end
   end
 
