@@ -26,7 +26,7 @@
             <button type="submit" class="dislike w-100 h2 bn bg-white fr p0 bg-right"></button>
             <%= end %>
           </div>
-          <button class="share w-30 h2 bn bg-white fr p0 bg-right"></button>
+          <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right"></button>
         </div>
       </div>
       <%= else %>

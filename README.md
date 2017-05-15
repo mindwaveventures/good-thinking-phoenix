@@ -129,3 +129,10 @@ The app is set to automatically push from the master branch to the staging area 
 ### CMS
 
 The documentation for the CMS (Creating pages, tags etc) can be found at https://github.com/LDMW/cms#cms
+
+### Analytics
+
+We are using Google Analytics and Google Tag Manager to track user actions on the site. We are currently tracking:
+* Page views
+* Clicks on the 'Take assessment' button
+* Clicks on the 'share' button on resources
