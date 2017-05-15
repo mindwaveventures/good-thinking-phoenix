@@ -1,7 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   import Ecto.Query, only: [from: 2]
-  alias App.{CMSRepo, Repo, Resources, Likes}
+  alias App.{CMSRepo, Repo, Resources, Likes, ErrorView}
 
   @http Application.get_env :app, :http
   @google_sheet_url_email Application.get_env :app, :google_sheet_url_email
@@ -86,7 +86,7 @@ defmodule App.HomepageController do
       [] ->
         conn
           |> put_status(404)
-          |> render(App.ErrorView, "404.html")
+          |> render(ErrorView, "404.html")
       _ -> render conn, "index.html",
         content: get_content(), tags: get_tags(),
         resources: all_resources, tag: tag
