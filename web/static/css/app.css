@@ -229,3 +229,17 @@ code {
 .h2.5 {
   height: 3rem;
 }
+
+#alphasection ul {
+  margin: 2rem 0;
+  list-style-type: none;
+}
+
+#alphasection ul li {
+  text-indent: -30px;
+}
+
+#alphasection ul > li:before {
+  content: "- ";
+  text-indent: -30px;
+}
