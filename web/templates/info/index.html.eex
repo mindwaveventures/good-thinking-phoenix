@@ -3,7 +3,7 @@
     <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
   </a>
   <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
-    <%= raw(@heading) %>
+    <%= raw @heading %>
   </div>
 </section>
 
