@@ -15,10 +15,10 @@ defmodule App.Resources do
   end
 
   @types ["article", "resource"]
-  def handle_article_or_resource(tag, type, session_id) when type in @types do
+  def handle_article_or_resource(tag, type, lm_session) when type in @types do
     tag
     |> create_tag_query(type)
-    |> get_resources(type, session_id)
+    |> get_resources(type, lm_session)
   end
 
   def get_content(content) do
@@ -81,21 +81,21 @@ defmodule App.Resources do
       }
   end
 
-  def get_resources(query, type, session_id) do
+  def get_resources(query, type, lm_session) do
     query
       |> CMSRepo.all
       |> Enum.map(&get_all_tags(&1, type))
-      |> Enum.map(&get_all_likes(&1, session_id))
+      |> Enum.map(&get_all_likes(&1, lm_session))
   end
 
-  def get_all_likes(%{id: article_id} = map, session_id) do
+  def get_all_likes(%{id: article_id} = map, lm_session) do
     likequery = from l in Likes,
             where: l.article_id == ^article_id,
             select: %{value: l.like_value, session_id: l.user_hash}
     likesdata = likequery |> Repo.all
     likes = Enum.filter_map(likesdata, &(&1.value > 0), &(&1.value)) |> Enum.sum
     dislikes = Enum.filter_map(likesdata, &(&1.value < 0), &(&1.value)) |> Enum.sum
-    liked = case Enum.find(likesdata, &(&1.session_id == session_id)) do
+    liked = case Enum.find(likesdata, &(&1.session_id == lm_session)) do
       nil -> "none"
       %{value: value} -> value
     end
