@@ -14,10 +14,10 @@ defmodule App.HomepageView do
 
   """
 
-  def number_of_results(resources) do
-    case n = length(resources) do
-      1 -> "1 result"
-      _ -> "#{n} results"
-    end
-  end
+  def number_of_results(resources) when length(resources) == 1, do: "1 result"
+  def number_of_results(resources), do: "#{length resources} results"
+
+  def check_liked("dislike", -1), do: "disliked"
+  def check_liked("like", 1), do: "liked"
+  def check_liked(class, _), do: class
 end
