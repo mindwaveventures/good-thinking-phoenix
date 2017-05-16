@@ -13,7 +13,7 @@ body {
 
 @font-face {
   font-family: 'NunitoSans';
-  src: url('/fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
+  src: url('/fonts/nunito/NunitoSans-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,12 +25,26 @@ body {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Segoe UI-Bold';
+  src: url('/fonts/segoe/SEGOEUIB.TTF') format('truetype');
+}
+
 .font {
   font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
 }
 
 h1, h2 {
   font-family: 'Segoe UI', sans-serif;
+}
+
+h2 > span.b {
+  font-family: 'Segoe UI-Bold';
+}
+
+.cover h2 {
+  font-family: 'Segoe UI-Bold';
+  letter-spacing: 1.5px;
 }
 
 /*elements*/
@@ -48,7 +62,8 @@ h1, h2 {
 }
 
 .cover-img p {
-  letter-spacing: 1.5px;
+  font-family: 'NunitoSans';
+  letter-spacing: 1px;
 }
 
 /* Phoenix flash messages */
@@ -228,6 +243,10 @@ code {
 
 .h2.5 {
   height: 3rem;
+}
+
+#email_form h2 {
+  font-family: 'Segoe UI-Bold';
 }
 
 #alphasection ul {

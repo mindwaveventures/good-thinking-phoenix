@@ -34,14 +34,14 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
-      <div class="pa3 f5-l f5-m f6 lm-bg-dark-blue lm-white w-100">
-        <p class="ma0">
-          <strong>ALPHA:</strong>
+      <div class="pa3 lm-bg-dark-blue lm-white w-100">
+        <h2 class="ma0 f7 f5-l f5-m">
+          <span class="b">ALPHA:</span>
           This is a prototype - your
           <a href="mailto:sarah@londonminds.co.uk" class="underline lm-white">feedback</a>
           will help us to improve it.
           <a href="/#alpha" class="underline lm-white">Find out more</a>
-        </p>
+        </h2>
       </div>
       <p class="alert" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert" role="alert"><%= get_flash(@conn, :error) %></p>
