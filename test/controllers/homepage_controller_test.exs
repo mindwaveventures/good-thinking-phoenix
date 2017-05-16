@@ -50,11 +50,11 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 302)
   end
 
-  @article_id "9"
+  @article_id "31"
   test "POST /like/#{@article_id} - existing article", %{conn: conn} do
     conn =
       conn
-        |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
         |> post(homepage_path(conn, :like, @article_id))
 
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
@@ -64,11 +64,11 @@ defmodule App.HomepageControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  @article_id "9"
+  @article_id "31"
   test "POST /dislike/#{@article_id} - existing article", %{conn: conn} do
     conn =
       conn
-        |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
         |> post(homepage_path(conn, :dislike, @article_id))
 
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
@@ -78,16 +78,12 @@ defmodule App.HomepageControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  @article_id "9"
+  @article_id "31"
   test "multiple likes for an article", %{conn: conn} do
-    conn
-      |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
-      |> post(homepage_path(conn, :like, @article_id))
-
     conn =
       conn
-        |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
-        |> post(homepage_path(conn, :dislike, @article_id))
+      |> post(homepage_path(conn, :like, @article_id))
+      |> post(homepage_path(conn, :dislike, @article_id))
 
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
 

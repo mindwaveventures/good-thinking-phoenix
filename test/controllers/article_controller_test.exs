@@ -1,8 +1,8 @@
 defmodule App.ArticleControllerTest do
   use App.ConnCase
 
-  test "GET /article/9", %{conn: conn} do
-    conn = get conn, "/article/9"
+  test "GET /article/31", %{conn: conn} do
+    conn = get conn, "/article/31"
     assert html_response(conn, 200) =~ "<!DOCTYPE html>"
   end
 
