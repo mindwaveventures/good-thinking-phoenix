@@ -14,7 +14,7 @@ defmodule App.InfoController do
         body: i.body
       }
 
-    data = CMSRepo.one(query)
+    data = CMSRepo.one query
 
     case data do
       nil ->
