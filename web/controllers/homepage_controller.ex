@@ -8,9 +8,10 @@ defmodule App.HomepageController do
     :app, :google_sheet_url_suggestion)
 
   def index(conn, _params) do
+    session = get_session conn, :lm_session
     resources = "resource"
       |> Resources.all_query
-      |> Resources.get_resources("resource", conn.cookies["_app_key"])
+      |> Resources.get_resources("resource", session)
       |> Resources.sort_priority
 
     render conn, "index.html", content: get_content(),
@@ -44,7 +45,8 @@ defmodule App.HomepageController do
           |> Enum.map(&Map.to_list/1)
           |> Enum.concat
 
-        all_resources = Resources.get_all_filtered_resources(tag, filters, conn.cookies["_app_key"])
+        session = get_session conn, "lm_session"
+        all_resources = Resources.get_all_filtered_resources(tag, filters, session)
         render conn, "index.html",
           content: get_content(), tags: get_tags(),
           resources: all_resources, tag: tag
@@ -67,15 +69,14 @@ defmodule App.HomepageController do
       |> redirect(to: homepage_path(conn, :index))
   end
 
-  defp handle_like(%{cookies: %{"_app_key" => hash}},
-                  article_id,
-                  like_value) do
-    like_params = %{user_hash: hash,
+  defp handle_like(conn, article_id, like_value) do
+    lm_session = get_session(conn, :lm_session)
+    like_params = %{user_hash: lm_session,
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
-    changeset = Likes.changeset %Likes{}, like_params
+    changeset = Likes.changeset %Likes{}, IO.inspect(like_params)
 
-    case like = Repo.get_by Likes, article_id: article_id, user_hash: hash do
+    case like = Repo.get_by Likes, article_id: article_id, user_hash: lm_session do
       nil -> Repo.insert!(changeset)
       _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
