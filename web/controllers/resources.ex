@@ -9,7 +9,6 @@ defmodule App.Resources do
 
   def true_tuples({_t, "true"}), do: true
   def true_tuples({_t, "false"}), do: false
-  def first_value({a, "true"}), do: a
   def sort_priority(list) do
     Enum.sort(list, &(&1[:priority] <= &2[:priority]))
   end
@@ -91,8 +90,14 @@ defmodule App.Resources do
             where: l.article_id == ^article_id,
             select: %{value: l.like_value, session_id: l.user_hash}
     likesdata = likequery |> Repo.all
-    likes = Enum.filter_map(likesdata, &(&1.value > 0), &(&1.value)) |> Enum.sum
-    dislikes = Enum.filter_map(likesdata, &(&1.value < 0), &(&1.value)) |> Enum.sum
+    likes =
+      likesdata
+        |> Enum.filter_map(&(&1.value > 0), &(&1.value))
+        |> Enum.sum
+    dislikes =
+      likesdata
+        |> Enum.filter_map(&(&1.value < 0), &(&1.value))
+        |> Enum.sum
     liked = case Enum.find(likesdata, &(&1.session_id == lm_session)) do
       nil -> "none"
       %{value: value} -> value

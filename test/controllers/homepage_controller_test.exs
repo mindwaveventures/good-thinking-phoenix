@@ -1,5 +1,6 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase, async: false
+  doctest App.HomepageController
 
   alias Plug.Conn
   alias App.Likes
@@ -20,6 +21,14 @@ defmodule App.HomepageControllerTest do
                "content" => %{"content" => "false"}}
     conn = post conn, homepage_path(conn, :show, params)
     assert html_response(conn, 302)
+  end
+
+  test "query renders filtered content", %{conn: conn} do
+    params = %{"audience" => "shift-workers",
+               "category" => "insomnia",
+               "content" => ""}
+    conn = get conn, homepage_path(conn, :query, params)
+    assert html_response(conn, 200)
   end
 
   test "query renders page not found when category is nonexistent", %{conn: conn} do
@@ -90,5 +99,23 @@ defmodule App.HomepageControllerTest do
     assert like_value == -1
     assert get_flash(conn, :info) == "Disliked!"
     assert redirected_to(conn) == "/"
+  end
+
+  @article_id "31"
+  test "POST /dislike/#{@article_id} - article with referrer", %{conn: conn} do
+    url1 = "http://localhost:4000"
+    url2 = "/filter?category=insomnia&audience=&content=subscription"
+    url = url1 <> url2
+    conn =
+      conn
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
+        |> Conn.put_req_header("referer", url)
+        |> post(homepage_path(conn, :dislike, @article_id))
+
+    %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
+
+    assert like_value == -1
+    assert get_flash(conn, :info) == "Disliked!"
+    assert redirected_to(conn) == url2
   end
 end

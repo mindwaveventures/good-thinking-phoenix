@@ -1,13 +1,17 @@
 defmodule App.Cookie do
+  @moduledoc false
   import Plug.Conn
 
+  @doc"""
+    iex>App.Cookie.init(true)
+    true
+  """
   def init(args), do: args
 
   def call(conn, _) do
-    session_id = get_session conn, :lm_session
-    cond do
-      session_id -> conn
-      true -> put_session conn, :lm_session, gen_rand_string(80)
+    case session_id = get_session conn, :lm_session do
+      nil -> put_session conn, :lm_session, gen_rand_string(80)
+      _ -> conn
     end
   end
 
