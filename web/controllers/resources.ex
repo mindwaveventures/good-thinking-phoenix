@@ -58,9 +58,7 @@ defmodule App.Resources do
     CMSRepo.all tag_query
   end
 
-  def get_all_filtered_resources(tag, filters, session_id) do
-    filter = Enum.filter_map(filters, &true_tuples/1, &first_value/1)
-
+  def get_all_filtered_resources(tag, filter, session_id) do
     ["article", "resource"]
     |> Enum.map(&(handle_article_or_resource(tag, &1, session_id)))
     |> Enum.concat

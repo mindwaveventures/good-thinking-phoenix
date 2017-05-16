@@ -43,23 +43,7 @@ defmodule App.HomepageController do
       "content" => content
     } = params
 
-    case Resources.check_tag(tag) do
-      {:error, _} ->
-        conn
-          |> put_status(404)
-          |> render(ErrorView, "404.html")
-      {:ok, _} ->
-        filters = [audience, content]
-          |> Enum.map(&Map.to_list/1)
-          |> Enum.concat
-
-        session = get_session conn, "lm_session"
-        all_resources = Resources.get_all_filtered_resources(tag, filters, session)
-        # render conn, "index.html",
-        #   content: get_content(), tags: get_tags(),
-        #   resources: all_resources, tag: tag
-        redirect(conn, to: homepage_path(conn, :query) <> "?category=#{tag}&" <> create_query_string(%{"audience" => audience, "content" => content}))
-    end
+    redirect(conn, to: homepage_path(conn, :query) <> "?category=#{tag}&" <> create_query_string(%{"audience" => audience, "content" => content}))
   end
 
   def create_query_string(params) do
@@ -70,23 +54,60 @@ defmodule App.HomepageController do
 
   def like(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, 1
-    handle_like_redirect conn, "Liked!"
+    handle_like_redirect conn, "Liked!", get_query_string(conn)
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, -1
-    handle_like_redirect conn, "Disliked!"
+    handle_like_redirect conn, "Disliked!", get_query_string(conn)
+  end
+
+  def get_query_string(conn) do
+    url = case Enum.find conn.req_headers, fn {key, val} -> key == "referer" end do
+      nil -> ""
+      {"referer", url} -> url
+    end
+
+    [host | query_string] = String.split(url, "?")
+
+    query_string
   end
 
   def query(conn, params) do
-    IO.inspect params
-    render conn, "index.html"
+    %{
+      "category" => category,
+      "audience" => audience,
+      "content" => content
+    } = params
+
+    case Resources.check_tag(category) do
+      {:error, _} ->
+        conn
+          |> put_status(404)
+          |> render(ErrorView, "404.html")
+      {:ok, _} ->
+        filters = [audience, content]
+          |> Enum.filter(&(&1 != ""))
+          |> Enum.map(&(String.split(&1, ",")))
+          |> Enum.concat
+
+        session = get_session conn, "lm_session"
+        all_resources = Resources.get_all_filtered_resources(category, filters, session)
+        render conn, "index.html",
+          content: get_content(), tags: get_tags(),
+          resources: all_resources, tag: category
+    end
   end
 
-  defp handle_like_redirect(conn, flash) do
+  defp handle_like_redirect(conn, flash, query) do
+    redirect_path = case query do
+      [] -> homepage_path(conn, :index)
+      _ -> homepage_path(conn, :query) <> "?#{query}"
+    end
+
     conn
-      |> put_flash(:info, flash)
-      |> redirect(to: homepage_path(conn, :index))
+    |> put_flash(:info, flash)
+    |> redirect(to: redirect_path)
   end
 
   defp handle_like(conn, article_id, like_value) do
@@ -94,7 +115,7 @@ defmodule App.HomepageController do
     like_params = %{user_hash: lm_session,
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
-    changeset = Likes.changeset %Likes{}, IO.inspect(like_params)
+    changeset = Likes.changeset %Likes{}, like_params
 
     case like = Repo.get_by Likes, article_id: article_id, user_hash: lm_session do
       nil -> Repo.insert!(changeset)

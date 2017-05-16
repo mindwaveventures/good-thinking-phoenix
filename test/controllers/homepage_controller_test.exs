@@ -14,20 +14,28 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 200) =~ "sleep issues"
   end
 
-  test "renders page not found when id is nonexistent", %{conn: conn} do
+  test "show redirects when category is nonexistent", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "not_found"},
                "content" => %{"content" => "false"}}
     conn = post conn, homepage_path(conn, :show, params)
+    assert html_response(conn, 302)
+  end
+
+  test "query renders page not found when category is nonexistent", %{conn: conn} do
+    params = %{"audience" => "false",
+               "category" => "not_found",
+               "content" => "false"}
+    conn = post conn, homepage_path(conn, :query, params)
     assert html_response(conn, 404)
   end
 
-  test "categories for insomnia", %{conn: conn} do
+  test "categories for insomnia show", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "insomnia"},
                "content" => %{"content" => "false"}}
     conn = post conn, homepage_path(conn, :show, params)
-    assert html_response(conn, 200)
+    assert html_response(conn, 302)
   end
 
   test "submit_email of email address", %{conn: conn} do
@@ -44,7 +52,7 @@ defmodule App.HomepageControllerTest do
 
   @article_id "9"
   test "POST /like/#{@article_id} - existing article", %{conn: conn} do
-    conn = 
+    conn =
       conn
         |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
         |> post(homepage_path(conn, :like, @article_id))
@@ -58,7 +66,7 @@ defmodule App.HomepageControllerTest do
 
   @article_id "9"
   test "POST /dislike/#{@article_id} - existing article", %{conn: conn} do
-    conn = 
+    conn =
       conn
         |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
         |> post(homepage_path(conn, :dislike, @article_id))
@@ -76,7 +84,7 @@ defmodule App.HomepageControllerTest do
       |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
       |> post(homepage_path(conn, :like, @article_id))
 
-    conn = 
+    conn =
       conn
         |> Conn.put_resp_cookie("_app_key", String.duplicate("asdf", 8))
         |> post(homepage_path(conn, :dislike, @article_id))
