@@ -1,0 +1,22 @@
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l">
+  <a href="/">
+    <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+  </a>
+  <div class="w-40-l pt6-l pb4 w-60-m f4-m f5">
+    <h2>This page is coming soon</h2>
+  </div>
+</section>
+
+<section class="f6 pt5-l ph4 ph5-m ph6-l pb4">
+  <div class="br1 ph3 pt1 pb2 tl w-60-ns center">
+    <div class="w-100 tc">
+      <img class="w-50" src="images/LDMW_Assets_Coming_Soon.png" />
+    </div>
+    <p>
+      We are in the alpha stages of development so some things are still being built.
+    </p>
+    <p>
+      Please share any <%= link "feedback", to: "/#alpha" %> with us so we can improve the site.
+    </p>
+  </div>
+</section>
