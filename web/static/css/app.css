@@ -229,3 +229,25 @@ code {
 .h2.5 {
   height: 3rem;
 }
+
+#alphasection ul {
+  margin: 2rem 0;
+  list-style-type: none;
+}
+
+#alphasection ul li {
+  text-indent: -30px;
+}
+
+#alphasection ul > li:before {
+  content: "- ";
+  text-indent: -30px;
+}
+
+.bg--lm-green {
+  background-color: #E2F6D6;
+}
+
+.b--lm-green {
+  border-color: #81c03d;
+}

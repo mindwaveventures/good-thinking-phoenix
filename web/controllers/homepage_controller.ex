@@ -137,8 +137,13 @@ defmodule App.HomepageController do
   defp handle_email(conn, type, data, url) do
     @http.post_spreadsheet(data, url, type)
 
+    message = case type do
+      "email" -> "Email address entered successfully!"
+      "suggestions" -> "Suggestion submitted successfully!"
+    end
+
     conn
-      |> put_flash(String.to_atom(type), "#{String.capitalize(type)} collected")
+      |> put_flash(String.to_atom(type), message)
       |> redirect(to: homepage_path(conn, :index))
   end
 end
