@@ -55,10 +55,17 @@ defmodule App.HomepageController do
 
         session = get_session conn, "lm_session"
         all_resources = Resources.get_all_filtered_resources(tag, filters, session)
-        render conn, "index.html",
-          content: get_content(), tags: get_tags(),
-          resources: all_resources, tag: tag
+        # render conn, "index.html",
+        #   content: get_content(), tags: get_tags(),
+        #   resources: all_resources, tag: tag
+        redirect(conn, to: homepage_path(conn, :query) <> "?category=#{tag}&" <> create_query_string(%{"audience" => audience, "content" => content}))
     end
+  end
+
+  def create_query_string(params) do
+    params
+    |> Enum.map(fn {tag_type, tag} -> {tag_type, Enum.reduce(tag, "", fn({t, bool}, a) -> if bool == "true" do "#{a}#{t}," else a end end)|> String.trim(",")} end)
+    |> URI.encode_query
   end
 
   def like(conn, %{"article_id" => article_id}) do
@@ -69,6 +76,11 @@ defmodule App.HomepageController do
   def dislike(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, -1
     handle_like_redirect conn, "Disliked!"
+  end
+
+  def query(conn, params) do
+    IO.inspect params
+    render conn, "index.html"
   end
 
   defp handle_like_redirect(conn, flash) do
