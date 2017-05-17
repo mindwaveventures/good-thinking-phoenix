@@ -17,7 +17,7 @@
       <%= email_input(f, :email, class: "br2 pa2 mb2-l mb3 f5 fw3 ba w-100") %>
       <p class="alert ma0 mb4 pa3 ba bw1-ns bg--lm-green b--lm-green" role="alert"><%= get_flash(@conn, :email) %></p>
       <div class="relative w-100 mt3">
-        <%= component "buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
+        <%= component "Buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
       </div>
     <% end %>
   </div>
