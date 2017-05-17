@@ -41,9 +41,8 @@ defmodule App.StyleGuideView do
 
   def render_example_components(file_path) do
     file_path
-    |> get_example_files
-    |> remove_folder
-    #  leave file name with no '.eex'
+    |> get_example_full_path
+    |> Enum.map(&(get_category_and_file(&1)))
     |> Enum.map(&(String.trim_trailing(&1, ".eex")))
   end
 
