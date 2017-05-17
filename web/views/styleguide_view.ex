@@ -3,8 +3,14 @@ defmodule App.StyleGuideView do
   use App.Web, :view
 
   @doc """
-  ## Get a list of file names and filter it for those containing the word 'example'
-    iex> App.StyleGuideView.get_example_files("./test/support/example_components")
+  ## Render both the component and its code
+  iex> App.StyleGuideView.render_whole_component("./test/support/example_components")
+  [{"Buttons", "Buttons/primary_button_test_example.html", ~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\\n)},
+  {"Links", "Links/secondary_button_test_example.html", ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\\n)}]
+  iex> App.StyleGuideView.components_to_code("./test/controllers")
+  []
+  """
+
   def render_whole_component(file_path) do
     category = get_category(file_path)
     component_eg = render_example_components(file_path)
@@ -12,17 +18,32 @@ defmodule App.StyleGuideView do
 
     List.zip([category, component_eg, component_code])
   end
+
+  @doc """
+  ## Trim file path to get only the category folder
+  iex> App.StyleGuideView.get_category("./test/support/example_components")
+  ["Buttons", "Links"]
+  iex> App.StyleGuideView.get_category("./test/controllers")
+  []
+  """
+
   def get_category(file_path) do
     file_path
     |> get_example_full_path
     |> Enum.map(&(String.split(&1, ~r{/})))
     |> Enum.map(&(Enum.at(&1, -2)))
   end
-    ["primary_button_test_example.html.eex",
-    "secondary_button_test_example.html.eex"]
-    iex> App.StyleGuideView.get_example_files("./test/support/")
-    ["example_components"]
-    iex> App.StyleGuideView.get_example_files("./test/controllers")
+
+  @doc """
+  ## Gets the full file path for any files containing the word 'example' within any
+  ## folder in the specified pathway
+    iex> App.StyleGuideView.get_example_full_path("./test/support/example_components")
+    ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
+    "test/support/example_components/Links/secondary_button_test_example.html.eex"]
+    iex> App.StyleGuideView.get_example_full_path("./test/support/")
+    ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
+    "test/support/example_components/Links/secondary_button_test_example.html.eex"]
+    iex> App.StyleGuideView.get_example_full_path("./test/controllers")
     []
   """
 
@@ -31,11 +52,12 @@ defmodule App.StyleGuideView do
   end
 
   @doc """
-  ## Map over the list of example files to remove .eex so it can be rendered inside another .eex file
+  ## Remove the unneeded pathway beginning leaving just the category and file name
+  ## Remove the unwanted '.eex' so the files are ready to be rendered
     iex> App.StyleGuideView.render_example_components("./test/support/example_components")
-    ["primary_button_test_example.html",
-    "secondary_button_test_example.html"]
-    iex> App.StyleGuideView.get_example_files("./test/controllers")
+    ["Buttons/primary_button_test_example.html",
+    "Links/secondary_button_test_example.html"]
+    iex> App.StyleGuideView.get_example_full_path("./test/controllers")
     []
   """
 
@@ -47,12 +69,11 @@ defmodule App.StyleGuideView do
   end
 
   @doc """
-  ## Display the Code of each Component
-    iex> App.StyleGuideView.components_to_code("./test/support/example_components")
-    [~s(<%= component "primary_button", value: "I'm a Primary Button" %>\\n),
-    ~s(<%= component "secondary_button", value: "I'm a Secondary Button" %>\\n)]
-    iex> App.StyleGuideView.components_to_code("./test/controllers")
-    []
+  ## Remove the initial file path to leave just the category and file name
+    iex> App.StyleGuideView.get_category_and_file("./test/support/example_components/Buttons")
+    "example_components/Buttons"
+    iex> App.StyleGuideView.get_category_and_file("./test/controllers")
+    "controllers"
   """
 
   def get_category_and_file(file_path) do
@@ -62,7 +83,13 @@ defmodule App.StyleGuideView do
   end
 
   @doc """
-
+  ## Display the Code of each Component
+  iex> App.StyleGuideView.components_to_code("./test/support/example_components")
+  [~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\n),
+  ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\n)]
+  iex> App.StyleGuideView.components_to_code("./test/controllers")
+  []
+  """
 
   def components_to_code(file_path) do
     file_path
