@@ -55,42 +55,15 @@ defmodule App.StyleGuideView do
     []
   """
 
-  def components_to_code(file_path) do
+  def get_category_and_file(file_path) do
     file_path
-    |> get_example_files
-    |> remove_folder
-    |> Enum.map(&(File.read!("#{file_path}/#{&1}")))
-  end
-
-  def get_category(file_path) do
-    # Trim file path to get category folder
-    file_path
-    |> get_example_files
-    |> Enum.at(file_path, -2)
-  end
-
-  def remove_folder(file_path) do
-    # Now need to remove excess file path to get old formula
-    file_path
-    |> String.split(file_path, ~r{/} )
-    |> Enum.at(file_path, -1)
+    |> String.split(~r{/}, parts: 4)
+    |> Enum.at(-1)
   end
 
   @doc """
-  ## Render both the component and its code
-  iex> App.StyleGuideView.render_whole_component("./test/support/example_components")
-  [{"primary_button_test_example.html", ~s(<%= component "primary_button", value: "I'm a Primary Button" %>\\n)},
-  {"secondary_button_test_example.html", ~s(<%= component "secondary_button", value: "I'm a Secondary Button" %>\\n)}]
-  iex> App.StyleGuideView.components_to_code("./test/controllers")
-  []
-  """
 
-  def render_whole_component(file_path) do
-    category = get_category(file_path)
-    component_eg = render_example_components(file_path)
-    component_code = components_to_code(file_path)
 
-    List.zip([category, component_eg, component_code])
   end
 
 end
