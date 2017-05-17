@@ -7,6 +7,7 @@ defmodule App.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug App.Cookie, ""
   end
 
   pipeline :api do
@@ -18,6 +19,7 @@ defmodule App.Router do
 
     get "/", HomepageController, :index
     post "/", HomepageController, :show
+    get "/filter", HomepageController, :query
     post "/email", HomepageController, :submit_email
     post "/like/:article_id", HomepageController, :like
     post "/dislike/:article_id", HomepageController, :dislike

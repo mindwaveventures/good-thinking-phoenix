@@ -14,10 +14,15 @@ defmodule App.HomepageView do
 
   """
 
-  def number_of_results(resources) do
-    case n = length(resources) do
-      1 -> "1 result"
-      _ -> "#{n} results"
-    end
+  def number_of_results(resources) when length(resources) == 1, do: "1 result"
+  def number_of_results(resources), do: "#{length resources} results"
+
+  def check_liked("dislike", -1), do: "disliked"
+  def check_liked("like", 1), do: "liked"
+  def check_liked(class, _), do: class
+
+  def tag_is_selected(selected_tags, tag) when is_binary(selected_tags) do
+    tag in String.split(selected_tags, ",")
   end
+  def tag_is_selected(_, _), do: false
 end
