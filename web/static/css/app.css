@@ -280,6 +280,10 @@ code {
 }
 
 @media only screen and (min-width: 950px) {
+  /* the email button is half way over the
+     edge of the bottom of the email card
+     as per design:
+     https://github.com/LDMW/app/issues/59#issuecomment-301418458*/
   #alphasection button {
     bottom: -30px;
   }
