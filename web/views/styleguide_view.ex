@@ -26,14 +26,8 @@ defmodule App.StyleGuideView do
     []
   """
 
-# Matches all files that are in a sub-folder with the word example in.
-  def get_example_files(file_path) do
-    file_path
-    |> Path.wildcard("#{file_path}/**/*example.html.eex")
-    # Previous Code...
-    # |> File.ls
-    # |> elem(1)
-    # |> Enum.filter(&(String.contains?(&1, "example")))
+  def get_example_full_path(file_path) do
+    Path.wildcard("#{file_path}/**/*example.html.eex")
   end
 
   @doc """
