@@ -178,7 +178,7 @@ defmodule App.HomepageController do
 
     message = case type do
       :email -> "Email address entered successfully!"
-      :suggestions -> "Suggestion submitted successfully!"
+      :suggestions -> "Thank you for your input, it will be used to improve and develop the service further. Let us know if you have any more feedback"
     end
 
     conn
