@@ -5,6 +5,13 @@ defmodule App.StyleGuideView do
   @doc """
   ## Get a list of file names and filter it for those containing the word 'example'
     iex> App.StyleGuideView.get_example_files("./test/support/example_components")
+  def render_whole_component(file_path) do
+    category = get_category(file_path)
+    component_eg = render_example_components(file_path)
+    component_code = components_to_code(file_path)
+
+    List.zip([category, component_eg, component_code])
+  end
     ["primary_button_test_example.html.eex",
     "secondary_button_test_example.html.eex"]
     iex> App.StyleGuideView.get_example_files("./test/support/")
