@@ -12,6 +12,12 @@ defmodule App.StyleGuideView do
 
     List.zip([category, component_eg, component_code])
   end
+  def get_category(file_path) do
+    file_path
+    |> get_example_full_path
+    |> Enum.map(&(String.split(&1, ~r{/})))
+    |> Enum.map(&(Enum.at(&1, -2)))
+  end
     ["primary_button_test_example.html.eex",
     "secondary_button_test_example.html.eex"]
     iex> App.StyleGuideView.get_example_files("./test/support/")
