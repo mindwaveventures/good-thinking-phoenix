@@ -13,7 +13,7 @@ body {
 
 @font-face {
   font-family: 'NunitoSans';
-  src: url('/fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
+  src: url('/fonts/nunito/NunitoSans-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,12 +25,26 @@ body {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Segoe UI-Bold';
+  src: url('/fonts/segoe/SEGOEUIB.TTF') format('truetype');
+}
+
 .font {
   font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
 }
 
 h1, h2 {
   font-family: 'Segoe UI', sans-serif;
+}
+
+h2 > span.b {
+  font-family: 'Segoe UI-Bold';
+}
+
+.cover h2 {
+  font-family: 'Segoe UI-Bold';
+  letter-spacing: 1.5px;
 }
 
 /*elements*/
@@ -48,7 +62,8 @@ h1, h2 {
 }
 
 .cover-img p {
-  letter-spacing: 1.5px;
+  font-family: 'NunitoSans';
+  letter-spacing: 1px;
 }
 
 /* Phoenix flash messages */
@@ -206,6 +221,10 @@ footer p a {
   background-image: url("../images/Thumbs_up_hover.svg");
 }
 
+.liked {
+  background-image: url("../images/Thumbs_up_clicked.svg");
+}
+
 .dislike {
   background-image: url("../images/Thumbs_down_normal.svg");
   background-repeat: no-repeat;
@@ -213,6 +232,10 @@ footer p a {
 
 .dislike:hover {
   background-image: url("../images/Thumbs_down_hover.svg");
+}
+
+.disliked {
+  background-image: url("../images/Thumbs_down_clicked.svg");
 }
 
 .share {
@@ -232,4 +255,40 @@ code {
 
 .h2.5 {
   height: 3rem;
+}
+
+#email_form h2 {
+  font-family: 'Segoe UI-Bold';
+}
+
+#alphasection ul {
+  margin: 2rem 0;
+  list-style-type: none;
+}
+
+#alphasection ul li {
+  text-indent: -30px;
+}
+
+#alphasection ul > li:before {
+  content: "- ";
+  text-indent: -30px;
+}
+
+.bg--lm-green {
+  background-color: #E2F6D6;
+}
+
+.b--lm-green {
+  border-color: #81c03d;
+}
+
+@media only screen and (min-width: 950px) {
+  /* the email button is half way over the
+     edge of the bottom of the email card
+     as per design:
+     https://github.com/LDMW/app/issues/59#issuecomment-301418458*/
+  #alphasection button {
+    bottom: -30px;
+  }
 }

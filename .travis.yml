@@ -9,6 +9,7 @@ cache:
   directories:
     - _build
     - deps
+  pip: true
 env:
   - MIX_ENV=test
 before_script:
