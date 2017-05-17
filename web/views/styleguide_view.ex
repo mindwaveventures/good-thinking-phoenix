@@ -64,6 +64,10 @@ defmodule App.StyleGuideView do
   @doc """
 
 
+  def components_to_code(file_path) do
+    file_path
+    |> get_example_full_path
+    |> Enum.map(&(File.read!("#{&1}")))
   end
 
 end
