@@ -8,18 +8,11 @@ function check_exit() {
 }
 
 cd ../cms
-heroku run "python manage.py dumpdata --natural-foreign --natural-primary" -a ldmw-cms > ../data/cms_backup.json
+heroku run "python manage.py dumpdata --natural-foreign --natural-primary" -a ldmw-cms > ../cms_backup.json
 git checkout master
 git push staging master
 heroku run "python manage.py migrate" -a ldmw-cms
 cd ../app
-heroku run "pg_dump $(heroku config:get DATABASE_URL --app ldmw-app)" -a ldmw-app > ../data/app_backup.sql
+heroku run "pg_dump $(heroku config:get DATABASE_URL --app ldmw-app)" -a ldmw-app > ../app_backup.sql
 git checkout $1
 git push staging $1:master
-cd ../data
-git pull origin master
-check_exit $?
-git add *_backup.*
-git commit -m "$(date)" -n
-git push origin master
-heroku run "mix ecto.migrate" -a ldmw-app
