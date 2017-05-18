@@ -27,8 +27,12 @@ defmodule App.StyleGuideView do
   end
 
   def get_component_details(file_path, category, component) do
-    {"#{category}/#{component}_example.html",
-      File.read!("#{file_path}/#{category}/#{component}_example.html.eex")}
+    formatted_component = String.replace(component, "_", " ")
+
+    {formatted_component, {
+      "#{category}/#{component}_example.html",
+      File.read!("#{file_path}/#{category}/#{component}_example.html.eex")
+    }}
   end
 
   @doc """
