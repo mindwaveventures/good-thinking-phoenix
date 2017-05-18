@@ -79,7 +79,7 @@ defmodule App.StyleGuideView do
   def get_category_and_file(file_path) do
     file_path
     |> String.split(~r{/}, parts: 4)
-    |> Enum.at(-1)
+    |> List.last
   end
 
   @doc """
