@@ -32,6 +32,7 @@ defmodule App.StyleGuideView do
     |> get_example_full_path
     |> Enum.map(&(String.split(&1, ~r{/})))
     |> Enum.map(&(Enum.at(&1, -2)))
+    |> Enum.map(&(String.capitalize(&1)))
   end
 
   @doc """
