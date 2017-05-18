@@ -1,9 +1,8 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase, async: false
-  doctest App.HomepageController
+  doctest App.HomepageController, import: true
 
   alias Plug.Conn
-  alias App.Likes
 
   test "GET /", %{conn: conn} do
     conn = get conn, homepage_path(conn, :index)
@@ -27,7 +26,7 @@ defmodule App.HomepageControllerTest do
     params = %{"audience" => "shift-workers",
                "category" => "insomnia",
                "content" => ""}
-    conn = get conn, homepage_path(conn, :query, params)
+    conn = get conn, homepage_path(conn, :filtered_show, params)
     assert html_response(conn, 200)
   end
 
@@ -35,7 +34,7 @@ defmodule App.HomepageControllerTest do
     params = %{"audience" => "false",
                "category" => "not_found",
                "content" => "false"}
-    conn = get conn, homepage_path(conn, :query, params)
+    conn = get conn, homepage_path(conn, :filtered_show, params)
     assert html_response(conn, 404)
   end
 
@@ -47,78 +46,6 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 302)
   end
 
-  test "submit_email of email address", %{conn: conn} do
-    params = %{"email" => %{"email" => "test@me.com"}}
-    conn = post conn, homepage_path(conn, :submit_email, params)
-    assert html_response(conn, 302)
-  end
-
-  test "submit_email of suggestions", %{conn: conn} do
-    params = %{"suggestions" => %{"suggestions" => "suggestions"}}
-    conn = post conn, homepage_path(conn, :submit_email, params)
-    assert html_response(conn, 302)
-  end
-
-  @article_id "31"
-  test "POST /like/#{@article_id} - existing article", %{conn: conn} do
-    conn =
-      conn
-        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
-        |> post(homepage_path(conn, :like, @article_id))
-
-    %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
-
-    assert like_value == 1
-    assert get_flash(conn, :info) == "Liked!"
-    assert redirected_to(conn) == "/"
-  end
-
-  @article_id "31"
-  test "POST /dislike/#{@article_id} - existing article", %{conn: conn} do
-    conn =
-      conn
-        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
-        |> post(homepage_path(conn, :dislike, @article_id))
-
-    %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
-
-    assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
-    assert redirected_to(conn) == "/"
-  end
-
-  @article_id "31"
-  test "multiple likes for an article", %{conn: conn} do
-    conn =
-      conn
-      |> post(homepage_path(conn, :like, @article_id))
-      |> post(homepage_path(conn, :dislike, @article_id))
-
-    %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
-
-    assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
-    assert redirected_to(conn) == "/"
-  end
-
-  @article_id "31"
-  test "POST /dislike/#{@article_id} - article with referrer", %{conn: conn} do
-    url1 = "http://localhost:4000"
-    url2 = "/filter?category=insomnia&audience=&content=subscription"
-    url = url1 <> url2
-    conn =
-      conn
-        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
-        |> Conn.put_req_header("referer", url)
-        |> post(homepage_path(conn, :dislike, @article_id))
-
-    %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
-
-    assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
-    assert redirected_to(conn) == url2
-  end
-
   @resource_id "5"
   test "/ with a like for your session", %{conn: conn} do
     params = %{"audience" => "shift-workers",
@@ -127,8 +54,8 @@ defmodule App.HomepageControllerTest do
     conn =
       conn
         |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
-        |> post(homepage_path(conn, :like, @resource_id))
-        |> get(homepage_path(conn, :query, params))
+        |> post(likes_path(conn, :like, @resource_id))
+        |> get(homepage_path(conn, :filtered_show, params))
 
     assert html_response(conn, 200)
   end
