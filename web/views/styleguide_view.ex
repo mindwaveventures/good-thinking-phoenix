@@ -12,11 +12,6 @@ defmodule App.StyleGuideView do
   """
 
   def render_whole_component(file_path) do
-    category = get_category(file_path)
-    component_eg = render_example_components(file_path)
-    component_code = components_to_code(file_path)
-
-    List.zip([category, component_eg, component_code])
   end
 
   @doc """
@@ -52,50 +47,6 @@ defmodule App.StyleGuideView do
     Path.wildcard("#{file_path}/**/*example.html.eex")
   end
 
-  @doc """
-  ## Remove the unneeded pathway beginning leaving just the category and file name
-  ## Remove the unwanted '.eex' so the files are ready to be rendered
-    iex> render_example_components("./test/support/example_components")
-    ["buttons/primary_button_test_example.html",
-    "links/secondary_button_test_example.html"]
-    iex> get_example_full_path("./test/controllers")
-    []
-  """
-
-  def render_example_components(file_path) do
-    file_path
-    |> get_example_full_path
-    |> Enum.map(&(get_category_and_file(&1)))
-    |> Enum.map(&(String.trim_trailing(&1, ".eex")))
-  end
-
-  @doc """
-  ## Remove the initial file path to leave just the category and file name
-    iex> get_category_and_file("./test/support/example_components/buttons")
-    "example_components/buttons"
-    iex> get_category_and_file("./test/controllers")
-    "controllers"
-  """
-
-  def get_category_and_file(file_path) do
-    file_path
-    |> String.split(~r{/}, parts: 4)
-    |> List.last
-  end
-
-  @doc """
-  ## Display the Code of each Component
-  iex> components_to_code("./test/support/example_components")
-  [~s(<%= component "buttons/primary_button", value: "I'm a Primary Button" %>\n),
-  ~s(<%= component "links/secondary_button", value: "I'm a Secondary Button" %>\n)]
-  iex> components_to_code("./test/controllers")
-  []
-  """
-
-  def components_to_code(file_path) do
-    file_path
-    |> get_example_full_path
-    |> Enum.map(&(File.read!("#{&1}")))
   end
 
 end
