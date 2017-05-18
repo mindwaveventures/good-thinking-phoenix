@@ -7,7 +7,7 @@ defmodule App.StyleGuideView do
   iex> render_whole_component("./test/support/example_components")
   [{"buttons", "buttons/primary_button_test_example.html", ~s(<%= component "buttons/primary_button", value: "I'm a Primary Button" %>\\n)},
   {"links", "links/secondary_button_test_example.html", ~s(<%= component "links/secondary_button", value: "I'm a Secondary Button" %>\\n)}]
-  iex> components_to_code("./test/controllers")
+  iex> render_whole_component("./test/controllers")
   []
   """
 
