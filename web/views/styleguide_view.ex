@@ -40,23 +40,6 @@ defmodule App.StyleGuideView do
     |> Enum.uniq
   end
 
-  @doc """
-  ## Gets the full file path for any files containing the word 'example' within any
-  ## folder in the specified pathway
-    iex> get_example_full_path("./test/support/example_components")
-    ["test/support/example_components/buttons/primary_button_test_example.html.eex",
-    "test/support/example_components/links/secondary_button_test_example.html.eex"]
-    iex> get_example_full_path("./test/support/")
-    ["test/support/example_components/buttons/primary_button_test_example.html.eex",
-    "test/support/example_components/links/secondary_button_test_example.html.eex"]
-    iex> get_example_full_path("./test/controllers")
-    []
-  """
-
-  def get_example_full_path(file_path) do
-    Path.wildcard("#{file_path}/**/*example.html.eex")
-  end
-
   def get_component_names(category_file_path) do
     category_file_path
     |> File.ls!
