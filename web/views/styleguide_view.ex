@@ -42,7 +42,9 @@ defmodule App.StyleGuideView do
       category_components =
         "#{file_path}/#{category}"
         |> get_component_names
-        |> Enum.map(fn component_name -> get_component_details(file_path, category, component_name) end)
+        |> Enum.map(fn component_name ->
+           get_component_details(file_path, category, component_name)
+        end)
 
       {category, category_components}
   end
