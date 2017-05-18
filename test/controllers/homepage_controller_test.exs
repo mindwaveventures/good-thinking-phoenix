@@ -1,6 +1,6 @@
 defmodule App.HomepageControllerTest do
   use App.ConnCase, async: false
-  doctest App.HomepageController
+  doctest App.HomepageController, import: true
 
   alias Plug.Conn
   alias App.Likes

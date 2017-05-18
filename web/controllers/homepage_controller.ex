@@ -20,7 +20,6 @@ defmodule App.HomepageController do
   end
 
   @doc"""
-    iex>import App.HomepageController, only: [get_content: 0]
     iex>%{body: body, footer: footer} = get_content()
     iex>%{alphatext: alphatext, lookingfor: lookingfor} = get_content()
     iex>strings = [body, footer, alphatext, lookingfor]
@@ -35,7 +34,6 @@ defmodule App.HomepageController do
   end
 
   @doc"""
-    iex>import App.HomepageController, only: [get_tags: 0]
     iex>%{audience: audience, category: category, content: content} = get_tags()
     iex>audience
     ["shift-workers", "dads", "parents", "mums", "students"]
@@ -61,19 +59,23 @@ defmodule App.HomepageController do
     redirect(conn, to: homepage_path(conn, :query) <> query_string)
   end
 
+  def audience_params do
+    ["dads","mums","parents","shift-workers","students"]
+      |> Enum.map(&({&1,"false"}))
+      |> Map.new
+  end
+  def content_params do
+    ["CBT", "NHS", "app", "article", "assessment", "community", "discussion",
+     "forum", "free-trial", "government", "mindfulness", "peer-to-peer",
+     "playlist", "podcast", "smart-alarm", "subscription", "tips"]
+      |> Enum.map(&({&1, "false"}))
+      |> Map.new
+      |> Map.merge(%{"subscription" => "true"})
+  end
   @doc"""
-    iex>import App.HomepageController, only: [create_query_string: 1]
-    iex>audience_tags = ["dads","mums","parents","shift-workers","students"]
-    iex>audience_params = Enum.map(audience_tags,&({&1,"false"})) |> Map.new
-    iex>cont_tags1 = ["CBT","NHS","app","article","assessment","community"]
-    iex>cont_tags2 = ["discussion","forum","free-trial","government","mindfulness"]
-    iex>cont_tags3 = ["peer-to-peer","playlist","podcast","smart-alarm"]
-    iex>cont_tags4 = ["subscription","tips"]
-    iex>content_tags = Enum.concat([cont_tags1,cont_tags2,cont_tags3,cont_tags4])
-    iex>content_params = Enum.map(content_tags,&({&1,"false"})) |> Map.new
-    iex>content_params = Map.merge(content_params, %{"subscription" => "true"})
-    iex>params = %{"audience" => audience_params, "content" => content_params}
-    iex> create_query_string(params)
+    iex>audience_map = %{"audience" => audience_params()}
+    iex>content_map = %{"content" => content_params()}
+    iex>create_query_string(Map.merge(audience_map, content_map))
     "audience=&content=subscription"
   """
   def create_query_string(params) do
