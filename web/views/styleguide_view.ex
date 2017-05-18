@@ -4,10 +4,10 @@ defmodule App.StyleGuideView do
 
   @doc """
   ## Render both the component and its code
-  iex> App.StyleGuideView.render_whole_component("./test/support/example_components")
+  iex> render_whole_component("./test/support/example_components")
   [{"Buttons", "Buttons/primary_button_test_example.html", ~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\\n)},
   {"Links", "Links/secondary_button_test_example.html", ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\\n)}]
-  iex> App.StyleGuideView.components_to_code("./test/controllers")
+  iex> components_to_code("./test/controllers")
   []
   """
 
@@ -21,9 +21,9 @@ defmodule App.StyleGuideView do
 
   @doc """
   ## Trim file path to get only the category folder
-  iex> App.StyleGuideView.get_category("./test/support/example_components")
+  iex> get_category("./test/support/example_components")
   ["Buttons", "Links"]
-  iex> App.StyleGuideView.get_category("./test/controllers")
+  iex> get_category("./test/controllers")
   []
   """
 
@@ -37,13 +37,13 @@ defmodule App.StyleGuideView do
   @doc """
   ## Gets the full file path for any files containing the word 'example' within any
   ## folder in the specified pathway
-    iex> App.StyleGuideView.get_example_full_path("./test/support/example_components")
+    iex> get_example_full_path("./test/support/example_components")
     ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
     "test/support/example_components/Links/secondary_button_test_example.html.eex"]
-    iex> App.StyleGuideView.get_example_full_path("./test/support/")
+    iex> get_example_full_path("./test/support/")
     ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
     "test/support/example_components/Links/secondary_button_test_example.html.eex"]
-    iex> App.StyleGuideView.get_example_full_path("./test/controllers")
+    iex> get_example_full_path("./test/controllers")
     []
   """
 
@@ -54,10 +54,10 @@ defmodule App.StyleGuideView do
   @doc """
   ## Remove the unneeded pathway beginning leaving just the category and file name
   ## Remove the unwanted '.eex' so the files are ready to be rendered
-    iex> App.StyleGuideView.render_example_components("./test/support/example_components")
+    iex> render_example_components("./test/support/example_components")
     ["Buttons/primary_button_test_example.html",
     "Links/secondary_button_test_example.html"]
-    iex> App.StyleGuideView.get_example_full_path("./test/controllers")
+    iex> get_example_full_path("./test/controllers")
     []
   """
 
@@ -70,9 +70,9 @@ defmodule App.StyleGuideView do
 
   @doc """
   ## Remove the initial file path to leave just the category and file name
-    iex> App.StyleGuideView.get_category_and_file("./test/support/example_components/Buttons")
+    iex> get_category_and_file("./test/support/example_components/Buttons")
     "example_components/Buttons"
-    iex> App.StyleGuideView.get_category_and_file("./test/controllers")
+    iex> get_category_and_file("./test/controllers")
     "controllers"
   """
 
@@ -84,10 +84,10 @@ defmodule App.StyleGuideView do
 
   @doc """
   ## Display the Code of each Component
-  iex> App.StyleGuideView.components_to_code("./test/support/example_components")
+  iex> components_to_code("./test/support/example_components")
   [~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\n),
   ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\n)]
-  iex> App.StyleGuideView.components_to_code("./test/controllers")
+  iex> components_to_code("./test/controllers")
   []
   """
 
