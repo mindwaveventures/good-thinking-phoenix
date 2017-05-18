@@ -9,7 +9,7 @@ defmodule App.Cookie do
   def init(args), do: args
 
   def call(conn, _) do
-    case session_id = get_session conn, :lm_session do
+    case get_session conn, :lm_session do
       nil -> put_session conn, :lm_session, gen_rand_string(80)
       _ -> conn
     end

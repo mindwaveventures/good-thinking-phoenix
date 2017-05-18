@@ -1,6 +1,6 @@
 defmodule App.HomepageController do
   use App.Web, :controller
-  alias App.{Repo, Likes, ErrorView}
+  alias App.ErrorView
   alias App.Resources, as: R
 
   def index(conn, _params) do
