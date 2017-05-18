@@ -14,6 +14,43 @@ defmodule App.HomepageController do
                  tags: get_tags(), resources: resources
   end
 
+  def show(conn, %{"category" => %{"category" => tag}} = params) do
+    prepend = fn(a, b) -> b <> a end
+    query_string =
+      params
+        |> Map.take(["audience", "content"])
+        |> create_query_string
+        |> prepend.("?category=#{tag}&")
+
+    redirect(conn, to: homepage_path(conn, :filtered_show) <> query_string)
+  end
+
+  def filtered_show(conn, params) do
+    %{
+      "category" => category,
+      "audience" => audience,
+      "content" => content
+    } = params
+
+    case R.check_tag(category) do
+      {:error, _} ->
+        conn
+          |> put_status(404)
+          |> render(ErrorView, "404.html")
+      {:ok, _} ->
+        filters = [audience, content]
+          |> Enum.filter(&(&1 != ""))
+          |> Enum.map(&(String.split(&1, ",")))
+          |> Enum.concat
+
+        session = get_session conn, "lm_session"
+        all_resources = R.get_all_filtered_resources category, filters, session
+        render conn, "index.html",
+          content: get_content(), tags: get_tags(),
+          resources: all_resources, tag: category
+    end
+  end
+
   @doc"""
     iex>%{body: body, footer: footer} = get_content()
     iex>%{alphatext: alphatext, lookingfor: lookingfor} = get_content()
@@ -41,17 +78,6 @@ defmodule App.HomepageController do
   def get_tags do
     [:category, :audience, :content]
     |> Map.new(&({&1, R.get_tags(&1)}))
-  end
-
-  def show(conn, %{"category" => %{"category" => tag}} = params) do
-    prepend = fn(a, b) -> b <> a end
-    query_string =
-      params
-        |> Map.take(["audience", "content"])
-        |> create_query_string
-        |> prepend.("?category=#{tag}&")
-
-    redirect(conn, to: homepage_path(conn, :query) <> query_string)
   end
 
   def audience_params do
@@ -88,77 +114,5 @@ defmodule App.HomepageController do
        |> String.trim(",")}
     end)
     |> URI.encode_query
-  end
-
-  def like(conn, %{"article_id" => article_id}) do
-    handle_like conn, article_id, 1
-    handle_like_redirect conn, "Liked!", get_query_string(conn)
-  end
-
-  def dislike(conn, %{"article_id" => article_id}) do
-    handle_like conn, article_id, -1
-    handle_like_redirect conn, "Disliked!", get_query_string(conn)
-  end
-
-  def get_query_string(conn) do
-    url = case Enum.find conn.req_headers, fn {key, _val} -> key == "referer" end do
-      nil -> ""
-      {"referer", url} -> url
-    end
-
-    [_host | query_string] = String.split(url, "?")
-
-    query_string
-  end
-
-  def query(conn, params) do
-    %{
-      "category" => category,
-      "audience" => audience,
-      "content" => content
-    } = params
-
-    case R.check_tag(category) do
-      {:error, _} ->
-        conn
-          |> put_status(404)
-          |> render(ErrorView, "404.html")
-      {:ok, _} ->
-        filters = [audience, content]
-          |> Enum.filter(&(&1 != ""))
-          |> Enum.map(&(String.split(&1, ",")))
-          |> Enum.concat
-
-        session = get_session conn, "lm_session"
-        all_resources = R.get_all_filtered_resources category, filters, session
-        render conn, "index.html",
-          content: get_content(), tags: get_tags(),
-          resources: all_resources, tag: category
-    end
-  end
-
-  defp redirect_path(conn, query) when query == [] do
-    homepage_path(conn, :index)
-  end
-  defp redirect_path(conn, query) do
-    homepage_path(conn, :query) <> "?#{query}"
-  end
-  defp handle_like_redirect(conn, flash, query) do
-    conn
-    |> put_flash(:info, flash)
-    |> redirect(to: redirect_path(conn, query))
-  end
-
-  defp handle_like(conn, article_id, like_value) do
-    lm_session = get_session(conn, :lm_session)
-    like_params = %{user_hash: lm_session,
-                    article_id: String.to_integer(article_id),
-                    like_value: like_value}
-    changeset = Likes.changeset %Likes{}, like_params
-    like = Repo.get_by Likes, article_id: article_id, user_hash: lm_session
-    case like do
-      nil -> Repo.insert!(changeset)
-      _ -> like |> Likes.changeset(like_params) |> Repo.update!
-    end
   end
 end
