@@ -3,11 +3,6 @@ defmodule App.HomepageController do
   alias App.{Repo, Likes, ErrorView}
   alias App.Resources, as: R
 
-  @http Application.get_env :app, :http
-  @google_sheet_url_email Application.get_env :app, :google_sheet_url_email
-  @google_sheet_url_suggestion Application.get_env(
-    :app, :google_sheet_url_suggestion)
-
   def index(conn, _params) do
     session = get_session conn, :lm_session
     resources = "resource"
@@ -60,8 +55,8 @@ defmodule App.HomepageController do
   end
 
   def audience_params do
-    ["dads","mums","parents","shift-workers","students"]
-      |> Enum.map(&({&1,"false"}))
+    ["dads", "mums", "parents", "shift-workers", "students"]
+      |> Enum.map(&({&1, "false"}))
       |> Map.new
   end
   def content_params do
@@ -165,26 +160,5 @@ defmodule App.HomepageController do
       nil -> Repo.insert!(changeset)
       _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
-  end
-
-  def submit_email(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
-    handle_email conn, :suggestions, suggestions, @google_sheet_url_suggestion
-  end
-
-  def submit_email(conn, %{"email" => %{"email" => email}}) do
-    handle_email conn, :email, email, @google_sheet_url_email
-  end
-
-  defp handle_email(conn, type, data, url) do
-    @http.post_spreadsheet data, url, type
-
-    message = case type do
-      :email -> "Email address entered successfully!"
-      :suggestions -> "Thank you for your input, it will be used to improve and develop the service further. Let us know if you have any more feedback"
-    end
-
-    conn
-      |> put_flash(type, message)
-      |> redirect(to: homepage_path(conn, :index))
   end
 end
