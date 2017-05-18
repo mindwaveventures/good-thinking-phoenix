@@ -14,27 +14,34 @@ defmodule App.StyleGuideView do
   def render_whole_component(file_path) do
     file_path
     |> get_category_list
-    |> Enum.map(fn cat ->
-      {cat, get_component_names("#{file_path}/#{cat}")
-        |> Enum.map(fn comp -> {comp, {
-            "#{cat}/#{comp}_example.html",
-            File.read!("#{file_path}/#{cat}/#{comp}_example.html.eex")
-          }}
-        end)}
-    end)
+    |> Enum.map(fn category -> get_category_components(file_path, category) end)
+  end
+
+  def get_category_components(file_path, category) do
+      category_components =
+        "#{file_path}/#{category}"
+        |> get_component_names
+        |> Enum.map(fn component_name -> get_component_details(file_path, category, component_name) end)
+
+      {category, category_components}
+  end
+
+  def get_component_details(file_path, category, component) do
+    {"#{category}/#{component}_example.html",
+      File.read!("#{file_path}/#{category}/#{component}_example.html.eex")}
   end
 
   @doc """
   ## Trim file path to get only the category folder
-  iex> get_category("./test/support/example_components")
+  iex> get_category_list("./test/support/example_components")
   ["buttons", "links"]
-  iex> get_category("./test/controllers")
+  iex> get_category_list("./test/controllers")
   []
   """
 
   def get_category_list(file_path) do
-    file_path
-    |> get_example_full_path
+    "#{file_path}/**/*example.html.eex"
+    |> Path.wildcard
     |> Enum.map(&(String.split(&1, ~r{/})))
     |> Enum.map(&(Enum.at(&1, -2)))
     |> Enum.uniq
