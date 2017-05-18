@@ -7,7 +7,7 @@
     <%= label f, :suggestions, "Suggestions", class: "dn" %>
     <%= textarea f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3" %>
     <div class="dib w-100">
-      <%= component "primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
+      <%= component "Buttons/primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
     </div>
     <% end %>
     <p class="alert" role="alert"><%= get_flash @conn, :suggestions %></p>

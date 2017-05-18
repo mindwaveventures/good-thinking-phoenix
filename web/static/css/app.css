@@ -116,6 +116,10 @@ h2 > span.b {
   background-color: #c2c2c2;
 }
 
+.lm-bg-light-grey {
+  background-color: #E9E9E9;
+}
+
 .lm-orange {
   color: #FAB781;
 }
@@ -244,8 +248,8 @@ footer p a {
 code {
   padding: 2px 4px;
   font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
+  color: black;
+  background-color: #E9E9E9;
   border-radius: 4px;
 }
 
