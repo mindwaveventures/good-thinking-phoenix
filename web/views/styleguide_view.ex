@@ -47,6 +47,11 @@ defmodule App.StyleGuideView do
     Path.wildcard("#{file_path}/**/*example.html.eex")
   end
 
+  def get_component_names(category_file_path) do
+    category_file_path
+    |> File.ls!
+    |> Enum.filter(&(String.contains?(&1, "_example.html.eex")))
+    |> Enum.map(&(String.trim_trailing(&1, "_example.html.eex")))
   end
 
 end
