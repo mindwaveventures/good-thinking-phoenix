@@ -22,12 +22,12 @@ defmodule App.StyleGuideView do
   []
   """
 
-  def get_category(file_path) do
+  def get_category_list(file_path) do
     file_path
     |> get_example_full_path
     |> Enum.map(&(String.split(&1, ~r{/})))
     |> Enum.map(&(Enum.at(&1, -2)))
-    |> Enum.map(&(String.capitalize(&1)))
+    |> Enum.uniq
   end
 
   @doc """
