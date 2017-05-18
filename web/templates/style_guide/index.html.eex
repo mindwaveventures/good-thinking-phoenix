@@ -67,12 +67,12 @@
 
       <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
 
-      <%= for {category, cat_comps} <- render_whole_component("./web/templates/component") do %>
+      <%= for {category, category_comps} <- render_whole_component("./web/templates/component") do %>
       <article class="tc">
 
         <h2 class="f3 tl mb0"><%= String.capitalize(category) %></h2>
 
-        <%= for {comp, {to_render, component_code}} <- cat_comps do %>
+        <%= for {to_render, component_code} <- category_comps do %>
         <div class="dib center br2 w-100 h-25 pv3 mt4 mb3 lm-bg-dark-blue lm-white tc shadow-5">
           <h3 class="tl mt1 ph3 bb">Example Component</h3>
           <%= render App.ComponentView, to_render %>
