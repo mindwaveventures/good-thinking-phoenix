@@ -133,7 +133,7 @@ defmodule App.HomepageController do
           |> Enum.concat
 
         session = get_session conn, "lm_session"
-        all_resources = R.get_all_filtered_resources(category, filters, session)
+        all_resources = R.get_all_filtered_resources category, filters, session
         render conn, "index.html",
           content: get_content(), tags: get_tags(),
           resources: all_resources, tag: category

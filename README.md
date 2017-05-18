@@ -126,6 +126,8 @@ python manage.py loaddata dumpdata.json
 
 The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/). When we're happy this is working, we will push manually to the production site.
 
+To deploy to the production site, make sure both the app and cms repos are in the same directory on your machine, then, from this directory (app), run `./deploy.sh {branch-you-want-to-deploy}`, for example, if you wanted to deploy a branch called `latest`, you would run `./deploy.sh latest`. If you don't include a branch in the command, it will deploy your master branch.
+
 ### CMS
 
 The documentation for the CMS (Creating pages, tags etc) can be found at https://github.com/LDMW/cms#cms

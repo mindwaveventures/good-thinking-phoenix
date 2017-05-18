@@ -6,7 +6,7 @@ defmodule App.HomepageControllerTest do
   alias App.Likes
 
   test "GET /", %{conn: conn} do
-    conn = get conn, "/"
+    conn = get conn, homepage_path(conn, :index)
     assert html_response(conn, 200) =~ "<!DOCTYPE html>"
   end
 
@@ -35,7 +35,7 @@ defmodule App.HomepageControllerTest do
     params = %{"audience" => "false",
                "category" => "not_found",
                "content" => "false"}
-    conn = post conn, homepage_path(conn, :query, params)
+    conn = get conn, homepage_path(conn, :query, params)
     assert html_response(conn, 404)
   end
 
@@ -117,5 +117,19 @@ defmodule App.HomepageControllerTest do
     assert like_value == -1
     assert get_flash(conn, :info) == "Disliked!"
     assert redirected_to(conn) == url2
+  end
+
+  @resource_id "5"
+  test "/ with a like for your session", %{conn: conn} do
+    params = %{"audience" => "shift-workers",
+               "category" => "insomnia",
+               "content" => ""}
+    conn =
+      conn
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
+        |> post(homepage_path(conn, :like, @resource_id))
+        |> get(homepage_path(conn, :query, params))
+
+    assert html_response(conn, 200)
   end
 end
