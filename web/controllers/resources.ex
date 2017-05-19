@@ -7,17 +7,8 @@ defmodule App.Resources do
 
   alias App.{CMSRepo, Repo, Likes}
 
-  def true_tuples({_t, "true"}), do: true
-  def true_tuples({_t, "false"}), do: false
   def sort_priority(list) do
     Enum.sort(list, &(&1[:priority] <= &2[:priority]))
-  end
-
-  @types ["article", "resource"]
-  def handle_article_or_resource(tag, type, lm_session) when type in @types do
-    tag
-    |> create_tag_query(type)
-    |> get_resources(type, lm_session)
   end
 
   def get_content(content) do
@@ -35,16 +26,6 @@ defmodule App.Resources do
     |> Map.get(content)
   end
 
-  def check_tag(tag) do
-    query = from t in "taggit_tag",
-      where: t.name == ^tag,
-      select: t.name
-    case name = CMSRepo.one(query) do
-      nil -> {:error, "doesn't exist"}
-      _ -> {:ok, name}
-    end
-  end
-
   def get_tags(type) do
     tag_query = from tag in "taggit_tag",
       full_join: h in ^"articles_#{type}tag",
@@ -57,14 +38,18 @@ defmodule App.Resources do
     CMSRepo.all tag_query
   end
 
-  def get_all_filtered_resources(tag, filter, session_id) do
-    ["article", "resource"]
-    |> Enum.map(&(handle_article_or_resource(tag, &1, session_id)))
-    |> Enum.concat
-    |> Enum.filter(fn %{tags: tags} ->
-      Enum.all?(filter, &(&1 in tags))
-    end)
+  def get_all_filtered_resources(filter, session_id) do
+    "resource"
+    |> all_query
+    |> get_resources("resource", session_id)
+    |> Enum.filter(&filter_tags(&1, filter))
     |> sort_priority
+  end
+
+  def filter_tags(%{tags: tags}, filter) do
+    Enum.any?(tags, fn {tag_type, tags} ->
+      Enum.any?(tags, fn tag -> tag in filter[tag_type] end)
+    end)
   end
 
   def all_query(type) do
@@ -105,48 +90,26 @@ defmodule App.Resources do
     Map.merge map, %{likes: likes, dislikes: dislikes, liked: liked}
   end
 
-  # getting all resources tagged by category tag
-  def create_tag_query(tag, type) do
-    query = from t in "taggit_tag",
-      where: t.name == ^tag,
-      join: cat in ^"#{type}s_categorytag",
-      where: cat.tag_id == t.id,
-      join: a in ^"#{type}s_#{type}page",
-      where: a.page_ptr_id == cat.content_object_id
-
-    if type == "resource" do
-      query
-        |> select([t, cat, a], %{
-          id: a.page_ptr_id,
-          heading: a.heading,
-          url: a.resource_url,
-          body: a.body,
-          priority: a.priority
-        })
-    else
-      query
-        |> select([t, cat, a], %{
-          id: a.page_ptr_id,
-          heading: a.heading
-        })
-    end
+  def get_all_tags(resource, type) do
+    Map.merge(%{tags:
+      ["category", "audience", "content"]
+        |> Enum.map(&create_query(&1, resource, type))
+        |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
+        |> Enum.map(&add_all_filter/1)
+        |> Enum.into(%{})
+    }, resource)
   end
 
-  def get_all_tags(resource, type) do
+  def add_all_filter({type, list}), do: {type, list ++ ["all-#{type}"]}
+
+  def create_query(tag_type, resource, type) do
     query = from t in "taggit_tag",
-      left_join: cat in ^"#{type}s_categorytag",
-      on: t.id == cat.tag_id,
-      left_join: cot in ^"#{type}s_contenttag",
-      on: t.id == cot.tag_id,
-      left_join: aut in ^"#{type}s_audiencetag",
-      on: t.id == aut.tag_id,
-      where: ^resource.id == cat.content_object_id
-      or ^resource.id == cot.content_object_id
-      or ^resource.id == aut.content_object_id,
+      left_join: tt in ^"#{type}s_#{tag_type}tag",
+      where: t.id == tt.tag_id,
+      where: ^resource.id == tt.content_object_id,
       select: t.name,
       distinct: t.name
 
-    Map.merge %{tags: CMSRepo.all(query)}, resource
+      {tag_type, query}
   end
-
 end

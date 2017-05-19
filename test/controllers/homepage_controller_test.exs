@@ -30,14 +30,6 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 200)
   end
 
-  test "query renders page not found when category is nonexistent", %{conn: conn} do
-    params = %{"audience" => "false",
-               "category" => "not_found",
-               "content" => "false"}
-    conn = get conn, homepage_path(conn, :filtered_show, params)
-    assert html_response(conn, 404)
-  end
-
   test "categories for insomnia show", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "insomnia"},
