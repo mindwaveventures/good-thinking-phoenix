@@ -37,8 +37,7 @@ To get up and running - make sure you have installed:
 
 Ensure to have the following environement variables in your path:
 ```bash
-export GOOGLE_SHEET_URL_EMAIL=<google_sheet_url_email>
-export GOOGLE_SHEET_URL_SUGGESTION=<google_sheet_url_suggestion>
+export GOOGLE_SHEET_URL=<google_sheet_url_email>
 ```
 
 See the google drive for these
@@ -138,3 +137,14 @@ We are using Google Analytics and Google Tag Manager to track user actions on th
 * Page views
 * Clicks on the 'Take assessment' button
 * Clicks on the 'share' button on resources
+
+### Google sheets
+We are using google sheets for quick easy storage of feedback collected
+We have opted for a single spreadsheet with multiple tabs as multiple spreadsheets would be less manageable for both developer and client
+(Granting privaleges for each one going between different files, etc) 
+
+We have opted for using [Better Logger](https://github.com/peterherrmann/BetterLog) so that we can see logged outputs for debugging
+
+When running the app locally, ensure you are using the development `GOOGLE_SHEET_URL` environment variable not the production one
+(See google drive for this)
+
