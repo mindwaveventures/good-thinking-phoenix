@@ -148,3 +148,5 @@ We have opted for using [Better Logger](https://github.com/peterherrmann/BetterL
 When running the app locally, ensure you are using the development `GOOGLE_SHEET_URL` environment variable not the production one
 (See google drive for this)
 
+If updating your environment variable doesn't work, try `rm -rf _build` and then starting your server again
+
