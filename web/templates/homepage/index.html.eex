@@ -21,9 +21,16 @@
 
     <%= inputs_for f, :category, [as: :category], fn fcat -> %>
       <div class="tc">
-        <div class="select-box v-mid dib relative mh4 tc">
-          <%= select fcat, :category, @tags.category, value: @conn.query_params["category"], class: "ba f5 bw1 b--lm-dark-blue h2.5 w5" %>
+        <div class="dib relative ma1">
+          <%= checkbox fcat, String.to_atom("all-category"), value: nothing_selected(@conn.query_params["category"], "all-category"), class: "checked-fill absolute o-0" %>
+          <%= label fcat, String.to_atom("all-category"), "Show me everything", class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
         </div>
+        <%= for tag <- @tags.category do %>
+        <div class="dib relative ma1">
+          <%= checkbox fcat, String.to_atom(tag), value: tag_is_selected(@conn.query_params["category"], tag), class: "checked-fill absolute o-0" %>
+          <%= label fcat, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
@@ -31,6 +38,10 @@
     <h4 class="ph4 pt4">I want to see content for:</h4>
     <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
     <div class="tc">
+      <div class="dib relative ma1">
+        <%= checkbox fa, String.to_atom("all-audience"), value: nothing_selected(@conn.query_params["audience"], "all-audience"), class: "checked-fill absolute o-0" %>
+        <%= label fa, String.to_atom("all-audience"), "Show me everything", class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+      </div>
       <%= for tag <- @tags.audience do %>
       <div class="dib relative ma1">
         <%= checkbox fa, String.to_atom(tag), value: tag_is_selected(@conn.query_params["audience"], tag), class: "checked-fill absolute o-0" %>
@@ -43,6 +54,10 @@
     <h4 class="ph4">Show me:</h4>
     <%= inputs_for f, :content, [as: :content], fn fcon -> %>
     <div class="tc ph3">
+      <div class="dib relative ma1">
+        <%= checkbox fcon, String.to_atom("all-content"), value: nothing_selected(@conn.query_params["content"], "all-content"), class: "checked-fill absolute o-0" %>
+        <%= label fcon, String.to_atom("all-content"), "Show me everything", class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+      </div>
       <%= for tag <- @tags.content do %>
       <div class="dib relative ma1">
         <%= checkbox fcon, String.to_atom(tag), value: tag_is_selected(@conn.query_params["content"], tag), class: "checked-fill absolute o-0" %>

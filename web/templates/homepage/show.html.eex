@@ -12,8 +12,10 @@
           <% end %>
         </div>
         <div class="mt1">
-          <%= for tag <- resource.tags do %>
-          <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= tag %></span>
+          <%= for {_tag_type, tags} <- resource.tags do %>
+            <%= for t <- tags do %>
+              <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= t %></span>
+            <% end %>
           <% end %>
         </div>
         <%= raw resource[:body] %>
