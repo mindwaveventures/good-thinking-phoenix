@@ -9,7 +9,7 @@
   <p class="white tl tc-l">
     Take our <span class="b">clinically approved</span> sleep self-assessment
   </p>
-  <%= component "Links/secondary_button", value: "Take assessment", to: "/coming-soon", id: "assessment"%>
+  <%= component "links/secondary_button", value: "Take assessment", to: "/coming-soon", id: "assessment"%>
 </section>
 
 <section class="tc-ns" id="results">
@@ -67,7 +67,7 @@
     </div>
     <% end %>
     <div class="ph4 pv3 tc">
-      <%= component "Buttons/primary_button", value: "Search" %>
+      <%= component "buttons/primary_button", value: "Search" %>
     </div>
     <% end %>
   </div>

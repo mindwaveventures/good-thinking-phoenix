@@ -3,98 +3,101 @@ defmodule App.StyleGuideView do
   use App.Web, :view
 
   @doc """
-  ## Render both the component and its code
+  ## Render all standard components with categories and code
   iex> render_whole_component("./test/support/example_components")
-  [{"Buttons", "Buttons/primary_button_test_example.html", ~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\\n)},
-  {"Links", "Links/secondary_button_test_example.html", ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\\n)}]
-  iex> components_to_code("./test/controllers")
+  [{"buttons",
+    [{"duplicate",
+      {"buttons/duplicate_example.html",
+       ~s(<%= component "buttons/primary_button", value: "I'm a duplicate" %>\n)}},
+     {"primary button",
+      {"buttons/primary_button_example.html",
+       ~s(<%= component "buttons/primary_button", value: "I'm a Primary Button" %>\n)}}]},
+   {"links",
+    [{"secondary button",
+      {"links/secondary_button_example.html",
+       ~s(<%= component "links/secondary_button", value: "I'm a Secondary Button" %>\n)}}]}]
+  iex> render_whole_component("./test/controllers")
   []
   """
 
   def render_whole_component(file_path) do
-    category = get_category(file_path)
-    component_eg = render_example_components(file_path)
-    component_code = components_to_code(file_path)
-
-    List.zip([category, component_eg, component_code])
+    file_path
+    |> get_category_list
+    |> Enum.map(fn category -> get_category_components(file_path, category) end)
   end
 
   @doc """
-  ## Trim file path to get only the category folder
-  iex> get_category("./test/support/example_components")
-  ["Buttons", "Links"]
-  iex> get_category("./test/controllers")
+  ## Get the components of a specified category
+  iex> get_category_components("./test/support/example_components", "buttons")
+  {"buttons",
+   [{"duplicate",
+     {"buttons/duplicate_example.html",
+      ~s(<%= component "buttons/primary_button", value: "I'm a duplicate" %>\n)}},
+    {"primary button",
+     {"buttons/primary_button_example.html",
+      ~s(<%= component "buttons/primary_button", value: "I'm a Primary Button" %>\n)}}]}
+  """
+
+  def get_category_components(file_path, category) do
+      category_components =
+        "#{file_path}/#{category}"
+        |> get_component_names
+        |> Enum.map(fn component_name ->
+           get_component_details(file_path, category, component_name)
+        end)
+
+      {category, category_components}
+  end
+
+  @doc """
+  ## Get the details of a given component
+  ## (file name to render and code inside the file)
+  iex> get_component_details("./test/support/example_components", "buttons", "primary_button")
+  {"primary button",
+   {"buttons/primary_button_example.html",
+    ~s(<%= component "buttons/primary_button", value: "I'm a Primary Button" %>\n)}}
+  """
+
+  def get_component_details(file_path, category, component) do
+    formatted_component = String.replace(component, "_", " ")
+
+    {formatted_component, {
+      "#{category}/#{component}_example.html",
+      File.read!("#{file_path}/#{category}/#{component}_example.html.eex")
+    }}
+  end
+
+  @doc """
+  ## Search all example files and compile a list of all of their categories
+  ## Removing any duplicated category names
+  iex> get_category_list("./test/support/example_components")
+  ["buttons", "links"]
+  iex> get_category_list("./test/controllers")
   []
   """
 
-  def get_category(file_path) do
-    file_path
-    |> get_example_full_path
+  def get_category_list(file_path) do
+    "#{file_path}/**/*example.html.eex"
+    |> Path.wildcard
     |> Enum.map(&(String.split(&1, ~r{/})))
     |> Enum.map(&(Enum.at(&1, -2)))
+    |> Enum.uniq
   end
 
   @doc """
-  ## Gets the full file path for any files containing the word 'example' within any
-  ## folder in the specified pathway
-    iex> get_example_full_path("./test/support/example_components")
-    ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
-    "test/support/example_components/Links/secondary_button_test_example.html.eex"]
-    iex> get_example_full_path("./test/support/")
-    ["test/support/example_components/Buttons/primary_button_test_example.html.eex",
-    "test/support/example_components/Links/secondary_button_test_example.html.eex"]
-    iex> get_example_full_path("./test/controllers")
-    []
-  """
-
-  def get_example_full_path(file_path) do
-    Path.wildcard("#{file_path}/**/*example.html.eex")
-  end
-
-  @doc """
-  ## Remove the unneeded pathway beginning leaving just the category and file name
-  ## Remove the unwanted '.eex' so the files are ready to be rendered
-    iex> render_example_components("./test/support/example_components")
-    ["Buttons/primary_button_test_example.html",
-    "Links/secondary_button_test_example.html"]
-    iex> get_example_full_path("./test/controllers")
-    []
-  """
-
-  def render_example_components(file_path) do
-    file_path
-    |> get_example_full_path
-    |> Enum.map(&(get_category_and_file(&1)))
-    |> Enum.map(&(String.trim_trailing(&1, ".eex")))
-  end
-
-  @doc """
-  ## Remove the initial file path to leave just the category and file name
-    iex> get_category_and_file("./test/support/example_components/Buttons")
-    "example_components/Buttons"
-    iex> get_category_and_file("./test/controllers")
-    "controllers"
-  """
-
-  def get_category_and_file(file_path) do
-    file_path
-    |> String.split(~r{/}, parts: 4)
-    |> List.last
-  end
-
-  @doc """
-  ## Display the Code of each Component
-  iex> components_to_code("./test/support/example_components")
-  [~s(<%= component "Buttons/primary_button", value: "I'm a Primary Button" %>\n),
-  ~s(<%= component "Links/secondary_button", value: "I'm a Secondary Button" %>\n)]
-  iex> components_to_code("./test/controllers")
+  ## Search for all files with example in in the category file path
+  ## Then remove the tail so you're left with the component name only
+  iex> get_component_names("./test/support/example_components/buttons")
+  ["duplicate", "primary_button"]
+  iex> get_component_names("./test/controllers")
   []
   """
 
-  def components_to_code(file_path) do
-    file_path
-    |> get_example_full_path
-    |> Enum.map(&(File.read!("#{&1}")))
+  def get_component_names(category_file_path) do
+    category_file_path
+    |> File.ls!
+    |> Enum.filter(&(String.contains?(&1, "_example.html.eex")))
+    |> Enum.map(&(String.trim_trailing(&1, "_example.html.eex")))
   end
 
 end
