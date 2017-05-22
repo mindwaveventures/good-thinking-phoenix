@@ -28,6 +28,7 @@ defmodule App.Router do
     get "/info/:page", InfoController, :index
     get "/coming-soon", ComingSoonController, :index
     get "/feedback", FeedbackController, :index
+    post "/feedback", FeedbackController, :post
   end
 
   # Other scopes may use custom stacks.

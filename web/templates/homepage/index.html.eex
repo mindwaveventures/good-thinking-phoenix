@@ -87,8 +87,6 @@
   </div>
 </section>
 
-<%= render "email_form.html", conn: @conn, content: @content %>
+<%= component "alpha_section", conn: @conn, content: @content %>
+<%= component "footer", content: @content %>
 
-<footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
-  <%= raw @content.footer %>
-</footer>

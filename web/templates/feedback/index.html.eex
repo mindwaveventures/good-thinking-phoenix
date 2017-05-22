@@ -1,6 +1,37 @@
-<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lm-white lh-copy">
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
   <%= component "images/london_minds_logo", [] %>
   <div>
     <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
   <div>
 </section>
+
+<%= form_for @conn, feedback_path(@conn, :post), [as: :feedback], fn f -> %>
+  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
+    <%= for form <- @forms do %>
+      <% IO.inspect form %>
+      <h3><%= form.question %></h3>
+      <%= for choice <- String.split(form.choices, ",") do %>
+        <div>
+          <%= radio_button f, :question, choice, checked: choice == form.default_value %>
+          <%= label f, form.label, choice %>
+        </div>
+      <% end %>
+    <% end %>
+  </section>
+
+  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy bg-blue">
+    <%= raw @feedback1.intro %></h3>
+    <%= textarea f, :feedback1, placeholder: @feedback1.default_text %>
+    <%= raw @feedback1.help_text %>
+  </section>
+
+  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
+    <h3><%= raw @feedback2.intro %></h3>
+    <%= textarea f, :feedback2, placeholder: @feedback2.default_text %>
+    <%= raw @feedback2.help_text %>
+  </section>
+  <%= component "buttons/primary_button", value: "Submit" %>
+<% end %>
+
+<%= component "alpha_section", conn: @conn, content: @content %>
+<%= component "footer", content: @content %>
