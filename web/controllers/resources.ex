@@ -42,12 +42,19 @@ defmodule App.Resources do
     "resource"
     |> all_query
     |> get_resources("resource", session_id)
+    |> Enum.filter(&filter_by_category(&1, filter))
     |> Enum.filter(&filter_tags(&1, filter))
     |> sort_priority
   end
 
+  def filter_by_category(%{tags: %{"category" => category}}, filter) do
+    Enum.any?(category, fn tag -> tag in filter["category"] end)
+  end
+
   def filter_tags(%{tags: tags}, filter) do
-    Enum.any?(tags, fn {tag_type, tags} ->
+    non_category_tags = Map.delete(tags, "category")
+
+    Enum.any?(non_category_tags, fn {tag_type, tags} ->
       Enum.any?(tags, fn tag -> tag in filter[tag_type] end)
     end)
   end
