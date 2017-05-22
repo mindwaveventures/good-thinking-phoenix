@@ -2,12 +2,11 @@
   <div class="mh3 mv3 w-60-m w-50-l center" id="alpha">
     <h2 class="f4 f4-ns mb0">ALPHA</h2>
     <h2 class="f5 f4-ns mt1">what does it mean?</h2>
-    <p>
-      Lorem ipsum donor sit amet consectetur adipiscing eros justo bibendium. Proin sodales pulvinar tempor.
-    </p>
-    <p>
-      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur.
-    </p>
+    <p>The “alpha” phase is all about testing ideas and gathering feedback from the people that will be using the service.</p>
+
+    <p>Everything you see now can change based on what you think works and doesn’t work, so please let us know!</p>
+
+    <p>Any feedback you give us will be used to improve the content and functionality of the service, as well as the way the service looks</p>
   </div>
 
   <div id="alphasection" class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
