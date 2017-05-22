@@ -1,12 +1,12 @@
-<div class="absolute top-0 h-100 bg-white w-80 w-70-ns w-50-m w-30-l filter-sidebar ml0 br b--lm-grey shadow-2">
-  <div class="fixed top-0 bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl">
+<div class="filter-sidebar">
+  <div class="fixed sidebar top-0 bg-white bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl shadow-2">
     <div>
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
       <div class="">
         <h4 class="w-80 mb1">Have you been recently affected by any of the following?</h4>
         <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-        <div class="">
+        <div class="mb4">
           <div class="w-80 b--lm-grey bb pa2">
             <%= checkbox fcat, String.to_atom("all-category"), value: nothing_selected(@conn.query_params["category"], "all-category"), class: "checked-fill absolute o-0" %>
             <%= label fcat, String.to_atom("all-category") do
@@ -21,10 +21,17 @@
             end %>
           </div>
           <% end %>
+          <div class="w-80 b--lm-grey pa2">
+            <span>None of these (add your own)</span>
+            <%= text_input fcat, :add_your_own, class: "fr mt1 w-100" %>
+            <div class="dib w-100 tr">
+              <%= component "buttons/primary_button", value: "Add", class: "mt1" %>
+            </div>
+          </div>
         </div>
         <% end %>
       </div>
-      <div class="">
+      <div class="mb4">
         <h4 class="w-80 mt4 mb1">I want to see content for:</h4>
         <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
@@ -43,10 +50,17 @@
             end %>
           </div>
           <% end %>
+          <div class="w-80 b--lm-grey pa2">
+            <span>None of these (add your own)</span>
+            <%= text_input fa, :add_your_own, class: "fr mt1 w-100" %>
+            <div class="dib w-100 tr">
+              <%= component "buttons/primary_button", value: "Add", class: "mt1" %>
+            </div>
+          </div>
         </div>
         <% end %>
       </div>
-      <div>
+      <div class="mb4">
         <h4 class="w-80 mt4 mb1">Show me:</h4>
         <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :content, [as: :content], fn fcon -> %>
@@ -65,6 +79,13 @@
             end %>
           </div>
           <% end %>
+          <div class="w-80 b--lm-grey pa2">
+            <span>None of these (add your own)</span>
+            <%= text_input fcon, :add_your_own, class: "fr mt1 w-100" %>
+            <div class="dib w-100 tr">
+              <%= component "buttons/primary_button", value: "Add", class: "mt1" %>
+            </div>
+          </div>
         </div>
         <% end %>
       </div>

@@ -3,32 +3,42 @@ defmodule App.SpreadsheetController do
   @http Application.get_env :app, :http
 
   def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
-    handle_submit conn, :suggestions, [suggestions]
+    conn
+    |>handle_submit(:suggestions, [suggestions])
+    |> redirect(to: homepage_path(conn, :index))
   end
 
   def submit(conn, %{"email" => %{"email" => email}}) do
-    handle_submit conn, :emails, [email]
+    conn
+    |>handle_submit(:emails, [email])
+    |> redirect(to: homepage_path(conn, :index))
   end
 
   def submit(conn, %{"feedback" => %{"question" => question,
                                      "feedback1" => feedback1,
                                      "feedback2" => feedback2}}) do
-    handle_submit conn, :feedback, [question, feedback1, feedback2]
+    conn
+    |> handle_submit(:feedback, [question, feedback1, feedback2])
+    |> redirect(to: homepage_path(conn, :index))
   end
 
   defp handle_submit(conn, tab_name, data_list) do
-    @http.post_spreadsheet data_list, tab_name
+    case Enum.join data_list do
+      "" -> conn
+      _ ->
+        @http.post_spreadsheet data_list, tab_name
 
-    message = case tab_name do
-      :emails -> "Email address entered successfully!"
-      :suggestions -> "Thank you for your input, it will "
-                   <> "be used to improve and develop the service further. "
-                   <> "Let us know if you have any more feedback"
-      :feedback -> "Thanks for your feedback"
+        message = case tab_name do
+          :emails -> "Email address entered successfully!"
+          :suggestions -> "Thank you for your input, it will "
+                       <> "be used to improve and develop the service further. "
+                       <> "Let us know if you have any more feedback"
+          :feedback -> "Thanks for your feedback"
+          :tag_suggestion -> "Thank you for your suggestion"
+        end
+
+        conn
+        |> put_flash(type, message)
     end
-
-    conn
-      |> put_flash(tab_name, message)
-      |> redirect(to: homepage_path(conn, :index))
   end
 end

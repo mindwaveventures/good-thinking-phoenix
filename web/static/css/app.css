@@ -99,7 +99,7 @@ h2 > span.b {
 }
 
 .checked-fill:checked~label {
-  font-family: 'Segoe UI-Bold'
+  font-family: 'Segoe UI-Bold';
 }
 
 .checked-fill:focus~label {
@@ -115,18 +115,22 @@ h2 > span.b {
 
 .filter-check:not(:checked)~.filter-sidebar {
   margin-left: -80vw;
+}
+
+.filter-check:checked~.filter-sidebar {
+  margin-left: 0;
+}
+
+.filter-check:not(:checked)~.filter-sidebar,
+.filter-check:checked~.filter-sidebar {
   -webkit-transition-duration: 0.5s;
 	-moz-transition-duration: 0.5s;
 	-o-transition-duration: 0.5s;
 	transition-duration: 0.5s;
 }
 
-.filter-check:checked~.filter-sidebar {
-  margin-left: 0;
-  -webkit-transition-duration: 0.5s;
-	-moz-transition-duration: 0.5s;
-	-o-transition-duration: 0.5s;
-	transition-duration: 0.5s;
+.sidebar {
+  z-index: 10;
 }
 
 /*color palette*/
