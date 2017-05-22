@@ -1,10 +1,10 @@
-<div class="absolute top-0 h-100 bg-white w-30 filter-sidebar ml0 br b--lm-grey shadow-2">
-  <div class="fixed top-0 bottom-0 w-30 pa3 overflow-y-scroll tl">
+<div class="absolute top-0 h-100 bg-white w-80 w-70-ns w-50-m w-30-l filter-sidebar ml0 br b--lm-grey shadow-2">
+  <div class="fixed top-0 bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl">
     <div>
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
       <div class="">
         <h4 class="w-80 mb1">Have you been recently affected by any of the following?</h4>
-        <h5 class="w-80 lm-grey mt1">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
         <div class="">
           <div class="w-80 b--lm-grey bb pa2">
@@ -26,7 +26,7 @@
       </div>
       <div class="">
         <h4 class="w-80 mt4 mb1">I want to see content for:</h4>
-        <h5 class="w-80 lm-grey mt1">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
         <div class="">
           <div class="w-80 b--lm-grey bb pa2">
@@ -48,7 +48,7 @@
       </div>
       <div>
         <h4 class="w-80 mt4 mb1">Show me:</h4>
-        <h5 class="w-80 lm-grey mt1">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :content, [as: :content], fn fcon -> %>
         <div class="">
           <div class="w-80 b--lm-grey bb pa2">
@@ -70,10 +70,10 @@
       </div>
       <div class="pv3 tc w-80">
         <div class="tl dib w-40">
-          <%= label :filter, :filter, "Close", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button" %>
+          <%= label :filter, :filter, "Close", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked" %>
         </div>
         <div class="tr dib w-40">
-          <%= component "Buttons/primary_button", value: "Search" %>
+          <%= component "buttons/primary_button", value: "Search" %>
         </div>
       </div>
       <% end %>

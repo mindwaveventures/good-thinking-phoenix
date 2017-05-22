@@ -14,7 +14,7 @@
 
 <div class="tc">
   <%= checkbox :filter, :filter, class: "filter-check absolute o-0" %>
-  <%= label :filter, :filter, class: "mt3 f5 link dib ph3 pv2 br-pill lm-bg-white lm-orange pointer ba bw1 b--lm-orange" %>
+  <%= label :filter, :filter, class: "mt3 f5 link dib ph3 pv2 br-pill lm-bg-white lm-orange pointer ba bw1 b--lm-orange segoe-bold tracked" %>
   <%= render "sidebar.html", conn: @conn, tags: @tags %>
 </div>
 
