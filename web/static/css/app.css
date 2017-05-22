@@ -71,17 +71,13 @@ h2 > span.b {
   display: none;
 }
 
-.checked-fill {
-  top:6px;
+.checked-fill:checked~label > .is-checked {
+  background-color: #242e50;
 }
 
 .checked-fill:checked~label {
-  background-image: url(/images/Orange_Tick.png);
-  background-color: white;
-  color: #242E50;
-  border-color: #FAB781;
-  border-width: .125rem;
- }
+  font-family: 'Segoe UI-Bold'
+}
 
 .checked-fill:focus~label {
   outline: auto 5px -webkit-focus-ring-color;
@@ -92,6 +88,22 @@ h2 > span.b {
   background-position: right 9px top 50%;
   background-size: 15px;
   background-repeat: no-repeat;
+}
+
+.filter-check:not(:checked)~.filter-sidebar {
+  margin-left: -30vw;
+  -webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+}
+
+.filter-check:checked~.filter-sidebar {
+  margin-left: 0;
+  -webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
 }
 
 /*color palette*/
@@ -251,6 +263,14 @@ code {
   color: black;
   background-color: #E9E9E9;
   border-radius: 4px;
+}
+
+.h05 {
+  height: 0.5rem;
+}
+
+.w05 {
+  width: 0.5rem;
 }
 
 .h2.5 {
