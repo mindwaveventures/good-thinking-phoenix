@@ -38,9 +38,17 @@
         <h2 class="ma0 f7 f5-l f5-m">
           <span class="b">ALPHA:</span>
           This is a prototype - your
-          <a href="mailto:sarah@londonminds.co.uk" class="underline lm-white">feedback</a>
+          <%= if @conn.request_path != "/feedback" do %>
+            <a href="/feedback" class="underline lm-white">feedback</a>
+          <% else %>
+            <span class="lm-white">feedback</span>
+          <% end %>
           will help us to improve it.
-          <a href="/#alpha" class="underline lm-white">Find out more</a>
+          <%= if @conn.request_path != "/feedback" do %>
+            <a href="/#alpha" class="underline lm-white">Find out more</a>
+          <% else %>
+            <span>Find out more</span>
+          <% end %>
         </h2>
       </div>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>

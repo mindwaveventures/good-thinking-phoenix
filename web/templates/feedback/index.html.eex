@@ -1,0 +1,6 @@
+<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lm-white lh-copy">
+  <%= component "images/london_minds_logo", [] %>
+  <div>
+    <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
+  <div>
+</section>
