@@ -8,7 +8,6 @@
 <%= form_for @conn, feedback_path(@conn, :post), [as: :feedback], fn f -> %>
   <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
     <%= for form <- @forms do %>
-      <% IO.inspect form %>
       <h3><%= form.question %></h3>
       <%= for choice <- String.split(form.choices, ",") do %>
         <div>

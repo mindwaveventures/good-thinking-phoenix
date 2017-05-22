@@ -3,7 +3,7 @@
     <%= raw @content.lookingfor %>
   </div>
   <div>
-    <%= form_for @conn, spreadsheet_path(@conn, :submit_email) <> "#suggestion_form", [as: :suggestions], fn f -> %>
+    <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#suggestion_form", [as: :suggestions], fn f -> %>
     <%= label f, :suggestions, "Suggestions", class: "dn" %>
     <%= textarea f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3" %>
     <div class="dib w-100">

@@ -1,6 +1,6 @@
 defmodule App.FeedbackController do
   use App.Web, :controller
-  alias App.CMSRepo
+  alias App.{CMSRepo, SpreadsheetController}
   alias App.Resources, as: R
 
   def index(conn, _params) do
@@ -24,15 +24,15 @@ defmodule App.FeedbackController do
                              intro: page.feedback2_intro}}
     feedback_content = CMSRepo.one(feedback_content_query)
 
-    render conn, "index.html", forms: forms,
-                               feedback1: feedback_content.feedback1,
-                               feedback2: feedback_content.feedback2,
-                               content: %{alphatext: R.get_content(:alphatext),
-                                          footer: R.get_content(:footer)}
+    render conn, "index.html",
+                 forms: forms,
+                 feedback1: feedback_content.feedback1,
+                 feedback2: feedback_content.feedback2,
+                 content: Map.new([:alphatext, :footer],
+                                  &({&1, R.get_content(&1)}))
   end
 
   def post(conn, params) do
-    IO.inspect params
-    conn
+    SpreadsheetController.submit(conn, params)
   end
 end
