@@ -1,5 +1,5 @@
 <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l cover-img tl lm-white cover lh-copy">
-  <img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+  <%= component "images/london_minds_logo", [] %>
   <div class="w-40-l pt5-l pt4 pb4 w-60-m f4-m f5">
     <%= raw @content.body %>
   </div>
@@ -9,7 +9,7 @@
   <p class="white tl tc-l">
     Take our <span class="b">clinically approved</span> sleep self-assessment
   </p>
-  <%= component "links/secondary_button", value: "Take assessment", to: "/coming-soon", id: "assessment"%>
+  <%= component "buttons/secondary_button", value: "Take assessment", to: "/coming-soon", id: "assessment" %>
 </section>
 
 <section class="tc-ns" id="results">
