@@ -10,9 +10,9 @@
     <%= for form <- @forms do %>
       <h3><%= form.question %></h3>
       <%= for choice <- String.split(form.choices, ",") do %>
-        <div>
-          <%= radio_button f, :question, choice, checked: choice == form.default_value %>
-          <%= label f, form.label, choice %>
+        <div class="ma2">
+          <%= radio_button f, String.to_atom(choice), choice, checked: choice == form.default_value, class: "absolute o-0 lm-feedback-radio" %>
+          <%= label f, String.to_atom("#{choice}_#{choice}"), choice, class: "lm-feedback-label" %>
         </div>
       <% end %>
     <% end %>
