@@ -1,6 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   alias App.Resources, as: R
+  import App.SpreadsheetController, only: [handle_email: 4]
   @google_sheet_url Application.get_env :app, :google_sheet_url
 
   def index(conn, _params) do
@@ -26,13 +27,11 @@ defmodule App.HomepageController do
       {"content", con_suggestion}
     ]
       |> Enum.reduce(conn, fn
-        ({_type, ""}, c) ->
-          c
-        ({type, suggestion}, c) ->
-          App.SpreadsheetController.handle_email(
-            c, :tag_suggestion, "#{type}: #{suggestion}", @google_sheet_url
-          )
-        end)
+        ({_type, ""}, c) -> c
+        ({type, suggestion}, c) -> handle_email(
+          c, :tag_suggestion, "#{type}: #{suggestion}", @google_sheet_url
+        )
+      end)
       |> redirect(to: homepage_path(conn, :index))
   end
   def show(conn, params) do
@@ -99,7 +98,6 @@ defmodule App.HomepageController do
     iex>content |> Enum.take(5)
     ["article", "tips", "free-trial", "mindfulness", "subscription"]
   """
-
   def get_tags do
     [:category, :audience, :content]
     |> Map.new(&({&1, R.get_tags(&1)}))
@@ -118,6 +116,7 @@ defmodule App.HomepageController do
       |> Map.new
       |> Map.merge(%{"subscription" => "true"})
   end
+
   @doc"""
     iex>audience_map = %{"audience" => audience_params()}
     iex>content_map = %{"content" => content_params()}
