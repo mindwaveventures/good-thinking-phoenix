@@ -1,8 +1,6 @@
 defmodule App.SpreadsheetController do
   use App.Web, :controller
-
   @http Application.get_env :app, :http
-  @google_sheet_url Application.get_env :app, :google_sheet_url
 
   def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
     handle_submit conn, :suggestions, [suggestions]
@@ -12,14 +10,14 @@ defmodule App.SpreadsheetController do
     handle_submit conn, :emails, [email]
   end
 
-  def submit(conn, %{"feedback" => %{"feedback1" => feedback1,
-                                     "feedback2" => feedback2,
-                                     "question" => question}}) do
-    handle_submit conn, :feedback, [feedback1, feedback2, question]
+  def submit(conn, %{"feedback" => %{"question" => question,
+                                     "feedback1" => feedback1,
+                                     "feedback2" => feedback2}}) do
+    handle_submit conn, :feedback, [question, feedback1, feedback2]
   end
 
   defp handle_submit(conn, tab_name, data_list) do
-    @http.post_spreadsheet data_list, @google_sheet_url, tab_name
+    @http.post_spreadsheet data_list, tab_name
 
     message = case tab_name do
       :emails -> "Email address entered successfully!"
