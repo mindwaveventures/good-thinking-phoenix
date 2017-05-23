@@ -1,5 +1,7 @@
 defmodule App.SpreadsheetController do
   use App.Web, :controller
+  alias App.Feedback
+
   @http Application.get_env :app, :http
 
   def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
@@ -49,6 +51,7 @@ defmodule App.SpreadsheetController do
     case Enum.join data_list do
       "" -> conn
       _ ->
+        store_data conn, data_list, tab_name
         @http.post_spreadsheet data_list, tab_name
 
         message = case tab_name do
@@ -58,15 +61,24 @@ defmodule App.SpreadsheetController do
                        <> "Let us know if you have any more feedback"
           :feedback -> "Thanks for your feedback"
           :tag_suggestion -> "Thank you for your suggestion"
-          _ -> ""
+          _ -> nil
         end
 
-        if String.length(message) == 0 do
-          conn
-        else
+        if message do
           conn
           |> put_flash(tab_name, message)
+        else
+          conn
         end
     end
+  end
+
+  def store_data(conn, data_list, tab_name) do
+    lm_session = get_session(conn, :lm_session)
+    %Feedback{}
+    |> Feedback.changeset(%{user_hash: lm_session,
+                            tab_name: "#{tab_name}",
+                            data: data_list})
+    |> Repo.insert!
   end
 end
