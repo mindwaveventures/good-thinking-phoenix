@@ -3,7 +3,7 @@ defmodule App.Http.Http do
   @google_sheet_url Application.get_env :app, :google_sheet_url
 
   def post_spreadsheet(input_list, tab_name) do
-    vals_to_insert = 
+    vals_to_insert =
       input_list
       |> Enum.map(&URI.encode_www_form/1)
       |> Enum.join("__ldmw_delimiter__")

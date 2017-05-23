@@ -8,7 +8,7 @@ defmodule App.SpreadsheetControllerTest do
                        "feedback1" => "feedback1",
                        "feedback2" => "feedback2"}}]
     |> Enum.each(fn params ->
-      conn = post conn, spreadsheet_path(conn, :submit, params)
+      conn = post conn, feedback_path(conn, :post, params)
       assert html_response(conn, 302)
     end)
   end
