@@ -1,5 +1,5 @@
 <%= if assigns[:to] do %>
-  <%= link @value, to: @to, class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked #{assigns[:class]}", id: assigns[:id] %>
+  <%= link @value, to: @to, class: get_class("primary_button") <> " #{assigns[:class]}", id: assigns[:id] %>
 <%= else %>
-  <%= submit @value, class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked #{assigns[:class]}", id: assigns[:id] %>
+  <%= submit @value, class: get_class("primary_button") <> " #{assigns[:class]}", id: assigns[:id] %>
 <% end %>

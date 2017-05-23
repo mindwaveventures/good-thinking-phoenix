@@ -1,8 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   alias App.Resources, as: R
-  import App.SpreadsheetController, only: [handle_email: 4]
-  @google_sheet_url Application.get_env :app, :google_sheet_url
+  import App.SpreadsheetController, only: [submit: 2]
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
@@ -21,18 +20,8 @@ defmodule App.HomepageController do
       "content" => %{"add_your_own" => con_suggestion}
     }
   ) when (cat_suggestion <> aud_suggestion <> con_suggestion) != ""  do
-    [
-      {"category", cat_suggestion},
-      {"audience", aud_suggestion},
-      {"content", con_suggestion}
-    ]
-      |> Enum.reduce(conn, fn
-        ({_type, ""}, c) -> c
-        ({type, suggestion}, c) -> handle_email(
-          c, :tag_suggestion, "#{type}: #{suggestion}", @google_sheet_url
-        )
-      end)
-      |> redirect(to: homepage_path(conn, :index))
+    conn
+    |> submit(%{"tag_suggestion" => [cat_suggestion, aud_suggestion, con_suggestion]})
   end
   def show(conn, params) do
     prepend = fn(a, b) -> b <> a end

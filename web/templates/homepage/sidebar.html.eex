@@ -4,27 +4,27 @@
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
       <div class="">
         <h4 class="w-80 mb1">Have you been recently affected by any of the following?</h4>
-        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "category", form: fcat %>
         <% end %>
       </div>
       <div class="mb4">
         <h4 class="w-80 mt4 mb1">I want to see content for:</h4>
-        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "audience", form: fa %>
         <% end %>
       </div>
       <div class="mb4">
         <h4 class="w-80 mt4 mb1">Show me:</h4>
-        <h5 class="w-80 lm-grey mt1 nunito-italic">Select as many as are relevant</h5>
+        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :content, [as: :content], fn fcon -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "content", form: fcon %>
         <% end %>
       </div>
       <div class="pv3 tc w-80">
-        <div class="tl dib w-40">
+        <div class="tl lm-dark-grey dib w-40">
           <%= label :filter, :filter, "Close", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked" %>
         </div>
         <div class="tr dib w-40">

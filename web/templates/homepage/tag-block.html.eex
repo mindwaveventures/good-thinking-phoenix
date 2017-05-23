@@ -15,7 +15,7 @@
   <% end %>
   <div class="w-80 b--lm-grey pa2">
     <span>None of these (add your own)</span>
-    <%= text_input @form, :add_your_own, class: "fr mt1 w-100" %>
+    <%= text_input @form, :add_your_own, class: "fr mt1 w-100", "aria-label": "add #{@type}" %>
     <div class="dib w-100 tr">
       <%= component "buttons/primary_button", value: "Add", class: "mt1" %>
     </div>

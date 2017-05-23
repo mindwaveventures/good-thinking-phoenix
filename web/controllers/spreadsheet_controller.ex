@@ -4,13 +4,13 @@ defmodule App.SpreadsheetController do
 
   def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}) do
     conn
-    |>handle_submit(:suggestions, [suggestions])
+    |> handle_submit(:suggestions, [suggestions])
     |> redirect(to: homepage_path(conn, :index))
   end
 
   def submit(conn, %{"email" => %{"email" => email}}) do
     conn
-    |>handle_submit(:emails, [email])
+    |> handle_submit(:emails, [email])
     |> redirect(to: homepage_path(conn, :index))
   end
 
@@ -19,6 +19,12 @@ defmodule App.SpreadsheetController do
                                      "feedback2" => feedback2}}) do
     conn
     |> handle_submit(:feedback, [question, feedback1, feedback2])
+    |> redirect(to: homepage_path(conn, :index))
+  end
+
+  def submit(conn, %{"tag_suggestion" => tag_suggestion}) do
+    conn
+    |> handle_submit(:tag_suggestion, tag_suggestion)
     |> redirect(to: homepage_path(conn, :index))
   end
 
@@ -38,7 +44,7 @@ defmodule App.SpreadsheetController do
         end
 
         conn
-        |> put_flash(type, message)
+        |> put_flash(tab_name, message)
     end
   end
 end
