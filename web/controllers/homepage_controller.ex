@@ -24,13 +24,12 @@ defmodule App.HomepageController do
     redirect(conn, to: homepage_path(conn, :filtered_show) <> query_string)
   end
 
-  def filtered_show(conn, params) do
-    %{"category" => category} = params
-
+  def filtered_show(conn, params) when params == %{}, do: index(conn, params)
+  def filtered_show(conn, %{"category" => category} = params) do
     filters = params
       |> check_empty
       |> Enum.map(&create_filters/1)
-      |> Enum.into(%{})
+      |> Map.new
 
       session = get_session conn, "lm_session"
       all_resources = R.get_all_filtered_resources filters, session
