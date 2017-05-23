@@ -22,6 +22,16 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 302)
   end
 
+  test "adds suggestion", %{conn: conn} do
+    params = %{"audience" => %{"add_your_own" => "snoring"},
+               "category" => %{"add_your_own" => ""},
+               "content" => %{"add_your_own" => ""}}
+    conn = post conn, homepage_path(conn, :show, params)
+
+    assert get_flash(conn, :tag_suggestion)
+    assert html_response(conn, 302)
+  end
+
   test "query renders filtered content", %{conn: conn} do
     params = %{"audience" => "shift-workers",
                "category" => "insomnia",
