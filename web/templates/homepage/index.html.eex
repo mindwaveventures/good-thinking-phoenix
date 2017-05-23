@@ -12,6 +12,14 @@
   <%= component "buttons/secondary_button", value: "Take assessment", to: "/coming-soon", id: "assessment" %>
 </section>
 
+<section>
+  <div class="lm-bg-orange pa3 ph4">
+    <p class="ma0 w-100-ns w-80 tc-ns">
+      If you are needing <span class="segoe-bold">urgent support</span> please <%= link "click here", to: "info/crisis", class: "lm-dark-turquoise" %>
+    </p>
+  </div>
+</section>
+
 <div class="tc">
   <%= checkbox :filter, :filter, class: "filter-check absolute o-0" %>
   <%= label :filter, :filter, class: get_class("primary_button") <> " mt4" %>
@@ -26,14 +34,6 @@
 </section>
 
 <%= render "suggestion_form.html", conn: @conn, content: @content %>
-
-<section class="pa1">
-  <div class="ba b--lm-orange ph3">
-    <p class="mv2">
-      If you are needing <span class="b">urgent support</span> please <%= link "click here", to: "info/crisis", class: "lm-turquoise" %>
-    </p>
-  </div>
-</section>
 
 <%= component "alpha_section", conn: @conn, content: @content %>
 <%= component "footer", content: @content %>
