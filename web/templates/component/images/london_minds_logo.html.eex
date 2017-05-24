@@ -1,1 +1,3 @@
-<img src="/images/London_Minds_logo.png" class="w-60 w-40-m w-25-l" alt="London Minds" />
+<%= img_tag "/images/London_Minds_logo.png",
+    alt: "London Minds",
+    class: "#{assigns[:class]}" %>
