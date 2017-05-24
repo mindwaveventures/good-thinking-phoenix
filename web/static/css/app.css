@@ -19,6 +19,13 @@ body {
 }
 
 @font-face {
+  font-family: 'NunitoSans-Italic';
+  src: url('/fonts/nunito/NunitoSans-LightItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Segoe UI';
   src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
   font-weight: normal;
@@ -32,6 +39,22 @@ body {
 
 .font {
   font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
+}
+
+.segoe {
+  font-family: 'Segoe UI';
+}
+
+.segoe-bold {
+  font-family: 'Segoe UI-Bold';
+}
+
+.nunito {
+  font-family: 'NunitoSans';
+}
+
+.nunito-italic {
+  font-family: 'NunitoSans-Italic';
 }
 
 h1, h2 {
@@ -71,17 +94,13 @@ h2 > span.b {
   display: none;
 }
 
-.checked-fill {
-  top:6px;
+.checked-fill:checked~label > .is-checked {
+  background-color: #242e50;
 }
 
 .checked-fill:checked~label {
-  background-image: url(/images/Orange_Tick.png);
-  background-color: white;
-  color: #242E50;
-  border-color: #FAB781;
-  border-width: .125rem;
- }
+  font-family: 'Segoe UI-Bold'
+}
 
 .checked-fill:focus~label {
   outline: auto 5px -webkit-focus-ring-color;
@@ -92,6 +111,22 @@ h2 > span.b {
   background-position: right 9px top 50%;
   background-size: 15px;
   background-repeat: no-repeat;
+}
+
+.filter-check:not(:checked)~.filter-sidebar {
+  margin-left: -80vw;
+  -webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+}
+
+.filter-check:checked~.filter-sidebar {
+  margin-left: 0;
+  -webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
 }
 
 /*color palette*/
@@ -253,6 +288,14 @@ code {
   border-radius: 4px;
 }
 
+.h05 {
+  height: 0.5rem;
+}
+
+.w05 {
+  width: 0.5rem;
+}
+
 .h2.5 {
   height: 3rem;
 }
@@ -290,5 +333,9 @@ code {
      https://github.com/LDMW/app/issues/59#issuecomment-301418458*/
   #alphasection button {
     bottom: -30px;
+  }
+
+  .filter-check:not(:checked)~.filter-sidebar {
+    margin-left: -50vw;
   }
 }
