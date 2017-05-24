@@ -26,6 +26,7 @@ defmodule App.FeedbackController do
 
     render conn, "index.html",
                  forms: forms,
+                 form_title: feedback_content.form_title,
                  feedback1: feedback_content.feedback1,
                  feedback2: feedback_content.feedback2,
                  content: Map.new([:alphatext, :footer],

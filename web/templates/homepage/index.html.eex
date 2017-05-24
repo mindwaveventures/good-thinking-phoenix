@@ -35,5 +35,5 @@
 
 <%= render "suggestion_form.html", conn: @conn, content: @content %>
 
-<%= component "alpha_section", conn: @conn, content: @content %>
+<%= component "alpha_section", conn: @conn, content: @content, show_email_submit: true %>
 <%= component "footer", content: @content %>
