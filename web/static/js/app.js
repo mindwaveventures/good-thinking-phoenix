@@ -19,3 +19,12 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+document.querySelector(".sidebar-overlay").addEventListener('click', function() {
+  document.querySelector("#filter_filter").checked = false;
+  document.querySelector("body").classList.remove("stop-scrolling");
+});
+
+document.querySelector("#filter_filter").addEventListener('click', function() {
+  document.querySelector("body").classList.toggle("stop-scrolling");
+});

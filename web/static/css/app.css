@@ -113,12 +113,20 @@ h2 > span.b {
   background-repeat: no-repeat;
 }
 
-.filter-check:not(:checked)~.filter-sidebar {
+.filter-check:checked~.filter-sidebar {
+  margin-left: 0;
+}
+
+.filter-check:not(:checked)~.filter-sidebar, .sidebar-offscreen {
   margin-left: -80vw;
 }
 
-.filter-check:checked~.filter-sidebar {
-  margin-left: 0;
+.filter-check:not(:checked)~.filter-sidebar + .sidebar-overlay {
+  display: none;
+}
+
+.filter-check:checked~.filter-sidebar + .sidebar-overlay {
+  display: block;
 }
 
 .filter-check:not(:checked)~.filter-sidebar,
@@ -131,6 +139,11 @@ h2 > span.b {
 
 .sidebar {
   z-index: 10;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 /*color palette*/
