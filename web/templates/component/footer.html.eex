@@ -1,0 +1,3 @@
+<footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
+  <%= raw @content.footer %>
+</footer>

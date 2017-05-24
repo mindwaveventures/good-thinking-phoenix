@@ -11,12 +11,12 @@
 
   <div id="alphasection" class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw @content.alphatext %>
-    <%= form_for @conn, spreadsheet_path(@conn, :submit_email) <> "#email_form", [as: :email], fn f -> %>
+    <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#email_form", [as: :email], fn f -> %>
       <%= label f, :email, "Email:", class: "db mv1" %>
       <%= email_input(f, :email, class: "br2 pa2 mb2-l mb3 f5 fw3 ba w-100") %>
       <p class="alert ma0 mb4 pa3 ba bw1-ns bg--lm-green b--lm-green" role="alert"><%= get_flash(@conn, :emails) %></p>
       <div class="relative w-100 mt3">
-        <%= component "Buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
+        <%= component "buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
       </div>
     <% end %>
   </div>

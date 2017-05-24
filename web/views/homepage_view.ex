@@ -5,13 +5,12 @@ defmodule App.HomepageView do
   @doc """
   ## Number of Results
 
-    iex> App.HomepageView.number_of_results([])
+    iex> number_of_results([])
     "0 results"
-    iex> App.HomepageView.number_of_results(["one"])
+    iex> number_of_results(["one"])
     "1 result"
-    iex> App.HomepageView.number_of_results(["one", "two"])
+    iex> number_of_results(["one", "two"])
     "2 results"
-
   """
 
   def number_of_results(resources) when length(resources) == 1, do: "1 result"
@@ -25,4 +24,19 @@ defmodule App.HomepageView do
     tag in String.split(selected_tags, ",")
   end
   def tag_is_selected(_, _), do: false
+
+  @doc """
+    ## nothing_selected
+    ## returns true when tags are empty, or equal to type
+
+    iex> nothing_selected("", "all-category")
+    true
+    iex> nothing_selected("all-category", "all-category")
+    true
+    iex> nothing_selected("all-category,insomnia", "all-category")
+    false
+  """
+
+  def nothing_selected(tags, type) when tags in ["", nil, type], do: true
+  def nothing_selected(_, _), do: false
 end

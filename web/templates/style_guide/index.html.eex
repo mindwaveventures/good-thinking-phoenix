@@ -59,27 +59,29 @@
       </ul>
 
       <p class="f5 lh-copy sans-serif">Take this button for example: </p>
-      <%= render App.ComponentView, "Buttons/primary_button_example.html"%>
+      <%= component "buttons/primary_button_example", [] %>
       <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
-      <code><%= File.read!("./web/templates/component/Buttons/primary_button_example.html.eex") %></code>
+      <code><%= File.read!("./web/templates/component/buttons/primary_button_example.html.eex") %></code>
       <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/templates/component/primary_button.html.eex</code>:</p>
-      <code><%= File.read!("./web/templates/component/Buttons/primary_button.html.eex") %></code>
+      <code><%= File.read!("./web/templates/component/buttons/primary_button.html.eex") %></code>
 
       <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
 
-      <%= for {category, component_eg, component_code} <- render_whole_component("./web/templates/component") do %>
+      <%= for {category, category_comps} <- render_whole_component("./web/templates/component") do %>
       <article class="tc">
 
-        <h2 class="f3 tl mb0"><%= category %></h2>
+        <h2 class="f3 tl mb0"><%= String.capitalize(category) %></h2>
 
+        <%= for {component_name, {to_render, component_code}} <- category_comps do %>
         <div class="dib center br2 w-100 h-25 pv3 mt4 mb3 lm-bg-dark-blue lm-white tc shadow-5">
-          <h3 class="tl mt1 ph3 bb">Example Component</h3>
-          <%= render App.ComponentView, component_eg %>
+          <h3 class="tl mt1 ph3 bb"><%= "Example #{component_name} component "%></h3>
+          <%= render App.ComponentView, to_render %>
         </div>
         <div class="dib center br2 w-100 h-25 pv3 lm-bg-light-grey code shadow-5">
-          <h3 class="tl mt1 bb ph3">Component Code</h3>
+          <h3 class="tl mt1 bb ph3">Component code</h3>
           <code><%= component_code %></code>
         </div>
+        <% end %>
       </article>
       <% end %>
 

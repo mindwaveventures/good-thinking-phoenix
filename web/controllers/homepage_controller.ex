@@ -1,6 +1,5 @@
 defmodule App.HomepageController do
   use App.Web, :controller
-  alias App.ErrorView
   alias App.Resources, as: R
 
   def index(conn, _params) do
@@ -14,41 +13,45 @@ defmodule App.HomepageController do
                  tags: get_tags(), resources: resources
   end
 
-  def show(conn, %{"category" => %{"category" => tag}} = params) do
+  def show(conn, params) do
     prepend = fn(a, b) -> b <> a end
     query_string =
       params
-        |> Map.take(["audience", "content"])
+        |> Map.take(["audience", "content", "category"])
         |> create_query_string
-        |> prepend.("?category=#{tag}&")
+        |> prepend.("?")
 
     redirect(conn, to: homepage_path(conn, :filtered_show) <> query_string)
   end
 
   def filtered_show(conn, params) do
-    %{
-      "category" => category,
-      "audience" => audience,
-      "content" => content
-    } = params
+    %{"category" => category} = params
 
-    case R.check_tag(category) do
-      {:error, _} ->
-        conn
-          |> put_status(404)
-          |> render(ErrorView, "404.html")
-      {:ok, _} ->
-        filters = [audience, content]
-          |> Enum.filter(&(&1 != ""))
-          |> Enum.map(&(String.split(&1, ",")))
-          |> Enum.concat
+    filters = params
+      |> check_empty
+      |> Enum.map(&create_filters/1)
+      |> Enum.into(%{})
 
-        session = get_session conn, "lm_session"
-        all_resources = R.get_all_filtered_resources category, filters, session
-        render conn, "index.html",
-          content: get_content(), tags: get_tags(),
-          resources: all_resources, tag: category
-    end
+      session = get_session conn, "lm_session"
+      all_resources = R.get_all_filtered_resources filters, session
+      render conn, "index.html",
+        content: get_content(), tags: get_tags(),
+        resources: all_resources, tag: category
+  end
+
+  def create_filters({tag_type, tags}) do
+    split_tags = tags
+    |> String.split(",")
+
+    {tag_type, split_tags}
+  end
+
+  def check_empty(params) do
+    params
+    |> Enum.map(fn
+        {name, ""} -> {name, "all-#{name}"}
+        {name, tags} -> {name, tags}
+      end)
   end
 
   @doc"""

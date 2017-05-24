@@ -7,13 +7,15 @@
       <div class="br1 shadow-2 pa4 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
         <h2 class="mt0 mb1"><%= resource[:heading] %></h2>
         <div class="word-wrap">
-          <%= if String.length(resource.url) >= 0 do %>
+          <%= if String.length(resource.url) > 0 do %>
             <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
           <% end %>
         </div>
         <div class="mt1">
-          <%= for tag <- resource.tags do %>
-          <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= tag %></span>
+          <%= for {_tag_type, tags} <- resource.tags do %>
+            <%= for t <- tags do %>
+              <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= t %></span>
+            <% end %>
           <% end %>
         </div>
         <%= raw resource[:body] %>
@@ -22,10 +24,10 @@
           <div class="w-50 mw4 dib">
             <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
             <%= form_for @conn, likes_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
-              <button title="like" type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left"></button>
+              <button type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left"><span class="absolute o-0">Recommend</span></button>
             <%= end %>
             <%= form_for @conn, likes_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30"], fn _f -> %>
-              <button title="dislike" type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right"></button>
+              <button type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right"><span class="absolute o-0">Don't Recommend</span></button>
             <%= end %>
             <div class="dib mb3 v-mid tl"><span><%= resource.dislikes %></span></div>
           </div>
