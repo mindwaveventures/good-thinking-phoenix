@@ -24,14 +24,29 @@
           <div class="w-50 mw4 dib">
             <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
             <%= form_for @conn, likes_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
-              <button type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left"><span class="absolute o-0">Recommend</span></button>
+              <button type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left pointer"><span class="absolute o-0">Recommend</span></button>
             <%= end %>
             <%= form_for @conn, likes_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30"], fn _f -> %>
-              <button type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right"><span class="absolute o-0">Don't Recommend</span></button>
+              <button type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Don't Recommend</span></button>
             <%= end %>
             <div class="dib mb3 v-mid tl"><span><%= resource.dislikes %></span></div>
           </div>
-          <button title="share" class="share cursor w-30 h2 bn bg-white fr p0 bg-right"></button>
+          <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Share</span></button>
+          <%= if resource.liked != "none" do %>
+            <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, resource.id) <> "#resource_#{resource.id}", [as: :resource_feedback], fn f -> %>
+              <p>
+                What do you <%= case resource.liked do
+                  1 -> "like"
+                  -1 -> "dislike"
+                end %> about this resource?
+              </p>
+              <%= textarea f, :feedback, class: "w-50 h3 db mb2 nr" %>
+              <%= hidden_input f, :liked, value: resource.liked %>
+              <%= hidden_input f, :resource_name, value: resource.heading %>
+              <%= component "buttons/primary_button", value: "Submit" %>
+              <p class="alert" role="alert"><%= get_flash @conn, String.to_atom "resource_feedback_#{resource.id}" %></p>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <%= else %>
