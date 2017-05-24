@@ -146,6 +146,20 @@ h2 > span.b {
   overflow: hidden;
 }
 
+.hide-filters {
+  height: 0;
+  overflow: hidden;
+}
+
+.select-filters {
+  border: 1px solid #c2c2c2;
+  margin-top: 1rem;
+}
+
+.filter-arrow-hide {
+  display: none;
+}
+
 /*color palette*/
 
 .lm-bg-orange {
@@ -232,36 +246,6 @@ footer p a {
   padding: 0 2em 0 2em;
   text-decoration: none;
   color: #242E50;
-}
-
-
-/* Landing Page - Resources dropdown */
-
-.select-box select {
-  background-color: #fff;
-  color: #242e50;
-  padding: .5em;
-  padding-right: 2.5em;
-  margin: 0;
-  text-indent: 0.01px;
-  -webkit-appearance: button; /* hide default arrow in chrome OSX */
-}
-
-.select-box::before,
-.select-box::after {
-  position: absolute;
-  pointer-events: none;
-}
-
-.select-box::after {
-  color: #fab781;
-  content: "\25BC";
-  height: 1em;
-  font-size: .625em;
-  line-height: 1;
-  right: 1.2em;
-  top: 50%;
-  margin-top: -.5em;
 }
 
 /* Landing Page - resource tags */
