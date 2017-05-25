@@ -4,7 +4,8 @@ defmodule App.SpreadsheetControllerTest do
   test "submit of feedback", %{conn: conn} do
     [%{"email" => %{"email" => "test@me.com"}},
      %{"suggestions" => %{"suggestions" => "suggestions"}},
-     %{"feedback" => %{"question" => "question",
+     %{"feedback" => %{"email" => "email@me.com",
+                       "question1" => "question",
                        "feedback1" => "feedback1",
                        "feedback2" => "feedback2"}}]
     |> Enum.each(fn params ->

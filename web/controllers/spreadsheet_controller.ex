@@ -16,11 +16,12 @@ defmodule App.SpreadsheetController do
     |> redirect(to: homepage_path(conn, :index))
   end
 
-  def submit(conn, %{"feedback" => %{"question" => question,
+  def submit(conn, %{"feedback" => %{"email" => email,
+                                     "question1" => question1,
                                      "feedback1" => feedback1,
                                      "feedback2" => feedback2}}) do
     conn
-    |> handle_submit(:feedback, [question, feedback1, feedback2])
+    |> handle_submit(:feedback, [question1, feedback1, feedback2, email])
     |> redirect(to: homepage_path(conn, :index))
   end
 
