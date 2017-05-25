@@ -1,36 +1,67 @@
-<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
-  <%= component "images/london_minds_logo", [] %>
-  <div>
-    <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
-  <div>
+<section class="f3 pt4 ph4 tl lh-copy">
+  <div class="w-60-m w-50-l center">
+    <div class="ph6-l">
+      <%= component "images/london_minds_logo", [] %>
+    </div>
+  </div>
+</section>
+
+<section class="f3 pt3-l ph4 ph4-m ph6-l tl lh-copy">
+  <div class="w-60-m w-50-l center">
+      <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-orange bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
+  </div>
+</section>
+
+<section class="f3 pt4 pt4-l ph4 ph4-m ph6-l tl lh-copy">
+  <div class="w-60-m w-50-l center">
+    <h2 class="ma0 f3"><%= @form_title %></h2>
+  </div>
 </section>
 
 <%= form_for @conn, feedback_path(@conn, :post), [as: :feedback], fn f -> %>
-  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
-    <%= for form <- @forms do %>
-      <h3><%= form.question %></h3>
-      <%= for choice <- String.split(form.choices, ",") do %>
-        <div>
-          <%= radio_button f, :question, choice, checked: choice == form.default_value %>
-          <%= label f, form.label, choice %>
+  <section class="f3 pt4 pt5-l ph3 ph4-m ph6-l tl lh-copy">
+    <div class="w-60-m w-50-l center">
+      <%= for form <- @forms do %>
+        <h4 class="ma0 f5"><%= form.question %></h4>
+        <div class="mv2 pv2">
+          <%= for choice <- String.split(form.choices, ",") do %>
+            <div class="mv2">
+              <%= radio_button f, String.to_atom(form.label), choice, checked: choice == form.default_value, class: "absolute o-0 lm-feedback-radio" %>
+              <%= label f, String.to_atom("#{form.label}_#{choice}"), choice, class: "lm-feedback-label f5 v-top" %>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </section>
 
-  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy bg-blue">
-    <%= raw @feedback1.intro %></h3>
-    <%= textarea f, :feedback1, placeholder: @feedback1.default_text %>
-    <%= raw @feedback1.help_text %>
+  <section class="f3 pt3 ph3 tl lh-copy lm-bg-dark-blue lm-white pb3 segoe-bold feedback-section">
+    <div class="w-60-m w-50-l center">
+      <%= raw @feedback1.intro %>
+      <%= textarea f, :feedback1, placeholder: @feedback1.default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
+      <%= raw @feedback1.help_text %>
+    </div>
   </section>
 
-  <section class="f3 pt4 pt5-l ph4 ph5-m ph6-l tl lh-copy">
-    <h3><%= raw @feedback2.intro %></h3>
-    <%= textarea f, :feedback2, placeholder: @feedback2.default_text %>
-    <%= raw @feedback2.help_text %>
+  <section class="f3 pa3 tl lh-copy lm-dark-blue segoe-bold feedback-section">
+    <div class="w-60-m w-50-l center">
+      <%= raw @feedback2.intro %>
+      <%= textarea f, :feedback2, placeholder: @feedback2.default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
+      <%= raw @feedback2.help_text %>
+    </div>
   </section>
-  <%= component "buttons/primary_button", value: "Submit" %>
+
+  <section class="f3 pt3 ph3 tl lh-copy lm-bg-dark-blue lm-white segoe-bold feedback-section">
+    <div class="w-60-m w-50-l center">
+      <p>Share your email address with us and we will should be able to get you involved</p>
+      <p>(Optional)</p>
+      <%= text_input f, :feedback3, placeholder: "Email", class: "w-100 pa2 f5 ba bw1 b--lm-grey" %>
+      <div class="w-100 tr">
+        <%= component "buttons/primary_button", value: "Submit" %>
+      </div>
+    </div>
+  </section>
 <% end %>
 
-<%= component "alpha_section", conn: @conn, content: @content %>
+<%= component "alpha_section", conn: @conn, content: @content, show_email_submit: false %>
 <%= component "footer", content: @content %>
