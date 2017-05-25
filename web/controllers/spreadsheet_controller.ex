@@ -28,6 +28,23 @@ defmodule App.SpreadsheetController do
     |> redirect(to: homepage_path(conn, :index))
   end
 
+  def submit(conn, %{"resource_feedback" => %{
+    "id" => id,
+    "liked" => liked,
+    "resource_name" => name,
+    "feedback" => feedback
+  }}) do
+
+    conn
+    |> handle_submit(:resource_feedback, [
+      id, name, "#{if liked == "1" do "Like" else "Dislike" end}", feedback
+    ])
+    |> put_flash(
+      String.to_atom("resource_feedback_#{id}"), "Thank you for your feedback"
+    )
+    |> redirect(to: homepage_path(conn, :index))
+  end
+
   defp handle_submit(conn, tab_name, data_list) do
     case Enum.join data_list do
       "" -> conn
@@ -41,10 +58,15 @@ defmodule App.SpreadsheetController do
                        <> "Let us know if you have any more feedback"
           :feedback -> "Thanks for your feedback"
           :tag_suggestion -> "Thank you for your suggestion"
+          _ -> ""
         end
 
-        conn
-        |> put_flash(tab_name, message)
+        if String.length(message) == 0 do
+          conn
+        else
+          conn
+          |> put_flash(tab_name, message)
+        end
     end
   end
 end

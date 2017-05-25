@@ -23,6 +23,7 @@ defmodule App.Router do
     post "/spreadsheet", SpreadsheetController, :submit
     post "/like/:article_id", LikesController, :like
     post "/dislike/:article_id", LikesController, :dislike
+    post "/resourcefeedback/:id", ResourceFeedbackController, :resource_feedback
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
     get "/info/:page", InfoController, :index

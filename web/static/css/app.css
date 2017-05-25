@@ -269,7 +269,7 @@ footer p a {
 }
 
 .liked {
-  background-image: url("../images/Thumbs_up_clicked.svg");
+  background-image: url("../images/Thumbs_up_hover.svg");
 }
 
 .dislike {
@@ -282,7 +282,7 @@ footer p a {
 }
 
 .disliked {
-  background-image: url("../images/Thumbs_down_clicked.svg");
+  background-image: url("../images/Thumbs_down_hover.svg");
 }
 
 .share {
@@ -336,6 +336,10 @@ code {
 
 .b--lm-green {
   border-color: #81c03d;
+}
+
+.nr {
+  resize: none;
 }
 
 @media only screen and (min-width: 950px) {
