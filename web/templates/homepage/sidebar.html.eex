@@ -2,28 +2,25 @@
   <div class="fixed sidebar top-0 bg-white bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl shadow-2">
     <div>
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
-      <div class="">
-        <h4 class="w-80 mb1">Have you been recently affected by any of the following?</h4>
-        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
+      <div class="mb5 relative">
+        <h4 class="w-80 mb1 mt2">Have you been recently affected by any of the following?</h4>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "category", form: fcat %>
         <% end %>
       </div>
-      <div class="mb4">
+      <div class="mv5 relative">
         <h4 class="w-80 mt4 mb1">I want to see content for:</h4>
-        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "audience", form: fa %>
         <% end %>
       </div>
-      <div class="mb4">
+      <div class="mv5 relative">
         <h4 class="w-80 mt4 mb1">Show me:</h4>
-        <h5 class="w-80 lm-dark-grey mt1 nunito-italic">Select as many as are relevant</h5>
         <%= inputs_for f, :content, [as: :content], fn fcon -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "content", form: fcon %>
         <% end %>
       </div>
-      <div class="pv3 tc w-80">
+      <div class="pv3 tc w-80 sidebar-buttons">
         <div class="tl lm-dark-grey dib w-40">
           <%= label :filter, :filter, "Close", class: "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked" %>
         </div>
@@ -35,3 +32,4 @@
     </div>
   </div>
 </div>
+<div class="fixed top-0 bottom-0 w-100 sidebar-overlay bg-gray o-70"></div>
