@@ -8,7 +8,7 @@
 
 <section class="f3 pt3-l ph4 ph4-m ph6-l tl lh-copy">
   <div class="w-60-m w-50-l center">
-      <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-orange bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
+    <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-orange bg-white pointer button segoe-bold tracked b--lm-orange ba bw1" %>
   </div>
 </section>
 
@@ -55,7 +55,7 @@
     <div class="w-60-m w-50-l center">
       <p>Share your email address with us and we will should be able to get you involved</p>
       <p>(Optional)</p>
-      <%= text_input f, :feedback3, placeholder: "Email", class: "w-100 pa2 f5 ba bw1 b--lm-grey" %>
+      <%= text_input f, :email, placeholder: "Email", class: "w-100 pa2 f5 ba bw1 b--lm-grey" %>
       <div class="w-100 tr">
         <%= component "buttons/primary_button", value: "Submit" %>
       </div>
