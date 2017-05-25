@@ -43,7 +43,7 @@
     </div>
   </section>
 
-  <section class="f3 pt3 ph3 tl lh-copy lm-dark-blue segoe-bold feedback-section">
+  <section class="f3 pa3 tl lh-copy lm-dark-blue segoe-bold feedback-section">
     <div class="w-60-m w-50-l center">
       <%= raw @feedback2.intro %>
       <%= textarea f, :feedback2, placeholder: @feedback2.default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
