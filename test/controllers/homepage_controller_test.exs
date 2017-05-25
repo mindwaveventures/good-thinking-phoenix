@@ -4,16 +4,6 @@ defmodule App.HomepageControllerTest do
 
   alias Plug.Conn
 
-  test "GET /", %{conn: conn} do
-    conn = get conn, homepage_path(conn, :index)
-    assert html_response(conn, 200) =~ "<!DOCTYPE html>"
-  end
-
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, homepage_path(conn, :index)
-    assert html_response(conn, 200) =~ "recently affected"
-  end
-
   test "show redirects when category is nonexistent", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
                "category" => %{"category" => "not_found"},
