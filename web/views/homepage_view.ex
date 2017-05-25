@@ -39,4 +39,8 @@ defmodule App.HomepageView do
 
   def nothing_selected(tags, type) when tags in ["", nil, type], do: true
   def nothing_selected(_, _), do: false
+
+  def remove_hyphen(str) do
+    String.replace(str, "-", " ")
+  end
 end
