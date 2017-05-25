@@ -1,6 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   alias App.Resources, as: R
+  import App.SpreadsheetController, only: [submit: 2]
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
@@ -13,6 +14,15 @@ defmodule App.HomepageController do
                  tags: get_tags(), resources: resources
   end
 
+  def show(conn, %{
+      "category" => %{"add_your_own" => cat_suggestion},
+      "audience" => %{"add_your_own" => aud_suggestion},
+      "content" => %{"add_your_own" => con_suggestion}
+    }
+  ) when (cat_suggestion <> aud_suggestion <> con_suggestion) != ""  do
+    conn
+    |> submit(%{"tag_suggestion" => [cat_suggestion, aud_suggestion, con_suggestion]})
+  end
   def show(conn, params) do
     prepend = fn(a, b) -> b <> a end
     query_string =
@@ -77,7 +87,6 @@ defmodule App.HomepageController do
     iex>content |> Enum.take(5)
     ["article", "tips", "free-trial", "mindfulness", "subscription"]
   """
-
   def get_tags do
     [:category, :audience, :content]
     |> Map.new(&({&1, R.get_tags(&1)}))
@@ -96,6 +105,7 @@ defmodule App.HomepageController do
       |> Map.new
       |> Map.merge(%{"subscription" => "true"})
   end
+
   @doc"""
     iex>audience_map = %{"audience" => audience_params()}
     iex>content_map = %{"content" => content_params()}

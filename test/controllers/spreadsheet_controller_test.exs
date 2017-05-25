@@ -12,4 +12,12 @@ defmodule App.SpreadsheetControllerTest do
       assert html_response(conn, 302)
     end)
   end
+
+  test "submit empty string", %{conn: conn} do
+    params = %{"suggestions" => %{"suggestions" => ""}}
+    conn = post conn, feedback_path(conn, :post, params)
+
+    refute get_flash(conn, :suggestions)
+    assert html_response(conn, 302)
+  end
 end

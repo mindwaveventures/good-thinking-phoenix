@@ -14,11 +14,12 @@
 
 <div class="tc">
   <%= checkbox :filter, :filter, class: "filter-check absolute o-0" %>
-  <%= label :filter, :filter, class: "mt3 f5 link dib ph3 pv2 br-pill lm-bg-white lm-orange pointer ba bw1 b--lm-orange segoe-bold tracked" %>
+  <%= label :filter, :filter, class: get_class("primary_button") <> " mt4" %>
   <%= render "sidebar.html", conn: @conn, tags: @tags %>
 </div>
 
 <section class="tc-ns" id="results">
+  <p class="alert" role="alert"><%= get_flash @conn, :tag_suggestion %></p>
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
@@ -36,4 +37,3 @@
 
 <%= component "alpha_section", conn: @conn, content: @content %>
 <%= component "footer", content: @content %>
-
