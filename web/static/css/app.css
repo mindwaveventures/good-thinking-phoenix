@@ -121,12 +121,16 @@ h2 > span.b {
   margin-left: -80vw;
 }
 
-.filter-check:not(:checked)~.filter-sidebar + .sidebar-overlay {
+.filter-check:not(:checked)~.filter-sidebar + .sidebar-overlay-js {
   display: none;
 }
 
-.filter-check:checked~.filter-sidebar + .sidebar-overlay {
+.filter-check:checked~.filter-sidebar + .sidebar-overlay-js {
   display: block;
+}
+
+.sidebar-overlay-nojs {
+  display: none;
 }
 
 .filter-check:not(:checked)~.filter-sidebar,
@@ -366,7 +370,7 @@ code {
   width: 1.4em;
   height: 1.4em;
   position: relative;
-  margin-right: 1em; 
+  margin-right: 1em;
   vertical-align: top;
   cursor: pointer;
   text-align: center;
@@ -398,4 +402,3 @@ code {
   top: -0.9rem;
   right: -0.8rem;
 }
-

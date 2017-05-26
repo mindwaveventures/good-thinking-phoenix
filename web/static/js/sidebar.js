@@ -5,6 +5,7 @@ if (isNotIE8()) {
       select("#filter_filter").checked = false;
       select("body").classList.remove("stop-scrolling");
     });
+    select(".sidebar-overlay").classList.add("sidebar-overlay-js");
 
     // Stops main page scrolling when sidebar open
     select("#filter_filter").addEventListener('click', function() {
