@@ -1,22 +1,22 @@
 <div class="<%= "select-#{@type}-filters" %> w-80 pa2">
   <h5 class="lm-dark-grey nunito-italic ma0">Select as many as are relevant <span class="filter-arrow filter-arrow-hide nunito lm-orange fr">&#x25bc;</span></h5>
 </div>
-<div class="mb4 ph1 <%= "#{@type}-filters" %>">
-  <div class="b--lm-grey bb pa2">
+<div class="mb4 <%= "#{@type}-filters" %>">
+  <div class="ph1 lm-bg-orange-hover">
     <%= checkbox @form, String.to_atom("all-#{@type}"), value: nothing_selected(@conn.query_params[@type], "all-category"), class: "checked-fill absolute o-0 show-everything-#{@type}" %>
-    <%= label @form, String.to_atom("all-#{@type}") do
+    <%= label @form, String.to_atom("all-#{@type}"), class: "db pa2 pr0 pointer b--lm-grey bb" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>Show me everything</span>")
     end %>
   </div>
   <%= for tag <- @tags[String.to_atom(@type)] do %>
-  <div class="b--lm-grey bb pa2">
+  <div class="ph1 lm-bg-orange-hover">
     <%= checkbox @form, String.to_atom(tag), value: tag_is_selected(@conn.query_params[@type], tag), class: "checked-fill absolute o-0 filters-#{@type}" %>
-    <%= label @form, String.to_atom(tag) do
+    <%= label @form, String.to_atom(tag), class: "db pa2 pr0 pointer b--lm-grey bb" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>#{remove_hyphen(tag)}</span>")
     end %>
   </div>
   <% end %>
-  <div class="b--lm-grey pa2">
+  <div class="pa2">
     <span>None of these (add your own)</span>
     <%= text_input @form, :add_your_own, class: "fr mt1 w-100", "aria-label": "add #{@type}" %>
     <div class="dib w-100 tr">

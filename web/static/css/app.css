@@ -170,6 +170,10 @@ h2 > span.b {
   background-color: #FAB781;
 }
 
+.lm-bg-orange-hover:hover {
+  background-color: #FAB781;
+}
+
 .lm-bg-dark-blue {
   background-color: #242E50;
 }
