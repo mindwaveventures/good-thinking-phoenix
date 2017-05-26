@@ -13,12 +13,18 @@
     <%= raw @content.alphatext %>
     <%= if @show_email_submit do %>
       <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#email_form", [as: :email], fn f -> %>
-        <%= label f, :email, "Email:", class: "db mv1" %>
-        <%= email_input(f, :email, class: "br2 pa2 mb2-l mb3 f5 fw3 ba w-100") %>
-        <p class="alert ma0 mb4 pa3 ba bw1-ns bg--lm-green b--lm-green" role="alert"><%= get_flash(@conn, :emails) %></p>
-        <div class="relative w-100 mt3">
-          <%= component "buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
-        </div>
+        <%= if get_flash(@conn, :emails) do %>
+          <p class="alert ma0 mb4 mr1 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
+            <%= get_flash(@conn, :emails) %>
+            <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
+          </p>
+        <% else %>
+          <%= label f, :email, "Email:", class: "db mv1" %>
+          <%= email_input(f, :email, class: "br2 pa2 mb2-l mb3 f5 fw3 ba w-100") %>
+          <div class="relative w-100 mt3">
+            <%= component "buttons/primary_button", value: "Take part", class: "absolute bottom--1 right-0" %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
