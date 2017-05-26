@@ -40,6 +40,18 @@ if (isNotIE8()) {
           }
         });
       });
+
+      select(".show-everything-" + el).addEventListener("click", function() {
+        selectAll(".filters-" + el).forEach(function(elem) {
+          elem.checked = false;
+        })
+      });
+
+      selectAll(".filters-" + el).forEach(function(elem){
+        elem.addEventListener("click", function() {
+          select(".show-everything-" + el).checked = false;
+        });
+      });
     });
   })();
 }
