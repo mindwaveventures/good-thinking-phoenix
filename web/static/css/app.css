@@ -309,8 +309,8 @@ code {
   width: 0.5rem;
 }
 
-.h2.5 {
-  height: 3rem;
+.h18 {
+  height: 1.8rem;
 }
 
 #email_form h2 {
@@ -385,7 +385,6 @@ code {
 .feedback-section h4 {
   margin-bottom: 1rem;
   margin-top: 0;
-  font-family: 'Segoe UI';
   font-size: 1.2rem;
   line-height: 1.2;
 }
@@ -402,3 +401,8 @@ code {
   top: -0.9rem;
   right: -0.8rem;
 }
+
+lm-ls1 {
+  letter-spacing: 0.1rem;
+}
+
