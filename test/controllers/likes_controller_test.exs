@@ -14,7 +14,6 @@ defmodule App.LikesControllerTest do
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
 
     assert like_value == 1
-    assert get_flash(conn, :info) == "Liked!"
     assert redirected_to(conn) == "/"
   end
 
@@ -28,7 +27,6 @@ defmodule App.LikesControllerTest do
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
 
     assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
     assert redirected_to(conn) == "/"
   end
 
@@ -42,7 +40,6 @@ defmodule App.LikesControllerTest do
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
 
     assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
     assert redirected_to(conn) == "/"
   end
 
@@ -61,7 +58,6 @@ defmodule App.LikesControllerTest do
     %Likes{like_value: like_value} = Repo.get_by Likes, article_id: @article_id
 
     assert like_value == -1
-    assert get_flash(conn, :info) == "Disliked!"
     assert redirected_to(conn) == url2
   end
 end

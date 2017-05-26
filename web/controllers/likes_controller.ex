@@ -4,18 +4,16 @@ defmodule App.LikesController do
 
   def like(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, 1
-    handle_like_redirect conn, "Liked!", get_query_string(conn)
+    handle_like_redirect conn, get_query_string(conn)
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, -1
-    handle_like_redirect conn, "Disliked!", get_query_string(conn)
+    handle_like_redirect conn, get_query_string(conn)
   end
 
-  defp handle_like_redirect(conn, flash, query) do
-    conn
-    |> put_flash(:info, flash)
-    |> redirect(to: redirect_path(conn, query))
+  defp handle_like_redirect(conn, query) do
+    redirect(conn, to: redirect_path(conn, query))
   end
 
   defp handle_like(conn, article_id, like_value) do
