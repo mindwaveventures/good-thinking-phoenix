@@ -12,7 +12,7 @@
   <div class="b--lm-grey bb pa2">
     <%= checkbox @form, String.to_atom(tag), value: tag_is_selected(@conn.query_params[@type], tag), class: "checked-fill absolute o-0" %>
     <%= label @form, String.to_atom(tag) do
-      raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>#{tag}</span>")
+      raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>#{remove_hyphen(tag)}</span>")
     end %>
   </div>
   <% end %>

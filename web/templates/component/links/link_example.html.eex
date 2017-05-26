@@ -1,0 +1,1 @@
+<%= component "links/link", value: "I'm a link", to: "#", class: "bg-white pa2" %>
