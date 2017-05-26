@@ -393,21 +393,9 @@ code {
   margin-bottom: 0.3rem;
 }
 
-@font-face {
-  font-family: 'fontello';
-  src: url('/fonts/tick-fonts/fontello.eot');
-  src: url('/fonts/tick-fonts/fontello.eot') format('embedded-opentype'),
-       url('/fonts/tick-fonts/fontello.woff') format('woff'),
-       url('/fonts/tick-fonts/fontello.ttf') format('truetype'),
-       url('/fonts/tick-fonts/fontello.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .tick-icon {
-  font-family: "fontello";
-  padding: 0.3rem 0.4rem;
-  top: -1rem;
+  padding: 0.3rem 0.3rem 0.4rem 0.4rem;
+  top: -0.9rem;
   right: -0.8rem;
 }
 
