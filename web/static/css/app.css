@@ -382,16 +382,28 @@ code {
   box-shadow: inset 0 0 0 4px #fff;
 }
 
-.feedback-section h4 {
+.feedback-section h4,
+.feedback-section h3 {
+  font-family: 'Segoe UI-Bold';
   margin-bottom: 1rem;
   margin-top: 0;
   font-size: 1.2rem;
   line-height: 1.2;
 }
 
+.feedback-form-section {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.feedback-section ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .feedback-section p {
-  font-size: 0.8rem;
-  font-weight: lighter;
+  font-family: "NunitoSans";
+  font-size: 1rem;
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
 }
