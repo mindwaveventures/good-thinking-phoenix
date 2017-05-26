@@ -16,7 +16,7 @@ if (isNotIE8()) {
     select(".sidebar-buttons").classList.add("absolute", "bottom-2");
 
     // Displays orange arrows on select box
-    selectAll(".filter-arrow").forEach(function(el) {
+    selectAll(".fa-down").forEach(function(el) {
       el.classList.remove("filter-arrow-hide");
     });
 
@@ -27,13 +27,15 @@ if (isNotIE8()) {
       var sidebar = select(".sidebar");
 
       filterType.classList.add("hide-filters", "br1", "w-80", "absolute", "bg-white", "z-1", "overflow-scroll");
-      filterSelect.classList.add("select-filters");
+      filterSelect.classList.add("select-filters", "pointer");
 
       filterSelect.addEventListener("click", function() {
         toggleClasses(filterType, ["hide-filters", "shadow-2", "h5"])
+        toggleArrows(el);
 
         sidebar.addEventListener("click", function hideFilters(e) {
           if (e.path.indexOf(filterSelect) == -1 && e.path.indexOf(filterType) == -1){
+            toggleArrows(el);
             filterType.classList.add("hide-filters");
             filterType.classList.remove("shadow-2", "h5");
             sidebar.removeEventListener("click", hideFilters);
@@ -41,12 +43,14 @@ if (isNotIE8()) {
         });
       });
 
+      // Clicking 'Show Everything' deselects all other filters
       select(".show-everything-" + el).addEventListener("click", function() {
         selectAll(".filters-" + el).forEach(function(elem) {
           elem.checked = false;
         })
       });
 
+      // Clicking any other filter deselects 'Show Everything'
       selectAll(".filters-" + el).forEach(function(elem){
         elem.addEventListener("click", function() {
           select(".show-everything-" + el).checked = false;
@@ -70,6 +74,11 @@ function select(query) {
 
 function selectAll(query) {
   return Array.prototype.slice.call(document.querySelectorAll(query));
+}
+
+function toggleArrows(type) {
+  toggleClasses(select(".select-" + type + "-filters > h5 > .fa-up"), ["filter-arrow-hide"]);
+  toggleClasses(select(".select-" + type + "-filters > h5 > .fa-down"), ["filter-arrow-hide"]);
 }
 
 // Site is fully functional without javascript

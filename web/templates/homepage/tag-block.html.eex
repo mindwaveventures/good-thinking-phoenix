@@ -1,5 +1,5 @@
 <div class="<%= "select-#{@type}-filters" %> w-80 pa2">
-  <h5 class="lm-dark-grey nunito-italic ma0">Select as many as are relevant <span class="filter-arrow filter-arrow-hide nunito lm-orange fr">&#x25bc;</span></h5>
+  <h5 class="lm-dark-grey nunito-italic ma0">Select as many as are relevant <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
 </div>
 <div class="mb4 <%= "#{@type}-filters" %>">
   <div class="ph1 lm-bg-orange-hover">
