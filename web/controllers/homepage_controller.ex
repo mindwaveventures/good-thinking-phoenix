@@ -123,8 +123,18 @@ defmodule App.HomepageController do
              a
            end
          end)
-       |> String.trim(",")}
+       |> String.trim(",")
+       |> remove_all_type_tags(tag_type)}
     end)
     |> URI.encode_query
+  end
+
+  def remove_all_type_tags(str, type) do
+    type_tag_string = "all-#{type}"
+    if str != type_tag_string do
+      str
+      |> String.replace(type_tag_string, "")
+      |> String.trim(",")
+    end
   end
 end
