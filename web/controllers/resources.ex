@@ -7,9 +7,41 @@ defmodule App.Resources do
 
   alias App.{CMSRepo, Repo, Likes}
 
-  def sort_priority(list) do
-    Enum.sort(list, &(&1[:priority] <= &2[:priority]))
+  def sort_priority(list),
+    do: Enum.sort(list, &(&1[:priority] <= &2[:priority]))
+
+  @doc """
+    iex>handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>")
+    "hello"
+    # #{~s(<h1>Hello <b class="nunito-bold">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segio-bold">here</b></p>)}
+    # iex>handle_bold("<h1><b>Hello World</b></h1>")
+    # #{~s(<h1 class="nuito-bold">Hello World</h1>)}
+    # iex>handle_bold("<p><b>Hello World</b></p>")
+    # ~s(<p class="segio-bold">Hello World</p>)
+  """
+
+  @nuito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
+  @seguio_tags ~w(p li)
+  @tags Enum.join(@nuito_tags ++ @seguio_tags, "|")
+  def handle_bold(string) when is_binary(string) do
+    case String.contains?(string, "<b>") do
+      true ->
+        "<(#{@tags})>(.*?(?=(?:<\/\\1>)))<\/\\1>"
+          |> Regex.compile!
+          |> Regex.scan(string)
+          |> Enum.map(&(&1 |> List.delete_at(0) |> List.to_tuple))
+          |> handle_bold
+      _ -> string
+    end
   end
+  def handle_bold({tag, inner_html}) when tag in @nuito_tags do
+    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="nuito">)
+  end
+  def handle_bold({tag, inner_html}) when tag in @seguio_tags do
+    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="segoe-bold">)
+  end
+  def handle_bold(list) when is_list(list),
+    do: list |> Enum.map(&handle_bold/1) |> Enum.join
 
   def get_content(content) do
     query = from page in "wagtailcore_page",
@@ -24,6 +56,7 @@ defmodule App.Resources do
     query
     |> CMSRepo.one
     |> Map.get(content)
+    |> handle_bold
   end
 
   def get_tags(type) do
@@ -47,9 +80,8 @@ defmodule App.Resources do
     |> sort_priority
   end
 
-  def filter_by_category(%{tags: %{"category" => category}}, filter) do
-    Enum.any?(category, fn tag -> tag in filter["category"] end)
-  end
+  def filter_by_category(%{tags: %{"category" => category}}, filter),
+    do: Enum.any?(category, fn tag -> tag in filter["category"] end)
 
   def filter_tags(%{tags: tags}, filter) do
     non_category_tags = Map.delete(tags, "category")
@@ -107,7 +139,8 @@ defmodule App.Resources do
     }, resource)
   end
 
-  def add_all_filter({type, list}), do: {type, list ++ ["all-#{type}"]}
+  def add_all_filter({type, list}),
+    do: {type, list ++ ["all-#{type}"]}
 
   def create_query(tag_type, resource, type) do
     query = from t in "taggit_tag",

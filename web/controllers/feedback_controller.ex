@@ -25,15 +25,24 @@ defmodule App.FeedbackController do
     feedback_content = CMSRepo.one(feedback_content_query)
 
     render conn, "index.html",
-                 forms: forms,
-                 form_title: feedback_content.form_title,
-                 feedback1: feedback_content.feedback1,
-                 feedback2: feedback_content.feedback2,
-                 content: Map.new([:alphatext, :footer],
-                                  &({&1, R.get_content(&1)}))
+                 forms: handle_bold(forms),
+                 form_title: handle_bold(feedback_content.form_title),
+                 feedback1: handle_bold(feedback_content.feedback1),
+                 feedback2: handle_bold(feedback_content.feedback2),
+                 content: [:alphatext, :footer]
+                          |> Map.new(&({&1, R.get_content(&1)}))
+                          |> handle_bold
   end
 
-  def post(conn, params) do
-    SpreadsheetController.submit(conn, params)
-  end
+  def handle_bold(string) when is_binary(string),
+    do: R.handle_bold(string)
+  def handle_bold(map) when is_map(map),
+    do: map |> Map.to_list |> Map.new(fn {k, v} -> {k, handle_bold(v)} end)
+  def handle_bold(list) when is_list(list),
+    do: Enum.map(list, &handle_bold/1)
+  def handle_bold(bool) when is_boolean(bool),
+    do: bool
+
+  def post(conn, params),
+    do: SpreadsheetController.submit(conn, params)
 end
