@@ -59,3 +59,8 @@ if (isNotIE8()) {
     });
   })();
 }
+
+function toggleArrows(type) {
+  toggleClasses(select(".select-" + type + "-filters > h5 > .fa-up"), ["filter-arrow-hide"]);
+  toggleClasses(select(".select-" + type + "-filters > h5 > .fa-down"), ["filter-arrow-hide"]);
+ }

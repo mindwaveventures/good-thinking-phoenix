@@ -77,6 +77,25 @@ defmodule App.Resources do
       |> Enum.map(&get_all_likes(&1, lm_session))
   end
 
+  def get_single_resource(conn, id) do
+    session = get_session conn, :lm_session
+
+    query = from r in "resources_resourcepage",
+      where: r.page_ptr_id == ^String.to_integer(id),
+      select: %{
+        id: r.page_ptr_id,
+        heading: r.heading,
+        url: r.resource_url,
+        body: r.body,
+        priority: r.priority
+      }
+
+    query
+    |> CMSRepo.one
+    |> get_all_tags("resource")
+    |> get_all_likes(session)
+  end
+
   def get_all_likes(%{id: article_id} = map, lm_session) do
     likequery = from l in Likes,
             where: l.article_id == ^article_id,

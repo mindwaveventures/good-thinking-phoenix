@@ -32,12 +32,6 @@ function isNotIE8() {
   return Element.prototype.addEventListener && Array.prototype.forEach;
 }
 
-function getCookie(name) {
-  var reg = new RegExp("(?:^|\s)" + name +"=([^;]+);")
-  console.log(document.cookie.match(reg)[1]);
-  return document.cookie.match(reg)[1];
-}
-
 // Make an AJAX request with a Phoenix form using the csrf value of that form
 function makePhoenixFormRequest(type, form, callback) {
   var request = new XMLHttpRequest();

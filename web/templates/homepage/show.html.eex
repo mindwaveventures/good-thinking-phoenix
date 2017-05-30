@@ -3,58 +3,8 @@
     <p class="tl b">Showing <%= number_of_results @resources %></p>
   </div>
   <%= for resource <- @resources do %>
-    <%= if resource[:url] do %>
-      <div class="br1 shadow-2 pa4 mt4 tl w-60-ns center" id="resource_<%= resource.id %>">
-        <h2 class="mt0 mb1"><%= resource[:heading] %></h2>
-        <div class="word-wrap">
-          <%= if String.length(resource.url) > 0 do %>
-            <%= link resource.url, to: resource.url, class: "link f6 lm-turquoise" %>
-          <% end %>
-        </div>
-        <div class="mt1">
-          <%= for {tag_type, tags} <- resource.tags do %>
-            <%= for t <- tags do %>
-              <%= if t != "all-#{tag_type}" do %>
-                <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1"><%= remove_hyphen(t) %></span>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-        <%= raw resource[:body] %>
-        <div class="bt b--lm-grey">
-          <p class="b">Would you recommend this?</p>
-          <div class="w-50 mw4 dib">
-            <div class="dib mb3 v-mid tl"><span id="like-count-<%= resource.id %>"><%= resource.likes %></span></div>
-            <%= form_for @conn, likes_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30 like-form", id: "like-#{resource.id}"], fn _f -> %>
-              <button type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left pointer"><span class="absolute o-0">Recommend</span></button>
-            <%= end %>
-            <%= form_for @conn, likes_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30 dislike-form", id: "dislike-#{resource.id}"], fn _f -> %>
-              <button type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Don't Recommend</span></button>
-            <%= end %>
-            <div class="dib mb3 v-mid tl"><span id="dislike-count-<%= resource.id %>"><%= resource.dislikes %></span></div>
-          </div>
-          <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Share</span></button>
-          <%= if resource.liked != "none" do %>
-            <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, resource.id) <> "#resource_#{resource.id}", [as: :resource_feedback], fn f -> %>
-              <p>
-                What do you <%= case resource.liked do
-                  1 -> "like"
-                  -1 -> "dislike"
-                end %> about this resource?
-              </p>
-              <%= textarea f, :feedback, class: "w-50 h3 db mb2 nr" %>
-              <%= hidden_input f, :liked, value: resource.liked %>
-              <%= hidden_input f, :resource_name, value: resource.heading %>
-              <%= component "buttons/primary_button", value: "Submit" %>
-              <p class="alert" role="alert"><%= get_flash @conn, String.to_atom "resource_feedback_#{resource.id}" %></p>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <%= else %>
-      <div>
-        <%= link resource.heading, to: article_path(@conn, :show, resource.id) %>
-      </div>
-    <% end %>
+    <div id="resource_<%= resource.id %>">
+      <%= render "resource.html", resource: resource, conn: @conn %>
+    </div>
   <% end %>
 </div>
