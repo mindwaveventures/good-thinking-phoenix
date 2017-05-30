@@ -36,7 +36,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
       <div class="pa3 lm-bg-dark-blue lm-white w-100">
-        <h2 class="ma0 f7 f5-l f5-m">
+        <h2 class="ma0 f6 f5-l f5-m">
           <span class="b">ALPHA:</span>
           This is a prototype - your
           <%= if @conn.request_path != "/feedback" do %>
