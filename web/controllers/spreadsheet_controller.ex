@@ -49,19 +49,18 @@ defmodule App.SpreadsheetController do
         store_data conn, data_list, tab_name
         @http.post_spreadsheet data_list, tab_name
 
-        message = case tab_name do
-          :emails -> "Email address entered successfully!"
-          :suggestions -> "Thank you for your input, it will "
+        feedback_map = %{
+          emails: "Email address entered successfully!",
+          suggestions: "Thank you for your input, it will "
                        <> "be used to improve and develop the service further. "
-                       <> "Let us know if you have any more feedback"
-          :feedback -> "Thanks for your feedback"
-          :tag_suggestion -> "Thank you for your suggestion"
-          _ -> nil
-        end
+                       <> "Let us know if you have any more feedback",
+          feedback: "Thanks for your feedback",
+          tag_suggestion: "Thank you for your suggestion"
+        }
 
-        case message do
+        case feedback_map[tab_name] do
           nil -> conn
-          _ -> put_flash conn, tab_name, message
+          message -> put_flash conn, tab_name, message
         end
     end
   end

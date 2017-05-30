@@ -56,6 +56,12 @@
       <div class="w-100 tr mt3">
         <%= component "buttons/primary_button", value: "Submit" %>
       </div>
+      <%= if get_flash(@conn, :feedback) do %>
+        <div class="alert ma0 mb4 mr1 mt4 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
+          <%= get_flash(@conn, :feedback) %>
+          <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
+        </div>
+      <% end %>
     </div>
   </section>
 <% end %>
