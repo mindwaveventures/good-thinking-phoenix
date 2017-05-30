@@ -60,31 +60,7 @@ if (isNotIE8()) {
   })();
 }
 
-// Helper function to toggle multiple classes on an element
-function toggleClasses(element, classes) {
-  classes.forEach(function(c) {
-    element.classList.toggle(c);
-  });
-}
-
-// Aliases for querySelector functions
-function select(query) {
-  return document.querySelector(query);
-}
-
-function selectAll(query) {
-  return Array.prototype.slice.call(document.querySelectorAll(query));
-}
-
 function toggleArrows(type) {
   toggleClasses(select(".select-" + type + "-filters > h5 > .fa-up"), ["filter-arrow-hide"]);
   toggleClasses(select(".select-" + type + "-filters > h5 > .fa-down"), ["filter-arrow-hide"]);
-}
-
-// Site is fully functional without javascript
-// so if these methods do not exist (Internet Explorer 8 & unsupported browsers)
-// fall back to non-javascript
-// https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices
-function isNotIE8() {
-  return Element.prototype.addEventListener && Array.prototype.forEach;
-}
+ }

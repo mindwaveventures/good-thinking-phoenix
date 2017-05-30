@@ -1,6 +1,6 @@
 defmodule App.LikesControllerTest do
   use App.ConnCase, async: false
-  
+
   alias Plug.Conn
   alias App.Likes
 
@@ -59,5 +59,16 @@ defmodule App.LikesControllerTest do
 
     assert like_value == -1
     assert redirected_to(conn) == url2
+  end
+
+  @article_id "29"
+  test "POST /like/#{@article_id} - json request", %{conn: conn} do
+    conn =
+      conn
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
+        |> Conn.put_req_header("accept", "application/json")
+        |> post(likes_path(conn, :like, @article_id))
+
+    assert json_response(conn, 200)
   end
 end
