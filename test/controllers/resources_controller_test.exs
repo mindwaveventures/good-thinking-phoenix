@@ -1,4 +1,4 @@
 defmodule App.ResourcesTest do
   use App.ConnCase, async: false
-  doctest App.Resources
+  doctest App.Resources, import: true
 end
