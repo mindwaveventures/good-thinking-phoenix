@@ -1,6 +1,7 @@
 defmodule App.SpreadsheetController do
   use App.Web, :controller
-  alias App.Feedback
+  alias App.{Feedback, Resources}
+  import Phoenix.View, only: [render_to_string: 3]
 
   @http Application.get_env :app, :http
   @like_map %{"1" => "Like", "-1" => "Dislike"}
@@ -40,7 +41,7 @@ defmodule App.SpreadsheetController do
     conn
     |> handle_submit(:resource_feedback, [id, name, @like_map[liked], feedback])
     |> put_flash(feedback_atom, "Thank you for your feedback")
-    |> redirect(to: path)
+    |> redirect_after_feedback(id)
   end
   defp handle_submit(conn, tab_name, data_list) do
     case Enum.join data_list do
@@ -72,5 +73,21 @@ defmodule App.SpreadsheetController do
                             tab_name: "#{tab_name}",
                             data: data_list})
     |> Repo.insert!
+  end
+
+  def redirect_after_feedback(conn, id) do
+    case get_req_header conn, "accept" do
+      ["application/json"] ->
+        json(conn, %{
+          result: render_to_string(
+            App.HomepageView,
+            "resource.html",
+            resource: Resources.get_single_resource(conn, id), conn: conn
+          ),
+          id: id
+        })
+      _ ->
+        redirect(conn, to: homepage_path(conn, :index))
+    end
   end
 end

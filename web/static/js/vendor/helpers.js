@@ -46,5 +46,10 @@ function makePhoenixFormRequest(type, form, callback) {
 
   request.setRequestHeader('accept', 'application/json');
   request.setRequestHeader("x-csrf-token", csrf);
-  request.send();
+
+  if (type === "POST") {
+    request.send(new FormData(form));
+  } else {
+    request.send();
+  }
 }
