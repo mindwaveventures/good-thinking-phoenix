@@ -13,9 +13,9 @@
 </section>
 
 <section>
-  <div class="lm-bg-orange pa3 ph4">
-    <p class="ma0 w-100-ns w-80 tc-ns">
-      If you are needing <span class="segoe-bold">urgent support</span> please <%= link "click here", to: "info/crisis", class: "lm-dark-turquoise" %>
+  <div class="lm-bg-orange pa3 ph4 tc">
+    <p class="ma0 w-100 tc">
+      <%= link "Get urgent support", to: "info/crisis", class: "lm-dark-turquoise segoe-bold" %>
     </p>
   </div>
 </section>
