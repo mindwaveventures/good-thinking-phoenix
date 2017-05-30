@@ -2,7 +2,6 @@ defmodule App.Resources do
   @moduledoc """
   # Functions for querying CMS Database for resources
   """
-
   use App.Web, :controller
 
   alias App.{CMSRepo, Repo, Likes}
@@ -11,18 +10,17 @@ defmodule App.Resources do
     do: Enum.sort(list, &(&1[:priority] <= &2[:priority]))
 
   @doc """
-    iex>handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>")
-    "hello"
-    # #{~s(<h1>Hello <b class="nunito-bold">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segio-bold">here</b></p>)}
-    # iex>handle_bold("<h1><b>Hello World</b></h1>")
-    # #{~s(<h1 class="nuito-bold">Hello World</h1>)}
-    # iex>handle_bold("<p><b>Hello World</b></p>")
-    # ~s(<p class="segio-bold">Hello World</p>)
+  iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
+  true
+  iex> handle_bold("<h1><b>Hello World</b></h1>") == ~s(<h1><b class="nunito">Hello World</b></h1>)
+  true
+  iex> handle_bold("<p><b>Hello World</b></p>") == ~s(<p><b class="segoe-bold">Hello World</b></p>)
+  true
   """
 
-  @nuito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
-  @seguio_tags ~w(p li)
-  @tags Enum.join(@nuito_tags ++ @seguio_tags, "|")
+  @nunito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
+  @segio_tags ~w(p li)
+  @tags Enum.join(@nunito_tags ++ @segio_tags, "|")
   def handle_bold(string) when is_binary(string) do
     case String.contains?(string, "<b>") do
       true ->
@@ -34,10 +32,10 @@ defmodule App.Resources do
       _ -> string
     end
   end
-  def handle_bold({tag, inner_html}) when tag in @nuito_tags do
-    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="nuito">)
+  def handle_bold({tag, inner_html}) when tag in @nunito_tags do
+    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="nunito">)
   end
-  def handle_bold({tag, inner_html}) when tag in @seguio_tags do
+  def handle_bold({tag, inner_html}) when tag in @segio_tags do
     String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="segoe-bold">)
   end
   def handle_bold(list) when is_list(list),
