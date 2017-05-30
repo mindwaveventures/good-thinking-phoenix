@@ -24,14 +24,14 @@
         <div class="bt b--lm-grey">
           <p class="b">Would you recommend this?</p>
           <div class="w-50 mw4 dib">
-            <div class="dib mb3 v-mid tl"><span><%= resource.likes %></span></div>
-            <%= form_for @conn, likes_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30"], fn _f -> %>
+            <div class="dib mb3 v-mid tl"><span id="like-count-<%= resource.id %>"><%= resource.likes %></span></div>
+            <%= form_for @conn, likes_path(@conn, :like, resource.id) <> "#resource_#{resource.id}", [as: :like, class: "dib w-30 like-form", id: "like-#{resource.id}"], fn _f -> %>
               <button type="submit" class="<%= check_liked "like", resource.liked %> w-100 h2 bn bg-white fl p0 bg-left pointer"><span class="absolute o-0">Recommend</span></button>
             <%= end %>
-            <%= form_for @conn, likes_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30"], fn _f -> %>
+            <%= form_for @conn, likes_path(@conn, :dislike, resource.id) <> "#resource_#{resource.id}", [as: :dislike, class: "dib w-30 dislike-form", id: "dislike-#{resource.id}"], fn _f -> %>
               <button type="submit" class="<%= check_liked "dislike", resource.liked %> w-100 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Don't Recommend</span></button>
             <%= end %>
-            <div class="dib mb3 v-mid tl"><span><%= resource.dislikes %></span></div>
+            <div class="dib mb3 v-mid tl"><span id="dislike-count-<%= resource.id %>"><%= resource.dislikes %></span></div>
           </div>
           <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Share</span></button>
           <%= if resource.liked != "none" do %>

@@ -4,16 +4,26 @@ defmodule App.LikesController do
 
   def like(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, 1
-    handle_like_redirect conn, get_query_string(conn)
+    handle_like_redirect conn, get_query_string(conn), article_id, 1
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
     handle_like conn, article_id, -1
-    handle_like_redirect conn, get_query_string(conn)
+    handle_like_redirect conn, get_query_string(conn), article_id, -1
   end
 
-  defp handle_like_redirect(conn, query) do
-    redirect(conn, to: redirect_path(conn, query))
+  defp handle_like_redirect(conn, query, article_id, like_value) do
+    case get_req_header(conn, "accept") do
+      ["application/json"] ->
+        case like_value do
+          1 ->
+            json(conn, %{id: article_id, value: "like"})
+          -1 ->
+            json(conn, %{id: article_id, value: "dislike"})
+        end
+      _ ->
+        redirect(conn, to: redirect_path(conn, query))
+    end
   end
 
   defp handle_like(conn, article_id, like_value) do
