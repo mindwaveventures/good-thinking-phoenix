@@ -17,12 +17,11 @@ defmodule App.Resources do
   iex> handle_bold("<p><b>Hello World</b></p>") == ~s(<p><b class="segoe-bold">Hello World</b></p>)
   true
   """
-
   @nunito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
   @segio_tags ~w(p li)
   @tags Enum.join(@nunito_tags ++ @segio_tags, "|")
   def handle_bold(string) when is_binary(string) do
-    case String.contains?(string, "<b>") do
+    case String.contains? string, "<b>" do
       true ->
         "<(#{@tags})>(.*?(?=(?:<\/\\1>)))<\/\\1>"
           |> Regex.compile!
@@ -32,14 +31,14 @@ defmodule App.Resources do
       _ -> string
     end
   end
-  def handle_bold({tag, inner_html}) when tag in @nunito_tags do
-    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="nunito">)
-  end
-  def handle_bold({tag, inner_html}) when tag in @segio_tags do
-    String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="segoe-bold">)
-  end
+  def handle_bold({tag, inner_html}) when tag in @nunito_tags,
+    do: add_bold_class {tag, inner_html}, "nunito"
+  def handle_bold({tag, inner_html}) when tag in @segio_tags,
+    do: add_bold_class {tag, inner_html}, "segoe-bold"
   def handle_bold(list) when is_list(list),
     do: list |> Enum.map(&handle_bold/1) |> Enum.join
+  defp add_bold_class({tag, inner_html}, class),
+    do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
 
   def get_content(content) do
     query = from page in "wagtailcore_page",
@@ -148,6 +147,6 @@ defmodule App.Resources do
       select: t.name,
       distinct: t.name
 
-      {tag_type, query}
+    {tag_type, query}
   end
 end
