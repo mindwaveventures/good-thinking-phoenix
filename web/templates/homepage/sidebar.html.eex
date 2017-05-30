@@ -3,19 +3,19 @@
     <div>
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
       <div class="mb5 relative">
-        <h4 class="w-80 mb1 mt2">Have you been recently affected by any of the following?</h4>
+        <h4 class="w-80 mb1 mt2">Are you currently experiencing any of the following?</h4>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "category", form: fcat %>
         <% end %>
       </div>
       <div class="mv5 relative">
-        <h4 class="w-80 mt4 mb1">I want to see content for:</h4>
+        <h4 class="w-80 mt4 mb1">Is anything in particular affecting your sleep?</h4>
         <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "audience", form: fa %>
         <% end %>
       </div>
       <div class="mv5 relative">
-        <h4 class="w-80 mt4 mb1">Show me:</h4>
+        <h4 class="w-80 mt4 mb1">What type of support are you looking for?</h4>
         <%= inputs_for f, :content, [as: :content], fn fcon -> %>
           <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "content", form: fcon %>
         <% end %>
