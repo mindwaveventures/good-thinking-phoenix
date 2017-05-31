@@ -43,4 +43,19 @@ defmodule App.HomepageView do
   def remove_hyphen(str) do
     String.replace(str, "-", " ")
   end
+
+  @doc """
+    iex> safe_to_atom("hi’hi")
+    :"hi'hi"
+    iex> safe_to_atom("hello")
+    :"hello"
+  """
+  def safe_to_atom(string) do
+    string
+    |> String.replace("’", "'")
+    |> String.to_charlist
+    |> Enum.filter(&(&1 <= 255))
+    |> to_string
+    |> String.to_atom
+  end
 end

@@ -3,15 +3,15 @@
 </div>
 <div class="mb4 <%= "#{@type}-filters" %>">
   <div class="ph1 lm-bg-orange-hover">
-    <%= checkbox @form, String.to_atom("all-#{@type}"), value: nothing_selected(@conn.query_params[@type], "all-category"), class: "checked-fill absolute o-0 show-everything-#{@type}" %>
-    <%= label @form, String.to_atom("all-#{@type}"), class: "db pa2 pr0 pointer b--lm-grey bb" do
+    <%= checkbox @form, safe_to_atom("all-#{@type}"), value: nothing_selected(@conn.query_params[@type], "all-category"), class: "checked-fill absolute o-0 show-everything-#{@type}" %>
+    <%= label @form, safe_to_atom("all-#{@type}"), class: "db pa2 pr0 pointer b--lm-grey bb" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>Show me everything</span>")
     end %>
   </div>
-  <%= for tag <- @tags[String.to_atom(@type)] do %>
+  <%= for tag <- @tags[safe_to_atom(@type)] do %>
   <div class="ph1 lm-bg-orange-hover">
-    <%= checkbox @form, String.to_atom(tag), value: tag_is_selected(@conn.query_params[@type], tag), class: "checked-fill absolute o-0 filters-#{@type}" %>
-    <%= label @form, String.to_atom(tag), class: "db pa2 pr0 pointer b--lm-grey bb" do
+    <%= checkbox @form, safe_to_atom(tag), value: tag_is_selected(@conn.query_params[@type], tag), class: "checked-fill absolute o-0 filters-#{@type}" %>
+    <%= label @form, safe_to_atom(tag), class: "db pa2 pr0 pointer b--lm-grey bb" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>#{remove_hyphen(tag)}</span>")
     end %>
   </div>
