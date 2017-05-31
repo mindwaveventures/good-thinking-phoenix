@@ -174,7 +174,7 @@ h2 > span.b {
   background-color: #FAB781;
 }
 
-.lm-bg-dark-blue {
+.lm-bg-dark-blue, .lm-bg-dark-blue-hover:hover {
   background-color: #242E50;
 }
 
@@ -234,7 +234,7 @@ h2 > span.b {
   border-color: #FAB781;
 }
 
-.b--lm-dark-blue {
+.b--lm-dark-blue, .b--lm-dark-blue-hover:hover {
   border-color: #242E50;
 }
 

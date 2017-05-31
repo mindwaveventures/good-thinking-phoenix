@@ -6,7 +6,7 @@
 
 <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue segoe feedback-section">
   <div class="w-60-m w-50-l center">
-    <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-orange bg-white pointer button tracked b--lm-orange ba bw1" %>
+    <%= component "buttons/secondary_button", value: "< Back", to: "/" %>
   </div>
 </section>
 
