@@ -7,7 +7,7 @@ defmodule App.Resources do
   alias App.{CMSRepo, Repo, Likes}
 
   def sort_priority(list),
-    do: Enum.sort(list, &(&1[:priority] <= &2[:priority]))
+    do: Enum.sort list, &(&1[:priority] <= &2[:priority])
 
   @doc """
   iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
@@ -19,7 +19,7 @@ defmodule App.Resources do
   """
   @nunito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
   @segio_tags ~w(p li)
-  @tags Enum.join(@nunito_tags ++ @segio_tags, "|")
+  @tags Enum.join @nunito_tags ++ @segio_tags, "|"
   def handle_bold(string) when is_binary(string) do
     case String.contains? string, "<b>" do
       true ->
@@ -78,13 +78,13 @@ defmodule App.Resources do
   end
 
   def filter_by_category(%{tags: %{"category" => category}}, filter),
-    do: Enum.any?(category, fn tag -> tag in filter["category"] end)
+    do: Enum.any? category, &(&1 in filter["category"])
 
   def filter_tags(%{tags: tags}, filter) do
-    non_category_tags = Map.delete(tags, "category")
-
-    Enum.any?(non_category_tags, fn {tag_type, tags} ->
-      Enum.any?(tags, fn tag -> tag in filter[tag_type] end)
+    tags
+    |> Map.delete("category")
+    |> Enum.any?(fn {tag_type, tags} ->
+      Enum.any? tags, &(&1 in filter[tag_type])
     end)
   end
 
@@ -125,20 +125,18 @@ defmodule App.Resources do
     |> get_all_likes(session)
   end
 
+  defp like_filter(map), do: map.value > 0
+  defp dislike_filter(map), do: map.value < 0
+  defp likes_count(query, filter),
+    do: query |> Repo.all |> Enum.filter_map(filter, &(&1.value)) |> Enum.sum
   def get_all_likes(%{id: article_id} = map, lm_session) do
     likequery = from l in Likes,
             where: l.article_id == ^article_id,
             select: %{value: l.like_value, session_id: l.user_hash}
-    likesdata = likequery |> Repo.all
-    likes =
-      likesdata
-        |> Enum.filter_map(&(&1.value > 0), &(&1.value))
-        |> Enum.sum
-    dislikes =
-      likesdata
-        |> Enum.filter_map(&(&1.value < 0), &(&1.value))
-        |> Enum.sum
-    liked = case Enum.find(likesdata, &(&1.session_id == lm_session)) do
+    likesdata = Repo.all likequery
+    likes = likes_count(likequery, &like_filter/1)
+    dislikes = likes_count(likequery, &dislike_filter/1)
+    liked = case Enum.find likesdata, &(&1.session_id == lm_session) do
       nil -> "none"
       %{value: value} -> value
     end

@@ -1,7 +1,8 @@
 defmodule App.FeedbackController do
   use App.Web, :controller
-  alias App.{CMSRepo, SpreadsheetController}
+  alias App.CMSRepo
   alias App.Resources, as: R
+  alias App.SpreadsheetController, as: S
 
   def index(conn, _params) do
     forms_query = from page in "feedback_formfield",
@@ -44,5 +45,5 @@ defmodule App.FeedbackController do
     do: bool
 
   def post(conn, params),
-    do: SpreadsheetController.submit(conn, params)
+    do: S.submit conn, params, feedback_path(conn, :index) <> "#alphasection"
 end
