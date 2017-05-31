@@ -12,8 +12,11 @@ if (isNotIE8()) {
       select("body").classList.toggle("stop-scrolling");
     });
 
+    // More padding for tag blocks
+    select(".sidebar-tag-blocks").classList.add("ph4");
+
     // Moves buttons to bottom of sidebar
-    select(".sidebar-buttons").classList.add("absolute", "bottom-2");
+    select(".sidebar-buttons").classList.add("mt6");
 
     // Displays orange arrows on select box
     selectAll(".fa-down").forEach(function(el) {
@@ -26,11 +29,11 @@ if (isNotIE8()) {
       var filterSelect = select(".select-" + el + "-filters");
       var sidebar = select(".sidebar");
 
-      filterType.classList.add("hide-filters", "br1", "w-80", "absolute", "bg-white", "z-1", "overflow-scroll");
+      filterType.classList.add("hide-filters", "br1", "w-100", "absolute", "bg-white", "z-1", "overflow-scroll");
       filterSelect.classList.add("select-filters", "pointer");
 
       filterSelect.addEventListener("click", function() {
-        toggleClasses(filterType, ["hide-filters", "shadow-2", "h5"])
+        toggleClasses(filterType, ["hide-filters", "shadow-2", "h45"])
         toggleArrows(el);
 
         sidebar.addEventListener("click", function hideFilters(e) {

@@ -317,6 +317,10 @@ code {
   height: 1.8rem;
 }
 
+.h45 {
+  height: 12rem;
+}
+
 #email_form h2 {
   font-family: 'Segoe UI-Bold';
 }
