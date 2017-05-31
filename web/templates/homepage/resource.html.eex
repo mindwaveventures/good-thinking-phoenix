@@ -41,7 +41,7 @@
           <%= hidden_input f, :liked, value: @resource.liked %>
           <%= hidden_input f, :resource_name, value: @resource.heading %>
           <%= component "buttons/primary_button", value: "Submit" %>
-          <p class="alert" role="alert"><%= get_flash @conn, String.to_atom "resource_feedback_#{@resource.id}" %></p>
+          <%= component "flash", conn: @conn, type: String.to_atom "resource_feedback_#{@resource.id}" %>
         <% end %>
       <% end %>
     </div>

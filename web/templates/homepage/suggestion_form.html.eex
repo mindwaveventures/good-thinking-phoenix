@@ -10,7 +10,7 @@
       <%= component "buttons/primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
     </div>
     <% end %>
-    <p class="alert" role="alert"><%= get_flash @conn, :suggestions %></p>
+    <%= component "flash", conn: @conn, type: :suggestions %>
   </div>
   </div>
 </section>
