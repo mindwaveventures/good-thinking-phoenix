@@ -21,7 +21,7 @@ defmodule App.LikesController do
             App.HomepageView,
             "resource.html",
             resource: Resources.get_single_resource(conn, id), conn: conn
-        ),
+          ),
           id: id
         })
       _ ->

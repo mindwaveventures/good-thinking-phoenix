@@ -30,7 +30,7 @@
       </div>
       <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Share</span></button>
       <%= if @resource.liked != "none" do %>
-        <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback], fn f -> %>
+        <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback"], fn f -> %>
           <p>
             What do you <%= case @resource.liked do
               1 -> "like"
