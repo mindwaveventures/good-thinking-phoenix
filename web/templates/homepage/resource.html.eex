@@ -3,7 +3,7 @@
     <h2 class="mt0 mb1"><%= @resource[:heading] %></h2>
     <div class="word-wrap">
       <%= if String.length(@resource.url) > 0 do %>
-        <%= link @resource.url, to: @resource.url, class: "link f6 lm-turquoise" %>
+        <%= link @resource.url, to: @resource.url, class: "link f6 lm-turquoise resource-link" %>
       <% end %>
     </div>
     <div class="mt1">
@@ -21,16 +21,16 @@
       <div class="w-50 mw4 dib">
         <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
         <%= form_for @conn, likes_path(@conn, :like, @resource.id) <> "#resource_#{@resource.id}", [as: :like, class: "dib w-30 like-form"], fn _f -> %>
-          <button type="submit" class="<%= check_liked "like", @resource.liked %> w-100 h2 bn bg-white fl p0 bg-left pointer"><span class="absolute o-0">Recommend</span></button>
+          <button type="submit" class="<%= check_liked "like", @resource.liked %> w-100 h2 bn bg-white fl p0 bg-left pointer" data-url="<%= @resource.url %>"><span class="absolute o-0">Recommend</span></button>
         <%= end %>
         <%= form_for @conn, likes_path(@conn, :dislike, @resource.id) <> "#resource_#{@resource.id}", [as: :dislike, class: "dib w-30 dislike-form"], fn _f -> %>
-          <button type="submit" class="<%= check_liked "dislike", @resource.liked %> w-100 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Don't Recommend</span></button>
+          <button type="submit" class="<%= check_liked "dislike", @resource.liked %> w-100 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="absolute o-0">Don't Recommend</span></button>
         <%= end %>
         <div class="dib mb3 v-mid tl"><span><%= @resource.dislikes %></span></div>
       </div>
-      <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer"><span class="absolute o-0">Share</span></button>
+      <button class="share cursor w-30 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="absolute o-0">Share</span></button>
       <%= if @resource.liked != "none" do %>
-        <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback"], fn f -> %>
+        <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback", "data-url": @resource.url], fn f -> %>
           <p>
             What do you <%= case @resource.liked do
               1 -> "like"

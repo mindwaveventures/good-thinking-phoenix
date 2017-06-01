@@ -1,6 +1,8 @@
+var analytics = require("./analytics");
+
 if (isNotIE8()) {
   module.exports = (function() {
-    selectAll(".like-form", ".dislike-form", ".resource-feedback").forEach(function(el) {
+    selectAll([".like-form", ".dislike-form", ".resource-feedback"]).forEach(function(el) {
       el.addEventListener("submit", formListener);
     });
   })();
@@ -13,6 +15,10 @@ if (isNotIE8()) {
 
         resource.innerHTML = response.result;
         resource.addEventListener("submit", formListener);
+        analytics.addAnalytics(select(".like", resource), "Like", "liked");
+        analytics.addAnalytics(select(".dislike", resource), "Dislike", "disliked");
+        analytics.addAnalytics(select(".share", resource), "Share", "shared");
+        analytics.addAnalytics(select(".resource-feedback", resource), "ResourceFeedback", "reviewed");
       });
   };
 }

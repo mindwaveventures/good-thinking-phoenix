@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <!-- Google Tag Manager -->
+    <script>
+      dataLayer = [];
+    </script>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -40,7 +43,7 @@
           <span class="b">ALPHA:</span>
           This is a prototype - your
           <%= if @conn.request_path != "/feedback" do %>
-            <a href="/feedback" class="underline lm-white">feedback</a>
+            <a href="/feedback" id="feedback-link" class="underline lm-white">feedback</a>
           <% else %>
             <span class="lm-white">feedback</span>
           <% end %>

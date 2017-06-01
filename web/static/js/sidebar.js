@@ -37,7 +37,7 @@ if (isNotIE8()) {
           if (e.path.indexOf(filterSelect) == -1 && e.path.indexOf(filterType) == -1){
             toggleArrows(el);
             filterType.classList.add("hide-filters");
-            filterType.classList.remove("shadow-2", "h5");
+            filterType.classList.remove("shadow-2", "h45");
             sidebar.removeEventListener("click", hideFilters);
           }
         });

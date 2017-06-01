@@ -6,21 +6,26 @@ function toggleClasses(element, classes) {
 }
 
 // Aliases for querySelector functions
-function select(query) {
-  return document.querySelector(query);
+// Uses document.querySelector if no parent is passed
+function select(query, parent) {
+  return parent ? parent.querySelector(query) : document.querySelector(query);
 }
 
-function selectAll() {
-  if (arguments.length > 1) {
+// Takes array of queries or single query, and optional parent element
+// Uses document.querySelector if no parent is passed
+function selectAll(queries, parent) {
+  var parentNode = parent || document;
+
+  if (typeof queries === "object" && queries.length >= 1) {
     var selected = [];
 
-    Array.prototype.forEach.call(arguments, function(query) {
-      selected = selected.concat(Array.prototype.slice.call(document.querySelectorAll(query)));
+    queries.forEach(function(query) {
+      selected = selected.concat(Array.prototype.slice.call(parentNode.querySelectorAll(query)));
     });
 
     return selected;
   } else {
-    return Array.prototype.slice.call(document.querySelectorAll(arguments[0]));
+    return Array.prototype.slice.call(parentNode.querySelectorAll(queries));
   }
 }
 

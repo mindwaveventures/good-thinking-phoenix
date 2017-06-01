@@ -136,12 +136,18 @@ The documentation for the CMS (Creating pages, tags etc) can be found at https:/
 We are using Google Analytics and Google Tag Manager to track user actions on the site. We are currently tracking:
 * Page views
 * Clicks on the 'Take assessment' button
-* Clicks on the 'share' button on resources
+* Clicks on the 'share' button on resources, and the url of the resource being shared
+* Clicks on the 'like' or 'dislike' button, the url of the resource and the value (like/dislike)
+* Clicks to the 'Get urgent support' link
+* Submission of email to the alpha
+* Submission of Feedback
+* Visits to each resource link
+* Visits to the feedback page
 
 ### Google sheets
 We are using google sheets for quick easy storage of feedback collected
 We have opted for a single spreadsheet with multiple tabs as multiple spreadsheets would be less manageable for both developer and client
-(Granting privaleges for each one going between different files, etc) 
+(Granting privileges for each one going between different files, etc)
 
 We have opted for using [Better Logger](https://github.com/peterherrmann/BetterLog) so that we can see logged outputs for debugging
 
@@ -149,4 +155,3 @@ When running the app locally, ensure you are using the development `GOOGLE_SHEET
 (See google drive for this)
 
 If updating your environment variable doesn't work, try `rm -rf _build` and then starting your server again
-
