@@ -1,6 +1,23 @@
 <%= if get_flash(@conn, @type) do %>
-  <div class="alert ma0 mb1 mr1 mt4 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
-    <%= get_flash(@conn, @type) %>
-    <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
-  </div>
+  <%= if @type |> Atom.to_string |> String.ends_with?("_error") do %>
+    <div class="alert ma0 mb1 mr1 mt4 pa3 ba bw1-ns bg--lm-red b--dark-red relative white" role="alert">
+      <%= if @conn |> get_flash(@type) |> is_tuple do %>
+        <%= @conn |> get_flash(@type) |> elem(1) %>
+        <i class="bg-dark-red lm-white absolute br-100 tick-icon fa fa-times"></i>
+      <% else %>
+        <%= get_flash(@conn, @type) %>
+        <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-times"></i>
+      <% end %>
+    </div>
+  <% else %>
+      <div class="alert ma0 mb1 mr1 mt4 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
+      <%= if @conn |> get_flash(@type) |> is_tuple do %>
+        <%= @conn |> get_flash(@type) |> elem(1) %>
+        <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
+      <% else %>
+        <%= get_flash(@conn, @type) %>
+        <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
+      <% end %>
+      </div>
+  <% end %>
 <% end %>

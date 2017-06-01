@@ -26,12 +26,20 @@ defmodule App.SpreadsheetController do
                                               "resource_name" => name,
                                               "feedback" => feedback}}, path) do
 
-    feedback_atom = String.to_atom "resource_feedback_#{id}"
-
-    conn
-    |> handle_submit(:resource_feedback, [id, name, @like_map[liked], feedback])
-    |> put_flash(feedback_atom, "Thank you for your feedback")
-    |> redirect_after_feedback(id, path)
+    case feedback do
+      "" ->
+        flash = {id, "Please submit some feedback"}
+        conn
+          |> put_flash(:resource_feedback_error, flash)
+          |> redirect_after_feedback(id, path)
+      _ ->
+        input_data = [id, name, @like_map[liked], feedback]
+        flash = {id, "Thank you for your feedback"}
+        conn
+          |> handle_submit(:resource_feedback, input_data)
+          |> put_flash(:resource_feedback, flash)
+          |> redirect_after_feedback(id, path)
+    end
   end
   def handle_submit(conn, tab_name, list, path) when is_list(list),
     do: conn |> handle_submit(tab_name, list) |> redirect(to: path)
