@@ -45,9 +45,8 @@ defmodule App.ViewHelpers do
     end
   end
 
-  def render_link(html_string) do
-    Regex.replace(@link_regex, html_string, &get_a_tag/3, global: true)
-  end
+  def render_link(html_string),
+    do: Regex.replace @link_regex, html_string, &get_a_tag/3, global: true
 
   def get_a_tag(_full_string, id, text) do
     link_query = from p in "wagtailcore_page",
@@ -61,14 +60,12 @@ defmodule App.ViewHelpers do
     ~s(<a href="/#{data.content}/#{data.page}">#{text}</a>)
   end
 
-  def get_class(component, background \\ "light") do
-    case component do
-      "primary_button" -> "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked"
-      "secondary_button" ->
-        case background do
-          "dark" -> "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover b--lm-white-hover lm-orange pointer ba bw1 b--lm-orange segoe-bold tracked"
-          _ -> "f5 link dib ph3 pv2 br-pill lm-bg-white lm-white-hover lm-bg-dark-blue-hover lm-dark-blue pointer ba bw1 b--lm-dark-blue segoe-bold tracked"
-        end
-    end
-  end
+  @button_classes "f5 link dib ph3 pv2 br-pill lm-white-hover pointer segoe-bold tracked"
+  def get_class("primary_button"),
+    do: @button_classes <> "fw6 lm-dark-blue lm-bg-orange button"
+  def get_class("secondary_button", "light"),
+    do: @button_classes <> "lm-bg-white lm-bg-dark-blue-hover lm-dark-blue ba bw1 b--lm-dark-blue"
+  def get_class("secondary_button", "dark"),
+    do: @button_classes <> "lm-bg-dark-blue b--lm-white-hover lm-orange ba bw1 b--lm-orange"
+  def get_class("secondary_button", nil), do: get_class("secondary_button", "light")
 end
