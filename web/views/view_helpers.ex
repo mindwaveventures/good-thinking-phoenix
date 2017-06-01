@@ -61,10 +61,14 @@ defmodule App.ViewHelpers do
     ~s(<a href="/#{data.content}/#{data.page}">#{text}</a>)
   end
 
-  def get_class(component) do
+  def get_class(component, background \\ "light") do
     case component do
       "primary_button" -> "f5 fw6 link dib ph3 pv2 br-pill lm-white-hover lm-dark-blue lm-bg-orange pointer button segoe-bold tracked"
-      "secondary_button" -> "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover b--lm-white-hover lm-orange pointer ba bw1 b--lm-orange segoe-bold tracked"
+      "secondary_button" ->
+        case background do
+          "dark" -> "f5 link dib ph3 pv2 br-pill lm-bg-dark-blue lm-white-hover b--lm-white-hover lm-orange pointer ba bw1 b--lm-orange segoe-bold tracked"
+          _ -> "f5 link dib ph3 pv2 br-pill lm-bg-white lm-white-hover lm-bg-dark-blue-hover lm-dark-blue pointer ba bw1 b--lm-dark-blue segoe-bold tracked"
+        end
     end
   end
 end

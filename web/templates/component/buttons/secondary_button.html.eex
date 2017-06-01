@@ -1,6 +1,5 @@
-<!--For use on dark backgrounds-->
 <%= if assigns[:to] do %>
-  <%= link @value, to: @to, class: get_class("secondary_button") <> " #{assigns[:class]}", id: assigns[:id] %>
+  <%= link @value, to: @to, class: get_class("secondary_button", assigns[:background]) <> " #{assigns[:class]}", id: assigns[:id] %>
 <%= else %>
-  <%= submit @value, class:  get_class("secondary_button") <> " #{assigns[:class]}", id: assigns[:id] %>
+  <%= submit @value, class:  get_class("secondary_button", assigns[:background]) <> " #{assigns[:class]}", id: assigns[:id] %>
 <% end %>

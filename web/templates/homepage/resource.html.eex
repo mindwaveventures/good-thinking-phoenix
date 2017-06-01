@@ -32,16 +32,16 @@
       <%= if @resource.liked != "none" do %>
         <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback"], fn f -> %>
           <p>
-            What do you <%= case @resource.liked do
-              1 -> "like"
-              -1 -> "dislike"
-            end %> about this resource?
+            Why <%= case @resource.liked do
+              1 -> "would you"
+              -1 -> "wouldn't you"
+            end %> recommend this?
           </p>
           <%= textarea f, :feedback, class: "w-50-l w-100 h3 db mb2 nr" %>
           <%= hidden_input f, :liked, value: @resource.liked %>
           <%= hidden_input f, :resource_name, value: @resource.heading %>
           <%= component "buttons/primary_button", value: "Submit" %>
-          <p class="alert" role="alert"><%= get_flash @conn, String.to_atom "resource_feedback_#{@resource.id}" %></p>
+          <%= component "flash", conn: @conn, type: String.to_atom "resource_feedback_#{@resource.id}" %>
         <% end %>
       <% end %>
     </div>
