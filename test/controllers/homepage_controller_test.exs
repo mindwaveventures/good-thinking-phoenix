@@ -18,7 +18,7 @@ defmodule App.HomepageControllerTest do
                "content" => %{"add_your_own" => ""}}
     conn = post conn, homepage_path(conn, :show, params)
 
-    assert get_flash(conn, :tag_suggestion)
+    assert get_flash(conn, :tag_suggestion_error)
     assert html_response(conn, 302)
   end
 

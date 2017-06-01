@@ -44,24 +44,37 @@ defmodule App.SpreadsheetController do
   def handle_submit(conn, tab_name, list, path) when is_list(list),
     do: conn |> handle_submit(tab_name, list) |> redirect(to: path)
   defp handle_submit(conn, tab_name, data_list) do
-    case Enum.join data_list do
-      "" -> conn
-      _ ->
-        store_data conn, data_list, tab_name
-        @http.post_spreadsheet data_list, tab_name
+    feedback_map = %{
+      emails: "Email address entered successfully!",
+      suggestions: "Thank you for your input, it will "
+                   <> "be used to improve and develop the service further. "
+                   <> "Let us know if you have any more feedback",
+      feedback: "Thanks for your feedback",
+      tag_suggestion: "Thank you for your suggestion"
+    }
+    error_feedback_map = %{
+      emails: "Please enter a valid email address",
+      suggestions: "Please enter a suggestion",
+      feedback: "Please ensure you have filled in all of the fields",
+      tag_suggestion: "Please fill in a suggestion"
+    }
 
-        feedback_map = %{
-          emails: "Email address entered successfully!",
-          suggestions: "Thank you for your input, it will "
-                       <> "be used to improve and develop the service further. "
-                       <> "Let us know if you have any more feedback",
-          feedback: "Thanks for your feedback",
-          tag_suggestion: "Thank you for your suggestion"
-        }
+    maps = [feedback_map, error_feedback_map]
 
-        case feedback_map[tab_name] do
-          nil -> conn
-          message -> put_flash conn, tab_name, message
+    case maps |> Enum.map(&Map.has_key?(&1, tab_name)) |> Enum.all?(&(&1)) do
+      false -> conn
+      true ->
+        case "" in data_list do
+          true ->
+            flash_name = tab_name
+                           |> Atom.to_string
+                           |> Kernel.<>("_error")
+                           |> String.to_atom
+            put_flash conn, flash_name, error_feedback_map[tab_name]
+          false ->
+            store_data conn, data_list, tab_name
+            @http.post_spreadsheet data_list, tab_name
+            put_flash conn, tab_name, feedback_map[tab_name]
         end
     end
   end

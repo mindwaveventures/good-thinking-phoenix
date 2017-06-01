@@ -48,12 +48,8 @@ defmodule App.HomepageController do
         resources: all_resources, tag: category
   end
 
-  def create_filters({tag_type, tags}) do
-    split_tags = tags
-    |> String.split(",")
-
-    {tag_type, split_tags}
-  end
+  def create_filters({tag_type, tags}),
+    do: {tag_type, String.split(tags, ",")}
 
   def check_empty(params) do
     params
