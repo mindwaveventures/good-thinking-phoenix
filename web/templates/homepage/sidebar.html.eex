@@ -6,7 +6,7 @@
       end %>
     </div>
     <div class="ph2 sidebar-tag-blocks">
-      <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
+      <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags, id: "filter-form"],  fn f -> %>
       <div class="mb5 relative">
         <h4 class="w-100 mb1 mt2">Are you currently experiencing any of the following?</h4>
         <%= inputs_for f, :category, [as: :category], fn fcat -> %>
