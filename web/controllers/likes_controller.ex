@@ -25,36 +25,30 @@ defmodule App.LikesController do
           id: id
         })
       _ ->
-        redirect(conn, to: redirect_path(conn, query))
+        redirect conn, to: redirect_path(conn, query)
     end
   end
 
   defp handle_like(conn, article_id, like_value) do
-    lm_session = get_session(conn, :lm_session)
+    lm_session = get_session conn, :lm_session
     like_params = %{user_hash: lm_session,
                     article_id: String.to_integer(article_id),
                     like_value: like_value}
     changeset = Likes.changeset %Likes{}, like_params
     like = Repo.get_by Likes, article_id: article_id, user_hash: lm_session
     case like do
-      nil -> Repo.insert!(changeset)
+      nil -> Repo.insert! changeset
       _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
   end
-  defp redirect_path(conn, query) when query == [] do
-    homepage_path(conn, :index)
-  end
-  defp redirect_path(conn, query) do
-    homepage_path(conn, :filtered_show) <> "?#{query}"
-  end
-  def get_query_string(conn) do
-    url = case Enum.find conn.req_headers, fn {key, _val} -> key == "referer" end do
+  defp redirect_path(conn, query) when query == "",
+    do: homepage_path conn, :index
+  defp redirect_path(conn, query),
+    do: homepage_path(conn, :filtered_show) <> "?" <> query
+  defp get_query_string(%{req_headers: req_headers}) do
+    case Enum.find req_headers, fn {key, _val} -> key == "referer" end do
       nil -> ""
-      {"referer", url} -> url
+      {"referer", url} -> url |> String.split("?") |> Enum.at(1, "")
     end
-
-    [_host | query_string] = String.split(url, "?")
-
-    query_string
   end
 end

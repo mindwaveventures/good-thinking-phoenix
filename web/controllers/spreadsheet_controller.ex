@@ -1,6 +1,6 @@
 defmodule App.SpreadsheetController do
   use App.Web, :controller
-  alias App.{Feedback, Resources}
+  alias App.{Feedback, Resources, HomepageView}
   import Phoenix.View, only: [render_to_string: 3]
 
   @http Application.get_env :app, :http
@@ -8,29 +8,19 @@ defmodule App.SpreadsheetController do
 
   def submit(conn, params),
     do: submit conn, params, homepage_path(conn, :index)
-  def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}, path) do
-    conn
-    |> handle_submit(:suggestions, [suggestions])
-    |> redirect(to: path)
-  end
-  def submit(conn, %{"email" => %{"email" => email}}, path) do
-    conn
-    |> handle_submit(:emails, [email])
-    |> redirect(to: path)
-  end
+  def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}, path),
+    do: handle_submit conn, :suggestions, [suggestions], path
+  def submit(conn, %{"email" => %{"email" => email}}, path),
+    do: handle_submit conn, :emails, [email], path
   def submit(conn, %{"feedback" => %{"email" => email,
                                      "question1" => question1,
                                      "feedback1" => feedback1,
                                      "feedback2" => feedback2}}, path) do
-    conn
-    |> handle_submit(:feedback, [question1, feedback1, feedback2, email])
-    |> redirect(to: path)
+    input_list = [question1, feedback1, feedback2, email]
+    handle_submit conn, :feedback, input_list, path
   end
-  def submit(conn, %{"tag_suggestion" => tag_suggestion}, path) do
-    conn
-    |> handle_submit(:tag_suggestion, tag_suggestion)
-    |> redirect(to: path)
-  end
+  def submit(conn, %{"tag_suggestion" => tag_suggestion}, path),
+    do: handle_submit conn, :tag_suggestion, tag_suggestion, path
   def submit(conn, %{"resource_feedback" => %{"id" => id,
                                               "liked" => liked,
                                               "resource_name" => name,
@@ -41,8 +31,10 @@ defmodule App.SpreadsheetController do
     conn
     |> handle_submit(:resource_feedback, [id, name, @like_map[liked], feedback])
     |> put_flash(feedback_atom, "Thank you for your feedback")
-    |> redirect_after_feedback(id)
+    |> redirect_after_feedback(id, path)
   end
+  def handle_submit(conn, tab_name, list, path) when is_list(list),
+    do: conn |> handle_submit(tab_name, list) |> redirect(to: path)
   defp handle_submit(conn, tab_name, data_list) do
     case Enum.join data_list do
       "" -> conn
@@ -75,19 +67,15 @@ defmodule App.SpreadsheetController do
     |> Repo.insert!
   end
 
-  def redirect_after_feedback(conn, id) do
+  def redirect_after_feedback(conn, id, path) do
     case get_req_header conn, "accept" do
       ["application/json"] ->
-        json(conn, %{
-          result: render_to_string(
-            App.HomepageView,
-            "resource.html",
-            resource: Resources.get_single_resource(conn, id), conn: conn
-          ),
-          id: id
-        })
+        resource = Resources.get_single_resource conn, id
+        result = render_to_string HomepageView, "resource.html",
+                                  resource: resource, conn: conn
+        json conn, %{result: result, id: id}
       _ ->
-        redirect(conn, to: homepage_path(conn, :index))
+        redirect(conn, to: path)
     end
   end
 end
