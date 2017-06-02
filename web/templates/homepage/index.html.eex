@@ -15,7 +15,7 @@
 <section>
   <div class="lm-bg-orange pa3 ph4 tc">
     <p class="ma0 w-100 tc">
-      <%= link "Get urgent support", to: "info/crisis", class: "lm-dark-turquoise segoe-bold" %>
+      <%= link "Get urgent support", to: "info/crisis", class: "lm-dark-turquoise segoe-bold", id: "crisis-link" %>
     </p>
   </div>
 </section>

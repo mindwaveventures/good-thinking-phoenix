@@ -12,7 +12,7 @@
   <%= if @show_email_submit do %>
     <div id="alphasection" class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
     <%= raw @content.alphatext %>
-      <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#email_form", [as: :email], fn f -> %>
+      <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#email_form", [as: :email, id: "email-submit"], fn f -> %>
         <%= if get_flash(@conn, :emails) do %>
           <p class="alert ma0 mb4 mr1 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
             <%= get_flash(@conn, :emails) %>
