@@ -347,13 +347,25 @@ code {
   background-color: #81c03d;
 }
 
+.bg--lm-dark-red {
+  background-color: #FF1160;
+}
 .bg--lm-red {
   background-color: #e35c6c;
+}
+
+.bg--lm-light-red {
+  background-color: #FFC6D1;
 }
 
 .b--lm-green {
   border-color: #81c03d;
 }
+
+.b--lm-dark-red {
+  border-color: #FF1160;
+}
+
 
 .nr {
   resize: none;
