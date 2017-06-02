@@ -80,13 +80,13 @@ function toggleArrows(type) {
  }
 
 function updateSelected(form) {
-  var formData = new FormData(form);
+  var formData = getFormData(form)
 
-  for (var value of formData.entries()) {
-    var typeValue = value[0].split("[");
+  for (var value in formData) {
+    var typeValue = value.split("[");
 
     if (typeValue.length === 2 ) {
-      selectedFilters[typeValue[0]][typeValue[1].slice(0, -1)] = value[1];
+      selectedFilters[typeValue[0]][typeValue[1].slice(0, -1)] = formData[value];
     }
   }
 }
@@ -96,7 +96,7 @@ function displaySelected(el) {
   var exclude = ["all-category", "all-audience", "all-content"];
 
   for (var tag in selectedFilters[el]) {
-    if(selectedFilters[el][tag] === "true" && exclude.indexOf(tag) === -1) {
+    if(selectedFilters[el][tag] && exclude.indexOf(tag) === -1) {
       selected.push(tag);
     }
   }
@@ -108,4 +108,18 @@ function displaySelected(el) {
   } else {
     select("." + el + "-filters-header").innerText = "Select as many as are relevant";
   }
+}
+
+function getFormData(form, data) {
+  var formData = data || {};
+
+  Array.prototype.slice.call(form.children).forEach(function(el) {
+    if (el.nodeName === "INPUT" && el.type === "checkbox") {
+      formData[el.name] = el.checked;
+    } else {
+      getFormData(el, formData);
+    }
+  });
+
+  return formData;
 }
