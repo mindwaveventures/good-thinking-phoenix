@@ -28,11 +28,10 @@ defmodule App.SpreadsheetController do
     do: handle_submit conn, :suggestions, [suggestions], path
   def submit(conn, %{"email" => %{"email" => email}}, path),
     do: handle_submit conn, :emails, [email], path
-  def submit(conn, %{"feedback" => %{"email" => email,
-                                     "question1" => question1,
-                                     "feedback1" => feedback1,
-                                     "feedback2" => feedback2}}, path) do
-    input_list = [question1, feedback1, feedback2, email]
+  def submit(conn, %{"feedback" => feedback}, path) do
+    input_list = Enum.map ["email", "feedback1", "feedback2"], &(feedback[&1])
+    question1 = Map.get feedback, "question1", ""
+    input_list = [question1] ++ input_list
     handle_submit conn, :feedback, input_list, path
   end
   def submit(conn, %{"tag_suggestion" => tag_suggestion}, path),
