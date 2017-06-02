@@ -420,10 +420,17 @@ code {
   margin-bottom: 0.3rem;
 }
 
-.tick-icon {
-  padding: 0.3rem 0.3rem 0.4rem 0.4rem;
+.lm-flash-icon {
   top: -0.9rem;
   right: -0.8rem;
+}
+
+.lm-tick-icon {
+  padding: 0.3rem 0.3rem 0.4rem 0.4rem;
+}
+
+.lm-exclamation-icon {
+  padding: 0.3rem 0.6rem 0.4rem 0.65rem;
 }
 
 lm-ls1 {

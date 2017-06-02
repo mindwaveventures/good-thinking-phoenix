@@ -5,7 +5,7 @@
   <% else %>
     <%= gotten_flash %>
   <% end %>
-  <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
+  <i class="bg--lm-dark-green lm-white absolute br-100 fa fa-check lm-flash-icon lm-tick-icon"></i>
   </div>
 <% end %>
 <%= if gotten_flash = get_flash(@conn, @type |> Atom.to_string |> Kernel.<>("_error") |> String.to_atom) do %>
@@ -15,6 +15,6 @@
     <% else %>
       <%= gotten_flash %>
     <% end %>
-      <i class="bg-dark-red lm-white absolute br-100 tick-icon fa fa-times"></i>
+    <i class="bg-dark-red lm-white absolute br-100 fa fa-exclamation lm-flash-icon lm-exclamation-icon"></i>
   </div>
 <% end %>
