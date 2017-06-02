@@ -30,9 +30,13 @@ defmodule App.FeedbackController do
                  form_title: handle_bold(feedback_content.form_title),
                  feedback1: handle_bold(feedback_content.feedback1),
                  feedback2: handle_bold(feedback_content.feedback2),
-                 content: [:alphatext, :footer]
-                          |> Map.new(&({&1, R.get_content(&1)}))
-                          |> handle_bold
+                 content: %{footer: R.get_content(:footer),
+                            alpha: R.get_content(:alpha,
+                                                 {"/home/feedback/",
+                                                  "feedback_feedbackpage"}),
+                            alphatext: R.get_content(:alphatext,
+                                                 {"/home/feedback/",
+                                                  "feedback_feedbackpage"})}
   end
 
   def handle_bold(string) when is_binary(string),

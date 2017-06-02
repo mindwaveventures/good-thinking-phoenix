@@ -73,7 +73,7 @@ defmodule App.HomepageController do
     true
   """
   def get_content do
-    [:body, :footer, :alphatext, :lookingfor]
+    [:body, :footer, :alpha, :alphatext, :lookingfor]
     |> Map.new(&({&1, R.get_content(&1)}))
   end
 
