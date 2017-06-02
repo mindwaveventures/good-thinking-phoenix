@@ -6,7 +6,7 @@
 
 <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue segoe feedback-section">
   <div class="w-60-m w-50-l center">
-    <%= link "< Back", to: "/", class: "f5 fw6 link dib ph3 pv2 br-pill lm-orange bg-white pointer button tracked b--lm-orange ba bw1" %>
+    <%= component "buttons/secondary_button", value: "< Back", to: "/" %>
   </div>
 </section>
 
@@ -56,12 +56,7 @@
       <div class="w-100 tr mt3">
         <%= component "buttons/primary_button", value: "Submit" %>
       </div>
-      <%= if get_flash(@conn, :feedback) do %>
-        <div class="alert ma0 mb4 mr1 mt4 pa3 ba bw1-ns bg--lm-green b--lm-green relative" role="alert">
-          <%= get_flash(@conn, :feedback) %>
-          <i class="bg--lm-dark-green lm-white absolute br-100 tick-icon fa fa-check"></i>
-        </div>
-      <% end %>
+      <%= component "flash", conn: @conn, type: :feedback %>
     </div>
   </section>
 <% end %>
