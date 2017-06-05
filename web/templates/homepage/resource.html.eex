@@ -41,7 +41,11 @@
           <%= hidden_input f, :liked, value: @resource.liked %>
           <%= hidden_input f, :resource_name, value: @resource.heading %>
           <%= component "buttons/primary_button", value: "Submit" %>
-          <%= component "flash", conn: @conn, type: String.to_atom "resource_feedback_#{@resource.id}" %>
+          <%= if get_flash(@conn, :resource_feedback) != nil or get_flash(@conn, :resource_feedback_error) != nil do %>
+            <%= if [:resource_feedback, :resource_feedback_error] |> Enum.map(&(get_flash(@conn, &1))) |> Enum.find(&(&1 != nil)) |> elem(0) == "#{@resource.id}" do %>
+              <%= component "flash", conn: @conn, type: :resource_feedback %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
