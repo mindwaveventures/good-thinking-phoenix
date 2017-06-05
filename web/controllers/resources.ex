@@ -95,6 +95,7 @@ defmodule App.Resources do
         heading: r.heading,
         url: r.resource_url,
         body: r.body,
+        video: r.video_url,
         priority: r.priority
       }
   end
@@ -116,6 +117,7 @@ defmodule App.Resources do
         heading: r.heading,
         url: r.resource_url,
         body: r.body,
+        video: r.video_url,
         priority: r.priority
       }
 
