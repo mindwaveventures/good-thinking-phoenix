@@ -32,7 +32,7 @@
     <%= render "show.html", assigns %>
   <% end %>
   <div>
-    <%= component "buttons/primary_button", value: "See More", id: "see_more", class: "dn-important pointer" %>
+    <%= component "buttons/primary_button", value: "See More", id: "see_more", class: "dn-important" %>
   </div>
 </section>
 
