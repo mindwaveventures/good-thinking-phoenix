@@ -31,6 +31,9 @@
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
+  <div>
+    <%= component "buttons/primary_button", value: "See More", id: "see_more", class: "dn-important pointer" %>
+  </div>
 </section>
 
 <%= render "suggestion_form.html", conn: @conn, content: @content %>
