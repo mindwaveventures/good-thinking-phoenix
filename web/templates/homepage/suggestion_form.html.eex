@@ -1,4 +1,4 @@
-<section class="pa4 tc-ns tl-m pa1 ph3 ph5-m ph6-l pb4 pb5-l w-100" id="suggestion_form">
+<section class="pa4 tc-ns tl-m pa1 ph4 ph3-m ph3-l pb4 pb5-l w-100" id="suggestion_form">
   <div class="pt3 pb2 mt4 tl center ma0-ns">
     <%= raw @content.lookingfor %>
   </div>

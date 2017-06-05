@@ -37,7 +37,7 @@
               -1 -> "wouldn't you"
             end %> recommend this?
           </p>
-          <%= textarea f, :feedback, class: "w-50-l w-100 h3 db mb2 nr" %>
+          <%= textarea f, :feedback, class: "w-50-l w-100 h3 db mb3 nr" %>
           <%= hidden_input f, :liked, value: @resource.liked %>
           <%= hidden_input f, :resource_name, value: @resource.heading %>
           <%= component "buttons/primary_button", value: "Submit" %>
