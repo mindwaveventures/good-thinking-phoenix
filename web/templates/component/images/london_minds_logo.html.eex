@@ -1,3 +1,5 @@
-<%= img_tag "/images/London_Minds_logo.png",
-    alt: "London Minds",
-    class: "#{assigns[:class]}" %>
+<a href="/">
+  <%= img_tag "/images/London_Minds_logo.png",
+      alt: "London Minds",
+      class: "#{assigns[:class]}" %>
+</a>
