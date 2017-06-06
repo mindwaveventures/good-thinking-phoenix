@@ -38,6 +38,7 @@ defmodule App.LikesController do
     like = Repo.get_by Likes, article_id: article_id, user_hash: lm_session
     case like do
       nil -> Repo.insert! changeset
+      %{like_value: ^like_value} -> like |> Repo.delete!
       _ -> like |> Likes.changeset(like_params) |> Repo.update!
     end
   end
