@@ -16,6 +16,11 @@
       <% end %>
     </div>
     <%= raw @resource[:body] %>
+    <%= if String.length(@resource[:video]) > 0 do %>
+      <div class="tc ma2">
+        <%= component "youtube_video", url: @resource[:video] %>
+      </div>
+    <% end %>
     <div class="bt b--lm-grey">
       <p class="b">Would you recommend this?</p>
       <div class="w-50 mw4 dib">

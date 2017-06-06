@@ -321,6 +321,12 @@ code {
   height: 12rem;
 }
 
+@media screen and (min-width: 30em) {
+  .h7-ns {
+    height: 21.2rem;
+  }
+}
+
 #email_form h2 {
   font-family: 'Segoe UI-Bold';
 }
