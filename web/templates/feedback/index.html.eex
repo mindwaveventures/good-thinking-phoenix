@@ -20,7 +20,7 @@
   <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue nunito feedback-form-section">
     <div class="w-60-m w-50-l center">
       <%= for form <- @forms do %>
-        <h4 class="ma0 f6 segoe"><%= form.question %></h4>
+        <h4 class="ma0 f6 segoe"><%= form.help_text %></h4>
         <div class="mv2 pv2">
           <%= for choice <- String.split(form.choices, ",") do %>
             <div class="mv1 h18">
@@ -35,17 +35,17 @@
 
   <section class="f3 pt3 ph4 tl lh-copy pb3 segoe feedback-section">
     <div class="w-60-m w-50-l center">
-      <%= raw @feedback1.intro %>
-      <%= textarea f, :feedback1, placeholder: @feedback1.default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
-      <%= raw @feedback1.help_text %>
+      <%= raw @feedback1_intro %>
+      <%= textarea f, :feedback1, placeholder: @feedback1_default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
+      <%= raw @feedback1_help_text %>
     </div>
   </section>
 
   <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue segoe feedback-section">
     <div class="w-60-m w-50-l center">
-      <%= raw @feedback2.intro %>
-      <%= textarea f, :feedback2, placeholder: @feedback2.default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
-      <%= raw @feedback2.help_text %>
+      <%= raw @feedback2_intro %>
+      <%= textarea f, :feedback2, placeholder: @feedback2_default_text, class: "w-100 pa3 f5 h4 ba bw1 b--lm-grey" %>
+      <%= raw @feedback2_help_text %>
     </div>
   </section>
 

@@ -39,8 +39,9 @@ defmodule App.Resources do
     do: list |> Enum.map(&handle_bold/1) |> Enum.join
   def handle_bold(map) when is_map(map),
     do: Map.new(map, fn {k, v} -> {k, handle_bold(v)} end)
-  def handle_bold(bool) when is_boolean(bool),
-    do: bool
+  def handle_bold(other)
+    when not (is_list(other) or is_map(other) or is_binary(other)),
+    do: other
   defp add_bold_class({tag, inner_html}, class),
     do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
 
