@@ -18,11 +18,8 @@ if (isNotIE8()) {
       select("body").classList.toggle("stop-scrolling");
     });
 
-    // More padding for tag blocks
-    select(".sidebar-tag-blocks").classList.add("ph4");
-
     // Moves buttons to bottom of sidebar
-    select(".sidebar-buttons").classList.add("mt6");
+    select(".sidebar-buttons").classList.add("mt5");
 
     // Displays orange arrows on select box
     selectAll(".fa-down").forEach(function(el) {
