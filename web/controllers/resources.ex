@@ -38,7 +38,7 @@ defmodule App.Resources do
   def handle_bold(list) when is_list(list),
     do: list |> Enum.map(&handle_bold/1) |> Enum.join
   def handle_bold(map) when is_map(map),
-    do: map |> Map.to_list |> Map.new(fn {k, v} -> {k, handle_bold(v)} end)
+    do: Map.new(map, fn {k, v} -> {k, handle_bold(v)} end)
   def handle_bold(bool) when is_boolean(bool),
     do: bool
   defp add_bold_class({tag, inner_html}, class),
