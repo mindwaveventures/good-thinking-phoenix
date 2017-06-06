@@ -15,6 +15,15 @@ module.exports = function(nightmare, t) {
         })
         .then(function(result) {
           t.assert(result, true, "filter blocks should be visible on click");
+          return nightmare
+            .click(".select-category-filters")
+            .click(".category-tag")
+            .evaluate(function() {
+              return document.querySelector(".category-filters-header").innerText;
+            })
+            .then(function(result) {
+              t.assert(result, "insomnia", "title should reflect selected filters");
+            })
         })
     })
     .then(t.endTests)

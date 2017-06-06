@@ -1,3 +1,9 @@
+var selectedFilters = {
+  category: {},
+  audience: {},
+  content: {}
+}
+
 if (isNotIE8()) {
   module.exports = (function(){
     // Overlay when sidebar is open
@@ -37,6 +43,8 @@ if (isNotIE8()) {
         toggleArrows(el);
 
         sidebar.addEventListener("click", function hideFilters(e) {
+          updateSelected(select("#filter-form"));
+          displaySelected(el);
           if (e.path.indexOf(filterSelect) == -1 && e.path.indexOf(filterType) == -1){
             toggleArrows(el);
             filterType.classList.add("hide-filters");
@@ -59,6 +67,9 @@ if (isNotIE8()) {
           select(".show-everything-" + el).checked = false;
         });
       });
+
+      updateSelected(select("#filter-form"));
+      displaySelected(el);
     });
   })();
 }
@@ -67,3 +78,48 @@ function toggleArrows(type) {
   toggleClasses(select(".select-" + type + "-filters > h5 > .fa-up"), ["filter-arrow-hide"]);
   toggleClasses(select(".select-" + type + "-filters > h5 > .fa-down"), ["filter-arrow-hide"]);
  }
+
+function updateSelected(form) {
+  var formData = getFormData(form)
+
+  for (var value in formData) {
+    var typeValue = value.split("[");
+
+    if (typeValue.length === 2 ) {
+      selectedFilters[typeValue[0]][typeValue[1].slice(0, -1)] = formData[value];
+    }
+  }
+}
+
+function displaySelected(el) {
+  var selected = [];
+  var exclude = ["all-category", "all-audience", "all-content"];
+
+  for (var tag in selectedFilters[el]) {
+    if(selectedFilters[el][tag] && exclude.indexOf(tag) === -1) {
+      selected.push(tag);
+    }
+  }
+
+  if (selected.length === 1) {
+    select("." + el + "-filters-header").innerText = selected[0].split("-").join(" ");
+  } else if (selected.length > 1) {
+    select("." + el + "-filters-header").innerText = selected.length + " filters selected";
+  } else {
+    select("." + el + "-filters-header").innerText = "Select as many as are relevant";
+  }
+}
+
+function getFormData(form, data) {
+  var formData = data || {};
+
+  Array.prototype.slice.call(form.children).forEach(function(el) {
+    if (el.nodeName === "INPUT" && el.type === "checkbox") {
+      formData[el.name] = el.checked;
+    } else {
+      getFormData(el, formData);
+    }
+  });
+
+  return formData;
+}

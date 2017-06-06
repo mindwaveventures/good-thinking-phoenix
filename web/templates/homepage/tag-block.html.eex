@@ -1,5 +1,5 @@
 <div class="<%= "select-#{@type}-filters" %> w-100 pa2">
-  <h5 class="lm-dark-grey nunito-italic ma0 f6">Select as many as are relevant <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+  <h5 class="lm-dark-grey nunito-italic ma0 f6"><span class="<%= "#{@type}-filters-header" %>">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
 </div>
 <div class="mb4 <%= "#{@type}-filters" %>">
   <div class="ph1 lm-bg-orange-hover">
@@ -11,7 +11,7 @@
   <%= for tag <- @tags[safe_to_atom(@type)] do %>
   <div class="ph1 lm-bg-orange-hover">
     <%= checkbox @form, safe_to_atom(tag), value: tag_is_selected(@conn.query_params[@type], tag), class: "checked-fill absolute o-0 filters-#{@type}" %>
-    <%= label @form, safe_to_atom(tag), class: "db pa2 pr0 pointer b--lm-grey bb" do
+    <%= label @form, safe_to_atom(tag), class: "db pa2 pr0 pointer b--lm-grey bb #{@type}-tag" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>#{remove_hyphen(tag)}</span>")
     end %>
   </div>
