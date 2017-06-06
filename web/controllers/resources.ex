@@ -42,24 +42,22 @@ defmodule App.Resources do
 
   def get_content(content,
                   {url_path, table_name} \\ {"/home/", "home_homepage"}) do
+    query = from page in "wagtailcore_page",
+              where: page.url_path == ^url_path,
+              join: h in ^table_name,
+              where: h.page_ptr_id == page.id
     query = case url_path do
       "/home/" ->
-        from page in "wagtailcore_page",
-          where: page.url_path == ^url_path,
-          join: h in ^table_name,
-          where: h.page_ptr_id == page.id,
+        from [_page, h] in query,
           select: %{alphatext: h.alphatext,
                     alpha: h.alpha,
                     body: h.body,
                     footer: h.footer,
                     lookingfor: h.lookingfor}
       "/home/feedback/" ->
-        from page in "wagtailcore_page",
-          where: page.url_path == ^url_path,
-          join: h in ^table_name,
-          where: h.page_ptr_id == page.id,
+        from [_page, h] in query,
           select: %{alphatext: h.alphatext, alpha: h.alpha}
-      end
+    end
     query
     |> CMSRepo.one
     |> Map.get(content)
