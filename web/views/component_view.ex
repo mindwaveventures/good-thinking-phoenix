@@ -15,17 +15,8 @@ defmodule App.ComponentView do
   iex> getVideoId("https://youtube.com/watch?hello=world&v=8fjry63nd#t=24")
   "8fjry63nd"
   """
-  def getVideoId(url) do
-    [@yt_url, @short_yt_url]
-    |> Enum.map(&(getVideoId &1, url))
-    |> Enum.find(fn el -> el end)
-  end
-  def getVideoId(regex, url) do
-    regex
-    |> Regex.run(url)
-    |> case do
-      nil -> nil
-      list -> List.last list
-    end
-  end
+  def getVideoId(url),
+    do: getVideoId(@yt_url, url) || getVideoId(@short_yt_url, url)
+  def getVideoId(regex, url),
+    do: (regex |> Regex.run(url) || []) |> List.last
 end
