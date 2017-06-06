@@ -52,7 +52,8 @@ defmodule App.Mixfile do
      {:excoveralls, "~> 0.6.2"},
      {:ex_doc, "~> 0.11", only: :dev},
      {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:mix_test_watch, "~> 0.4.0", only: :dev, runtime: false}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
