@@ -4,7 +4,7 @@ module.exports = function(nightmare, t) {
     .click("#filter_filter")
     .wait(".sidebar-overlay")
     .evaluate(function() {
-      return document.querySelector(".category-filters").clientHeight === 0;
+      return document.querySelector(".category-filters").clientHeight <= 0;
     })
     .then(function(result) {
       t.assert(result, true, "filter blocks not visible by default");
