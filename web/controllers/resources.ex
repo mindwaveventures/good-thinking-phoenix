@@ -169,13 +169,13 @@ defmodule App.Resources do
   end
 
   def get_all_tags(resource, type) do
-    Map.merge(%{tags:
+    tags =
       ["category", "audience", "content"]
         |> Enum.map(&create_query(&1, resource, type))
         |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
         |> Enum.map(&add_all_filter/1)
-        |> Enum.into(%{})
-    }, resource)
+        |> Map.new
+    Map.merge(%{tags: tags}, resource)
   end
 
   def add_all_filter({type, list}),
