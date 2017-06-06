@@ -37,30 +37,44 @@ defmodule App.Resources do
     do: add_bold_class {tag, inner_html}, "segoe-bold"
   def handle_bold(list) when is_list(list),
     do: list |> Enum.map(&handle_bold/1) |> Enum.join
+  def handle_bold(map) when is_map(map),
+    do: map |> Map.to_list |> Map.new(fn {k, v} -> {k, handle_bold(v)} end)
+  def handle_bold(bool) when is_boolean(bool),
+    do: bool
   defp add_bold_class({tag, inner_html}, class),
     do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
 
-  def get_content(content,
-                  {url_path, table_name} \\ {"/home/", "home_homepage"}) do
+  @doc """
+    iex> get_content(:alphatext) =~ "Take part in our ALPHA"
+    true
+    iex> get_content([:body, :footer]).body =~ "London Minds"
+    true
+    iex> get_content([:body, :footer]).footer =~ ""
+    true
+    iex> get_content(:alphatext, "feedback") =~ ""
+    true
+  """
+  def get_content(content), do: get_content(content, "home")
+  def get_content(content, view) when is_binary(view) do
+    tuple = case view do
+      "home" -> {"/home/", "home_homepage"}
+      _ -> {"/home/#{view}/", "#{view}_#{view}page"}
+    end
+    get_content(content, tuple)
+  end
+  def get_content(content, {url_path, table_name})
+    when is_list(content) or is_atom(content)
+    do
     query = from page in "wagtailcore_page",
               where: page.url_path == ^url_path,
               join: h in ^table_name,
               where: h.page_ptr_id == page.id
-    query = case url_path do
-      "/home/" ->
-        from [_page, h] in query,
-          select: %{alphatext: h.alphatext,
-                    alpha: h.alpha,
-                    body: h.body,
-                    footer: h.footer,
-                    lookingfor: h.lookingfor}
-      "/home/feedback/" ->
-        from [_page, h] in query,
-          select: %{alphatext: h.alphatext, alpha: h.alpha}
+    query = case is_atom(content) do
+      true -> from [_page, h] in query, select: field(h, ^content)
+      false -> from [_page, h] in query, select: map(h, ^content)
     end
     query
     |> CMSRepo.one
-    |> Map.get(content)
     |> handle_bold
   end
 

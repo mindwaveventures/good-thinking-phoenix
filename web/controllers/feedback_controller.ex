@@ -26,10 +26,10 @@ defmodule App.FeedbackController do
     feedback_content = CMSRepo.one(feedback_content_query)
 
     render conn, "index.html",
-                 forms: handle_bold(forms),
-                 form_title: handle_bold(feedback_content.form_title),
-                 feedback1: handle_bold(feedback_content.feedback1),
-                 feedback2: handle_bold(feedback_content.feedback2),
+                 forms: Enum.map(forms, &R.handle_bold/1),
+                 form_title: R.handle_bold(feedback_content.form_title),
+                 feedback1: R.handle_bold(feedback_content.feedback1),
+                 feedback2: R.handle_bold(feedback_content.feedback2),
                  content: %{footer: R.get_content(:footer),
                             alpha: R.get_content(:alpha,
                                                  {"/home/feedback/",
@@ -38,15 +38,6 @@ defmodule App.FeedbackController do
                                                  {"/home/feedback/",
                                                   "feedback_feedbackpage"})}
   end
-
-  def handle_bold(string) when is_binary(string),
-    do: R.handle_bold(string)
-  def handle_bold(map) when is_map(map),
-    do: map |> Map.to_list |> Map.new(fn {k, v} -> {k, handle_bold(v)} end)
-  def handle_bold(list) when is_list(list),
-    do: Enum.map(list, &handle_bold/1)
-  def handle_bold(bool) when is_boolean(bool),
-    do: bool
 
   def post(conn, params),
     do: S.submit conn, params, feedback_path(conn, :index) <> "#alphasection"
