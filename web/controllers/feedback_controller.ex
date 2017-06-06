@@ -4,16 +4,21 @@ defmodule App.FeedbackController do
   alias App.Resources, as: R
   alias App.SpreadsheetController, as: S
 
+  defp replace_key(map, key_old, key_new) when is_map(map) do
+    Map.new(map, fn {k, v} ->
+      if k == key_old do {key_new, v} else {k, v} end
+    end)
+  end
+
   def index(conn, _params) do
+    form_content = [:help_text, :choices, :default_value,
+                    :required, :field_type, :label]
     forms_query = from page in "feedback_formfield",
-      select: %{question: page.help_text,
-                choices: page.choices,
-                default_value: page.default_value,
-                required: page.required,
-                field_type: page.field_type,
-                label: page.label},
+      select: map(page, ^form_content),
       order_by: page.sort_order
-    forms = CMSRepo.all(forms_query)
+    forms = forms_query
+      |> CMSRepo.all
+      |> Enum.map(&(replace_key(&1, :help_text, :question)))
 
     feedback_content_query = from page in "feedback_feedbackpage",
       select: %{form_title: page.form_title,

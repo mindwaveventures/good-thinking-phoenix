@@ -68,10 +68,8 @@ defmodule App.HomepageController do
     iex>[strings, substrings] |> Enum.zip |> Enum.map(contains) |> Enum.all?
     true
   """
-  def get_content do
-    [:body, :footer, :alpha, :alphatext, :lookingfor]
-    |> Map.new(&({&1, R.get_content(&1)}))
-  end
+  def get_content,
+    do: R.get_content([:body, :footer, :alpha, :alphatext, :lookingfor])
 
   @doc"""
     iex>%{audience: audience, category: category, content: content} = get_tags()
