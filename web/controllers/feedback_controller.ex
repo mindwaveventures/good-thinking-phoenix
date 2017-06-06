@@ -24,6 +24,7 @@ defmodule App.FeedbackController do
       |> List.flatten
       |> Enum.into([:form_title])
 
+<<<<<<< HEAD
     feedback =
       "feedback_feedbackpage"
       |> select([page], ^feedback_content)
@@ -39,6 +40,22 @@ defmodule App.FeedbackController do
     render conn, "index.html", assigns
   end
 
+=======
+    render conn, "index.html",
+                 forms: Enum.map(forms, &R.handle_bold/1),
+                 form_title: R.handle_bold(feedback_content.form_title),
+                 feedback1: R.handle_bold(feedback_content.feedback1),
+                 feedback2: R.handle_bold(feedback_content.feedback2),
+                 content: %{footer: R.get_content(:footer),
+                            alpha: R.get_content(:alpha,
+                                                 {"/home/feedback/",
+                                                  "feedback_feedbackpage"}),
+                            alphatext: R.get_content(:alphatext,
+                                                 {"/home/feedback/",
+                                                  "feedback_feedbackpage"})}
+  end
+
+>>>>>>> get_content is now flexible and can take atoms and lists of atoms, also refactored the use of handle_bold in the feedback controller
   def post(conn, params),
     do: S.submit conn, params, feedback_path(conn, :index) <> "#alphasection"
 end
