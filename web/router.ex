@@ -7,6 +7,7 @@ defmodule App.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug App.Banner, ""
     plug App.Cookie, ""
   end
 
@@ -26,10 +27,11 @@ defmodule App.Router do
     post "/resourcefeedback/:id", ResourceFeedbackController, :resource_feedback
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
-    get "/info/:page", InfoController, :index
     get "/coming-soon", ComingSoonController, :index
     get "/feedback", FeedbackController, :index
     post "/feedback", FeedbackController, :post
+    get "/:page", InfoController, :index
+    # Default route - will match any page - must stay at bottom
   end
 
   # Other scopes may use custom stacks.
