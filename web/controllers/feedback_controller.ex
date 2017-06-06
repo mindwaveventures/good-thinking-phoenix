@@ -4,6 +4,7 @@ defmodule App.FeedbackController do
   alias App.Resources, as: R
   alias App.SpreadsheetController, as: S
 
+<<<<<<< HEAD
   defp handle_bold(elem) when not is_list(elem), do: R.handle_bold elem
   defp handle_bold(elem) when is_list(elem), do: Enum.map elem, &handle_bold/1
   def index(conn, _params) do
@@ -14,6 +15,23 @@ defmodule App.FeedbackController do
       |> select([page], map(page, ^form_content))
       |> order_by([page], page.sort_order)
       |> CMSRepo.all
+=======
+  defp replace_key(map, key_old, key_new) when is_map(map) do
+    Map.new(map, fn {k, v} ->
+      if k == key_old do {key_new, v} else {k, v} end
+    end)
+  end
+
+  def index(conn, _params) do
+    form_content = [:help_text, :choices, :default_value,
+                    :required, :field_type, :label]
+    forms_query = from page in "feedback_formfield",
+      select: map(page, ^form_content),
+      order_by: page.sort_order
+    forms = forms_query
+      |> CMSRepo.all
+      |> Enum.map(&(replace_key(&1, :help_text, :question)))
+>>>>>>> making use of the new get_content function
 
     feedback_content =
       [:help_text, :default_text, :intro]
