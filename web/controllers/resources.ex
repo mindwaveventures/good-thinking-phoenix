@@ -40,16 +40,26 @@ defmodule App.Resources do
   defp add_bold_class({tag, inner_html}, class),
     do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
 
-  def get_content(content) do
-    query = from page in "wagtailcore_page",
-      where: page.url_path == "/home/",
-      join: h in "home_homepage",
-      where: h.page_ptr_id == page.id,
-      select: %{alphatext: h.alphatext,
-                body: h.body,
-                footer: h.footer,
-                lookingfor: h.lookingfor}
-
+  def get_content(content,
+                  {url_path, table_name} \\ {"/home/", "home_homepage"}) do
+    query = case url_path do
+      "/home/" ->
+        from page in "wagtailcore_page",
+          where: page.url_path == ^url_path,
+          join: h in ^table_name,
+          where: h.page_ptr_id == page.id,
+          select: %{alphatext: h.alphatext,
+                    alpha: h.alpha,
+                    body: h.body,
+                    footer: h.footer,
+                    lookingfor: h.lookingfor}
+      "/home/feedback/" ->
+        from page in "wagtailcore_page",
+          where: page.url_path == ^url_path,
+          join: h in ^table_name,
+          where: h.page_ptr_id == page.id,
+          select: %{alphatext: h.alphatext, alpha: h.alpha}
+      end
     query
     |> CMSRepo.one
     |> Map.get(content)
