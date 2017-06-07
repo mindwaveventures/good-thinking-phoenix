@@ -1,4 +1,4 @@
-<div class="pa3">
+<div class="pa1 ph4 ph3-m ph3-l pb4 pb5-l">
   <div class="w-60-ns center">
     <p class="tl b">Showing <%= number_of_results @resources %></p>
   </div>
