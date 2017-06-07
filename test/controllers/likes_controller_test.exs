@@ -71,4 +71,16 @@ defmodule App.LikesControllerTest do
 
     assert json_response(conn, 200)
   end
+
+  @article_id "31"
+  test "POST /like/#{@article_id} - twice should remove", %{conn: conn} do
+    conn =
+      conn
+        |> Conn.put_resp_cookie("lm_session", String.duplicate("asdf", 8))
+        |> post(likes_path(conn, :like, @article_id))
+        |> post(likes_path(conn, :like, @article_id))
+
+    refute Repo.get_by Likes, article_id: @article_id
+    assert redirected_to(conn) == "/"
+  end
 end
