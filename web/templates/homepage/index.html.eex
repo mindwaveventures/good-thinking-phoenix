@@ -31,7 +31,7 @@
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
-  <div>
+  <div class="tc">
     <%= component "buttons/primary_button", value: "See More", id: "see_more", class: "dn-important" %>
   </div>
 </section>
