@@ -37,32 +37,45 @@ defmodule App.Resources do
     do: add_bold_class {tag, inner_html}, "segoe-bold"
   def handle_bold(list) when is_list(list),
     do: list |> Enum.map(&handle_bold/1) |> Enum.join
+  def handle_bold(map) when is_map(map),
+    do: Map.new(map, fn {k, v} -> {k, handle_bold(v)} end)
+  def handle_bold(other)
+    when not (is_list(other) or is_map(other) or is_binary(other)),
+    do: other
   defp add_bold_class({tag, inner_html}, class),
     do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
 
-  def get_content(content,
-                  {url_path, table_name} \\ {"/home/", "home_homepage"}) do
-    query = case url_path do
-      "/home/" ->
-        from page in "wagtailcore_page",
-          where: page.url_path == ^url_path,
-          join: h in ^table_name,
-          where: h.page_ptr_id == page.id,
-          select: %{alphatext: h.alphatext,
-                    alpha: h.alpha,
-                    body: h.body,
-                    footer: h.footer,
-                    lookingfor: h.lookingfor}
-      "/home/feedback/" ->
-        from page in "wagtailcore_page",
-          where: page.url_path == ^url_path,
-          join: h in ^table_name,
-          where: h.page_ptr_id == page.id,
-          select: %{alphatext: h.alphatext, alpha: h.alpha}
-      end
+  @doc """
+    iex> get_content(:alphatext) =~ "Take part in our ALPHA"
+    true
+    iex> get_content([:body, :footer]).body =~ "London Minds"
+    true
+    iex> get_content([:body, :footer]).footer =~ ""
+    true
+    iex> get_content(:alphatext, "feedback") =~ ""
+    true
+  """
+  def get_content(content), do: get_content(content, "home")
+  def get_content(content, view) when is_binary(view) do
+    tuple = case view do
+      "home" -> {"/home/", "home_homepage"}
+      _ -> {"/home/#{view}/", "#{view}_#{view}page"}
+    end
+    get_content(content, tuple)
+  end
+  def get_content(content, {url_path, table_name})
+    when is_list(content) or is_atom(content)
+    do
+    query = from page in "wagtailcore_page",
+              where: page.url_path == ^url_path,
+              join: h in ^table_name,
+              where: h.page_ptr_id == page.id
+    query = case is_atom(content) do
+      true -> from [_page, h] in query, select: field(h, ^content)
+      false -> from [_page, h] in query, select: map(h, ^content)
+    end
     query
     |> CMSRepo.one
-    |> Map.get(content)
     |> handle_bold
   end
 
@@ -156,13 +169,13 @@ defmodule App.Resources do
   end
 
   def get_all_tags(resource, type) do
-    Map.merge(%{tags:
+    tags =
       ["category", "audience", "content"]
         |> Enum.map(&create_query(&1, resource, type))
         |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
         |> Enum.map(&add_all_filter/1)
-        |> Enum.into(%{})
-    }, resource)
+        |> Map.new
+    Map.merge(%{tags: tags}, resource)
   end
 
   def add_all_filter({type, list}),
