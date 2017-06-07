@@ -69,7 +69,18 @@ defmodule App.HomepageController do
     true
   """
   def get_content,
-    do: R.get_content([:body, :footer, :alpha, :alphatext, :lookingfor])
+    do: R.get_content([
+      :body,
+      :footer,
+      :alpha,
+      :alphatext,
+      :lookingfor,
+      :filter_label_1,
+      :filter_label_2,
+      :filter_label_3,
+      :assessment_text,
+      :crisis_text
+    ])
 
   @doc"""
     iex>%{audience: audience, category: category, content: content} = get_tags()

@@ -1,10 +1,13 @@
 defmodule App.Banner do
-  @moduledoc false
+  @moduledoc """
+  # Gets banner text from CMS database, then assigns it to the connection
+  # so it's available in all templates
+  """
   import Plug.Conn
   alias App.{Resources}
 
   @doc"""
-    iex>App.Banner.init(true)
+    iex>init(true)
     true
   """
   def init(args), do: args

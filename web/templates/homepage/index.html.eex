@@ -5,17 +5,15 @@
   </div>
 </section>
 
-<section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc">
-  <p class="white tl tc-l">
-    Take our <span class="b">clinically approved</span> sleep self-assessment
-  </p>
+<section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc white">
+  <%= raw @content.assessment_text %>
   <%= component "buttons/secondary_button", background: "dark", value: "Take assessment", to: "/coming-soon", id: "assessment" %>
 </section>
 
 <section>
   <div class="lm-bg-orange pa3 ph4 tc">
     <p class="ma0 w-100 tc">
-      <%= link "Get urgent support", to: "info/crisis", class: "lm-dark-turquoise segoe-bold lm-white-hover", id: "crisis-link" %>
+      <%= link @content.crisis_text, to: "info/crisis", class: "lm-dark-turquoise segoe-bold lm-white-hover", id: "crisis-link" %>
     </p>
   </div>
 </section>
@@ -23,7 +21,11 @@
 <div class="tc">
   <%= checkbox :filter, :filter, class: "filter-check absolute o-0" %>
   <%= label :filter, :filter, class: get_class("primary_button") <> " mt4" %>
-  <%= render "sidebar.html", conn: @conn, tags: @tags %>
+  <%= render "sidebar.html", conn: @conn, tags: @tags,
+    filter_label_1: @content.filter_label_1,
+    filter_label_2: @content.filter_label_2,
+    filter_label_3: @content.filter_label_3
+  %>
 </div>
 
 <section class="tc-ns" id="results">
