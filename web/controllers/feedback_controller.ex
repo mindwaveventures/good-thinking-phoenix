@@ -39,6 +39,9 @@ defmodule App.FeedbackController do
     render conn, "index.html", assigns
   end
 
-  def post(conn, params),
-    do: S.submit conn, params, feedback_path(conn, :index) <> "#alphasection"
+  def post(conn, params) do
+    conn
+    |> S.submit(params)
+    |> redirect(to: feedback_path(conn, :index) <> "#alphasection")
+  end
 end

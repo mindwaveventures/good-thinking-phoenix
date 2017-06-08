@@ -22,43 +22,37 @@ defmodule App.SpreadsheetController do
     }
   }
 
-  def submit(conn, params),
-    do: submit conn, params, homepage_path(conn, :index)
-  def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}, path),
-    do: handle_submit conn, :suggestions, [suggestions], path
-  def submit(conn, %{"email" => %{"email" => email}}, path),
-    do: handle_submit conn, :emails, [email], path
-  def submit(conn, %{"feedback" => feedback}, path) do
+  def submit(conn, %{"suggestions" => %{"suggestions" => suggestions}}),
+    do: handle_submit conn, :suggestions, [suggestions]
+  def submit(conn, %{"email" => %{"email" => email}}),
+    do: handle_submit conn, :emails, [email]
+  def submit(conn, %{"feedback" => feedback}) do
     input_list = Enum.map ["email", "feedback1", "feedback2"], &(feedback[&1])
     question1 = Map.get feedback, "question1", ""
     input_list = [question1] ++ input_list
-    handle_submit conn, :feedback, input_list, path
+    handle_submit conn, :feedback, input_list
   end
-  def submit(conn, %{"tag_suggestion" => tag_suggestion}, path),
-    do: handle_submit conn, :tag_suggestion, tag_suggestion, path
+  def submit(conn, %{"tag_suggestion" => tag_suggestion}),
+    do: handle_submit conn, :tag_suggestion, tag_suggestion
   def submit(conn, %{"resource_feedback" => %{"id" => id,
                                               "liked" => liked,
                                               "resource_name" => name,
-                                              "feedback" => feedback}}, path) do
+                                              "feedback" => feedback}}) do
 
     case feedback do
       "" ->
         flash = {id, "Please submit some feedback"}
         conn
           |> put_flash(:resource_feedback_error, flash)
-          |> redirect_after_feedback(id, path)
       _ ->
         input_data = [id, name, @like_map[liked], feedback]
         flash = {id, "Thank you for your feedback"}
         conn
           |> handle_submit(:resource_feedback, input_data)
           |> put_flash(:resource_feedback, flash)
-          |> redirect_after_feedback(id, path)
     end
   end
-  def handle_submit(conn, tab_name, list, path) when is_list(list),
-    do: conn |> handle_submit(tab_name, list) |> redirect(to: path)
-  defp handle_submit(conn, tab_name, data_list) when is_list(data_list) do
+  def handle_submit(conn, tab_name, data_list) when is_list(data_list) do
     case @feedback_map
           |> Map.values
           |> Enum.map(&Map.has_key?(&1, tab_name))
@@ -137,7 +131,7 @@ defmodule App.SpreadsheetController do
     |> Repo.insert!
   end
 
-  def redirect_after_feedback(conn, id, path) do
+  def redirect_after_feedback(conn, id) do
     case get_req_header conn, "accept" do
       ["application/json"] ->
         resource = Resources.get_single_resource conn, id
@@ -145,7 +139,7 @@ defmodule App.SpreadsheetController do
                                   resource: resource, conn: conn
         json conn, %{result: result, id: id}
       _ ->
-        redirect(conn, to: path)
+        conn
     end
   end
 end
