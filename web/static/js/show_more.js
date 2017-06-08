@@ -1,5 +1,5 @@
 selectAll('#results > div > div').forEach(function (el, i) {
-  if(el.id.substring(0, 9) === 'resource_' && i > 5) {
+  if(el.id.substring(0, 9) === 'resource_' && i > 3) {
     toggleClasses(el, ['dn']);
   }
 });

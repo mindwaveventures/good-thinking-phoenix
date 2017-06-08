@@ -15,7 +15,7 @@ module.exports = function(nightmare, t) {
         });
     })
     .then(function (result) {
-      t.assert(result, 5);
+      t.assert(result, 3);
     })
     .then(function () {
       return nightmare
@@ -32,7 +32,7 @@ module.exports = function(nightmare, t) {
         .evaluate(function () {
           return [].filter.call(document.querySelectorAll('#results > div > div'), function (el) {
             return el.id.substring(0, 9) === 'resource_' && el.className.indexOf('dn') === -1;
-          }).length > 5
+          }).length > 3
         });
     })
     .then(function (result) {
