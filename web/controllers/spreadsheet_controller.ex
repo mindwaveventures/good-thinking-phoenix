@@ -17,7 +17,7 @@ defmodule App.SpreadsheetController do
     error: %{
       emails: "Please enter a valid email address",
       suggestions: "Please enter a suggestion",
-      feedback: "Please ensure you have filled in all of the fields",
+      feedback: "Please ensure you have filled in some of the fields",
       tag_suggestion: "Please fill in a suggestion"
     }
   }
@@ -92,22 +92,27 @@ defmodule App.SpreadsheetController do
     false
     iex> email_validation?(:emails, ["user@test.com"])
     true
-    iex> email_validation?(:feedback, ["", "", "", "ffff"])
+    iex> email_validation?(:feedback, ["", "ffff", "", ""])
     false
-    iex> email_validation?(:feedback, ["", "", "", "user@test.com"])
+    iex> email_validation?(:feedback, ["", "user@test.com", "", ""])
+    true
+    iex> email_validation?(:feedback, ["Data", "", "", ""])
     true
   """
-  def email_validation?(tab_name, data_list) do
-    @email_tabs
-      |> Enum.map(fn {tab, index} ->
-          tab_name == tab and data_list
-                                |> Enum.fetch!(index)
-                                |> email_validation?
-        end)
-      |> Enum.any?(&(&1))
+  def email_validation?(:emails, data_list),
+    do: data_list |> Enum.fetch!(0) |> email_validation?
+
+  def email_validation?(:feedback, data_list) do
+    index = if length(data_list) == 4 do 1 else 0 end
+    feedback_email = Enum.fetch! data_list, index
+    case feedback_email == "" do
+      true -> true
+      false -> email_validation? feedback_email
+    end
   end
+
   defp email_validation?(email),
-    do: String.contains? email, "@"
+    do: String.contains?(email, "@") and String.contains?(email, ".")
 
   defp handle_email_validation(tab_name, data_list) do
     case tab_name in Enum.map(@email_tabs, &elem(&1, 0)) do
