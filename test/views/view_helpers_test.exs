@@ -1,7 +1,7 @@
 defmodule App.ViewHelpersTest do
   use App.ConnCase
 
-  import App.ViewHelpers, only: [render_image: 2, render_link: 1]
+  import App.ViewHelpers
 
   setup %{conn: conn} do
     conn =
@@ -34,14 +34,21 @@ defmodule App.ViewHelpersTest do
 
   test "transform single link" do
     actual = render_link(~s(<a id="30" linktype="page">link</a>))
-    expected = ~s(<a href="/info/crisis">link</a>)
+    expected = ~s(<a href="/crisis" class="">link</a>)
 
     assert actual == expected
   end
 
   test "transform multiple links" do
     actual = render_link(~s(<div><a id="30" linktype="page">link</a></div><div><a id="30" linktype="page">link2</a></div>))
-    expected = ~s(<div><a href="/info/crisis">link</a></div><div><a href="/info/crisis">link2</a></div>)
+    expected = ~s(<div><a href="/crisis" class="">link</a></div><div><a href="/crisis" class="">link2</a></div>)
+
+    assert actual == expected
+  end
+
+  test "transform link with class" do
+    actual = render_link(~s(<a id="30" linktype="page">link</a>), "f5 white")
+    expected = ~s(<a href="/crisis" class="f5 white">link</a>)
 
     assert actual == expected
   end

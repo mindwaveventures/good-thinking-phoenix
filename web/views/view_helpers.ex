@@ -45,10 +45,13 @@ defmodule App.ViewHelpers do
     end
   end
 
-  def render_link(html_string),
-    do: Regex.replace @link_regex, html_string, &get_a_tag/3, global: true
+  def render_link(html_string, classes \\ "") do
+    Regex.replace(@link_regex, html_string,
+      &get_a_tag(&1, &2, &3, classes), global: true
+    )
+  end
 
-  def get_a_tag(_full_string, id, text) do
+  def get_a_tag(_full_string, id, text, classes) do
     link_query = from p in "wagtailcore_page",
       where: p.id == ^String.to_integer(id),
       join: c in "django_content_type",
@@ -57,7 +60,7 @@ defmodule App.ViewHelpers do
 
     data = CMSRepo.one(link_query)
 
-    ~s(<a href="/#{data.content}/#{data.page}">#{text}</a>)
+    ~s(<a href="/#{data.page}" class="#{classes}">#{text}</a>)
   end
 
   @button_classes "f5 link dib ph3 pv2 br-pill lm-white-hover pointer segoe-bold tracked"

@@ -57,6 +57,14 @@ body {
   font-family: 'NunitoSans-Italic';
 }
 
+a {
+  color: inherit;
+}
+
+.banner p {
+  margin: 0;
+}
+
 h1, h2 {
   font-family: 'Segoe UI', sans-serif;
 }
@@ -331,7 +339,7 @@ code {
   font-family: 'Segoe UI-Bold';
 }
 
-#alpha h2, h3 {
+#alpha h2, #alpha h3 {
   display: block;
   font-size: 1.5em;
   margin-top: 0.83em;

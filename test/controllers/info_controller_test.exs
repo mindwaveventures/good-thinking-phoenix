@@ -1,13 +1,13 @@
 defmodule App.InfoControllerTest do
   use App.ConnCase
 
-  test "GET /info/crisis", %{conn: conn} do
-    conn = get conn, "/info/crisis"
+  test "GET /crisis", %{conn: conn} do
+    conn = get conn, "/crisis"
     assert html_response(conn, 200) =~ "ALPHA"
   end
 
-  test "GET /info/notfound", %{conn: conn} do
-    conn = get conn, "/info/notfound"
+  test "GET /notfound", %{conn: conn} do
+    conn = get conn, "/notfound"
     assert html_response(conn, 404)
   end
 end

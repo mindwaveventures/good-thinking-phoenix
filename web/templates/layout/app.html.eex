@@ -39,23 +39,11 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
-      <div class="pa3 lm-bg-dark-blue lm-white w-100">
-        <h2 class="ma0 f6 f5-l f5-m">
-          <span class="b">ALPHA:</span>
-          This is a prototype - your
-          <%= if @conn.request_path != "/feedback" do %>
-            <a href="/feedback" id="feedback-link" class="underline lm-white">feedback</a>
-          <% else %>
-            <span class="lm-white">feedback</span>
-          <% end %>
-          will help us to improve it.
-          <%= if @conn.request_path != "/feedback" do %>
-            <a href="/#alpha" class="underline lm-white">Find out more</a>
-          <% else %>
-            <span>Find out more</span>
-          <% end %>
-        </h2>
-      </div>
+      <%= if String.length(@banner) > 0  do %>
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
+          <%= @banner |> render_link("underline lm-white") |> raw %>
+        </div>
+      <% end %>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
       <p class="alert" role="alert"><%= get_flash @conn, :error %></p>
 
