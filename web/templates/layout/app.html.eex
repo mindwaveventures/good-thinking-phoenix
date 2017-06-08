@@ -43,6 +43,9 @@
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
           <%= @banner |> render_link("underline lm-white") |> raw %>
         </div>
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0">
+          <%= @banner |> render_link("underline lm-white") |> raw %>
+        </div>
       <% end %>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
       <p class="alert" role="alert"><%= get_flash @conn, :error %></p>
