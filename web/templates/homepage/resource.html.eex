@@ -3,7 +3,7 @@
     <h2 class="mt0 mb1"><%= @resource[:heading] %></h2>
     <div class="word-wrap">
       <%= if String.length(@resource.url) > 0 do %>
-        <%= link @resource.url, to: @resource.url, class: "link f6 lm-turquoise resource-link" %>
+        <%= link @resource.url, to: @resource.url, class: "link f6 lm-turquoise resource-link", target: "_blank" %>
       <% end %>
     </div>
     <div class="mt1">
