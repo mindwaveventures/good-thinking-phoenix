@@ -19,4 +19,7 @@ defmodule App.ComponentView do
     do: getVideoId(@yt_url, url) || getVideoId(@short_yt_url, url)
   def getVideoId(regex, url),
     do: (regex |> Regex.run(url) || []) |> List.last
+
+  def name_to_atom(name) when is_atom(name), do: name
+  def name_to_atom(name), do: String.to_atom(name)
 end

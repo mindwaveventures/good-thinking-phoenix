@@ -42,10 +42,9 @@
               -1 -> "wouldn't you"
             end %> recommend this?
           </p>
-          <%= textarea f, :feedback, class: "w-50-l w-100 h3 db mb3 nr" %>
+          <%= component "text_box", conn: @conn, form: f, name: "feedback", submit: true %>
           <%= hidden_input f, :liked, value: @resource.liked %>
           <%= hidden_input f, :resource_name, value: @resource.heading %>
-          <%= component "buttons/primary_button", value: "Submit" %>
           <%= if get_flash(@conn, :resource_feedback) != nil or get_flash(@conn, :resource_feedback_error) != nil do %>
             <%= if [:resource_feedback, :resource_feedback_error] |> Enum.map(&(get_flash(@conn, &1))) |> Enum.find(&(&1 != nil)) |> elem(0) == "#{@resource.id}" do %>
               <%= component "flash", conn: @conn, type: :resource_feedback %>

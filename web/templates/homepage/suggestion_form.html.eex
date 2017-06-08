@@ -3,15 +3,9 @@
     <div class="pt3 pb2 mt4 tl center ma0-ns">
       <%= raw @content.lookingfor %>
     </div>
-    <div>
-      <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#suggestion_form", [as: :suggestions], fn f -> %>
-      <%= label f, :suggestions, "Suggestions", class: "dn" %>
-      <%= textarea f, :suggestions, placeholder: "Add your suggestions for new topics", class: "h4 f5 w-100 ba bw1 b--gray pa3" %>
-      <div class="dib w-100">
-        <%= component "buttons/primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
-      </div>
-      <% end %>
-      <%= component "flash", conn: @conn, type: :suggestions %>
-    </div>
+    <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#suggestion_form", [as: :suggestions], fn f -> %>
+      <%= component "text_box", conn: @conn, form: f, name: "Suggestions", placeholder: "Add your suggestions for new topics", submit: true %>
+    <% end %>
+    <%= component "flash", conn: @conn, type: :suggestions %>
   </div>
 </section>
