@@ -11,6 +11,8 @@ function handle_see_more(e) {
   });
   toggleClasses(select('#see_more'), ['dn-important']);
 }
-toggleClasses(select('#see_more'), ['dn-important']);
-see_more.addEventListener('click', handle_see_more);
+if (selectAll('#results > div > div').length > 3) {
+  toggleClasses(select('#see_more'), ['dn-important']);
+  select('#see_more').addEventListener('click', handle_see_more);
+}
 
