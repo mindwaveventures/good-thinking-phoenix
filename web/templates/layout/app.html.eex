@@ -39,9 +39,11 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
-      <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
-        <%= @banner |> render_link("underline lm-white") |> raw %>
-      </div>
+      <%= if String.length(@banner) > 0  do %>
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
+          <%= @banner |> render_link("underline lm-white") |> raw %>
+        </div>
+      <% end %>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
       <p class="alert" role="alert"><%= get_flash @conn, :error %></p>
 
