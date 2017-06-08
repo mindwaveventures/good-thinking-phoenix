@@ -334,6 +334,9 @@ code {
     height: 21.2rem;
   }
 }
+.crisis-banner > p {
+  margin: 0;
+}
 
 #email_form h2 {
   font-family: 'Segoe UI-Bold';
