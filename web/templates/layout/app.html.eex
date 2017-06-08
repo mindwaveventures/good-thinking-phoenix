@@ -43,7 +43,7 @@
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
           <%= @banner |> render_link("underline lm-white") |> raw %>
         </div>
-        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0">
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-999">
           <%= @banner |> render_link("underline lm-white") |> raw %>
         </div>
       <% end %>
