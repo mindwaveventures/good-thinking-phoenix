@@ -11,10 +11,8 @@
 </section>
 
 <section>
-  <div class="lm-bg-orange pa3 ph4 tc">
-    <p class="ma0 w-100 tc">
-      <%= link @content.crisis_text, to: "info/crisis", class: "lm-dark-turquoise segoe-bold lm-white-hover", id: "crisis-link" %>
-    </p>
+  <div class="lm-bg-orange pa3 ph4 tc ma0 w-100 tc lm-dark-turquoise crisis-banner">
+    <%= @content.crisis_text |> render_link(id: "crisis-link", class: "lm-white-hover") |> raw %>
   </div>
 </section>
 

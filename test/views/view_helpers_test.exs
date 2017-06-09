@@ -34,21 +34,28 @@ defmodule App.ViewHelpersTest do
 
   test "transform single link" do
     actual = render_link(~s(<a id="30" linktype="page">link</a>))
-    expected = ~s(<a href="/crisis" class="">link</a>)
+    expected = ~s(<a href="/crisis" class="" id="">link</a>)
 
     assert actual == expected
   end
 
   test "transform multiple links" do
     actual = render_link(~s(<div><a id="30" linktype="page">link</a></div><div><a id="30" linktype="page">link2</a></div>))
-    expected = ~s(<div><a href="/crisis" class="">link</a></div><div><a href="/crisis" class="">link2</a></div>)
+    expected = ~s(<div><a href="/crisis" class="" id="">link</a></div><div><a href="/crisis" class="" id="">link2</a></div>)
 
     assert actual == expected
   end
 
   test "transform link with class" do
-    actual = render_link(~s(<a id="30" linktype="page">link</a>), "f5 white")
-    expected = ~s(<a href="/crisis" class="f5 white">link</a>)
+    actual = render_link(~s(<a id="30" linktype="page">link</a>), class: "f5 white")
+    expected = ~s(<a href="/crisis" class="f5 white" id="">link</a>)
+
+    assert actual == expected
+  end
+
+  test "transform link with id" do
+    actual = render_link(~s(<a id="30" linktype="page">link</a>), id: "hello")
+    expected = ~s(<a href="/crisis" class="" id="hello">link</a>)
 
     assert actual == expected
   end
