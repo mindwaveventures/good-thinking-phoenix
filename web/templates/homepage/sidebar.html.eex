@@ -1,9 +1,9 @@
 <div class="filter-sidebar">
   <div class="fixed sidebar top-0 bg-white bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl shadow-2 z-9999">
     <div class="tl lm-grey w-100 tr mb4">
-      <%= label :filter, :filter, class: get_class("secondary_button", "light") do
-        raw("<i class=\"fa fa-times f4\" aria-hidden=\"true\"></i>")
-      end %>
+      <label class="<%= get_class("primary_button") %> mt4" for="filter_filter">
+        <i class="fa fa-times f4" aria-hidden="true"><span id="close-filter-label" class="o-0 absolute">close</span></i>
+      </label>
     </div>
     <div class="ph1 sidebar-tag-blocks">
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags, id: "filter-form"],  fn f -> %>
