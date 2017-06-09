@@ -15,7 +15,6 @@
     <h2 class="ma0 f3 segoe-bold"><%= @form_title %></h2>
   </div>
 </section>
-
 <%= form_for @conn, feedback_path(@conn, :post), [as: :feedback, class: "lm-ls1", id: "feedback-form"], fn f -> %>
   <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue nunito feedback-form-section">
     <div class="w-60-m w-50-l center">
@@ -36,7 +35,7 @@
   <section class="f3 pt3 ph4 tl lh-copy pb3 segoe feedback-section">
     <div class="w-60-m w-50-l center">
       <%= raw @feedback1_intro %>
-      <%= component "text_box", conn: @conn, form: f, name: :feedback1, placeholder: @feedback1_default_text %>
+      <%= component "text_box", conn: @conn, form: f, name: :feedback1, placeholder: @feedback1_default_text, value: @changeset.changes[:data] && Enum.at(@changeset.changes.data, 1) %>
       <%= raw @feedback1_help_text %>
     </div>
   </section>
@@ -44,7 +43,7 @@
   <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue segoe feedback-section">
     <div class="w-60-m w-50-l center">
       <%= raw @feedback2_intro %>
-      <%= component "text_box", conn: @conn, form: f, name: :feedback2, placeholder: @feedback2_default_text %>
+      <%= component "text_box", conn: @conn, form: f, name: :feedback2, placeholder: @feedback2_default_text, value: @changeset.changes[:data] && Enum.at(@changeset.changes.data, 2) %>
       <%= raw @feedback2_help_text %>
     </div>
   </section>
@@ -52,7 +51,7 @@
   <section class="f3 pa3 ph4 tl lh-copy segoe feedback-section">
     <div id="alphasection" class="w-60-m w-50-l nunito center f5">
       <%= raw @content.alphatext %>
-      <%= text_input f, :email, placeholder: "Email", class: "w-100 pa2 f5 ba b--lm-grey" %>
+      <%= text_input f, :email, placeholder: "Email", class: "w-100 pa2 f5 ba b--lm-grey", value: @changeset.changes[:data] && Enum.at(@changeset.changes.data, 0) %>
       <div class="w-100 tr mt3">
         <%= component "buttons/primary_button", value: "Submit" %>
       </div>
