@@ -4,8 +4,6 @@ defmodule App.FeedbackController do
   alias App.Resources, as: R
   alias App.SpreadsheetController, as: S
 
-  defp handle_bold(elem) when not is_list(elem), do: R.handle_bold elem
-  defp handle_bold(elem) when is_list(elem), do: Enum.map elem, &handle_bold/1
   def index(conn, _params) do
     form_content = [:help_text, :choices, :default_value,
                     :required, :field_type, :label]
@@ -35,7 +33,6 @@ defmodule App.FeedbackController do
     assigns =
       feedback
       |> Map.merge(%{content: content, forms: forms})
-      |> Map.new(fn {k, v} -> {k, handle_bold(v)} end)
     render conn, "index.html", assigns
   end
 

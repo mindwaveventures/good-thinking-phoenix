@@ -7,6 +7,6 @@
 
 <section class="f4 pt5-l ph4 ph5-m ph6-l pb4">
   <div class="br1 shadow-2 ph3 pt1 pb2 tl w-60-ns center">
-    <%= @body |> render_image(@conn) |> render_link |> raw %>
+    <%= transform_html @body, @conn %>
   </div>
 </section>

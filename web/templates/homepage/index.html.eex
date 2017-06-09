@@ -12,7 +12,7 @@
 
 <section>
   <div class="lm-bg-orange pa3 ph4 tc ma0 w-100 tc lm-dark-turquoise crisis-banner">
-    <%= @content.crisis_text |> render_link(id: "crisis-link", class: "lm-white-hover") |> raw %>
+    <%= transform_html @content.crisis_text, @conn, id: "crisis-link", class: "lm-white-hover" %>
   </div>
 </section>
 
