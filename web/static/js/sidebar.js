@@ -32,17 +32,20 @@ if (isNotIE8()) {
       var filterSelect = select(".select-" + el + "-filters");
       var sidebar = select(".sidebar");
 
-      filterType.classList.add("hide-filters", "br1", "w-100", "absolute", "bg-white", "z-1", "overflow-scroll");
-      filterSelect.classList.add("select-filters", "pointer");
+      addClasses(filterType, ["hide-filters", "br1", "w-100", "absolute", "bg-white", "z-1", "overflow-y-scroll", "overflow-x-hidden"]);
+      addClasses(filterSelect, ["select-filters", "pointer"]);
 
       filterSelect.addEventListener("click", function() {
         toggleClasses(filterType, ["hide-filters", "shadow-2", "h45"])
         toggleArrows(el);
 
         sidebar.addEventListener("click", function hideFilters(e) {
+          var path = getPath(e);
+
           updateSelected(select("#filter-form"));
           displaySelected(el);
-          if (e.path.indexOf(filterSelect) == -1 && e.path.indexOf(filterType) == -1){
+
+          if (path.indexOf(filterSelect) == -1 && path.indexOf(filterType) == -1){
             toggleArrows(el);
             filterType.classList.add("hide-filters");
             filterType.classList.remove("shadow-2", "h45");
@@ -50,6 +53,21 @@ if (isNotIE8()) {
           }
         });
       });
+
+      function getPath(event) {
+        if (event.path) {
+          return event.path;
+        } else {
+          var current = event.target;
+          var path = [current];
+
+          while (current.parentNode) {
+            current = current.parentNode
+            path.push(current);
+          }
+          return path;
+        }
+      }
 
       // Clicking 'Show Everything' deselects all other filters
       select(".show-everything-" + el).addEventListener("click", function() {
