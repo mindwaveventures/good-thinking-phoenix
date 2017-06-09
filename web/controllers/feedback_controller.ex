@@ -1,13 +1,13 @@
 defmodule App.FeedbackController do
   use App.Web, :controller
-  alias App.{CMSRepo, Feedback}
+  alias App.CMSRepo
   alias App.Resources, as: R
   alias App.SpreadsheetController, as: S
 
   defp handle_bold(elem) when not is_list(elem), do: R.handle_bold elem
   defp handle_bold(elem) when is_list(elem), do: Enum.map elem, &handle_bold/1
-  def index(conn, params = %{"changes" => changes}) do
-    changeset = Feedback.changeset(%Feedback{}, changes || %{})
+  def index(conn, params) do
+    changes = Map.get(params, "changes", %{})
     form_content = [:help_text, :choices, :default_value,
                     :required, :field_type, :label]
     forms =
@@ -35,14 +35,15 @@ defmodule App.FeedbackController do
       |> Map.new(fn {k, v} -> {k, R.get_content(k, v)} end)
     assigns =
       feedback
-      |> Map.merge(%{content: content, forms: forms, changeset: changeset})
+      |> Map.merge(%{content: content, forms: forms, changes: changes})
     render conn, "index.html", assigns
   end
 
-  def post(conn, %{"feedback" => feedback} = params) do
-    changeset = Feedback.changeset(%Feedback{}, %{data: Enum.map(feedback, fn {name, feedback} -> feedback end)})
+  def post(conn, params) do
+    changes = Map.get(params, "changes", %{})
+
     conn
     |> S.submit(params)
-    |> redirect(to: feedback_path(conn, :index, %{changes: changeset.changes}) <> "#alphasection")
+    |> redirect(to: feedback_path(conn, :index, %{changes: changes}) <> "#alphasection")
   end
 end
