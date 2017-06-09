@@ -5,7 +5,7 @@ selectAll('#results > div > div').forEach(function (el, i) {
 });
 function handle_see_more(e) {
   selectAll('#results > div > div').forEach(function (el, i) {
-    if(el.id.substring(0, 9) === 'resource_') {
+    if(el.id.substring(0, 9) === 'resource_' && el.className.indexOf('dn') > -1) {
       toggleClasses(el, ['dn']);
     }
   });
