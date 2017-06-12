@@ -10,42 +10,6 @@ defmodule App.Resources do
     do: Enum.sort list, &(&1[:priority] <= &2[:priority])
 
   @doc """
-  iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
-  true
-  iex> handle_bold("<h1><b>Hello World</b></h1>") == ~s(<h1><b class="nunito">Hello World</b></h1>)
-  true
-  iex> handle_bold("<p><b>Hello World</b></p>") == ~s(<p><b class="segoe-bold">Hello World</b></p>)
-  true
-  """
-  @nunito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
-  @segio_tags ~w(p li)
-  @tags Enum.join @nunito_tags ++ @segio_tags, "|"
-  def handle_bold(string) when is_binary(string) do
-    case String.contains? string, "<b>" do
-      true ->
-        "<(#{@tags})>(.*?(?=(?:<\/\\1>)))<\/\\1>"
-          |> Regex.compile!
-          |> Regex.scan(string)
-          |> Enum.map(&(&1 |> List.delete_at(0) |> List.to_tuple))
-          |> handle_bold
-      _ -> string
-    end
-  end
-  def handle_bold({tag, inner_html}) when tag in @nunito_tags,
-    do: add_bold_class {tag, inner_html}, "nunito"
-  def handle_bold({tag, inner_html}) when tag in @segio_tags,
-    do: add_bold_class {tag, inner_html}, "segoe-bold"
-  def handle_bold(list) when is_list(list),
-    do: list |> Enum.map(&handle_bold/1) |> Enum.join
-  def handle_bold(map) when is_map(map),
-    do: Map.new(map, fn {k, v} -> {k, handle_bold(v)} end)
-  def handle_bold(other)
-    when not (is_list(other) or is_map(other) or is_binary(other)),
-    do: other
-  defp add_bold_class({tag, inner_html}, class),
-    do: String.replace "<#{tag}>#{inner_html}</#{tag}>", "<b>", ~s(<b class="#{class}">)
-
-  @doc """
     iex> get_content(:alphatext) =~ "Take part in our ALPHA"
     true
     iex> get_content([:body, :footer]).body =~ "London Minds"
@@ -76,7 +40,6 @@ defmodule App.Resources do
     end
     query
     |> CMSRepo.one
-    |> handle_bold
   end
 
   def get_tags(type) do

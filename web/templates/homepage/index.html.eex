@@ -11,16 +11,14 @@
 </section>
 
 <section>
-  <div class="lm-bg-orange pa3 ph4 tc">
-    <p class="ma0 w-100 tc">
-      <%= link @content.crisis_text, to: "info/crisis", class: "lm-dark-turquoise segoe-bold lm-white-hover", id: "crisis-link" %>
-    </p>
+  <div class="lm-bg-orange pa3 ph4 tc ma0 w-100 tc lm-dark-turquoise crisis-banner">
+    <%= transform_html @content.crisis_text, @conn, id: "crisis-link", class: "lm-white-hover" %>
   </div>
 </section>
 
 <div class="tc">
-  <%= checkbox :filter, :filter, class: "filter-check absolute o-0" %>
-  <%= label :filter, :filter, class: get_class("primary_button") <> " mt4" %>
+  <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
+  <label class="<%= get_class("primary_button") %> mt4" id="open-filter-label" for="filter_filter">Filter</label>
   <%= render "sidebar.html", conn: @conn, tags: @tags,
     filter_label_1: @content.filter_label_1,
     filter_label_2: @content.filter_label_2,
