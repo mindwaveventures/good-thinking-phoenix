@@ -1,5 +1,6 @@
 defmodule App.ViewHelpersTest do
   use App.ConnCase
+  doctest App.ViewHelpers, import: true
 
   import App.ViewHelpers
 
@@ -101,6 +102,6 @@ defmodule App.ViewHelpersTest do
   end
 
   test "ie8", %{conn: conn} do
-    assert is_ie8 conn
+    assert is_ie8? conn
   end
 end

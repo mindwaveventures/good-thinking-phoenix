@@ -16,7 +16,7 @@
   </div>
 </section>
 
-<%= if is_ie8(@conn) do %>
+<%= if is_ie8? @conn do %>
   <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
 <% else %>
   <div class="tc">
