@@ -13,28 +13,28 @@ defmodule App.ViewHelpersTest do
 
   test "transform single image string", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="left" id="1"/>), conn)
-    expected = ~s(<img src="/images/phoenix.png" alt="hellos" class="fl" />)
+    expected = ~s(<div class="tl"><img src="https://s3.amazonaws.com/londonminds/original_images/phoenix.png" alt="hellos" class="w-50" /></div>)
 
     assert actual == expected
   end
 
   test "transform single image string - full width", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="fullwidth" id="1"/>), conn)
-    expected = ~s(<div class="w-100 tc"><img src="/images/phoenix.png" alt="hellos" class="w-50" /></div>)
+    expected = ~s(<div class="tc"><img src="https://s3.amazonaws.com/londonminds/original_images/phoenix.png" alt="hellos" class="w-100" /></div>)
 
     assert actual == expected
   end
 
   test "transform multiple image strings", %{conn: conn} do
     actual = render_image(~s(<div><embed alt="hellos" embedtype="image" format="left" id="1"/></div><div><embed alt="world" embedtype="image" format="right" id="1"/></div>), conn)
-    expected = ~s(<div><img src="/images/phoenix.png" alt="hellos" class="fl" /></div><div><img src="/images/phoenix.png" alt="world" class="fr" /></div>)
+    expected = ~s(<div><div class="tl"><img src="https://s3.amazonaws.com/londonminds/original_images/phoenix.png" alt="hellos" class="w-50" /></div></div><div><div class="tr"><img src="https://s3.amazonaws.com/londonminds/original_images/phoenix.png" alt="world" class="w-50" /></div></div>)
 
     assert actual == expected
   end
 
   test "non-exisitent image", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="left" id="0"/>), conn)
-    expected = ~s(<img src="/not-found" alt="hellos" class="fl" />)
+    expected = ~s(<div class="tl"><img src="/not-found" alt="hellos" class="w-50" /></div>)
 
     assert actual == expected
   end
@@ -89,7 +89,7 @@ defmodule App.ViewHelpersTest do
     expected = {:safe,
       ~s"""
       <h1><a href="/crisis" class="" id="">Link title</a></h1>\
-      <a href="/crisis" class="" id=""><img src="/images/phoenix.png" alt="hello" class="fl" /></a>\
+      <a href="/crisis" class="" id=""><div class="tl"><img src="https://s3.amazonaws.com/londonminds/original_images/phoenix.png" alt="hello" class="w-50" /></div></a>\
       <p><a href="/crisis" class="" id=""><b class="segoe-bold">Link P</b></a></p>\
       <h1><b class="nunito-bold"><a href="/crisis" class="" id="">Link title 2</a></b></h1>
       """}

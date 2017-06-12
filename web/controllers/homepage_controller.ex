@@ -14,7 +14,7 @@ defmodule App.HomepageController do
                  tags: get_tags(), resources: resources
   end
 
-  def show(conn, %{
+  def show(conn, params = %{
       "category" => %{"add_your_own" => cat_suggestion},
       "audience" => %{"add_your_own" => aud_suggestion},
       "content" => %{"add_your_own" => con_suggestion}
@@ -22,6 +22,7 @@ defmodule App.HomepageController do
   ) when (cat_suggestion <> aud_suggestion <> con_suggestion) != ""  do
     conn
     |> submit(%{"tag_suggestion" => [cat_suggestion, aud_suggestion, con_suggestion]})
+    |> redirect(to: homepage_path(conn, :show, params))
   end
   def show(conn, params) do
     prepend = fn(a, b) -> b <> a end
