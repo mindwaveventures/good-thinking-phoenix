@@ -1,6 +1,6 @@
 module.exports = function(nightmare, t) {
   nightmare
-    .goto("http://localhost:4000")
+    .goto("http://localhost:4001")
     .click("#filter_filter")
     .wait(".sidebar-overlay")
     .evaluate(function() {

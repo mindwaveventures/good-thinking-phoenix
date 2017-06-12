@@ -1,7 +1,7 @@
 module.exports = function(nightmare, t) {
   var resources;
   nightmare
-    .goto("http://localhost:4000")
+    .goto("http://localhost:4001")
     .visible("#results")
     .then(function(result) {
       t.assert(result, true);

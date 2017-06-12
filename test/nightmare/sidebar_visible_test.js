@@ -1,6 +1,6 @@
 module.exports = function(nightmare, t) {
   nightmare
-    .goto("http://localhost:4000")
+    .goto("http://localhost:4001")
     .visible(".sidebar-overlay")
     .then(function(result) {
       t.assert(result, false);
