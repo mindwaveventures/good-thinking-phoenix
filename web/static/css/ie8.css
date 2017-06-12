@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+}
+
+.banner-2 {
+  display: none;
+}
+
+.logo {
+  width: 50%;
+}
+
+.resource {
+  border: 1px solid black;
+  margin: 4em;
+  padding: 1em;
+}
