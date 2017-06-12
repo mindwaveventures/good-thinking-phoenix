@@ -6,11 +6,12 @@
     "watch": "brunch watch --stdin",
     "postinstall": "cp node_modules/tachyons*/css/tachyons*.min.css web/static/css/",
     "coverage": "mix coveralls",
-    "accessibility": "pa11y localhost:4001 -i notice -i warning",
+    "accessibility": "pa11y-ci",
     "lint": "mix credo --strict",
     "nightmare": "node test/nightmare"
   },
   "dependencies": {
+    "pa11y": "^4.11.0",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "tachyons": "^4.7.1",
@@ -24,7 +25,7 @@
     "css-brunch": "~2.0.0",
     "javascript-brunch": "~2.0.0",
     "nightmare": "^2.10.0",
-    "pa11y": "^4.10.0",
+    "pa11y-ci": "^1.2.0",
     "pre-commit": "^1.2.2",
     "uglify-js-brunch": "~2.0.1"
   },
