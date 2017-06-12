@@ -8,6 +8,7 @@ if (isNotIE8()) {
   })();
 
   function formListener(e) {
+    if (FormData) {
       e.preventDefault();
       makePhoenixFormRequest("POST", e.target, function(err, res) {
         var response = JSON.parse(res);
@@ -20,5 +21,6 @@ if (isNotIE8()) {
         analytics.addAnalytics(select(".share", resource), "Share", "shared");
         analytics.addAnalytics(select(".resource-feedback", resource), "ResourceFeedback", "reviewed");
       });
+    }
   };
 }

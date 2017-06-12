@@ -4,13 +4,15 @@ defmodule App.LikesController do
   import Phoenix.View, only: [render_to_string: 3]
 
   def like(conn, %{"article_id" => article_id}) do
-    handle_like conn, article_id, 1
-    handle_like_redirect conn, get_query_string(conn), article_id
+    id = String.replace(article_id, ~r/#.*/, "")
+    handle_like conn, id, 1
+    handle_like_redirect conn, get_query_string(conn), id
   end
 
   def dislike(conn, %{"article_id" => article_id}) do
-    handle_like conn, article_id, -1
-    handle_like_redirect conn, get_query_string(conn), article_id
+    id = String.replace(article_id, ~r/#.*/, "")
+    handle_like conn, id, -1
+    handle_like_redirect conn, get_query_string(conn), id
   end
 
   defp handle_like_redirect(conn, query, id) do
