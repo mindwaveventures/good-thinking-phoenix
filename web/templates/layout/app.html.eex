@@ -41,10 +41,10 @@
     <div class="container">
       <%= if String.length(@banner) > 0  do %>
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
-          <%= @banner |> render_link() |> raw %>
+          <%= transform_html @banner, @conn %>
         </div>
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5">
-          <%= @banner |> render_link(class: "underline lm-white", id: "feedback-link") |> raw %>
+          <%= transform_html @banner, @conn, class: "underline lm-white", id: "feedback-link" %>
         </div>
       <% end %>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
