@@ -4,7 +4,8 @@ defmodule App.FeedbackController do
   alias App.Resources, as: R
   alias App.SpreadsheetController, as: S
 
-  def index(conn, _params) do
+  def index(conn, params) do
+    changes = Map.get(params, "changes", %{})
     form_content = [:help_text, :choices, :default_value,
                     :required, :field_type, :label]
     forms =
@@ -32,10 +33,15 @@ defmodule App.FeedbackController do
       |> Map.new(fn {k, v} -> {k, R.get_content(k, v)} end)
     assigns =
       feedback
-      |> Map.merge(%{content: content, forms: forms})
+      |> Map.merge(%{content: content, forms: forms, changes: changes})
     render conn, "index.html", assigns
   end
 
-  def post(conn, params),
-    do: S.submit conn, params, feedback_path(conn, :index) <> "#alphasection"
+  def post(conn, params) do
+    changes = Map.get(params, "feedback", %{})
+
+    conn
+    |> S.submit(params)
+    |> redirect(to: feedback_path(conn, :index, %{changes: changes}) <> "#alphasection")
+  end
 end
