@@ -5,6 +5,12 @@ function toggleClasses(element, classes) {
   });
 }
 
+function addClasses(element, classes) {
+  classes.forEach(function(c) {
+    element.classList.add(c);
+  });
+}
+
 // Aliases for querySelector functions
 // Uses document.querySelector if no parent is passed
 function select(query, parent) {
