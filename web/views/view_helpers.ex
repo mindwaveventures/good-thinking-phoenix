@@ -115,4 +115,13 @@ defmodule App.ViewHelpers do
   def get_class("secondary_button", "dark"),
     do: @button_classes <> "lm-bg-dark-blue b--lm-white-hover lm-orange ba bw1 b--lm-orange"
   def get_class("secondary_button", nil), do: get_class("secondary_button", "light")
+
+  def is_ie8(conn) do
+    conn.req_headers
+    |> Enum.find_value(fn {key, val} -> key == "user-agent" && val end)
+    |> case do
+      nil -> false
+      user_agent -> String.starts_with? user_agent, "Mozilla/4.0"
+    end
+  end
 end

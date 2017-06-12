@@ -1,0 +1,47 @@
+<section class="tc-ns">
+  <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags],  fn f -> %>
+  <div class="pv4-l">
+    <label for="tags_category_category">
+      <h2 class="f5 f4-ns tracked ph4"><%= @content.filter_label_1 %></h2>
+    </label>
+
+    <%= inputs_for f, :category, [as: :category], fn fcat -> %>
+      <div class="tc">
+        <%= for tag <- @tags[:category] do %>
+        <div class="dib relative ma1">
+          <%= checkbox fcat, String.to_atom(tag), value: tag_is_selected(@conn.query_params[:audience], tag), class: "checked-fill absolute o-0" %>
+          <%= label fcat, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="lm-bg-dark-blue lm-white pb3-l">
+    <h4 class="ph4 pt4"><%= @content.filter_label_2 %></h4>
+    <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
+    <div class="tc">
+      <%= for tag <- @tags[:audience] do %>
+      <div class="dib relative ma1">
+        <%= checkbox fa, String.to_atom(tag), value: tag_is_selected(@conn.query_params[:audience], tag), class: "checked-fill absolute o-0" %>
+        <%= label fa, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <h4 class="ph4"><%= @content.filter_label_3 %></h4>
+    <%= inputs_for f, :content, [as: :content], fn fcon -> %>
+    <div class="tc ph3">
+      <%= for tag <- @tags[:content] do %>
+      <div class="dib relative ma1">
+        <%= checkbox fcon, String.to_atom(tag), value: tag_is_selected(@conn.query_params[:audience], tag), class: "checked-fill absolute o-0" %>
+        <%= label fcon, String.to_atom(tag), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="ph4 pv3 tc">
+      <%= component "buttons/primary_button", value: "Search" %>
+    </div>
+    <% end %>
+  </div>

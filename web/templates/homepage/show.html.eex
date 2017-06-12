@@ -3,7 +3,7 @@
     <p class="tl b">Showing <%= number_of_results @resources %></p>
   </div>
   <%= for resource <- @resources do %>
-    <div id="resource_<%= resource.id %>">
+    <div id="resource_<%= resource.id %>" class="resource">
       <%= render "resource.html", resource: resource, conn: @conn %>
     </div>
   <% end %>

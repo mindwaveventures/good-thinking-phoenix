@@ -27,7 +27,7 @@
         remove: function() {
             forEach(arguments, function(name) {
                 this.element.className =
-                    this.element.className.replace(regExp(name), '');
+                    this.element.className.replace(regExp(name), ' ');
             }, this);
         },
         toggle: function(name) {
