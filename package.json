@@ -7,11 +7,13 @@
     "postinstall": "cp node_modules/tachyons*/css/tachyons*.min.css web/static/css/",
     "coverage": "mix coveralls",
     "accessibility": "pa11y-ci",
+    "accessibility-local": "pa11y http://localhost:4001 -i notice -i warning",
     "lint": "mix credo --strict",
-    "nightmare": "node test/nightmare"
+    "nightmare": "node test/nightmare",
+    "start_phoenix_test_server": "export MIX_ENV=test && elixir --detached -e \"File.write! 'pid', :os.getpid\" -S mix phoenix.server && ./wait_script.sh",
+    "stop_phoenix_test_server": "if [ -f ./pid ]; then\nkill -9 \"$(cat pid)\" && rm pid\nfi"
   },
   "dependencies": {
-    "pa11y": "^4.11.0",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "tachyons": "^4.7.1",
@@ -25,14 +27,18 @@
     "css-brunch": "~2.0.0",
     "javascript-brunch": "~2.0.0",
     "nightmare": "^2.10.0",
+    "pa11y": "^4.11.0",
     "pa11y-ci": "^1.2.0",
     "pre-commit": "^1.2.2",
     "uglify-js-brunch": "~2.0.1"
   },
   "pre-commit": [
-    "accessibility",
+    "stop_phoenix_test_server",
     "lint",
     "coverage",
-    "nightmare"
+    "start_phoenix_test_server",
+    "accessibility-local",
+    "nightmare",
+    "stop_phoenix_test_server"
   ]
 }
