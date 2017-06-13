@@ -1,10 +1,15 @@
 language: elixir
 elixir:
-  - 1.4.1
+  - '1.4.1'
 python:
   - '3.6'
 addons:
   postgresql: '9.4'
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install
 cache:
   directories:
     - _build
@@ -13,7 +18,9 @@ cache:
 env:
   - MIX_ENV=test
 before_script:
+  - mix local.hex --force
   - mix do ecto.create, ecto.migrate
+  - mix deps.get
   - psql -c "create database cms"
   - git clone -b dumpdata https://github.com/ldmw/cms.git && cd cms
   - pip install --user -r requirements.txt
@@ -21,8 +28,13 @@ before_script:
   - python manage.py loaddata dumpdata.json
   - cd ..
 script:
-  - mix do deps.get, compile --warnings-as-errors, coveralls.json, credo --strict
+  - mix do compile --warnings-as-errors, coveralls.json, credo --strict
+  - elixir --detached -e "File.write! 'pid', :os.getpid" -S mix phoenix.server
+  - ./wait_script.sh
+  - npm run accessibility
+  - npm run nightmare
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - kill -9 "$(cat pid)"
 notifications:
   email: false

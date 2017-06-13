@@ -1,1 +1,1 @@
-<iframe src="https://www.youtube.com/embed/<%= getVideoId @url %>" frameborder="0" allowfullscreen class="w-90-ns w-100 h7-ns"></iframe>
+<iframe title="youtube_vid" src="https://www.youtube.com/embed/<%= getVideoId @url %>" frameborder="0" allowfullscreen class="w-90-ns w-100 h7-ns"></iframe>
