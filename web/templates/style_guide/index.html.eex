@@ -75,7 +75,7 @@
         <%= for {component_name, {to_render, component_code}} <- category_comps do %>
         <div class="dib center br2 w-100 h-25 pv3 mt4 mb3 lm-bg-dark-blue lm-white tc shadow-5">
           <h3 class="tl mt1 ph3 bb"><%= "Example #{component_name} component "%></h3>
-          <%= render App.ComponentView, to_render %>
+          <%= render App.ComponentView, to_render, conn: @conn %>
         </div>
         <div class="dib center br2 w-100 h-25 pv3 lm-bg-light-grey code shadow-5">
           <h3 class="tl mt1 bb ph3">Component code</h3>

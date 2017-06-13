@@ -1,5 +1,5 @@
 <a href="/">
-  <%= img_tag "/images/London_Minds_logo.png",
+  <%= img_tag static_path(@conn, "/images/London_Minds_logo.png"),
       alt: "London Minds",
       class: "#{assigns[:class]} logo" %>
 </a>
