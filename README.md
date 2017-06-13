@@ -17,7 +17,9 @@ To edit: https://docs.google.com/drawings/d/1NX710eQ_1fJgxctvF3--KOO4S-m-_lOouWg
 
 ### Project Design
 
-See: zpl.io/ZDwoAh
+See: [zpl.io/ZDwoAh](zpl.io/ZDwoAh)
+
+If access is required, please ask the project maintainers!
 
 ![styleguide](https://cloud.githubusercontent.com/assets/25007700/26722908/f07d8e26-4789-11e7-871e-845fff58bcab.png)
 
