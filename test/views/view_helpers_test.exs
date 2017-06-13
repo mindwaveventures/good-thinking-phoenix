@@ -1,12 +1,16 @@
 defmodule App.ViewHelpersTest do
   use App.ConnCase
+  doctest App.ViewHelpers, import: true
 
   import App.ViewHelpers
+
+  alias Plug.Conn
 
   setup %{conn: conn} do
     conn =
       conn
       |> bypass_through(Router, :browser)
+      |> Conn.put_req_header("user-agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E)")
       |> get("/")
     {:ok, %{conn: conn}}
   end
@@ -95,5 +99,9 @@ defmodule App.ViewHelpersTest do
       """}
 
       assert actual == expected
+  end
+
+  test "ie8", %{conn: conn} do
+    assert is_ie8? conn
   end
 end

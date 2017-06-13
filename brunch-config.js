@@ -20,7 +20,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css",
+      joinTo: {
+        "css/app.css": /web\/static\/css\/(?!ie8).*\.css/,
+        "css/ie8.css": "web/static/css/ie8.css"
+      },
       order: {
         before: [
           "web/static/css/app.css",

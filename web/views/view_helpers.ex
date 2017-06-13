@@ -71,9 +71,9 @@ defmodule App.ViewHelpers do
   @segio_tags ~w(p li)
   @tags Enum.join @nunito_tags ++ @segio_tags, "|"
   @doc """
-  iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
+  iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito-bold">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
   true
-  iex> handle_bold("<h1><b>Hello World</b></h1>") == ~s(<h1><b class="nunito">Hello World</b></h1>)
+  iex> handle_bold("<h1><b>Hello World</b></h1>") == ~s(<h1><b class="nunito-bold">Hello World</b></h1>)
   true
   iex> handle_bold("<p><b>Hello World</b></p>") == ~s(<p><b class="segoe-bold">Hello World</b></p>)
   true
@@ -114,5 +114,19 @@ defmodule App.ViewHelpers do
     do: @button_classes <> "lm-bg-white lm-bg-dark-blue-hover lm-dark-blue ba bw1 b--lm-dark-blue"
   def get_class("secondary_button", "dark"),
     do: @button_classes <> "lm-bg-dark-blue b--lm-white-hover lm-orange ba bw1 b--lm-orange"
-  def get_class("secondary_button", nil), do: get_class("secondary_button", "light")
+  def get_class("secondary_button", nil), do: get_class "secondary_button", "light"
+
+  @doc"""
+    iex> is_ie8? %{req_headers: [{"user-agent", "Mozilla/4.0"}]}
+    true
+    iex> is_ie8? %{req_headers: [{"notuser-agent", "Mozilla/4.0"}]}
+    false
+    iex> is_ie8? %{req_headers: [{"user-agent", "Mozilla/4.1"}]}
+    false
+  """
+  def is_ie8?(%{req_headers: req_headers}) do
+    Enum.any?(req_headers, fn {k, v} ->
+      k == "user-agent" and String.starts_with? v, "Mozilla/4.0"
+    end)
+  end
 end

@@ -28,8 +28,12 @@
     <meta name="author" content="">
 
     <title>London Minds</title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="<%= static_path @conn, "/css/app.css" %>">
+    <%= if is_ie8? @conn do %>
+      <link rel="stylesheet" href="<%= static_path @conn, "/css/ie8.css" %>">
+    <%= else %>
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="<%= static_path @conn, "/css/app.css" %>">
+    <% end %>
     <link rel="icon" href="favicon.png">
   </head>
 
@@ -40,7 +44,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
       <%= if String.length(@banner) > 0  do %>
-        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe">
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner banner-2 segoe">
           <%= transform_html @banner, @conn %>
         </div>
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5">
