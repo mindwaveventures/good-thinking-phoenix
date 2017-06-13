@@ -31,28 +31,30 @@ defmodule App.ViewHelpers do
       |> CMSRepo.one
       |> case do
         nil -> nil
-        str -> String.replace(str, "original_images", "/images")
+        str ->
+          String.replace str, "original_images", "https://s3.amazonaws.com/londonminds/original_images"
       end
 
     img_class =
       case align do
-        "left" -> "fl"
-        "right" -> "fr"
-        _ -> "w-50"
+        "left" -> {"tl", "w-50"}
+        "right" -> {"tr", "w-50"}
+        _ -> {"tc", "w-100"}
       end
 
-    img_tag = ~s(<img src="#{(img_src && static_path(conn, img_src)) || "/not-found"}" alt="#{alt}" class="#{img_class}" />)
-
-    case align do
-      "fullwidth" -> "<div class=\"w-100 tc\">#{img_tag}</div>"
-      _ -> img_tag
+    src = case img_src != nil and String.starts_with? img_src, "https://" do
+      true ->
+        img_src
+      false ->
+        (img_src && static_path(conn, img_src)) || "/not-found"
     end
+
+    ~s(<div class="#{elem(img_class, 0)}"><img src="#{src}" alt="#{alt}" class="#{elem(img_class, 1)}" /></div>)
   end
 
   def render_link(html_string, opts \\ %{}) do
-    Regex.replace(@link_regex, html_string,
+    Regex.replace @link_regex, html_string,
       &get_a_tag(&1, &2, &3, opts[:class], opts[:id]), global: true
-    )
   end
 
   def get_a_tag(_full_string, id, text, classes \\ "", html_id \\ "") do
@@ -95,9 +97,8 @@ defmodule App.ViewHelpers do
 
     "<#{tag}>#{inner}</#{tag}>"
   end
-  def handle_bold(inner_html, tag_type) do
-    String.replace(inner_html, "<b>", ~s(<b class="#{tag_type}-bold">))
-  end
+  def handle_bold(inner_html, tag_type),
+    do: String.replace inner_html, "<b>", ~s(<b class="#{tag_type}-bold">)
 
   def transform_html(html_string, conn, opts \\ %{}) do
     html_string
