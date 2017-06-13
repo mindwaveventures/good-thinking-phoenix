@@ -11,7 +11,7 @@ defmodule App.HomepageController do
       |> R.sort_priority
 
     render conn, "index.html", content: get_content(),
-                 tags: get_tags(), resources: resources
+                 tags: R.get_tags(), resources: resources
   end
 
   def show(conn, params = %{
@@ -42,11 +42,11 @@ defmodule App.HomepageController do
       |> Enum.map(&create_filters/1)
       |> Map.new
 
-    session = get_session conn, "lm_session"
-    all_resources = R.get_all_filtered_resources filters, session
-    render conn, "index.html",
-      content: get_content(), tags: get_tags(),
-      resources: all_resources, tag: category
+      session = get_session conn, "lm_session"
+      all_resources = R.get_all_filtered_resources filters, session
+      render conn, "index.html",
+        content: get_content(), tags: R.get_tags(),
+        resources: all_resources, tag: category
   end
 
   def create_filters({tag_type, tags}),
@@ -82,20 +82,6 @@ defmodule App.HomepageController do
       :assessment_text,
       :crisis_text
     ])
-
-  @doc"""
-    iex>%{audience: audience, category: category, content: content} = get_tags()
-    iex>audience
-    ["shift-workers", "dads", "parents", "mums", "students"]
-    iex>category |> Enum.take(5)
-    ["insomnia", "getting-to-sleep", "waking-up", "wellbeing", "general-sleep"]
-    iex>content |> Enum.take(5)
-    ["article", "tips", "free-trial", "mindfulness", "subscription"]
-  """
-  def get_tags do
-    [:category, :audience, :content]
-    |> Map.new(&({&1, R.get_tags(&1)}))
-  end
 
   def audience_params do
     ["dads", "mums", "parents", "shift-workers", "students"]
