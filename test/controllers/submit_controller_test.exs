@@ -1,6 +1,6 @@
-defmodule App.SpreadsheetControllerTest do
-  use App.ConnCase, async: false
-  doctest App.SpreadsheetController, import: true
+defmodule App.SubmitControllerTest do
+  use App.ConnCase
+  alias Plug.Conn
 
   @flashes [
     emails: {%{"email" => %{"email" => "test@me.com"}},
@@ -43,10 +43,60 @@ defmodule App.SpreadsheetControllerTest do
 
   test "submition of feedback", %{conn: conn} do
     @flashes |> Enum.each(fn {flash_atom, {params, flash_message}} ->
-      conn = post conn, feedback_path(conn, :post, params)
+      conn = post conn, submit_path(conn, :submit, params)
       refute get_flash(conn, other_flash(flash_atom))
       assert get_flash(conn, flash_atom) =~ flash_message
       assert html_response(conn, 302)
     end)
+  end
+
+  test "submit resource feedback", %{conn: conn} do
+    params = %{
+      "resource_feedback" => %{
+        "id" => "5",
+        "liked" => "1",
+        "resource_name" => "Sleepio",
+        "feedback" => "Helped me to sleep"
+      }
+    }
+    conn = post conn, "/submit", params
+    assert get_flash(conn, :resource_feedback) == {"5", "Thank you for your feedback"}
+    assert redirected_to(conn) == "/"
+  end
+
+  test "submit resource feedback - json", %{conn: conn} do
+    params = %{
+      "resource_feedback" => %{
+        "id" => "5",
+        "liked" => "1",
+        "resource_name" => "Sleepio",
+        "feedback" => "Helped me to sleep"
+      }
+    }
+    conn =
+      conn
+      |> Conn.put_req_header("accept", "application/json")
+      |> post("/submit", params)
+
+    assert get_flash(conn, :resource_feedback) == {"5", "Thank you for your feedback"}
+    assert json_response(conn, 200)
+  end
+
+  test "submit resource feedback empty - json", %{conn: conn} do
+    params = %{
+      "resource_feedback" => %{
+        "id" => "5",
+        "liked" => "1",
+        "resource_name" => "Sleepio",
+        "feedback" => ""
+      }
+    }
+    conn =
+      conn
+      |> Conn.put_req_header("accept", "application/json")
+      |> post("/submit", params)
+
+    assert get_flash(conn, :resource_feedback_error) == {"5", "Please submit some feedback"}
+    assert json_response(conn, 200)
   end
 end

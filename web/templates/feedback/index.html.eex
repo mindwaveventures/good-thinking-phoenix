@@ -15,7 +15,7 @@
     <h2 class="ma0 f3 segoe-bold"><%= @form_title %></h2>
   </div>
 </section>
-<%= form_for @conn, feedback_path(@conn, :post), [as: :feedback, class: "lm-ls1", id: "feedback-form"], fn f -> %>
+<%= form_for @conn, submit_path(@conn, :submit), [as: :feedback, class: "lm-ls1", id: "feedback-form"], fn f -> %>
   <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue nunito feedback-form-section">
     <div class="w-60-m w-50-l center">
       <%= for form <- @forms do %>

@@ -35,7 +35,8 @@
       </div>
       <button class="share cursor w-20 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="absolute o-0">Share</span></button>
       <%= if @resource.liked != "none" do %>
-        <%= form_for @conn, resource_feedback_path(@conn, :resource_feedback, @resource.id) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback", "data-url": @resource.url], fn f -> %>
+        <%= form_for @conn, submit_path(@conn, :submit) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback", "data-url": @resource.url], fn f -> %>
+        <%= hidden_input f, :id, value: @resource.id %>
           <p>
             Why <%= case @resource.liked do
               1 -> "would you"

@@ -21,10 +21,9 @@ defmodule App.Router do
     get "/", HomepageController, :index
     post "/", HomepageController, :show
     get "/filter", HomepageController, :filtered_show
-    post "/spreadsheet", SpreadsheetController, :submit
+    post "/submit", SubmitController, :submit
     post "/like/:article_id", LikesController, :like
     post "/dislike/:article_id", LikesController, :dislike
-    post "/resourcefeedback/:id", ResourceFeedbackController, :resource_feedback
     get "/article/:id", ArticleController, :show
     get "/styleguide", StyleGuideController, :index
     get "/coming-soon", ComingSoonController, :index

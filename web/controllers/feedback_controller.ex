@@ -2,7 +2,6 @@ defmodule App.FeedbackController do
   use App.Web, :controller
   alias App.CMSRepo
   alias App.Resources, as: R
-  alias App.SpreadsheetController, as: S
 
   def index(conn, params) do
     changes = Map.get(params, "changes", %{})
@@ -35,13 +34,5 @@ defmodule App.FeedbackController do
       feedback
       |> Map.merge(%{content: content, forms: forms, changes: changes})
     render conn, "index.html", assigns
-  end
-
-  def post(conn, params) do
-    changes = Map.get(params, "feedback", %{})
-
-    conn
-    |> S.submit(params)
-    |> redirect(to: feedback_path(conn, :index, %{changes: changes}) <> "#alphasection")
   end
 end
