@@ -42,11 +42,16 @@ defmodule App.HomepageController do
       |> Enum.map(&create_filters/1)
       |> Map.new
 
-      session = get_session conn, "lm_session"
-      all_resources = R.get_all_filtered_resources filters, session
-      render conn, "index.html",
-        content: get_content(), tags: R.get_tags(),
-        resources: all_resources, tag: category
+    selected_tags = filters
+      |> Enum.reduce([], fn {_type, tags}, acc -> acc ++ tags end)
+      |> Enum.filter(&(!String.starts_with?(&1, "all-")))
+
+    session = get_session conn, "lm_session"
+    all_resources = R.get_all_filtered_resources filters, session
+    render conn, "index.html",
+      content: get_content(), tags: R.get_tags(),
+      resources: all_resources, tag: category,
+      selected_tags: selected_tags
   end
 
   def create_filters({tag_type, tags}),
