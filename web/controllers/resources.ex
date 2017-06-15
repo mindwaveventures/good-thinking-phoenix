@@ -42,16 +42,33 @@ defmodule App.Resources do
     |> CMSRepo.one
   end
 
-  def get_tags(type) do
+  def get_tags do
     tag_query = from tag in "taggit_tag",
-      full_join: h in ^"articles_#{type}tag",
-      full_join: l in ^"resources_#{type}tag",
-      where: h.tag_id == tag.id or l.tag_id == tag.id,
-      select: tag.name,
+      full_join: rc in ^"resources_categorytag",
+      full_join: ra in ^"resources_audiencetag",
+      full_join: rco in ^"resources_contenttag",
+      where: rc.tag_id == tag.id or ra.tag_id == tag.id or rco.tag_id == tag.id,
+      select: %{
+        category: rc.tag_id, audience: ra.tag_id,
+        content: rco.tag_id, name: tag.name, id: tag.id
+      },
       order_by: tag.id,
       distinct: tag.id
 
-    CMSRepo.all tag_query
+    tag_query
+    |> CMSRepo.all
+    |> Enum.reduce(%{}, fn %{
+        audience: aud, category: cat, content: con, id: id, name: name
+      }, acc ->
+      cond do
+        aud == id -> Map.merge acc,
+          %{audience: Map.get(acc, :audience, []) ++ [name]}
+        cat == id -> Map.merge acc,
+          %{category: Map.get(acc, :category, []) ++ [name]}
+        con == id -> Map.merge acc,
+          %{content: Map.get(acc, :content, []) ++ [name]}
+      end
+    end)
   end
 
   def get_all_filtered_resources(filter, session_id) do
