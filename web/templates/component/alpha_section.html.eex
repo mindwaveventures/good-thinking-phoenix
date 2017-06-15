@@ -14,7 +14,7 @@
       <% else %>
         <%= raw @content[:alphatext_feedback] %>
       <% end %>
-      <%= form_for @conn, spreadsheet_path(@conn, :submit) <> "#email_form", [as: :email, id: "email-submit"], fn f -> %>
+      <%= form_for @conn, submit_path(@conn, :submit) <> "#email_form", [as: :email, id: "email-submit"], fn f -> %>
         <%= if get_flash(@conn, :emails) do %>
           <%= component "flash", conn: @conn, type: :emails %>
         <% else %>

@@ -1,7 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   alias App.Resources, as: R
-  import App.SpreadsheetController, only: [submit: 2]
+  import App.SubmitController, only: [submit: 2]
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
