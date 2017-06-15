@@ -109,6 +109,7 @@ function updateSelected(form) {
 function displaySelected(el) {
   var selected = [];
   var exclude = ["all-category", "all-audience", "all-content"];
+  var title = select("." + el + "-filters-header");
 
   for (var tag in selectedFilters[el]) {
     if(selectedFilters[el][tag] && exclude.indexOf(tag) === -1) {
@@ -117,11 +118,14 @@ function displaySelected(el) {
   }
 
   if (selected.length === 1) {
-    select("." + el + "-filters-header").innerText = selected[0].split("-").join(" ");
+    title.innerText = selected[0].split("-").join(" ");
+    addClasses(title, ["segoe-bold", "lm-dark-blue"]);
   } else if (selected.length > 1) {
-    select("." + el + "-filters-header").innerText = selected.length + " filters selected";
+    title.innerText = selected.length + " filters selected";
+    addClasses(title, ["segoe-bold", "lm-dark-blue"]);
   } else {
-    select("." + el + "-filters-header").innerText = "Select as many as are relevant";
+    title.innerText = "Select as many as are relevant";
+    removeClasses(title, ["segoe-bold", "lm-dark-blue"]);
   }
 }
 

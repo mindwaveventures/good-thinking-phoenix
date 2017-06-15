@@ -11,6 +11,12 @@ function addClasses(element, classes) {
   });
 }
 
+function removeClasses(element, classes) {
+  classes.forEach(function(c) {
+    element.classList.remove(c);
+  });
+}
+
 // Aliases for querySelector functions
 // Uses document.querySelector if no parent is passed
 function select(query, parent) {
