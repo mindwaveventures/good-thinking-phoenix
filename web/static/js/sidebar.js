@@ -74,12 +74,14 @@ if (isNotIE8()) {
         selectAll(".filters-" + el).forEach(function(elem) {
           elem.checked = false;
         })
+        selectedFilters[el]["Show-Me-Everything"] = select(".show-everything-" + el).checked;
       });
 
       // Clicking any other filter deselects 'Show Everything'
       selectAll(".filters-" + el).forEach(function(elem){
         elem.addEventListener("click", function() {
           select(".show-everything-" + el).checked = false;
+          selectedFilters[el]["Show-Me-Everything"] = false;
         });
       });
 
