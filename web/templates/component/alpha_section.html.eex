@@ -1,5 +1,5 @@
 <section class="lm-white lm-bg-dark-blue pa1 ph4 ph3-m ph3-l pb4 pb5-l" id="email_form">
-  <div class="mh3 mv3 w-60-m w-50-l center" id="alpha">
+  <div class="mv3 w-60-ns center" id="alpha">
     <%= if @content[:alpha] do %>
       <%= raw @content[:alpha] %>
     <% else %>
@@ -8,7 +8,7 @@
   </div>
 
   <%= if @show_email_submit do %>
-    <div id="alphasection" class="lm-dark-blue lm-bg-white mh3 ph3 pv1 ph4-l pv3-l w-60-m w-50-l center tracked relative">
+    <div id="alphasection" class="lm-dark-blue lm-bg-white pa1 ph4 ph3-m ph3-l pv1 pv3-l w-60-ns center tracked relative">
       <%= if @content[:alphatext] do %>
         <%= raw @content[:alphatext] %>
       <% else %>
