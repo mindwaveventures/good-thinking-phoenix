@@ -58,4 +58,14 @@ defmodule App.HomepageView do
     |> to_string
     |> String.to_atom
   end
+
+  @doc """
+    iex> construct_params("category", "insomnia")
+    %{"audience" => %{"all-audience" => "true"}, "category" => %{"insomnia" => "true"}, "content" => %{"all-content" => "true"}}
+  """
+  def construct_params(tag_type, t) do
+    ~w(audience category content)
+    |> Map.new(&({&1, %{"all-" <> &1 => "true"}}))
+    |> Map.merge(%{tag_type => %{t => "true"}})
+  end
 end

@@ -10,7 +10,9 @@
       <%= for {tag_type, tags} <- @resource.tags do %>
         <%= for t <- tags do %>
           <%= if t != "all-#{tag_type}" do %>
-            <span class="b--lm-orange ba br2 ph2 pv1 lh-tag mh1 dib mb1"><%= remove_hyphen(t) %></span>
+            <%= form_for @conn, homepage_path(@conn, :show, construct_params(tag_type, t)) <> "#results", [as: :tags, class: "dib pointer"], fn _f -> %>
+              <%= submit remove_hyphen(t), class: "b--lm-orange lm-bg-white ba br2 ph2 pv1 lh-tag mh1 dib mb1 pointer" %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

@@ -42,11 +42,11 @@ defmodule App.HomepageController do
       |> Enum.map(&create_filters/1)
       |> Map.new
 
-      session = get_session conn, "lm_session"
-      all_resources = R.get_all_filtered_resources filters, session
-      render conn, "index.html",
-        content: get_content(), tags: get_tags(),
-        resources: all_resources, tag: category
+    session = get_session conn, "lm_session"
+    all_resources = R.get_all_filtered_resources filters, session
+    render conn, "index.html",
+      content: get_content(), tags: get_tags(),
+      resources: all_resources, tag: category
   end
 
   def create_filters({tag_type, tags}),
