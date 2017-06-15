@@ -44,7 +44,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <div class="container">
       <%= if String.length(@banner) > 0  do %>
-        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner banner-2 segoe">
+        <div aria-hidden="true" class="pa3 lm-bg-dark-blue lm-dark-blue w-100 f6 f5-l f5-m banner banner-2 segoe">
           <%= transform_html @banner, @conn %>
         </div>
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5">
