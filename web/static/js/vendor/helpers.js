@@ -70,3 +70,17 @@ function makePhoenixFormRequest(type, form, callback) {
     request.send();
   }
 }
+
+function getFormData(form, data) {
+  var formData = data || {};
+
+  Array.prototype.slice.call(form.children).forEach(function(el) {
+    if (el.nodeName === "INPUT" && el.type === "checkbox") {
+      formData[el.name] = el.checked;
+    } else {
+      getFormData(el, formData);
+    }
+  });
+
+  return formData;
+}

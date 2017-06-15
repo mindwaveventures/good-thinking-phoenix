@@ -19,8 +19,9 @@
   <div class="pa2 f5">
     <span>None of these (add your own)</span>
     <%= text_input @form, :add_your_own, class: "fr mt1 w-100", "aria-label": "add #{@type}" %>
-    <div class="dib w-100 tr">
-      <%= component "buttons/primary_button", value: "Add", class: "mt2" %>
+    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert mb1 mt2 pa1 tc ba bw1-ns bg--lm-green b--lm-green relative dib fl"></div>
+      <%= component "buttons/primary_button", value: "Add", class: "mt2 fr add-own" %>
     </div>
   </div>
 </div>
