@@ -1,6 +1,6 @@
 <section class="f3 pa3 ph4 tl lh-copy lm-dark-blue segoe feedback-section">
   <div class="w-60-m w-50-l center">
-    <%= component "images/london_minds_logo", class: "w5 mt4" %>
+    <%= component "images/london_minds_logo", class: "w5 mt4", conn: @conn %>
   </div>
 </section>
 
