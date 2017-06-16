@@ -1,8 +1,8 @@
-defmodule App.InfoControllerTest do
+defmodule App.StaticControllerTest do
   use App.ConnCase
 
-  test "GET /crisis", %{conn: conn} do
-    conn = get conn, "/crisis"
+  test "GET /static", %{conn: conn} do
+    conn = get conn, "/static"
     assert html_response(conn, 200) =~ "ALPHA"
   end
 

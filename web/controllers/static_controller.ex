@@ -1,4 +1,4 @@
-defmodule App.InfoController do
+defmodule App.StaticController do
   use App.Web, :controller
 
   import Ecto.Query, only: [from: 2]
@@ -6,11 +6,10 @@ defmodule App.InfoController do
   alias App.CMSRepo
 
   def index(conn, %{"page" => page}) do
-    query = from i in "info_infopage",
+    query = from i in "static_staticpage",
       join: w in "wagtailcore_page",
       where: i.page_ptr_id == w.id and w.slug == ^page,
       select: %{
-        heading: i.heading,
         body: i.body
       }
 
@@ -21,7 +20,7 @@ defmodule App.InfoController do
         conn
         |> put_status(404)
         |> render(App.ErrorView, "404.html")
-      _ -> render conn, "index.html", heading: data.heading, body: data.body
+      _ -> render conn, "index.html", body: data.body
     end
   end
 end

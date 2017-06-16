@@ -26,6 +26,13 @@ body {
 }
 
 @font-face {
+  font-family: 'NunitoSans-Bold';
+  src: url('/fonts/nunito/NunitoSans-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Segoe UI';
   src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
   font-weight: normal;
@@ -53,6 +60,10 @@ body {
   font-family: 'NunitoSans';
 }
 
+.nunito-bold {
+  font-family: 'NunitoSans-Bold';
+}
+
 .nunito-italic {
   font-family: 'NunitoSans-Italic';
 }
@@ -65,7 +76,7 @@ a {
   margin: 0;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Segoe UI', sans-serif;
 }
 
