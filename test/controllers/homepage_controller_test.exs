@@ -51,4 +51,31 @@ defmodule App.HomepageControllerTest do
 
     assert html_response(conn, 200)
   end
+
+  test "search for tags", %{conn: conn} do
+    params = %{"query" => %{"query" => "insomnia"}}
+
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) == 3
+  end
+
+  test "search for tags - misspelling", %{conn: conn} do
+    params = %{"query" => %{"query" => "insonia"}}
+
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) == 3
+  end
+
+  test "search for nonexistent tags", %{conn: conn} do
+    params = %{"query" => %{"query" => "nonexistent"}}
+
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) == 0
+  end
 end
