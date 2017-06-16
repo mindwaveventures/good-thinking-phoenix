@@ -119,4 +119,25 @@ defmodule App.HomepageController do
       |> String.trim(",")
     end
   end
+
+  def search(conn, %{"query" => %{"query" => query}}) do
+    all_resources =
+      "resource"
+      |> R.all_query
+      |> R.get_resources("resource", get_session(conn, :lm_session))
+      |> Enum.filter(&(find_matches &1, query))
+
+    render conn, "index.html", content: get_content(), tags: R.get_tags(),
+    resources: all_resources, selected_tags: []
+  end
+
+  def find_matches(resource, query) do
+    Enum.any?(resource.tags, fn {_type, tags} -> find_similar query, tags end)
+  end
+
+  def find_similar(string, list) do
+    Enum.any?(
+      list, &(String.jaro_distance &1, String.replace(string, " ", "-")) > 0.88
+    )
+  end
 end
