@@ -88,10 +88,6 @@ h2 > span.b {
   border: none;
 }
 
-.cover-img {
-  background-image: url("/images/background-img.png");
-}
-
 .cover-img p {
   font-family: 'NunitoSans';
   letter-spacing: 1px;

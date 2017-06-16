@@ -6,6 +6,8 @@ defmodule App.Resources do
 
   alias App.{CMSRepo, Repo, Likes}
 
+  @bucket_name Application.get_env :app, :bucket_name
+
   def sort_priority(list),
     do: Enum.sort list, &(&1[:priority] <= &2[:priority])
 
@@ -38,8 +40,20 @@ defmodule App.Resources do
       true -> from [_page, h] in query, select: field(h, ^content)
       false -> from [_page, h] in query, select: map(h, ^content)
     end
-    query
-    |> CMSRepo.one
+
+    CMSRepo.one query
+  end
+
+  def get_image_url(col_name, view) do
+    image_id = "#{col_name}_id"
+      |> String.to_atom
+      |> get_content(view)
+    url = "wagtailimages_image"
+      |> where([image], image.id == ^image_id)
+      |> select([image], image.file)
+      |> CMSRepo.one
+
+    "https://s3.amazonaws.com/#{@bucket_name}/#{url}"
   end
 
   def get_tags do

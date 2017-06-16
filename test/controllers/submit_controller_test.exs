@@ -53,21 +53,21 @@ defmodule App.SubmitControllerTest do
   test "submit resource feedback", %{conn: conn} do
     params = %{
       "resource_feedback" => %{
-        "id" => "5",
+        "id" => "10",
         "liked" => "1",
         "resource_name" => "Sleepio",
         "feedback" => "Helped me to sleep"
       }
     }
     conn = post conn, "/submit", params
-    assert get_flash(conn, :resource_feedback) == {"5", "Thank you for your feedback"}
+    assert get_flash(conn, :resource_feedback) == {"10", "Thank you for your feedback"}
     assert redirected_to(conn) == "/"
   end
 
   test "submit resource feedback - json", %{conn: conn} do
     params = %{
       "resource_feedback" => %{
-        "id" => "5",
+        "id" => "10",
         "liked" => "1",
         "resource_name" => "Sleepio",
         "feedback" => "Helped me to sleep"
@@ -78,14 +78,14 @@ defmodule App.SubmitControllerTest do
       |> Conn.put_req_header("accept", "application/json")
       |> post("/submit", params)
 
-    assert get_flash(conn, :resource_feedback) == {"5", "Thank you for your feedback"}
+    assert get_flash(conn, :resource_feedback) == {"10", "Thank you for your feedback"}
     assert json_response(conn, 200)
   end
 
   test "submit resource feedback empty - json", %{conn: conn} do
     params = %{
       "resource_feedback" => %{
-        "id" => "5",
+        "id" => "10",
         "liked" => "1",
         "resource_name" => "Sleepio",
         "feedback" => ""
@@ -96,7 +96,7 @@ defmodule App.SubmitControllerTest do
       |> Conn.put_req_header("accept", "application/json")
       |> post("/submit", params)
 
-    assert get_flash(conn, :resource_feedback_error) == {"5", "Please submit some feedback"}
+    assert get_flash(conn, :resource_feedback_error) == {"10", "Please submit some feedback"}
     assert json_response(conn, 200)
   end
 end

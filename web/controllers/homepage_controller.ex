@@ -65,28 +65,13 @@ defmodule App.HomepageController do
       end)
   end
 
-  @doc"""
-    iex>%{body: body, footer: footer} = get_content()
-    iex>%{alphatext: alphatext, lookingfor: lookingfor} = get_content()
-    iex>strings = [body, footer, alphatext, lookingfor]
-    iex>substrings = ["London Minds", "Contact", "ALPHA", ""]
-    iex>contains = fn {str, substr} -> String.contains?(str, substr) end
-    iex>[strings, substrings] |> Enum.zip |> Enum.map(contains) |> Enum.all?
-    true
-  """
-  def get_content,
-    do: R.get_content([
-      :body,
-      :footer,
-      :alpha,
-      :alphatext,
-      :lookingfor,
-      :filter_label_1,
-      :filter_label_2,
-      :filter_label_3,
-      :assessment_text,
-      :crisis_text
-    ])
+  def get_content do
+    [:body, :footer, :alpha, :alphatext, :lookingfor,
+     :filter_label_1, :filter_label_2, :filter_label_3,
+     :assessment_text, :crisis_text]
+    |> R.get_content
+    |> Map.merge(%{hero_image_url: R.get_image_url("hero_image", "home")})
+  end
 
   def audience_params do
     ["dads", "mums", "parents", "shift-workers", "students"]

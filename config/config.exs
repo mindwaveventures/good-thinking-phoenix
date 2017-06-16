@@ -8,7 +8,8 @@ use Mix.Config
 # General application configuration
 config :app,
   ecto_repos: [App.Repo],
-  google_sheet_url: System.get_env("GOOGLE_SHEET_URL")
+  google_sheet_url: System.get_env("GOOGLE_SHEET_URL"),
+  bucket_name: System.get_env("AWS_STORAGE_BUCKET_NAME")
 
 # Configures the endpoint
 config :app, App.Endpoint,
