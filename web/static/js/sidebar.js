@@ -31,6 +31,7 @@ if (isNotIE8()) {
       var filterType = select("." + el + "-filters");
       var filterSelect = select(".select-" + el + "-filters");
       var sidebar = select(".sidebar");
+      var addYourOwn = select(".add-own", filterType);
 
       addClasses(filterType, ["hide-filters", "br1", "w-100", "absolute", "bg-white", "z-1", "overflow-y-scroll", "overflow-x-hidden"]);
       addClasses(filterSelect, ["select-filters", "pointer"]);
@@ -54,20 +55,19 @@ if (isNotIE8()) {
         });
       });
 
-      function getPath(event) {
-        if (event.path) {
-          return event.path;
-        } else {
-          var current = event.target;
-          var path = [current];
+      addYourOwn.addEventListener("click", function(e) {
+        e.preventDefault();
 
-          while (current.parentNode) {
-            current = current.parentNode
-            path.push(current);
+        var opts = {body: {}};
+        opts.body[el] = {add_your_own: select("#tags_" + el + "_add_your_own").value};
+
+        makePhoenixFormRequest("POST", select("#filter-form"), function(err, res) {
+          if (res) {
+            var alert = select(".alert", filterType);
+            alert.innerText = "Thank you for your suggestion";
           }
-          return path;
-        }
-      }
+        }, opts);
+      })
 
       // Clicking 'Show Everything' deselects all other filters
       select(".show-everything-" + el).addEventListener("click", function() {
@@ -131,16 +131,17 @@ function displaySelected(el) {
   }
 }
 
-function getFormData(form, data) {
-  var formData = data || {};
+function getPath(event) {
+  if (event.path) {
+    return event.path;
+  } else {
+    var current = event.target;
+    var path = [current];
 
-  Array.prototype.slice.call(form.children).forEach(function(el) {
-    if (el.nodeName === "INPUT" && el.type === "checkbox") {
-      formData[el.name] = el.checked;
-    } else {
-      getFormData(el, formData);
+    while (current.parentNode) {
+      current = current.parentNode
+      path.push(current);
     }
-  });
-
-  return formData;
+    return path;
+  }
 }
