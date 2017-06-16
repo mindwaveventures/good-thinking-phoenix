@@ -74,12 +74,14 @@ if (isNotIE8()) {
         selectAll(".filters-" + el).forEach(function(elem) {
           elem.checked = false;
         })
+        selectedFilters[el]["Show-Me-Everything"] = select(".show-everything-" + el).checked;
       });
 
       // Clicking any other filter deselects 'Show Everything'
       selectAll(".filters-" + el).forEach(function(elem){
         elem.addEventListener("click", function() {
           select(".show-everything-" + el).checked = false;
+          selectedFilters[el]["Show-Me-Everything"] = false;
         });
       });
 
@@ -109,6 +111,7 @@ function updateSelected(form) {
 function displaySelected(el) {
   var selected = [];
   var exclude = ["all-category", "all-audience", "all-content"];
+  var title = select("." + el + "-filters-header");
 
   for (var tag in selectedFilters[el]) {
     if(selectedFilters[el][tag] && exclude.indexOf(tag) === -1) {
@@ -117,11 +120,14 @@ function displaySelected(el) {
   }
 
   if (selected.length === 1) {
-    select("." + el + "-filters-header").innerText = selected[0].split("-").join(" ");
+    title.innerText = selected[0].split("-").join(" ");
+    addClasses(title, ["segoe-bold", "lm-dark-blue"]);
   } else if (selected.length > 1) {
-    select("." + el + "-filters-header").innerText = selected.length + " filters selected";
+    title.innerText = selected.length + " filters selected";
+    addClasses(title, ["segoe-bold", "lm-dark-blue"]);
   } else {
-    select("." + el + "-filters-header").innerText = "Select as many as are relevant";
+    title.innerText = "Select as many as are relevant";
+    removeClasses(title, ["segoe-bold", "lm-dark-blue"]);
   }
 }
 
