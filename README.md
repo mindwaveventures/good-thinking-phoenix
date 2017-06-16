@@ -4,7 +4,7 @@
 
 # app
 
-Built using the _PETE_ stack [`Phoenix`, `Elixir`](http://www.phoenixframework.org/), [`Tachyons`](http://tachyons.io/), and [`Elm`](http://elm-lang.org/)
+Built using the _PETE_ stack [`Phoenix`, `Elixir`](http://www.phoenixframework.org/), [`Tachyons`](http://tachyons.io/)
 
 This project works in tandem with the lmdw cms, for the admin section of the project see: https://github.com/ldmw/cms
 
@@ -17,7 +17,9 @@ To edit: https://docs.google.com/drawings/d/1NX710eQ_1fJgxctvF3--KOO4S-m-_lOouWg
 
 ### Project Design
 
-See: zpl.io/ZDwoAh
+See: [zpl.io/ZDwoAh](zpl.io/ZDwoAh)
+
+If access is required, please ask the project maintainers!
 
 ![styleguide](https://cloud.githubusercontent.com/assets/25007700/26722908/f07d8e26-4789-11e7-871e-845fff58bcab.png)
 
@@ -28,7 +30,6 @@ To get up and running - make sure you have installed:
 + [`node.js`](https://nodejs.org/en/download/) (v6.9)
 + [`elixir`](http://elixir-lang.org/install.html) (1.4)
 + [`phoenix`](http://www.phoenixframework.org/docs/installation) (1.3)
-+ [`elm`](https://guide.elm-lang.org/install.html) (0.18)
 + [`postgres`](https://www.postgresql.org/download/) (9.6)
 
 #### Setup
@@ -103,10 +104,6 @@ You can fix this with:
 ```bash
 $ psql -d cms -c "alter table articles_articlepage add column heading varchar not null default ''"
 ```
-
-#### Password
-
-The site is currently password protected. To add the user on your local version, run `export ADMIN_PASSWORD="whatever you want your password to be" && mix run priv/repo/seeds.exs`. YOu can then log in with the user `ldmw` and your password.
 
 ### Local testing
 
