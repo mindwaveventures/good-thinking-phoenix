@@ -35,13 +35,13 @@
 <section class="mt3">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="tc">
-      <%= text_input f, :query, class: "mt1 w-50" %>
+      <%= text_input f, :query, class: "mt1 w-50", placeholder: "Something Else...", "aria-label": "search" %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>
 </section>
 
-<section class="tc-ns" id="results">
+<section class="tc-ns">
   <p class="alert" role="alert"><%= get_flash @conn, :tag_suggestion %></p>
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
