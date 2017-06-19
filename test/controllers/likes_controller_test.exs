@@ -4,7 +4,7 @@ defmodule App.LikesControllerTest do
   alias Plug.Conn
   alias App.Likes
 
-  @article_id "31"
+  @article_id "10"
   test "POST /like/#{@article_id} - existing article", %{conn: conn} do
     conn =
       conn
@@ -17,7 +17,6 @@ defmodule App.LikesControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  @article_id "31"
   test "POST /dislike/#{@article_id} - existing article", %{conn: conn} do
     conn =
       conn
@@ -30,7 +29,6 @@ defmodule App.LikesControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  @article_id "31"
   test "multiple likes for an article", %{conn: conn} do
     conn =
       conn
@@ -43,7 +41,6 @@ defmodule App.LikesControllerTest do
     assert redirected_to(conn) == "/"
   end
 
-  @article_id "31"
   test "POST /dislike/#{@article_id} - article with referrer", %{conn: conn} do
     url1 = "http://localhost:4000"
     url2 = "/filter?category=insomnia&audience=&content=subscription"
@@ -61,7 +58,6 @@ defmodule App.LikesControllerTest do
     assert redirected_to(conn) == url2
   end
 
-  @article_id "29"
   test "POST /like/#{@article_id} - json request", %{conn: conn} do
     conn =
       conn
@@ -72,7 +68,6 @@ defmodule App.LikesControllerTest do
     assert json_response(conn, 200)
   end
 
-  @article_id "31"
   test "POST /like/#{@article_id} - twice should remove", %{conn: conn} do
     conn =
       conn
