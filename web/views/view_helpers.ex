@@ -6,7 +6,6 @@ defmodule App.ViewHelpers do
 
   import App.Router.Helpers
   import Ecto.Query, only: [from: 2]
-  import Phoenix.HTML, only: [raw: 1]
 
   alias App.CMSRepo
 
@@ -97,7 +96,7 @@ defmodule App.ViewHelpers do
     |> render_link(opts)
     |> render_image(conn)
     |> handle_bold
-    |> raw
+    |> Phoenix.HTML.raw
   end
 
   @button_classes "f5 link dib ph3 pv2 br-pill lm-white-hover pointer segoe-bold tracked "
