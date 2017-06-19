@@ -8,7 +8,7 @@ defmodule App.ViewHelpersTest do
 
   @image_link "https://s3.amazonaws.com/londonminds/original_images/0049_-30463-31450.jpg"
   @image_id 1
-  @crisis_page_id 7
+  @crisis_page_id 12
 
   setup %{conn: conn} do
     conn =
@@ -80,7 +80,7 @@ defmodule App.ViewHelpersTest do
       ~s(<p><b><a id="#{@crisis_page_id}" linktype="page">link</a></b></p>)
       |> render_link(class: "f5 white")
       |> handle_bold
-    expected = ~s(<p><b class="segoe-bold"><a href="/crisis" class="f5 white" id="">link</a></b></p>)
+    expected = ~s(<p><b class="nunito-bold"><a href="/crisis" class="f5 white" id="">link</a></b></p>)
 
     assert actual == expected
   end
@@ -98,11 +98,32 @@ defmodule App.ViewHelpersTest do
       ~s"""
       <h1><a href="/crisis" class="" id="">Link title</a></h1>\
       <a href="/crisis" class="" id=""><div class="tl"><img src="#{@image_link}" alt="hello" class="w-50" /></div></a>\
-      <p><a href="/crisis" class="" id=""><b class="segoe-bold">Link P</b></a></p>\
-      <h1><b class="nunito-bold"><a href="/crisis" class="" id="">Link title 2</a></b></h1>
+      <p><a href="/crisis" class="" id=""><b class="nunito-bold">Link P</b></a></p>\
+      <h1><b class="segoe-bold"><a href="/crisis" class="" id="">Link title 2</a></b></h1>
       """}
 
       assert actual == expected
+  end
+
+  test "handle bold - nested" do
+    actual = handle_bold "<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>"
+    expected = ~s(<h1>Hello <b class="segoe-bold">World</b></h1><p>more <b class="nunito-bold">text</b> is <b class="nunito-bold">here</b></p>)
+
+    assert actual == expected
+  end
+
+  test "handle bold header " do
+    actual = handle_bold("<h1><b>Hello World</b></h1>")
+    expected = ~s(<h1><b class="segoe-bold">Hello World</b></h1>)
+
+    assert actual == expected
+  end
+
+  test "handle bold paragraph" do
+    actual = handle_bold "<p><b>Hello World</b></p>"
+    expected = ~s(<p><b class="nunito-bold">Hello World</b></p>)
+
+    assert actual == expected
   end
 
   test "ie8", %{conn: conn} do

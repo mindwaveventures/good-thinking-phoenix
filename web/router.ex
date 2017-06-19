@@ -29,7 +29,8 @@ defmodule App.Router do
     get "/coming-soon", ComingSoonController, :index
     get "/feedback", FeedbackController, :index
     post "/feedback", FeedbackController, :post
-    get "/:page", InfoController, :index
+    get "/crisis", CrisisController, :index
+    get "/:page", StaticController, :index
     # Default route - will match any page - must stay at bottom
   end
 
