@@ -16,11 +16,28 @@ if (isNotIE8()) {
 
         resource.innerHTML = response.result;
         resource.addEventListener("submit", formListener);
-        analytics.addAnalytics(select(".like", resource), "Like", "liked");
-        analytics.addAnalytics(select(".dislike", resource), "Dislike", "disliked");
+        analytics.addAnalytics(select("button[name='like']", resource), "Like", "liked");
+        analytics.addAnalytics(select("button[name='dislike']", resource), "Dislike", "disliked");
         analytics.addAnalytics(select(".share", resource), "Share", "shared");
         analytics.addAnalytics(select(".resource-feedback", resource), "ResourceFeedback", "reviewed");
+        handle_ios();
       });
     }
   };
 }
+
+function handle_ios_likes (like) {
+  selectAll("button[name='" + like + "']").forEach(function (el) {
+    if (el.className.indexOf(like + '_no_hover') === -1) {
+      toggleClasses(el, [like, like + '_no_hover'])
+    }
+  });
+}
+
+function handle_ios () {
+  if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+    ['like', 'dislike'].forEach(handle_ios_likes);
+  }
+}
+
+handle_ios();
