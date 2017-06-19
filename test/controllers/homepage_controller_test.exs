@@ -58,7 +58,7 @@ defmodule App.HomepageControllerTest do
     conn = post(conn, homepage_path(conn, :search, params))
 
     assert html_response(conn, 200)
-    assert length(conn.assigns.resources) == 3
+    assert length(conn.assigns.resources) > 0
   end
 
   test "search for tags - misspelling", %{conn: conn} do
@@ -67,7 +67,7 @@ defmodule App.HomepageControllerTest do
     conn = post(conn, homepage_path(conn, :search, params))
 
     assert html_response(conn, 200)
-    assert length(conn.assigns.resources) == 3
+    assert length(conn.assigns.resources) > 0
   end
 
   test "search for nonexistent tags", %{conn: conn} do
@@ -77,5 +77,23 @@ defmodule App.HomepageControllerTest do
 
     assert html_response(conn, 200)
     assert length(conn.assigns.resources) == 0
+  end
+
+  test "search for multiple words", %{conn: conn} do
+    params = %{"query" => %{"query" => "sleep test"}}
+
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) > 0
+  end
+
+  test "search - case insensitive", %{conn: conn} do
+    params = %{"query" => %{"query" => "SlEeP TeSt"}}
+
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) > 0
   end
 end
