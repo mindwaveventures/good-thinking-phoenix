@@ -65,21 +65,13 @@ defmodule App.ViewHelpers do
       select: %{content: c.app_label, page: p.slug}
 
     data = CMSRepo.one(link_query)
-
     ~s(<a href="/#{data.page}" class="#{classes}" id="#{html_id}">#{text}</a>)
   end
 
-  @nunito_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
-  @segio_tags ~w(p li)
+  @segio_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
+  @nunito_tags ~w(p li)
   @tags Enum.join @nunito_tags ++ @segio_tags, "|"
-  @doc """
-  iex> handle_bold("<h1>Hello <b>World</b></h1><p>more <b>text</b> is <b>here</b></p>") == ~s(<h1>Hello <b class="nunito-bold">World</b></h1><p>more <b class="segoe-bold">text</b> is <b class="segoe-bold">here</b></p>)
-  true
-  iex> handle_bold("<h1><b>Hello World</b></h1>") == ~s(<h1><b class="nunito-bold">Hello World</b></h1>)
-  true
-  iex> handle_bold("<p><b>Hello World</b></p>") == ~s(<p><b class="segoe-bold">Hello World</b></p>)
-  true
-  """
+
   def handle_bold(string) when is_binary(string) do
     case String.contains? string, "<b>" do
       true ->
