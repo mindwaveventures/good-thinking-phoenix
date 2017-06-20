@@ -5,7 +5,7 @@
       <%= transform_html @content.body, @conn %>
     </div>
     <%= if @content.video_url do %>
-      <div class="dib w-40-l v-mid mt5 ml5">
+      <div class="dib w-40-l v-mid mt5-l ml5-l">
         <%= component "youtube_video", url: @content.video_url %>
       </div>
     <% end %>
