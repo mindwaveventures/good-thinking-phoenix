@@ -30,6 +30,7 @@ defmodule App.Router do
     get "/feedback", FeedbackController, :index
     post "/feedback", FeedbackController, :post
     get "/crisis", CrisisController, :index
+    post "/search", HomepageController, :search
     get "/:page", StaticController, :index
     # Default route - will match any page - must stay at bottom
   end

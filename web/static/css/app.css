@@ -279,29 +279,21 @@ footer p a {
 
 /* Landing Page - resource like buttons */
 
-.like {
+.like, .like_no_hover {
   background-image: url("../images/Thumbs_up_normal.svg");
   background-repeat: no-repeat;
 }
 
-.like:hover {
+.like:hover, .liked {
   background-image: url("../images/Thumbs_up_hover.svg");
 }
 
-.liked {
-  background-image: url("../images/Thumbs_up_hover.svg");
-}
-
-.dislike {
+.dislike, .dislike_no_hover {
   background-image: url("../images/Thumbs_down_normal.svg");
   background-repeat: no-repeat;
 }
 
-.dislike:hover {
-  background-image: url("../images/Thumbs_down_hover.svg");
-}
-
-.disliked {
+.dislike:hover, .disliked {
   background-image: url("../images/Thumbs_down_hover.svg");
 }
 

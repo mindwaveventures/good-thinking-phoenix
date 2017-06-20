@@ -28,10 +28,10 @@
       <div class="w-60 dib">
         <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
         <%= form_for @conn, likes_path(@conn, :like, @resource.id) <> "#resource_#{@resource.id}", [as: :like, class: "dib like-form mr1"], fn _f -> %>
-          <button type="submit" class="<%= check_liked "like", @resource.liked %> w2 h2 bn bg-white fl p0 bg-left pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Recommend</span></button>
+          <button name="like" type="submit" class="<%= check_liked "like", @resource.liked %> w2 h2 bn bg-white fl p0 bg-left pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Recommend</span></button>
         <%= end %>
         <%= form_for @conn, likes_path(@conn, :dislike, @resource.id) <> "#resource_#{@resource.id}", [as: :dislike, class: "dib dislike-form"], fn _f -> %>
-          <button type="submit" class="<%= check_liked "dislike", @resource.liked %> w2 h2 bn bg-white p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Don't Recommend</span></button>
+          <button name="dislike" type="submit" class="<%= check_liked "dislike", @resource.liked %> w2 h2 bn bg-white p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Don't Recommend</span></button>
         <%= end %>
         <div class="dib mb3 v-mid tl"><span><%= @resource.dislikes %></span></div>
       </div>

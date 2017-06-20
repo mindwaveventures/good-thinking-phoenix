@@ -61,4 +61,4 @@
 <% end %>
 
 <%= component "alpha_section", conn: @conn, content: @content, show_email_submit: false %>
-<%= component "footer", content: @content %>
+<%= component "footer", content: @content, conn: @conn %>
