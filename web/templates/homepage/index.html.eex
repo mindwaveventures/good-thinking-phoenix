@@ -32,6 +32,10 @@
 <% end %>
 </section>
 
+<section>
+  <div id="visited_resources"></div>
+</section>
+
 <section class="mt3">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="tc">
