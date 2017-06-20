@@ -4,7 +4,7 @@ defmodule App.Resources do
   """
   use App.Web, :controller
 
-  alias App.{CMSRepo, Repo, Likes}
+  alias App.Likes
 
   @bucket_name Application.get_env :app, :bucket_name
 

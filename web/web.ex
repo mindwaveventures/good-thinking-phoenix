@@ -31,6 +31,7 @@ defmodule App.Web do
       use Phoenix.Controller
 
       alias App.Repo
+      alias App.CMSRepo
       import Ecto
       import Ecto.Query
 

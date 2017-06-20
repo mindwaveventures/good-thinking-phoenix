@@ -1,6 +1,5 @@
 defmodule App.FeedbackController do
   use App.Web, :controller
-  alias App.CMSRepo
   alias App.Resources, as: R
 
   def index(conn, params) do

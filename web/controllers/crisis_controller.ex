@@ -1,10 +1,6 @@
 defmodule App.CrisisController do
   use App.Web, :controller
 
-  import Ecto.Query, only: [from: 2]
-
-  alias App.CMSRepo
-
   def index(conn, _params) do
     query = from i in "crisis_crisispage",
       join: w in "wagtailcore_page",
