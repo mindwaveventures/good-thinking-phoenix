@@ -1,6 +1,7 @@
 defmodule App.HomepageController do
   use App.Web, :controller
   alias App.Resources, as: R
+  alias App.Search
   import App.SubmitController, only: [submit: 2]
 
   def index(conn, _params) do
@@ -118,5 +119,16 @@ defmodule App.HomepageController do
       |> String.replace(type_tag_string, "")
       |> String.trim(",")
     end
+  end
+
+  def search(conn, %{"query" => %{"query" => query}}) do
+    all_resources =
+      "resource"
+      |> R.all_query
+      |> R.get_resources("resource", get_session(conn, :lm_session))
+      |> Enum.filter(&(Search.find_matches &1, Search.split_text query))
+
+    render conn, "index.html", content: get_content(), tags: R.get_tags(),
+    resources: all_resources, selected_tags: []
   end
 end
