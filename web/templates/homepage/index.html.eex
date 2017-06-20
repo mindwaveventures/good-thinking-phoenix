@@ -34,8 +34,9 @@
 
 <section class="mt3">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
+    <%= hidden_input f, :query_string, value: @conn.query_string %>
     <div class="tc">
-      <%= text_input f, :query, class: "mt1 w-50", placeholder: "Something Else...", "aria-label": "search" %>
+      <%= text_input f, :q, class: "mt1 w-50", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>

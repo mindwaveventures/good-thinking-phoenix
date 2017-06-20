@@ -94,13 +94,16 @@ defmodule App.Resources do
     |> sort_priority
   end
 
-  def filter_by_category(%{tags: %{"category" => category}}, filter),
-    do: Enum.any? category, &(&1 in filter["category"])
+  def filter_by_category(
+    %{tags: %{"category" => category}},
+    %{"category" => categories}), do: Enum.any? category, &(&1 in categories)
+  def filter_by_category(_params, _filter), do: true
 
   def filter_tags(%{tags: tags}, filter) do
     tags
     |> Map.delete("category")
     |> Enum.any?(fn {tag_type, tags} ->
+      !Map.has_key?(filter, tag_type) ||
       Enum.any? tags, &(&1 in filter[tag_type])
     end)
   end

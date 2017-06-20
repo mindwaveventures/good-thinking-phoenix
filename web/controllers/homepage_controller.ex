@@ -37,30 +37,42 @@ defmodule App.HomepageController do
   end
 
   def filtered_show(conn, params) when params == %{}, do: index(conn, params)
-  def filtered_show(conn, %{"category" => category} = params) do
+  def filtered_show(conn, params) do
     filters = params
       |> check_empty
       |> Enum.map(&create_filters/1)
       |> Map.new
 
     selected_tags = filters
-      |> Enum.reduce([], fn {_type, tags}, acc -> acc ++ tags end)
+      |> Enum.reduce([], fn {type, tags}, acc ->
+        case type do
+          "q" -> acc
+          _ -> acc ++ tags
+        end
+      end)
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
 
     session = get_session conn, "lm_session"
-    all_resources = R.get_all_filtered_resources filters, session
+    all_resources =
+      filters
+      |> R.get_all_filtered_resources(session)
+      |> filter_search(params["q"])
+
     render conn, "index.html",
       content: get_content(), tags: R.get_tags(),
-      resources: all_resources, tag: category,
-      selected_tags: selected_tags
+      resources: all_resources, selected_tags: selected_tags, query: params["q"]
   end
 
-  def create_filters({tag_type, tags}),
-    do: {tag_type, String.split(tags, ",")}
+  def create_filters({tag_type, tags}) do
+     {tag_type, String.split(tags, ",")}
+   end
 
   def check_empty(params) do
     params
-    |> Enum.map(fn
+    |> Enum.filter_map(fn
+        {"", _} -> nil
+        _ -> true
+      end, fn
         {name, ""} -> {name, "all-#{name}"}
         {name, tags} -> {name, tags}
       end)
@@ -74,26 +86,6 @@ defmodule App.HomepageController do
     |> Map.merge(%{hero_image_url: R.get_image_url("hero_image", "home")})
   end
 
-  def audience_params do
-    ["dads", "mums", "parents", "shift-workers", "students"]
-      |> Enum.map(&({&1, "false"}))
-      |> Map.new
-  end
-  def content_params do
-    ["CBT", "NHS", "app", "article", "assessment", "community", "discussion",
-     "forum", "free-trial", "government", "mindfulness", "peer-to-peer",
-     "playlist", "podcast", "smart-alarm", "subscription", "tips"]
-      |> Enum.map(&({&1, "false"}))
-      |> Map.new
-      |> Map.merge(%{"subscription" => "true"})
-  end
-
-  @doc"""
-    iex>audience_map = %{"audience" => audience_params()}
-    iex>content_map = %{"content" => content_params()}
-    iex>create_query_string(Map.merge(audience_map, content_map))
-    "audience=&content=subscription"
-  """
   def create_query_string(params) do
     params
     |> Enum.map(fn {tag_type, tag} ->
@@ -121,14 +113,19 @@ defmodule App.HomepageController do
     end
   end
 
-  def search(conn, %{"query" => %{"query" => query}}) do
-    all_resources =
-      "resource"
-      |> R.all_query
-      |> R.get_resources("resource", get_session(conn, :lm_session))
-      |> Enum.filter(&(Search.find_matches &1, Search.split_text query))
+  def search(conn, %{"query" => %{"q" => q}} = params) do
+    query = URI.decode_query(params["query"]["query_string"])
+    query_string =
+      case Map.get(query, "q") do
+        nil -> "?" <> URI.encode_query(q: q) <> "&" <> params["query"]["query_string"]
+        _ -> "?" <> URI.encode_query(Map.update!(query, "q", fn _ -> q end))
+      end
 
-    render conn, "index.html", content: get_content(), tags: R.get_tags(),
-    resources: all_resources, selected_tags: []
+    redirect(conn, to: homepage_path(conn, :filtered_show) <> query_string)
+  end
+
+  def filter_search(resources, nil), do: resources
+  def filter_search(resources, query) do
+    Enum.filter(resources, &(Search.find_matches &1, Search.split_text query))
   end
 end

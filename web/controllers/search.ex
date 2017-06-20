@@ -2,7 +2,7 @@ defmodule App.Search do
   @moduledoc """
     Functions for searching through resources with a query and checking if query
     terms are in resource anywhere. Excludes stop words ('a', 'and', 'the' etc.)
-    and takes typos into account. 
+    and takes typos into account.
   """
   @stop_words "stop_words.txt" |> File.read! |> String.split(",")
 
