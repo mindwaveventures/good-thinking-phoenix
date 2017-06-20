@@ -2,7 +2,7 @@
   <%= component "images/london_minds_logo", class: "w-20-l w-30-m w-70", conn: @conn %>
   <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
-      <%= raw @content.body %>
+      <%= transform_html @content.body, @conn %>
     </div>
     <%= if @content.video_url do %>
       <div class="dib w-40-l v-mid mt5 ml5">
@@ -13,7 +13,7 @@
 </section>
 
 <section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc white">
-  <%= raw @content.assessment_text %>
+  <%= transform_html @content.assessment_text, @conn %>
   <%= component "buttons/secondary_button", background: "dark", value: "Take assessment", to: "/coming-soon", id: "assessment" %>
 </section>
 
@@ -23,6 +23,7 @@
   </div>
 </section>
 
+<section id="results">
 <%= if is_ie8? @conn do %>
   <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
 <% else %>
@@ -36,8 +37,18 @@
     %>
   </div>
 <% end %>
+</section>
 
-<section class="tc-ns" id="results">
+<section class="mt3">
+  <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
+    <div class="tc">
+      <%= text_input f, :query, class: "mt1 w-50", placeholder: "Something Else...", "aria-label": "search" %>
+      <%= component "buttons/primary_button", value: "Search" %>
+    </div>
+  <% end %>
+</section>
+
+<section class="tc-ns">
   <p class="alert" role="alert"><%= get_flash @conn, :tag_suggestion %></p>
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
@@ -50,4 +61,4 @@
 <%= render "suggestion_form.html", conn: @conn, content: @content %>
 
 <%= component "alpha_section", conn: @conn, content: @content, show_email_submit: true %>
-<%= component "footer", content: @content %>
+<%= component "footer", content: @content, conn: @conn %>
