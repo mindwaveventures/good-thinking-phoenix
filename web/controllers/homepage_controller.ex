@@ -43,6 +43,7 @@ defmodule App.HomepageController do
 
   def filtered_show(conn, params) when params == %{}, do: index(conn, params)
   def filtered_show(conn, params) do
+    IO.inspect params
     filters = params
       |> check_empty
       |> Enum.map(fn {type, tags} -> {type, String.split(tags, ",")} end)

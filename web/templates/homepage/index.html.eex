@@ -28,6 +28,19 @@
 <% end %>
 </section>
 
+<section id="quick-links">
+  <div class="ma3 ml4">I am ...</div>
+  <div class="ml4">
+    <%= for link <- String.split @content.quick_links, "," do %>
+      <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query, class: "dib"], fn f -> %>
+        <%= hidden_input f, :query_string, value: link %>
+        <%= hidden_input f, :q, value: link %>
+        <%= component "buttons/primary_button", value: link %>
+      <% end %>
+    <% end %>
+  </div>
+<section>
+
 <section class="mt3">
   <div class="ma3 ml4">I am ...</div>
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
