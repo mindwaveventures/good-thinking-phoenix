@@ -3,6 +3,7 @@ defmodule App.HomepageControllerTest do
   doctest App.HomepageController, import: true
 
   alias Plug.Conn
+  alias App.HomepageController, as: H
 
   test "show redirects when category is nonexistent", %{conn: conn} do
     params = %{"audience" => %{"audience" => "false"},
@@ -53,47 +54,81 @@ defmodule App.HomepageControllerTest do
   end
 
   test "search for tags", %{conn: conn} do
-    params = %{"query" => %{"query" => "insomnia"}}
-
+    params = %{"query" => %{"q" => "insomnia", "query_string" => ""},}
     conn = post(conn, homepage_path(conn, :search, params))
 
-    assert html_response(conn, 200)
-    assert length(conn.assigns.resources) > 0
+    assert html_response(conn, 302)
   end
 
   test "search for tags - misspelling", %{conn: conn} do
-    params = %{"query" => %{"query" => "insonia"}}
-
+    params = %{"query" => %{"q" => "insonia", "query_string" => ""}}
     conn = post(conn, homepage_path(conn, :search, params))
 
-    assert html_response(conn, 200)
-    assert length(conn.assigns.resources) > 0
+    assert html_response(conn, 302)
   end
 
   test "search for nonexistent tags", %{conn: conn} do
-    params = %{"query" => %{"query" => "nonexistent"}}
-
+    params = %{"query" => %{"q" => "nonexistent", "query_string" => ""}}
     conn = post(conn, homepage_path(conn, :search, params))
 
-    assert html_response(conn, 200)
-    assert length(conn.assigns.resources) == 0
+    assert html_response(conn, 302)
   end
 
   test "search for multiple words", %{conn: conn} do
-    params = %{"query" => %{"query" => "sleep test"}}
-
+    params = %{"query" => %{"q" => "sleep test", "query_string" => ""}}
     conn = post(conn, homepage_path(conn, :search, params))
 
-    assert html_response(conn, 200)
-    assert length(conn.assigns.resources) > 0
+    assert html_response(conn, 302)
   end
 
   test "search - case insensitive", %{conn: conn} do
-    params = %{"query" => %{"query" => "SlEeP TeSt"}}
-
+    params = %{"query" => %{"q" => "SlEeP TeSt", "query_string" => ""}}
     conn = post(conn, homepage_path(conn, :search, params))
 
-    assert html_response(conn, 200)
-    assert length(conn.assigns.resources) > 0
+    assert html_response(conn, 302)
   end
+
+  test "search - existing query string", %{conn: conn} do
+    params = %{"query" => %{"q" => "SlEeP TeSt", "query_string" => "q=test&category=insomnia"}}
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 302)
+  end
+
+  test "search - query_string", %{conn: conn} do
+    conn = get(conn, "/filter?q=sleep&category=insomnia&content=blog&audience=")
+
+    assert html_response(conn, 200)
+    assert conn.assigns.selected_tags == ["insomnia", "blog"]
+  end
+
+  test "search - just query", %{conn: conn} do
+    conn = get(conn, "/filter?q=sleep")
+
+    assert html_response(conn, 200)
+    assert conn.assigns.selected_tags == []
+  end
+
+  def audience_params do
+    ["dads", "mums", "parents", "shift-workers", "students"]
+      |> Enum.map(&({&1, "false"}))
+      |> Map.new
+  end
+  def content_params do
+    ["CBT", "NHS", "app", "article", "assessment", "community", "discussion",
+     "forum", "free-trial", "government", "mindfulness", "peer-to-peer",
+     "playlist", "podcast", "smart-alarm", "subscription", "tips"]
+      |> Enum.map(&({&1, "false"}))
+      |> Map.new
+      |> Map.merge(%{"subscription" => "true"})
+  end
+
+  test "creating query string" do
+    audience_map = %{"audience" => audience_params()}
+    content_map = %{"content" => content_params()}
+
+    assert H.create_query_string(Map.merge(audience_map, content_map)) ==
+      "audience=&content=subscription"
+  end
+
 end
