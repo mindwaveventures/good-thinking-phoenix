@@ -47,8 +47,14 @@
         <div aria-hidden="true" class="pa3 lm-bg-dark-blue lm-dark-blue w-100 f6 f5-l f5-m banner banner-2 segoe">
           <%= transform_html @banner, @conn %>
         </div>
-        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5">
-          <%= transform_html @banner, @conn, class: "underline lm-white", id: "feedback-link" %>
+        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5 dt-ns dt--fixed-ns">
+          <div class="dtc-ns w-50-l w-40-m v-mid">
+            <%= transform_html @banner, @conn, class: "underline lm-white dib", id: "feedback-link" %>
+          </div>
+          <div class="dtc-ns dn tr v-mid">
+            <%= component "buttons/secondary_button", background: "dark", value: "Take A Self-Assessment", to: "/coming-soon", id: "assessment", class: "f6 f7-m" %>
+            <%= component "buttons/secondary_button", background: "dark", value: "Get Urgent Support", to: "/crisis", id: "crisis", class: "f6 f7-m" %>
+          </div>
         </div>
       <% end %>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
