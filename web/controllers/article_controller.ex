@@ -1,7 +1,5 @@
 defmodule App.ArticleController do
   use App.Web, :controller
-  import Ecto.Query, only: [from: 2]
-  alias App.CMSRepo
 
   def show(conn, %{"id" => id}) do
     article_query = from a in "articles_articlepage",

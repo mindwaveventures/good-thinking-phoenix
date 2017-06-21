@@ -1,10 +1,6 @@
 defmodule App.StaticController do
   use App.Web, :controller
 
-  import Ecto.Query, only: [from: 2]
-
-  alias App.CMSRepo
-
   def index(conn, %{"page" => page}) do
     query = from i in "static_staticpage",
       join: w in "wagtailcore_page",

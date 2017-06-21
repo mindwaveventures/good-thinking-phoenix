@@ -1,6 +1,6 @@
 defmodule App.LikesController do
   use App.Web, :controller
-  alias App.{Repo, Likes, Resources}
+  alias App.{Likes, Resources}
   import Phoenix.View, only: [render_to_string: 3]
 
   def like(conn, %{"article_id" => article_id}) do
