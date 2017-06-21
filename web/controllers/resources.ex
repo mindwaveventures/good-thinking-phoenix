@@ -147,21 +147,24 @@ defmodule App.Resources do
     |> get_all_likes(session)
   end
 
-  defp like_filter(map), do: map.value > 0
-  defp dislike_filter(map), do: map.value < 0
-  defp likes_count(query, filter),
-    do: query |> Repo.all |> Enum.filter_map(filter, &(&1.value)) |> Enum.sum
+  defp likes_count(data, filter),
+    do: data |> Enum.filter_map(filter, &(&1.value)) |> Enum.sum
+
   def get_all_likes(%{id: article_id} = map, lm_session) do
     likequery = from l in Likes,
             where: l.article_id == ^article_id,
             select: %{value: l.like_value, session_id: l.user_hash}
+
     likesdata = Repo.all likequery
-    likes = likes_count(likequery, &like_filter/1)
-    dislikes = likes_count(likequery, &dislike_filter/1)
+
+    likes = likes_count(likesdata, &(&1.value > 0))
+    dislikes = likes_count(likesdata, &(&1.value < 0))
+
     liked = case Enum.find likesdata, &(&1.session_id == lm_session) do
       nil -> "none"
       %{value: value} -> value
     end
+
     Map.merge map, %{likes: likes, dislikes: dislikes, liked: liked}
   end
 
