@@ -38,6 +38,7 @@ defmodule App.HomepageController do
 
   def filtered_show(conn, params) when params == %{}, do: index(conn, params)
   def filtered_show(conn, params) do
+    IO.inspect params
     filters = params
       |> check_empty
       |> Enum.map(&create_filters/1)
@@ -64,8 +65,8 @@ defmodule App.HomepageController do
   end
 
   def create_filters({tag_type, tags}) do
-     {tag_type, String.split(tags, ",")}
-   end
+    {tag_type, String.split(tags, ",")}
+  end
 
   def check_empty(params) do
     params
@@ -81,7 +82,7 @@ defmodule App.HomepageController do
   def get_content do
     [:body, :footer, :alpha, :alphatext, :lookingfor,
      :filter_label_1, :filter_label_2, :filter_label_3,
-     :assessment_text, :crisis_text, :video_url]
+     :assessment_text, :crisis_text, :video_url, :quick_links]
     |> R.get_content
     |> Map.merge(%{hero_image_url: R.get_image_url("hero_image", "home")})
   end
