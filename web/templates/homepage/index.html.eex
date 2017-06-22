@@ -42,8 +42,8 @@
 <section class="mt3">
   <div class="ma3 ml4">I am ...</div>
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
-    <%= inputs_for f, :quick_links, [as: :quick_links], fn fq -> %>
-    <%= for link <- String.split @content.quick_links, "," do %>
+    <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
+    <%= for link <- @tags.topic do %>
       <div class="dib relative ma1">
         <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "checked-fill absolute o-0" %>
         <%= label fq, String.to_atom(link), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>

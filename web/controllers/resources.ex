@@ -61,9 +61,10 @@ defmodule App.Resources do
       full_join: rc in ^"resources_issuetag",
       full_join: ra in ^"resources_reasontag",
       full_join: rco in ^"resources_contenttag",
-      where: rc.tag_id == tag.id or ra.tag_id == tag.id or rco.tag_id == tag.id,
+      full_join: rt in ^"resources_topictag",
+      where: tag.id in [rc.tag_id, ra.tag_id, rco.tag_id, rt.tag_id],
       select: %{
-        issue: rc.tag_id, reason: ra.tag_id,
+        issue: rc.tag_id, reason: ra.tag_id, topic: rt.tag_id,
         content: rco.tag_id, name: tag.name, id: tag.id
       },
       order_by: tag.id,
@@ -72,7 +73,7 @@ defmodule App.Resources do
     tag_query
     |> CMSRepo.all
     |> Enum.reduce(%{}, fn %{
-        reason: aud, issue: cat, content: con, id: id, name: name
+        reason: aud, issue: cat, content: con, id: id, name: name, topic: topic
       }, acc ->
       cond do
         aud == id -> Map.merge acc,
@@ -81,6 +82,8 @@ defmodule App.Resources do
           %{issue: Map.get(acc, :issue, []) ++ [name]}
         con == id -> Map.merge acc,
           %{content: Map.get(acc, :content, []) ++ [name]}
+        topic == id -> Map.merge acc,
+          %{topic: Map.get(acc, :topic, []) ++ [name]}
       end
     end)
   end
