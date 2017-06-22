@@ -6,13 +6,18 @@ defmodule App.HomepageController do
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
-    resources = "resource"
+    resources = Task.async(fn ->
+      "resource"
       |> R.all_query
       |> R.get_resources("resource", session)
       |> R.sort_priority
+    end)
 
-    render conn, "index.html", content: get_content(),
-                 tags: R.get_tags(), resources: resources
+    content = Task.async(&get_content/0)
+    tags = Task.async(&R.get_tags/0)
+
+    render conn, "index.html", content: Task.await(content),
+                 tags: Task.await(tags), resources: Task.await(resources)
   end
 
   def show(conn, params = %{
@@ -40,7 +45,7 @@ defmodule App.HomepageController do
   def filtered_show(conn, params) do
     filters = params
       |> check_empty
-      |> Enum.map(&create_filters/1)
+      |> Enum.map(fn {type, tags} -> {type, String.split(tags, ",")} end)
       |> Map.new
 
     selected_tags = filters
@@ -53,19 +58,20 @@ defmodule App.HomepageController do
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
 
     session = get_session conn, "lm_session"
-    all_resources =
+    all_resources = Task.async(fn ->
       filters
       |> R.get_all_filtered_resources(session)
       |> filter_search(params["q"])
+    end)
+
+    content = Task.async(&get_content/0)
+    tags = Task.async(&R.get_tags/0)
 
     render conn, "index.html",
-      content: get_content(), tags: R.get_tags(),
-      resources: all_resources, selected_tags: selected_tags, query: params["q"]
+      content: Task.await(content), tags: Task.await(tags),
+      resources: Task.await(all_resources),
+      selected_tags: selected_tags, query: params["q"]
   end
-
-  def create_filters({tag_type, tags}) do
-     {tag_type, String.split(tags, ",")}
-   end
 
   def check_empty(params) do
     params
@@ -79,11 +85,15 @@ defmodule App.HomepageController do
   end
 
   def get_content do
-    [:body, :footer, :alpha, :alphatext, :lookingfor,
-     :filter_label_1, :filter_label_2, :filter_label_3,
-     :assessment_text, :crisis_text, :video_url]
-    |> R.get_content
-    |> Map.merge(%{hero_image_url: R.get_image_url("hero_image", "home")})
+    content = Task.async(fn ->
+      R.get_content [:body, :footer, :alpha, :alphatext, :lookingfor,
+        :filter_label_1, :filter_label_2, :filter_label_3,
+        :assessment_text, :crisis_text, :video_url]
+    end)
+
+    image_url = Task.async(fn -> R.get_image_url("hero_image", "home") end)
+
+    Map.merge(Task.await(content), %{hero_image_url: Task.await(image_url)})
   end
 
   def create_query_string(params) do
