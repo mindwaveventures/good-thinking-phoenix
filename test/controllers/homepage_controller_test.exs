@@ -5,17 +5,17 @@ defmodule App.HomepageControllerTest do
   alias Plug.Conn
   alias App.HomepageController, as: H
 
-  test "show redirects when category is nonexistent", %{conn: conn} do
-    params = %{"audience" => %{"audience" => "false"},
-               "category" => %{"category" => "not_found"},
+  test "show redirects when issue is nonexistent", %{conn: conn} do
+    params = %{"reason" => %{"reason" => "false"},
+               "issue" => %{"issue" => "not_found"},
                "content" => %{"content" => "false"}}
     conn = post conn, homepage_path(conn, :show, params)
     assert html_response(conn, 302)
   end
 
   test "adds suggestion", %{conn: conn} do
-    params = %{"audience" => %{"add_your_own" => "snoring"},
-               "category" => %{"add_your_own" => ""},
+    params = %{"reason" => %{"add_your_own" => "snoring"},
+               "issue" => %{"add_your_own" => ""},
                "content" => %{"add_your_own" => ""}}
     conn = post conn, homepage_path(conn, :show, params)
 
@@ -24,16 +24,16 @@ defmodule App.HomepageControllerTest do
   end
 
   test "query renders filtered content", %{conn: conn} do
-    params = %{"audience" => "shift-workers",
-               "category" => "insomnia",
+    params = %{"reason" => "shift-workers",
+               "issue" => "insomnia",
                "content" => ""}
     conn = get conn, homepage_path(conn, :filtered_show, params)
     assert html_response(conn, 200)
   end
 
-  test "categories for insomnia show", %{conn: conn} do
-    params = %{"audience" => %{"audience" => "false"},
-               "category" => %{"category" => "insomnia"},
+  test "issues for insomnia show", %{conn: conn} do
+    params = %{"reason" => %{"reason" => "false"},
+               "issue" => %{"issue" => "insomnia"},
                "content" => %{"content" => "false"}}
     conn = post conn, homepage_path(conn, :show, params)
     assert html_response(conn, 302)
@@ -41,8 +41,8 @@ defmodule App.HomepageControllerTest do
 
   @resource_id "5"
   test "/ with a like for your session", %{conn: conn} do
-    params = %{"audience" => "shift-workers",
-               "category" => "insomnia",
+    params = %{"reason" => "shift-workers",
+               "issue" => "insomnia",
                "content" => ""}
     conn =
       conn
@@ -89,17 +89,17 @@ defmodule App.HomepageControllerTest do
   end
 
   test "search - existing query string", %{conn: conn} do
-    params = %{"query" => %{"q" => "SlEeP TeSt", "query_string" => "q=test&category=insomnia"}}
+    params = %{"query" => %{"q" => "SlEeP TeSt", "query_string" => "q=test&issue=insomnia"}}
     conn = post(conn, homepage_path(conn, :search, params))
 
     assert html_response(conn, 302)
   end
 
   test "search - query_string", %{conn: conn} do
-    conn = get(conn, "/filter?q=sleep&category=insomnia&content=blog&audience=")
+    conn = get(conn, "/filter?q=sleep&issue=insomnia&content=blog&reason=")
 
     assert html_response(conn, 200)
-    assert conn.assigns.selected_tags == ["insomnia", "blog"]
+    assert conn.assigns.selected_tags == ["blog", "insomnia"]
   end
 
   test "search - just query", %{conn: conn} do
@@ -116,7 +116,7 @@ defmodule App.HomepageControllerTest do
     assert html_response(conn, 302)
   end
 
-  def audience_params do
+  def reason_params do
     ["dads", "mums", "parents", "shift-workers", "students"]
       |> Enum.map(&({&1, "false"}))
       |> Map.new
@@ -131,11 +131,11 @@ defmodule App.HomepageControllerTest do
   end
 
   test "creating query string" do
-    audience_map = %{"audience" => audience_params()}
+    reason_map = %{"reason" => reason_params()}
     content_map = %{"content" => content_params()}
 
-    assert H.create_query_string(Map.merge(audience_map, content_map)) ==
-      "audience=&content=subscription"
+    assert H.create_query_string(Map.merge(reason_map, content_map)) ==
+      "content=subscription&reason="
   end
 
 end

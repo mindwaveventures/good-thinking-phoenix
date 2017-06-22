@@ -3,7 +3,7 @@
 </div>
 <div class="mb4 <%= "#{@type}-filters" %>">
   <div class="ph1 lm-bg-orange-hover">
-    <%= checkbox @form, safe_to_atom("all-#{@type}"), value: nothing_selected(@conn.query_params[@type], "all-category"), class: "checked-fill absolute o-0 show-everything-#{@type}" %>
+    <%= checkbox @form, safe_to_atom("all-#{@type}"), value: nothing_selected(@conn.query_params[@type], "all-issue"), class: "checked-fill absolute o-0 show-everything-#{@type}" %>
     <%= label @form, safe_to_atom("all-#{@type}"), class: "db pa2 pr0 pointer b--lm-grey bb f5" do
       raw("<div class=\"is-checked ba b--lm-dark-blue dib h05 w05 mr2\"></div><span>Show me everything</span>")
     end %>

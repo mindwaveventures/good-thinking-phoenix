@@ -21,8 +21,8 @@ defmodule App.HomepageController do
   end
 
   def show(conn, params = %{
-      "category" => %{"add_your_own" => cat_suggestion},
-      "audience" => %{"add_your_own" => aud_suggestion},
+      "issue" => %{"add_your_own" => cat_suggestion},
+      "reason" => %{"add_your_own" => aud_suggestion},
       "content" => %{"add_your_own" => con_suggestion}
     }
   ) when (cat_suggestion <> aud_suggestion <> con_suggestion) != ""  do
@@ -34,7 +34,7 @@ defmodule App.HomepageController do
     prepend = fn(a, b) -> b <> a end
     query_string =
       params
-        |> Map.take(["audience", "content", "category"])
+        |> Map.take(["reason", "content", "issue"])
         |> create_query_string
         |> prepend.("?")
 

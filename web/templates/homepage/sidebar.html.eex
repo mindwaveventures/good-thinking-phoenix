@@ -9,14 +9,14 @@
       <%= form_for @conn, homepage_path(@conn, :show) <> "#results", [as: :tags, id: "filter-form"],  fn f -> %>
       <div class="mb5 relative">
         <h4 class="w-70 mb1 mt2"><%= @filter_label_1 %></h4>
-        <%= inputs_for f, :category, [as: :category], fn fcat -> %>
-          <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "category", form: fcat %>
+        <%= inputs_for f, :issue, [as: :issue], fn fcat -> %>
+          <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "issue", form: fcat %>
         <% end %>
       </div>
       <div class="mv5 relative">
         <h4 class="w-70 mt4 mb1"><%= @filter_label_2 %></h4>
-        <%= inputs_for f, :audience, [as: :audience], fn fa -> %>
-          <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "audience", form: fa %>
+        <%= inputs_for f, :reason, [as: :reason], fn fa -> %>
+          <%= render App.HomepageView, "tag-block.html", conn: @conn, tags: @tags, type: "reason", form: fa %>
         <% end %>
       </div>
       <div class="mv5 relative">
