@@ -45,12 +45,12 @@
   <div class="ma3 ml4">I am ...</div>
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
-    <%= for link <- @tags.topic do %>
-      <div class="dib relative ma1">
-        <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "checked-fill absolute o-0" %>
-        <%= label fq, String.to_atom(link), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
-      </div>
-    <% end %>
+      <%= for link <- @topics do %>
+        <div class="dib relative ma1">
+          <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "checked-fill absolute o-0" %>
+          <%= label fq, String.to_atom(link), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
+        </div>
+      <% end %>
     <% end %>
 
     <%= hidden_input f, :query_string, value: @conn.query_string %>

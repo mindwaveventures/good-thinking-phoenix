@@ -110,10 +110,18 @@ defmodule App.HomepageControllerTest do
   end
 
   test "search - topic", %{conn: conn} do
-    params = %{"query" => %{"q" => ""}, "topic" => %{"one" => "true", "two" => "false"}}
+    params = %{"query" => %{"q" => ""}, "topic" => %{"anxiety" => "true", "depression" => "false"}}
     conn = post(conn, homepage_path(conn, :search, params))
 
     assert html_response(conn, 302)
+  end
+
+  test "query by topic filters resources", %{conn: conn} do
+    params = %{"topic" => "anxiety"}
+    conn = get conn, homepage_path(conn, :filtered_show, params)
+
+    assert html_response(conn, 200)
+    assert length(conn.assigns.resources) == 1
   end
 
   def reason_params do
@@ -137,5 +145,4 @@ defmodule App.HomepageControllerTest do
     assert H.create_query_string(Map.merge(reason_map, content_map)) ==
       "content=subscription&reason="
   end
-
 end

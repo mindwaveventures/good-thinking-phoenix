@@ -68,4 +68,14 @@ defmodule App.HomepageView do
     |> Map.new(&({&1, %{"all-" <> &1 => "true"}}))
     |> Map.merge(%{tag_type => %{t => "true"}})
   end
+
+  def get_topic(%{query_string: query_string}) do
+    query_string
+    |> URI.decode_query
+    |> Map.get("topic", nil)
+    |> case do
+      nil -> nil
+      topic -> String.to_atom topic
+    end
+  end
 end
