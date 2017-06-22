@@ -88,7 +88,7 @@ defmodule App.HomepageController do
     content = Task.async(fn ->
       R.get_content [:body, :footer, :alpha, :alphatext, :lookingfor,
         :filter_label_1, :filter_label_2, :filter_label_3,
-        :assessment_text, :crisis_text, :video_url]
+        :assessment_text, :crisis_text, :video_url, :quick_links]
     end)
 
     image_url = Task.async(fn -> R.get_image_url("hero_image", "home") end)
@@ -121,6 +121,15 @@ defmodule App.HomepageController do
       |> String.replace(type_tag_string, "")
       |> String.trim(",")
     end
+  end
+
+  def search(conn, %{"query" => %{"q" => ""}} = params) do
+    query_string =
+      params
+      |> Map.take(["quick_links"])
+      |> create_query_string
+    redirect conn,
+      to: homepage_path(conn, :filtered_show) <> "?" <> query_string
   end
 
   def search(conn, %{"query" => %{"q" => q}} = params) do

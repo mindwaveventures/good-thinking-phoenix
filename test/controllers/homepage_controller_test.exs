@@ -109,6 +109,13 @@ defmodule App.HomepageControllerTest do
     assert conn.assigns.selected_tags == []
   end
 
+  test "search - quick_links", %{conn: conn} do
+    params = %{"query" => %{"q" => ""}, "quick_links" => %{"one" => "true", "two" => "false"}}
+    conn = post(conn, homepage_path(conn, :search, params))
+
+    assert html_response(conn, 302)
+  end
+
   def audience_params do
     ["dads", "mums", "parents", "shift-workers", "students"]
       |> Enum.map(&({&1, "false"}))
