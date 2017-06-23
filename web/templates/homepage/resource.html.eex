@@ -25,17 +25,23 @@
     <% end %>
     <div class="bt b--lm-grey">
       <p class="b">Would you recommend this?</p>
-      <div class="w-60 dib">
-        <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
-        <%= form_for @conn, likes_path(@conn, :like, @resource.id) <> "#resource_#{@resource.id}", [as: :like, class: "dib like-form mr1"], fn _f -> %>
-          <button name="like" type="submit" class="<%= check_liked "like", @resource.liked %> w2 h2 bn bg-white fl p0 bg-left pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Recommend</span></button>
-        <%= end %>
-        <%= form_for @conn, likes_path(@conn, :dislike, @resource.id) <> "#resource_#{@resource.id}", [as: :dislike, class: "dib dislike-form"], fn _f -> %>
-          <button name="dislike" type="submit" class="<%= check_liked "dislike", @resource.liked %> w2 h2 bn bg-white p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Don't Recommend</span></button>
-        <%= end %>
-        <div class="dib mb3 v-mid tl"><span><%= @resource.dislikes %></span></div>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
+          <%= form_for @conn, likes_path(@conn, :like, @resource.id) <> "#resource_#{@resource.id}", [as: :like, class: "dib like-form mr1"], fn _f -> %>
+            <button name="like" type="submit" class="<%= check_liked "like", @resource.liked %> w2 h2 bn bg-white fl p0 bg-left pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Recommend</span></button>
+          <%= end %>
+          <%= form_for @conn, likes_path(@conn, :dislike, @resource.id) <> "#resource_#{@resource.id}", [as: :dislike, class: "dib dislike-form"], fn _f -> %>
+            <button name="dislike" type="submit" class="<%= check_liked "dislike", @resource.liked %> w2 h2 bn bg-white p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Don't Recommend</span></button>
+          <%= end %>
+          <div class="dib mb3 v-mid tl"><span><%= @resource.dislikes %></span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email cursor w-10-ns w-20 mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger cursor w-10-ns w-20 mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp cursor w-10-ns w-20 mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="fixed o-0">Share with Email</span></button>
+        </div>
       </div>
-      <button class="share cursor w-20 h2 bn bg-white fr p0 bg-right pointer" data-url="<%= @resource.url %>"><span class="absolute o-0">Share</span></button>
       <%= if @resource.liked != "none" and get_flash(@conn, :resource_feedback) == nil do %>
         <%= form_for @conn, submit_path(@conn, :submit) <> "#resource_#{@resource.id}", [as: :resource_feedback, class: "resource-feedback", "data-url": @resource.url], fn f -> %>
           <%= hidden_input f, :id, value: @resource.id %>
