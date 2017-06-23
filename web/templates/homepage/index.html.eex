@@ -12,50 +12,39 @@
   </div>
 </section>
 
-<section id="results">
-<%= if is_ie8? @conn do %>
-  <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
-<% else %>
-  <div class="tc">
-    <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
-    <label class="<%= get_class("primary_button") %> mt4" id="open-filter-label" for="filter_filter">Filter</label>
-    <%= render "sidebar.html", conn: @conn, tags: @tags,
-      filter_label_1: @content.filter_label_1,
-      filter_label_2: @content.filter_label_2,
-      filter_label_3: @content.filter_label_3
-    %>
-  </div>
-<% end %>
+<section id="results" class="lm-bg-dark-blue">
+  <%= if is_ie8? @conn do %>
+    <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
+  <% else %>
+    <div class="tc">
+      <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
+      <label class="<%= get_class("primary_button") %> mt4" id="open-filter-label" for="filter_filter">Filter</label>
+      <%= render "sidebar.html", conn: @conn, tags: @tags,
+        filter_label_1: @content.filter_label_1,
+        filter_label_2: @content.filter_label_2,
+        filter_label_3: @content.filter_label_3
+      %>
+    </div>
+  <% end %>
 </section>
 
-<section id="quick-links">
-  <div class="ma3 ml4">I am ...</div>
-  <div class="ml4">
-    <%= for link <- String.split @content.quick_links, "," do %>
-      <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query, class: "dib"], fn f -> %>
-        <%= hidden_input f, :query_string, value: link %>
-        <%= hidden_input f, :q, value: link %>
-        <%= component "buttons/primary_button", value: link %>
-      <% end %>
-    <% end %>
-  </div>
-<section>
-
-<section class="mt3">
-  <div class="ma3 ml4">I am ...</div>
+<section class="pt3 ph4 ph3-m ph3-l lm-bg-dark-blue pb4">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
-    <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
-      <%= for link <- @topics do %>
-        <div class="dib relative ma1">
-          <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "checked-fill absolute o-0" %>
-          <%= label fq, String.to_atom(link), class: "b--lm-white ba br2 pl2 pr4 pv1 dib pointer border-box unchecked" %>
-        </div>
-      <% end %>
-    <% end %>
+    <div class="w-60-ns center">
+      <div class="tl white">I am ...</div>
+        <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
+          <%= for link <- @topics do %>
+            <div class="dib relative mv3">
+              <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "topic-checked-fill absolute o-0" %>
+              <%= label fq, String.to_atom(link), class: "lm-bg-dark-blue b--lm-white lm-white ba br2 pl2 pr4 pv1 dib pointer border-box topic-unchecked" %>
+            </div>
+          <% end %>
+        <% end %>
 
-    <%= hidden_input f, :query_string, value: @conn.query_string %>
-    <div class="tc">
-      <%= text_input f, :q, class: "mt1 w-50", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+      <%= hidden_input f, :query_string, value: @conn.query_string %>
+    </div>
+    <div class="tl w-60-ns center">
+      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa1", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>
