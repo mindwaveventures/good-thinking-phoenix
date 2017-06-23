@@ -302,6 +302,21 @@ footer p a {
   background-repeat: no-repeat;
 }
 
+.share-email {
+  background-image: url("../images/email-icon.svg");
+  background-repeat: no-repeat;
+}
+
+.share-messenger {
+  background-image: url("../images/messenger-icon.svg");
+  background-repeat: no-repeat;
+}
+
+.share-whatsapp {
+  background-image: url("../images/whatsapp-icon.svg");
+  background-repeat: no-repeat;
+}
+
 /* Styleguide */
 
 code {
