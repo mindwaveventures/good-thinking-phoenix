@@ -36,9 +36,9 @@ defmodule App.ViewHelpers do
 
     img_class =
       case align do
-        "left" -> {"tl", "w-50"}
-        "right" -> {"tr", "w-50"}
-        _ -> {"tc", "w-100"}
+        "left" -> {"fl w-50 mr4", "w-100"}
+        "right" -> {"fr w-50 ml4", "w-100"}
+        _ -> {"tc mt3", "w-100"}
       end
 
     src = case img_src != nil and String.starts_with? img_src, "https://" do
