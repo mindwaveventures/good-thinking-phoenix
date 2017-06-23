@@ -3,9 +3,8 @@
     <p class="tl b">Showing <%= number_of_results @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></p>
     <%= if assigns[:selected_tags] do %>
       <div class="tl">
-        <%= for {tag, i} <- Enum.with_index @selected_tags do %>
-        <span><%= remove_hyphen tag %></span>
-        <%= if i < length(@selected_tags) - 1 do %><span> | </span><% end %>
+        <%= for tag <- @selected_tags do %>
+          <span class="b--lm-orange lm-bg-white ba br2 ph2 pv1 lh-tag mh1 dib mb1 font nunito"><%= remove_hyphen tag %></span>
         <% end %>
       </div>
     <% end %>

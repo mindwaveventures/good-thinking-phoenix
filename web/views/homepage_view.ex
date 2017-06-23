@@ -40,10 +40,6 @@ defmodule App.HomepageView do
   def nothing_selected(tags, type) when tags in ["", nil, type], do: true
   def nothing_selected(_, _), do: false
 
-  def remove_hyphen(str) do
-    String.replace(str, "-", " ")
-  end
-
   @doc """
     iex> safe_to_atom("hi’hi")
     :"hi'hi"
@@ -57,16 +53,6 @@ defmodule App.HomepageView do
     |> Enum.filter(&(&1 <= 255))
     |> to_string
     |> String.to_atom
-  end
-
-  @doc """
-    iex> construct_params("issue", "insomnia")
-    %{"reason" => %{"all-reason" => "true"}, "issue" => %{"insomnia" => "true"}, "content" => %{"all-content" => "true"}}
-  """
-  def construct_params(tag_type, t) do
-    ~w(reason issue content)
-    |> Map.new(&({&1, %{"all-" <> &1 => "true"}}))
-    |> Map.merge(%{tag_type => %{t => "true"}})
   end
 
   def get_topic(%{query_string: query_string}) do
