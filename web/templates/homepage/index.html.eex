@@ -32,7 +32,7 @@
 <section class="pt3 ph4 ph3-m ph3-l lm-bg-dark-blue pb4">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center">
-      <div class="tl white">I am ...</div>
+      <div class="tl white mb3">I am ...</div>
         <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
           <%= for link <- @topics do %>
             <div class="dib relative mv2-ns mv1">
@@ -46,8 +46,8 @@
 
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
-    <div class="tl w-60-ns center">
-      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa1", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+    <div class="tl w-60-ns center mt3">
+      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa2 nunito", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>
