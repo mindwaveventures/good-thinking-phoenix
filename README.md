@@ -157,6 +157,8 @@ If updating your environment variable doesn't work, try `rm -rf _build` and then
 
 The Wagtail cms allows for a maximum file size of 10MB.
 
+Althouth I would suggest that files be no bigger than 1MB.
+
 Be aware though that many uploads of high resolution images will result in increased costs from our file hosting provider.
 
 ##### Resolution
