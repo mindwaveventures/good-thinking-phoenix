@@ -127,6 +127,7 @@ defmodule App.HomepageController do
        |> String.trim(",")
        |> remove_all_type_tags(tag_type)}
     end)
+    |> Enum.filter(fn {_, tag} -> tag != "" end)
     |> URI.encode_query
   end
 

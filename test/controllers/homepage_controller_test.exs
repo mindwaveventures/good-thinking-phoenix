@@ -143,6 +143,6 @@ defmodule App.HomepageControllerTest do
     content_map = %{"content" => content_params()}
 
     assert H.create_query_string(Map.merge(reason_map, content_map)) ==
-      "content=subscription&reason="
+      "content=subscription"
   end
 end

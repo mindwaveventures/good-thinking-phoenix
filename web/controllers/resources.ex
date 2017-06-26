@@ -151,7 +151,8 @@ defmodule App.Resources do
   def filter_tags(%{tags: tags}, filter) do
     tags
     |> Map.delete("issue")
-    |> Enum.any?(fn {tag_type, tags} ->
+    |> Map.delete("topic")
+    |> Enum.all?(fn {tag_type, tags} ->
       !Map.has_key?(filter, tag_type) ||
       Enum.any? tags, &(&1 in filter[tag_type])
     end)

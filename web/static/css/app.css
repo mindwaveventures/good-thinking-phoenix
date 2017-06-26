@@ -423,6 +423,9 @@ code {
   border-color: #FF1160;
 }
 
+.top--3 {
+  top: -3rem;
+}
 
 .nr {
   resize: none;
