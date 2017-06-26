@@ -21,28 +21,28 @@ defmodule App.ViewHelpersTest do
 
   test "transform single image string", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="left" id="#{@image_id}"/>), conn)
-    expected = ~s(<div class="tl"><img src="#{@image_link}" alt="hellos" class="w-50" /></div>)
+    expected = ~s(<div class="fl w-50 mr4"><img src="#{@image_link}" alt="hellos" class="w-100" /></div>)
 
     assert actual == expected
   end
 
   test "transform single image string - full width", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="fullwidth" id="#{@image_id}"/>), conn)
-    expected = ~s(<div class="tc"><img src="#{@image_link}" alt="hellos" class="w-100" /></div>)
+    expected = ~s(<div class="tc mt3"><img src="#{@image_link}" alt="hellos" class="w-100" /></div>)
 
     assert actual == expected
   end
 
   test "transform multiple image strings", %{conn: conn} do
     actual = render_image(~s(<div><embed alt="hellos" embedtype="image" format="left" id="#{@image_id}"/></div><div><embed alt="world" embedtype="image" format="right" id="#{@image_id}"/></div>), conn)
-    expected = ~s(<div><div class="tl"><img src="#{@image_link}" alt="hellos" class="w-50" /></div></div><div><div class="tr"><img src="#{@image_link}" alt="world" class="w-50" /></div></div>)
+    expected = ~s(<div><div class="fl w-50 mr4"><img src="#{@image_link}" alt="hellos" class="w-100" /></div></div><div><div class="fr w-50 ml4"><img src="#{@image_link}" alt="world" class="w-100" /></div></div>)
 
     assert actual == expected
   end
 
   test "non-exisitent image", %{conn: conn} do
     actual = render_image(~s(<embed alt="hellos" embedtype="image" format="left" id="0"/>), conn)
-    expected = ~s(<div class="tl"><img src="/not-found" alt="hellos" class="w-50" /></div>)
+    expected = ~s(<div class="fl w-50 mr4"><img src="/not-found" alt="hellos" class="w-100" /></div>)
 
     assert actual == expected
   end
@@ -97,7 +97,7 @@ defmodule App.ViewHelpersTest do
     expected = {:safe,
       ~s"""
       <h1><a href="/crisis" class="" id="">Link title</a></h1>\
-      <a href="/crisis" class="" id=""><div class="tl"><img src="#{@image_link}" alt="hello" class="w-50" /></div></a>\
+      <a href="/crisis" class="" id=""><div class="fl w-50 mr4"><img src="#{@image_link}" alt="hello" class="w-100" /></div></a>\
       <p><a href="/crisis" class="" id=""><b class="nunito-bold">Link P</b></a></p>\
       <h1><b class="segoe-bold"><a href="/crisis" class="" id="">Link title 2</a></b></h1>
       """}

@@ -2,6 +2,6 @@
   <%= component "images/london_minds_logo", class: "w-60 w-40-m w-25-l", conn: @conn %>
 </section>
 
-<section class="f4 pt5-l ph4 ph5-m ph6-l pb4">
+<section class="f5 pt5-l ph4 ph5-m ph6-l pb4">
   <%= transform_html @body, @conn %>
 </section>
