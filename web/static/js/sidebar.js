@@ -1,6 +1,6 @@
 var selectedFilters = {
-  category: {},
-  audience: {},
+  issue: {},
+  reason: {},
   content: {}
 }
 
@@ -27,7 +27,7 @@ if (isNotIE8()) {
     });
 
     // Event listeners and CSS for scrollable filter boxes
-    ["category", "audience", "content"].forEach(function(el) {
+    ["issue", "reason", "content"].forEach(function(el) {
       var filterType = select("." + el + "-filters");
       var filterSelect = select(".select-" + el + "-filters");
       var sidebar = select(".sidebar");
@@ -110,7 +110,7 @@ function updateSelected(form) {
 
 function displaySelected(el) {
   var selected = [];
-  var exclude = ["all-category", "all-audience", "all-content"];
+  var exclude = ["all-issue", "all-reason", "all-content"];
   var title = select("." + el + "-filters-header");
 
   for (var tag in selectedFilters[el]) {

@@ -29,11 +29,11 @@ defmodule App.HomepageView do
     ## nothing_selected
     ## returns true when tags are empty, or equal to type
 
-    iex> nothing_selected("", "all-category")
+    iex> nothing_selected("", "all-issue")
     true
-    iex> nothing_selected("all-category", "all-category")
+    iex> nothing_selected("all-issue", "all-issue")
     true
-    iex> nothing_selected("all-category,insomnia", "all-category")
+    iex> nothing_selected("all-issue,insomnia", "all-issue")
     false
   """
 
@@ -60,11 +60,11 @@ defmodule App.HomepageView do
   end
 
   @doc """
-    iex> construct_params("category", "insomnia")
-    %{"audience" => %{"all-audience" => "true"}, "category" => %{"insomnia" => "true"}, "content" => %{"all-content" => "true"}}
+    iex> construct_params("issue", "insomnia")
+    %{"reason" => %{"all-reason" => "true"}, "issue" => %{"insomnia" => "true"}, "content" => %{"all-content" => "true"}}
   """
   def construct_params(tag_type, t) do
-    ~w(audience category content)
+    ~w(reason issue content)
     |> Map.new(&({&1, %{"all-" <> &1 => "true"}}))
     |> Map.merge(%{tag_type => %{t => "true"}})
   end

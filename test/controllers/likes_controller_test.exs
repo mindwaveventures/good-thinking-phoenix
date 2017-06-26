@@ -43,7 +43,7 @@ defmodule App.LikesControllerTest do
 
   test "POST /dislike/#{@article_id} - article with referrer", %{conn: conn} do
     url1 = "http://localhost:4000"
-    url2 = "/filter?category=insomnia&audience=&content=subscription"
+    url2 = "/filter?issue=insomnia&reason=&content=subscription"
     url = url1 <> url2
     conn =
       conn

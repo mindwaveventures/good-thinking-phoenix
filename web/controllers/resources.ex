@@ -58,12 +58,13 @@ defmodule App.Resources do
 
   def get_tags do
     tag_query = from tag in "taggit_tag",
-      full_join: rc in ^"resources_categorytag",
-      full_join: ra in ^"resources_audiencetag",
+      full_join: rc in ^"resources_issuetag",
+      full_join: ra in ^"resources_reasontag",
       full_join: rco in ^"resources_contenttag",
-      where: rc.tag_id == tag.id or ra.tag_id == tag.id or rco.tag_id == tag.id,
+      full_join: rt in ^"resources_topictag",
+      where: tag.id in [rc.tag_id, ra.tag_id, rco.tag_id, rt.tag_id],
       select: %{
-        category: rc.tag_id, audience: ra.tag_id,
+        issue: rc.tag_id, reason: ra.tag_id, topic: rt.tag_id,
         content: rco.tag_id, name: tag.name, id: tag.id
       },
       order_by: tag.id,
@@ -72,15 +73,17 @@ defmodule App.Resources do
     tag_query
     |> CMSRepo.all
     |> Enum.reduce(%{}, fn %{
-        audience: aud, category: cat, content: con, id: id, name: name
+        reason: aud, issue: cat, content: con, id: id, name: name, topic: topic
       }, acc ->
       cond do
         aud == id -> Map.merge acc,
-          %{audience: Map.get(acc, :audience, []) ++ [name]}
+          %{reason: Map.get(acc, :reason, []) ++ [name]}
         cat == id -> Map.merge acc,
-          %{category: Map.get(acc, :category, []) ++ [name]}
+          %{issue: Map.get(acc, :issue, []) ++ [name]}
         con == id -> Map.merge acc,
           %{content: Map.get(acc, :content, []) ++ [name]}
+        topic == id -> Map.merge acc,
+          %{topic: Map.get(acc, :topic, []) ++ [name]}
       end
     end)
   end
@@ -89,19 +92,19 @@ defmodule App.Resources do
     "resource"
     |> all_query
     |> get_resources("resource", session_id)
-    |> Enum.filter(&filter_by_category(&1, filter))
+    |> Enum.filter(&filter_by_issue(&1, filter))
     |> Enum.filter(&filter_tags(&1, filter))
     |> sort_priority
   end
 
-  def filter_by_category(
-    %{tags: %{"category" => category}},
-    %{"category" => categories}), do: Enum.any? category, &(&1 in categories)
-  def filter_by_category(_params, _filter), do: true
+  def filter_by_issue(
+    %{tags: %{"issue" => issue}},
+    %{"issue" => issues}), do: Enum.any? issue, &(&1 in issues)
+  def filter_by_issue(_params, _filter), do: true
 
   def filter_tags(%{tags: tags}, filter) do
     tags
-    |> Map.delete("category")
+    |> Map.delete("issue")
     |> Enum.any?(fn {tag_type, tags} ->
       !Map.has_key?(filter, tag_type) ||
       Enum.any? tags, &(&1 in filter[tag_type])
@@ -170,7 +173,7 @@ defmodule App.Resources do
 
   def get_all_tags(resource, type) do
     tags =
-      ["category", "audience", "content"]
+      ["issue", "reason", "content"]
         |> Enum.map(&create_query(&1, resource, type))
         |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
         |> Enum.map(&add_all_filter/1)
