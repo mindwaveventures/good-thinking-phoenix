@@ -54,8 +54,8 @@ defmodule App.HomepageController do
     selected_tags = filters
       |> Enum.reduce([], fn {type, tags}, acc ->
         case type do
-          "q" -> acc
-          _ -> acc ++ tags
+          "topic" -> acc ++ tags
+          _ -> acc
         end
       end)
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
