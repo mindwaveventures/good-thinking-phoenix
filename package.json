@@ -30,6 +30,7 @@
     "pa11y": "^4.11.0",
     "pa11y-ci": "^1.2.0",
     "pre-commit": "^1.2.2",
+    "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "~2.0.1"
   },
   "pre-commit": [

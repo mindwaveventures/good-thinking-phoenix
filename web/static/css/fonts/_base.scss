@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'NunitoSans';
+  src: url('/fonts/nunito/NunitoSans-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NunitoSans-Italic';
+  src: url('/fonts/nunito/NunitoSans-LightItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NunitoSans-Bold';
+  src: url('/fonts/nunito/NunitoSans-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI-Bold';
+  src: url('/fonts/segoe/SEGOEUIB.TTF') format('truetype');
+}
+
+.font {
+  font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
+}
+
+.segoe {
+  font-family: 'Segoe UI';
+}
+
+.segoe-bold {
+  font-family: 'Segoe UI-Bold';
+}
+
+.nunito {
+  font-family: 'NunitoSans';
+}
+
+.nunito-bold {
+  font-family: 'NunitoSans-Bold';
+}
+
+.nunito-italic {
+  font-family: 'NunitoSans-Italic';
+}
+
+h1, h2, h3 {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 > span.b {
+  font-family: 'Segoe UI-Bold';
+}

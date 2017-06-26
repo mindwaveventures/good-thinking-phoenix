@@ -1,6 +1,5 @@
-/* This file is for your main application css. */
-
-/*fonts*/
+@import "fonts/base";
+@import "custom_tachyons/base";
 
 body {
   font-family: 'NunitoSans', Arial, sans-serif;
@@ -9,63 +8,6 @@ body {
   min-height: 100%;
   height: 100%;
   margin: 0;
-}
-
-@font-face {
-  font-family: 'NunitoSans';
-  src: url('/fonts/nunito/NunitoSans-Light.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Italic';
-  src: url('/fonts/nunito/NunitoSans-LightItalic.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NunitoSans-Bold';
-  src: url('/fonts/nunito/NunitoSans-Bold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Segoe UI';
-  src: url('/fonts/segoe/SEGOEUI.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Segoe UI-Bold';
-  src: url('/fonts/segoe/SEGOEUIB.TTF') format('truetype');
-}
-
-.font {
-  font-family: 'Segoe UI', 'NunitoSans', Arial,sans-serif;
-}
-
-.segoe {
-  font-family: 'Segoe UI';
-}
-
-.segoe-bold {
-  font-family: 'Segoe UI-Bold';
-}
-
-.nunito {
-  font-family: 'NunitoSans';
-}
-
-.nunito-bold {
-  font-family: 'NunitoSans-Bold';
-}
-
-.nunito-italic {
-  font-family: 'NunitoSans-Italic';
 }
 
 a {
@@ -189,92 +131,6 @@ h2 > span.b {
   display: none;
 }
 
-/*color palette*/
-
-.lm-bg-orange {
-  background-color: #FAB781;
-}
-
-.lm-bg-orange-hover:hover {
-  background-color: #FAB781;
-}
-
-.lm-bg-dark-blue, .lm-bg-dark-blue-hover:hover {
-  background-color: #242E50;
-}
-
-.lm-bg-white {
-  background-color: #FFFFFF;
-}
-
-.lm-bg-turquoise {
-  background-color: #009EE2;
-}
-
-.lm-bg-grey {
-  background-color: #c2c2c2;
-}
-
-.lm-bg-light-grey {
-  background-color: #E9E9E9;
-}
-
-.lm-orange {
-  color: #FAB781;
-}
-
-.lm-dark-blue {
-  color: #242E50;
-}
-
-.lm-white {
-  color: #FFFFFF;
-}
-
-.lm-white-hover:hover {
-  color: #FFFFFF;
-}
-
-.b--lm-white-hover:hover {
-  border-color: #FFFFFF;
-}
-
-.lm-turquoise {
-  color: #009EE2;
-}
-
-.lm-dark-turquoise {
-  color: #00587e;
-}
-
-.lm-grey {
-  color: #c2c2c2;
-}
-
-.lm-dark-grey {
-  color: #767676;
-}
-
-.b--lm-orange {
-  border-color: #FAB781;
-}
-
-.b--lm-dark-blue, .b--lm-dark-blue-hover:hover {
-  border-color: #242E50;
-}
-
-.b--lm-white {
-  border-color: #FFFFFF;
-}
-
-.b--lm-turquoise {
-  border-color: #009EE2;
-}
-
-.b--lm-grey {
-  border-color: #c2c2c2;
-}
-
 footer p a {
   padding: 0 2em 0 2em;
   text-decoration: none;
@@ -312,21 +168,6 @@ footer p a {
   background-repeat: no-repeat;
 }
 
-.share-email {
-  background-image: url("../images/email-icon.svg");
-  background-repeat: no-repeat;
-}
-
-.share-messenger {
-  background-image: url("../images/messenger-icon.svg");
-  background-repeat: no-repeat;
-}
-
-.share-whatsapp {
-  background-image: url("../images/whatsapp-icon.svg");
-  background-repeat: no-repeat;
-}
-
 /* Styleguide */
 
 code {
@@ -335,31 +176,6 @@ code {
   color: black;
   background-color: #E9E9E9;
   border-radius: 4px;
-}
-
-.h05 {
-  height: 0.5rem;
-}
-
-.w05 {
-  width: 0.5rem;
-}
-
-.h18 {
-  height: 1.8rem;
-}
-
-.h45 {
-  height: 12rem;
-}
-
-@media screen and (min-width: 30em) {
-  .h7-ns {
-    height: 21.2rem;
-  }
-}
-.crisis-banner > p {
-  margin: 0;
 }
 
 #email_form h2 {
@@ -394,38 +210,6 @@ code {
 #alphasection ul > li:before {
   content: "- ";
   text-indent: -30px;
-}
-
-.bg--lm-green {
-  background-color: #E2F6D6;
-}
-
-.bg--lm-dark-green {
-  background-color: #81c03d;
-}
-
-.bg--lm-dark-red {
-  background-color: #FF1160;
-}
-.bg--lm-red {
-  background-color: #e35c6c;
-}
-
-.bg--lm-light-red {
-  background-color: #FFC6D1;
-}
-
-.b--lm-green {
-  border-color: #81c03d;
-}
-
-.b--lm-dark-red {
-  border-color: #FF1160;
-}
-
-
-.nr {
-  resize: none;
 }
 
 @media only screen and (min-width: 950px) {
