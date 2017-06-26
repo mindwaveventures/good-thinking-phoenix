@@ -23,6 +23,9 @@ defmodule App.HomepageView do
   def tag_is_selected(selected_tags, tag) when is_list selected_tags do
     tag in selected_tags
   end
+  def tag_is_selected(selected_tags, tag) when is_binary selected_tags do
+    tag in String.split selected_tags, ","
+  end
   def tag_is_selected(_, _), do: false
 
   @doc """

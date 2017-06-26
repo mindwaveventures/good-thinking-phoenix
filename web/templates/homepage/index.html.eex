@@ -12,7 +12,8 @@
   </div>
 </section>
 
-<section id="results" class="lm-bg-dark-blue">
+<div id="results" class="relative top--3 o-0"></div>
+<section class="lm-bg-dark-blue results">
   <%= if is_ie8? @conn do %>
     <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
   <% else %>
@@ -34,7 +35,7 @@
       <div class="tl white">I am ...</div>
         <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
           <%= for link <- @topics do %>
-            <div class="dib relative mv3">
+            <div class="dib relative mv2-ns mv1">
               <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "topic-checked-fill absolute o-0" %>
               <%= label fq, String.to_atom(link), class: "lm-bg-dark-blue b--lm-white lm-white ba br2 pl2 pr4 pv1 dib pointer border-box topic-unchecked" %>
             </div>
