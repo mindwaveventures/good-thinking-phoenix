@@ -2,19 +2,15 @@ defmodule App.HomepageView do
   @moduledoc false
   use App.Web, :view
 
-  @doc """
-  ## Number of Results
+  def number_of_results(conn, resources) when length(resources) == 1, do: "1 #{result_or_resource(conn)}"
+  def number_of_results(conn, resources), do: "#{length resources} #{result_or_resource(conn)}s"
 
-    iex> number_of_results([])
-    "0 results"
-    iex> number_of_results(["one"])
-    "1 result"
-    iex> number_of_results(["one", "two"])
-    "2 results"
-  """
-
-  def number_of_results(resources) when length(resources) == 1, do: "1 result"
-  def number_of_results(resources), do: "#{length resources} results"
+  def result_or_resource(conn) do
+    case conn.request_path do
+      "/filter" -> "result"
+      _ -> "resource"
+    end
+  end
 
   def check_liked("dislike", -1), do: "disliked"
   def check_liked("like", 1), do: "liked"
