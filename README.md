@@ -150,3 +150,28 @@ When running the app locally, ensure you are using the development `GOOGLE_SHEET
 (See google drive for this)
 
 If updating your environment variable doesn't work, try `rm -rf _build` and then starting your server again
+
+### Image uploads
+
+##### File size
+
+The Wagtail cms allows for a maximum file size of 10MB.
+
+Be aware though that many uploads of high resolution images will result in increased costs from our file hosting provider.
+
+##### Resolution
+
+Be aware that if an image has too high a resolution, clients will have to download more onto their device causing pages to take longer to load.
+
+If an image has a too low resolution, then the image could be pixilated on high resolution displays.
+
+##### Preferred file type
+
+Wagtail facilitates GIF, JPEG, PNG, but doesn't specify a preferred file type (you should go for png if you have the choice though)
+
+##### Hero background image
+
+The image should contrasts well with white text on top of it
+
+The image should be a wide, with a dimention ratio of approximately 3x2, try to aim for a pixel ratio between 500px and 1200px
+
