@@ -36,7 +36,9 @@
           <%= for link <- @topics do %>
             <div class="dib relative mv3">
               <%= checkbox fq, String.to_atom(link), value: tag_is_selected(assigns[:selected_tags], link), class: "topic-checked-fill absolute o-0" %>
-              <%= label fq, String.to_atom(link), class: "lm-bg-dark-blue b--lm-white lm-white ba br2 pl2 pr4 pv1 dib pointer border-box topic-unchecked" %>
+              <%= label fq, String.to_atom(link), class: "lm-bg-dark-blue b--lm-white lm-white ba br2 pl2 pr4 pv1 dib pointer border-box topic-unchecked" do
+                raw("<span>#{remove_hyphen(link)}</span>")
+              end %>
             </div>
           <% end %>
         <% end %>
