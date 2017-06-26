@@ -18,7 +18,7 @@
     <%= transform_html @resource[:body], @conn %>
     <%= if String.length(@resource[:video]) > 0 do %>
       <div class="tc ma2">
-        <%= component "youtube_video", url: @resource[:video] %>
+        <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
       </div>
     <% end %>
     <div class="bt b--lm-grey">
