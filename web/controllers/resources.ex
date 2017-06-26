@@ -56,7 +56,8 @@ defmodule App.Resources do
     "https://s3.amazonaws.com/#{@bucket_name}/#{url}"
   end
 
-  def get_tags do
+  def get_tags(topic \\ nil)
+  def get_tags(topic) when topic == nil do
     tag_query = from tag in "taggit_tag",
       full_join: rc in ^"resources_issuetag",
       full_join: ra in ^"resources_reasontag",
@@ -88,14 +89,59 @@ defmodule App.Resources do
     end)
   end
 
+  def get_tags(topic) when is_binary topic do
+    topic
+    |> String.split(",")
+    |> get_tags
+  end
+
+  def get_tags(topic) when is_list topic do
+    query =
+      from t in "taggit_tag",
+      full_join: top in "resources_topictag",
+      where: t.name in ^topic and top.tag_id == t.id,
+      full_join: r in "resources_resourcepage",
+      where: r.page_ptr_id == top.content_object_id,
+      select: %{
+        id: r.page_ptr_id,
+        heading: r.heading,
+        url: r.resource_url,
+        body: r.body,
+        video: r.video_url,
+        priority: r.priority
+      }
+
+    query
+    |> CMSRepo.all
+    |> Enum.map(&(&1 |> get_all_tags("resource", false) |> Map.get(:tags)))
+    |> Enum.reduce(%{
+      "content" => [], "reason" => [], "issue" => [], "topic" => []
+    }, fn el, acc -> merge_lists(acc, el) end)
+    |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
+  end
+
+  @doc """
+    iex> merge_lists(%{"content" => ["community"], "topic" => ["sleep"]}, %{"content" => ["CBT"], "topic" => ["anxiety"]})
+    %{"content" => ["community", "CBT"], "topic" => ["sleep", "anxiety"]}
+  """
+
+  def merge_lists(el1, el2),
+    do: Map.new el1, fn {k, list} -> {k, Enum.uniq(list ++ el2[k])} end
+
   def get_all_filtered_resources(filter, session_id) do
     "resource"
     |> all_query
     |> get_resources("resource", session_id)
+    |> Enum.filter(&filter_by_topic(&1, filter))
     |> Enum.filter(&filter_by_issue(&1, filter))
     |> Enum.filter(&filter_tags(&1, filter))
     |> sort_priority
   end
+
+  def filter_by_topic(
+    %{tags: %{"topic" => topic}},
+    %{"topic" => topics}), do: Enum.any? topic, &(&1 in topics)
+  def filter_by_topic(_params, _filter), do: true
 
   def filter_by_issue(
     %{tags: %{"issue" => issue}},
@@ -171,17 +217,18 @@ defmodule App.Resources do
     Map.merge map, %{likes: likes, dislikes: dislikes, liked: liked}
   end
 
-  def get_all_tags(resource, type) do
+  def get_all_tags(resource, type, all \\ true) do
     tags =
-      ["issue", "reason", "content"]
+      ["issue", "reason", "content", "topic"]
         |> Enum.map(&create_query(&1, resource, type))
         |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
-        |> Enum.map(&add_all_filter/1)
+        |> Enum.map(&add_all_filter &1, all)
         |> Map.new
     Map.merge(%{tags: tags}, resource)
   end
 
-  def add_all_filter({type, list}),
+  def add_all_filter(tags, false), do: tags
+  def add_all_filter({type, list}, true),
     do: {type, list ++ ["all-#{type}"]}
 
   def create_query(tag_type, resource, type) do

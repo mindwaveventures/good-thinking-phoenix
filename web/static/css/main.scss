@@ -63,11 +63,21 @@ h2 > span.b {
   outline: auto 5px -webkit-focus-ring-color;
 }
 
-.unchecked {
+.unchecked, .topic-unchecked {
   background-image: url(/images/White_Plus.png);
   background-position: right 9px top 50%;
   background-size: 15px;
   background-repeat: no-repeat;
+}
+
+.topic-checked-fill:checked~label {
+  background-color: white;
+  background-image: url(/images/Orange_Tick.png);
+  background-position: right 9px top 50%;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  color: #242E50;
+  border-color: #FAB781;
 }
 
 .filter-check:checked~.filter-sidebar {
