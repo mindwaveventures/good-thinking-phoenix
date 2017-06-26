@@ -21,15 +21,14 @@ exports.config = {
     },
     stylesheets: {
       joinTo: {
-        "css/app.css": /web\/static\/css\/(?!ie8).*\.css/,
+        "css/app.css": /web\/static\/css\/(?!ie8).*\.(css|scss)/,
         "css/ie8.css": "web/static/css/ie8.css"
       },
       order: {
         before: [
-          "web/static/css/app.css",
           "web/static/tachyons-word-break.min.css",
           "web/static/tachyons.min.css"
-        ] // concat app.css last
+        ]
       }
     },
     templates: {
@@ -61,6 +60,11 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    sass: {
+      mode: "native",
+        allowCache: true,
+        sourceMapEmbed: true
     }
   },
 
