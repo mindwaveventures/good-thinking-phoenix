@@ -23,10 +23,10 @@ If access is required, please ask the project maintainers!
 
 See the designs in the following links:
 
-+ [initial_wireframes](https://github.com/LDMW/app/blob/master/INITIAL_WIREFRAMES.md)
-+ [desktop_wireframes](https://github.com/LDMW/app/blob/master/DESKTOP_WIREFRAMES.md)
-+ [tablet_wireframes](https://github.com/LDMW/app/blob/master/TABLET_WIREFRAMES.md)
-+ [mobile_wireframes](https://github.com/LDMW/app/blob/master/MOBILE_WIREFRAMES.md)
++ [Initial Wireframes](https://github.com/LDMW/app/blob/master/INITIAL_WIREFRAMES.md)
++ [Desktop Wireframes](https://github.com/LDMW/app/blob/master/DESKTOP_WIREFRAMES.md)
++ [Tablet Wireframes](https://github.com/LDMW/app/blob/master/TABLET_WIREFRAMES.md)
++ [Mobile Wireframes](https://github.com/LDMW/app/blob/master/MOBILE_WIREFRAMES.md)
 
 ### Installation and Setup
 
