@@ -15,9 +15,11 @@ defmodule App.HomepageController do
 
     content = Task.async(&get_content/0)
     tags = Task.async(&R.get_tags/0)
+    topics = Task.async(&get_all_topics/0)
 
     render conn, "index.html", content: Task.await(content),
-                 tags: Task.await(tags), resources: Task.await(resources)
+                 tags: Task.await(tags), resources: Task.await(resources),
+                 topics: Task.await(topics)
   end
 
   def show(conn, params = %{
@@ -34,7 +36,7 @@ defmodule App.HomepageController do
     prepend = fn(a, b) -> b <> a end
     query_string =
       params
-        |> Map.take(["reason", "content", "issue"])
+        |> Map.take(["reason", "content", "issue", "topic"])
         |> create_query_string
         |> prepend.("?")
 
@@ -43,6 +45,7 @@ defmodule App.HomepageController do
 
   def filtered_show(conn, params) when params == %{}, do: index(conn, params)
   def filtered_show(conn, params) do
+    topic = Map.get(params, "topic", nil)
     filters = params
       |> check_empty
       |> Enum.map(fn {type, tags} -> {type, String.split(tags, ",")} end)
@@ -65,12 +68,14 @@ defmodule App.HomepageController do
     end)
 
     content = Task.async(&get_content/0)
-    tags = Task.async(&R.get_tags/0)
+    tags = Task.async(fn -> R.get_tags topic end)
+    topics = Task.async(&get_all_topics/0)
 
     render conn, "index.html",
       content: Task.await(content), tags: Task.await(tags),
       resources: Task.await(all_resources),
-      selected_tags: selected_tags, query: params["q"]
+      selected_tags: selected_tags, query: params["q"],
+      topics: Task.await(topics)
   end
 
   def check_empty(params) do
@@ -94,6 +99,17 @@ defmodule App.HomepageController do
     image_url = Task.async(fn -> R.get_image_url("hero_image", "home") end)
 
     Map.merge(Task.await(content), %{hero_image_url: Task.await(image_url)})
+  end
+
+  def get_all_topics do
+    query =
+      from n in "taggit_tag",
+      left_join: t in "resources_topictag",
+      where: t.tag_id == n.id,
+      select: n.name,
+      distinct: n.name
+
+      CMSRepo.all query
   end
 
   def create_query_string(params) do

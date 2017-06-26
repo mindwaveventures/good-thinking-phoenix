@@ -121,4 +121,18 @@ defmodule App.ViewHelpers do
       k == "user-agent" and String.starts_with? v, "Mozilla/4.0"
     end)
   end
+
+  @doc """
+    iex> construct_params("issue", "insomnia")
+    %{"reason" => %{"all-reason" => "true"}, "issue" => %{"insomnia" => "true"}, "content" => %{"all-content" => "true"}}
+  """
+  def construct_params(tag_type, t) do
+    ~w(reason issue content)
+    |> Map.new(&({&1, %{"all-" <> &1 => "true"}}))
+    |> Map.merge(%{tag_type => %{t => "true"}})
+  end
+
+  def remove_hyphen(str) do
+    String.replace(str, "-", " ")
+  end
 end
