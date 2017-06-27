@@ -61,9 +61,13 @@ if (isNotIE8()) {
         var opts = {body: {}};
         opts.body[el] = {add_your_own: select("#tags_" + el + "_add_your_own").value};
 
+        var pending = select(".alert.pending", filterType);
+        pending.innerText = "Submitting...";
+
         makePhoenixFormRequest("POST", select("#filter-form"), function(err, res) {
           if (res) {
-            var alert = select(".alert", filterType);
+            var alert = select(".alert.complete", filterType);
+            pending.innerText = "";
             alert.innerText = "Thank you for your suggestion";
           }
         }, opts);
