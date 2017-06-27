@@ -179,5 +179,7 @@ The image should contrasts well with white text on top of it.
 
 The image should be a wide, with a dimention ratio of approximately 3x2, try to aim for a pixel ratio between 500px and 1200px.
 
-Also note that on mobile the hero image is cut off so please test your image on the [staging area](https://ldmw-cms-staging.herokuapp.com/admin)
+Also note that on mobile the hero image will be cropped as we are using a one size fits all image.
+
+Again, please test your image on the [staging area](https://ldmw-cms-staging.herokuapp.com/admin)
 
