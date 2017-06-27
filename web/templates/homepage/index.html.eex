@@ -39,7 +39,6 @@
 </section>
 
 <section class="tc-ns">
-  <p class="alert" role="alert"><%= get_flash @conn, :tag_suggestion %></p>
   <%= if assigns[:resources] do %>
     <%= render "show.html", assigns %>
   <% end %>
