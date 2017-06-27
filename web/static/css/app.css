@@ -524,3 +524,7 @@ code {
 lm-ls1 {
   letter-spacing: 0.1rem;
 }
+
+.hidden {
+  display: hidden;
+}

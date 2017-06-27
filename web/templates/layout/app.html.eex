@@ -57,6 +57,10 @@
           </div>
         </div>
       <% end %>
+      <div id="cookie_accept_bar" class="lm-bg-white tc pv3 dn bottom-0 fixed z-5 w-100">
+        <p>Before browsing our site, please accept our cookies policy</p>
+        <button>ACCEPT AND CLOSE</button>
+      </div>
       <p class="alert" role="alert"><%= get_flash @conn, :info %></p>
       <p class="alert" role="alert"><%= get_flash @conn, :error %></p>
 
