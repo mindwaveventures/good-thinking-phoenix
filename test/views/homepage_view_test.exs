@@ -4,15 +4,15 @@ defmodule App.HomepageViewTest do
   import App.HomepageView
 
     test "Number of resources - 0" do
-      assert number_of_results(%{request_path: "/"}, []) == "0 resources"
+      assert number_of_results(%{request_path: "/"}, []) == "0 resources about wellbeing"
     end
 
     test "Number of resources - 1" do
-      assert number_of_results(%{request_path: "/"}, ["one"]) == "1 resource"
+      assert number_of_results(%{request_path: "/"}, ["one"]) == "1 resource about wellbeing"
     end
 
     test "Number of resources - 2" do
-      assert number_of_results(%{request_path: "/"}, ["one", "two"]) == "2 resources"
+      assert number_of_results(%{request_path: "/"}, ["one", "two"]) == "2 resources about wellbeing"
     end
 
     test "Number of results - 0" do
