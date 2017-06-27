@@ -327,6 +327,18 @@ footer p a {
   background-repeat: no-repeat;
 }
 
+.share-email:hover {
+  background-image: url("../images/mail_hover.svg");
+}
+
+.share-messenger:hover {
+  background-image: url("../images/messenger_hover.svg");
+}
+
+.share-whatsapp:hover {
+  background-image: url("../images/whatsapp_hover.svg");
+}
+
 /* Styleguide */
 
 code {
