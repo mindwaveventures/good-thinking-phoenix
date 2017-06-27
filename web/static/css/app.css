@@ -512,3 +512,61 @@ code {
 lm-ls1 {
   letter-spacing: 0.1rem;
 }
+
+@media screen and (min-width: 1210px) {
+  .homepage_video_container {
+    width: 500px;
+    height: 280px;
+  }
+}
+
+@media screen and (min-width: 1121px) and (max-width: 1209px) {
+  .homepage_video_container {
+    width: 450px;
+    height: 252px;
+  }
+}
+
+@media screen and (min-width: 1040px) and (max-width: 1122px) {
+  .homepage_video_container {
+    width: 400px;
+    height: 224px;
+  }
+}
+
+@media screen and (min-width: 60em) and (max-width: 1039px) {
+  .homepage_video_container {
+    width: 350px;
+    height: 196px;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .homepage_video_container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .homepage_video_container {
+    height: 440px;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .homepage_video_container {
+    height: 360px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .homepage_video_container {
+    height: 280px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .homepage_video_container {
+    height: 200px;
+  }
+}
