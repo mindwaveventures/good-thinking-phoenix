@@ -3,6 +3,14 @@
   <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
       <%= transform_html @content.body, @conn %>
+      <div class="mt3 dt-ns dt--fixed-ns tc tl-ns mb1">
+        <span class="nunito-bold">What are you looking for help with?</span>
+        <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
+          <%= text_input f, :q, class: "w-70-ns w-100 dtc-ns db mt1 mr2 b--lm-dark-blue ba pa1 pa2-ns nunito f5 br1", placeholder: "Enter a word or phrase", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
+          <%= hidden_input f, :query_string, value: @conn.query_string, id: "query_string_1" %>
+          <%= component "buttons/primary_button", value: "Search", class: "dtc-ns db mv2" %>
+        <% end %>
+      </div>
     </div>
     <%= if @content.video_url do %>
       <div class="dib w-100 w-50-l v-mid ml5-l">
@@ -13,7 +21,6 @@
 </section>
 
 <div id="results" class="relative top--3 o-0"></div>
-
 <section class="pt3 ph4 ph3-m ph3-l lm-bg-dark-blue pb4">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center">
@@ -32,7 +39,7 @@
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
     <div class="tl w-60-ns center mt3">
-      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa2 nunito", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa2 nunito br1 b--lm-dark-blue ba", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>
