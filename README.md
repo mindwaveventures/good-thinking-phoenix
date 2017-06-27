@@ -162,9 +162,9 @@ If updating your environment variable doesn't work, try `rm -rf _build` and then
 
 The Wagtail cms allows for a maximum file size of 10MB.
 
-Althouth I would suggest that files be no bigger than 1MB.
+We would suggest that files be no bigger than 1MB.
 
-Be aware though that many uploads of high resolution images will result in increased costs from our file hosting provider.
+If the image size is too large, users on poor connections or on mobile data will experience slow performance and increased data download costs.
 
 ##### Resolution
 
@@ -172,13 +172,19 @@ Be aware that if an image has too high a resolution, clients will have to downlo
 
 If an image has a too low resolution, then the image could be pixilated on high resolution displays.
 
+If possible, please test your proposed image on the [site's staging area](https://ldmw-cms-staging.herokuapp.com/admin) so that you can determine how this will look
+
 ##### Preferred file type
 
 Wagtail facilitates GIF, JPEG, PNG, but doesn't specify a preferred file type (you should go for png if you have the choice though)
 
 ##### Hero background image
 
-The image should contrasts well with white text on top of it
+The image should contrasts well with white text on top of it.
 
-The image should be a wide, with a dimention ratio of approximately 3x2, try to aim for a pixel ratio between 500px and 1200px
+The image should be a wide, with a dimention ratio of approximately 3x2, try to aim for a pixel ratio between 500px and 1200px.
+
+Also note that on mobile the hero image will be cropped as we are using a one size fits all image.
+
+Again, please test your image on the [staging area](https://ldmw-cms-staging.herokuapp.com/admin)
 
