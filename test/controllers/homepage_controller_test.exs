@@ -99,7 +99,14 @@ defmodule App.HomepageControllerTest do
     conn = get(conn, "/filter?q=sleep&issue=insomnia&content=blog&reason=")
 
     assert html_response(conn, 200)
-    assert conn.assigns.selected_tags == ["blog", "insomnia"]
+    assert conn.assigns.selected_tags == []
+  end
+
+  test "search - query_string topic", %{conn: conn} do
+    conn = get(conn, "/filter?q=sleep&topic=depression")
+
+    assert html_response(conn, 200)
+    assert conn.assigns.selected_tags == ["depression"]
   end
 
   test "search - just query", %{conn: conn} do

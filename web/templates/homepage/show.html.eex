@@ -1,4 +1,4 @@
-<div class="pa1 ph4 ph3-m ph3-l pb4 pb5-l">
+<div class="pa1 ph4 ph3-m ph3-l">
   <div class="w-60-ns center">
     <p class="tl b">Showing <%= number_of_results @conn, @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></p>
     <%= if assigns[:selected_tags] do %>
@@ -9,9 +9,32 @@
       </div>
     <% end %>
   </div>
-  <%= for resource <- @resources do %>
-    <div id="resource_<%= resource.id %>" class="resource">
-      <%= render "resource.html", resource: resource, conn: @conn %>
+</div>
+
+<section class="results">
+  <%= if is_ie8? @conn do %>
+    <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
+  <% else %>
+    <div class="tc">
+      <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
+      <label class="<%= get_class("primary_button") %> mt2" id="open-filter-label" for="filter_filter">Filter</label>
+      <%= render "sidebar.html", conn: @conn, tags: @tags,
+        filter_label_1: @content.filter_label_1,
+        filter_label_2: @content.filter_label_2,
+        filter_label_3: @content.filter_label_3
+      %>
     </div>
   <% end %>
+</section>
+
+<div class="pa1 ph4 ph3-m ph3-l pb4 pb5-l">
+  <div class="w-60-ns center">
+    </div>
+      <%= for resource <- @resources do %>
+        <div id="resource_<%= resource.id %>" class="resource">
+          <%= render "resource.html", resource: resource, conn: @conn %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

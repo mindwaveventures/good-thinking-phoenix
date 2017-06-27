@@ -13,21 +13,6 @@
 </section>
 
 <div id="results" class="relative top--3 o-0"></div>
-<section class="lm-bg-dark-blue results">
-  <%= if is_ie8? @conn do %>
-    <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
-  <% else %>
-    <div class="tc">
-      <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
-      <label class="<%= get_class("primary_button") %> mt4" id="open-filter-label" for="filter_filter">Filter</label>
-      <%= render "sidebar.html", conn: @conn, tags: @tags,
-        filter_label_1: @content.filter_label_1,
-        filter_label_2: @content.filter_label_2,
-        filter_label_3: @content.filter_label_3
-      %>
-    </div>
-  <% end %>
-</section>
 
 <section class="pt3 ph4 ph3-m ph3-l lm-bg-dark-blue pb4">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
