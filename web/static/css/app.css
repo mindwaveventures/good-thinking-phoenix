@@ -582,3 +582,9 @@ lm-ls1 {
     height: 200px;
   }
 }
+
+@media screen and (max-width: 650px) {
+  div.banner_buttons {
+    display: none;
+  }
+}
