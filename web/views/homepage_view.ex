@@ -2,13 +2,16 @@ defmodule App.HomepageView do
   @moduledoc false
   use App.Web, :view
 
-  def number_of_results(conn, resources) when length(resources) == 1, do: "1 #{result_or_resource(conn)}"
-  def number_of_results(conn, resources), do: "#{length resources} #{result_or_resource(conn)}s"
-
-  def result_or_resource(conn) do
-    case conn.request_path do
-      "/filter" -> "result"
-      _ -> "resource"
+  def number_of_results(conn, resources) do
+    cond do
+      conn.request_path == "/filter" and length(resources) == 1 ->
+        "1 result"
+      conn.request_path == "/filter" ->
+        "#{length resources} results"
+      length(resources) == 1 ->
+        "1 resource about wellbeing"
+      true ->
+        "#{length resources} resources about wellbeing"
     end
   end
 
