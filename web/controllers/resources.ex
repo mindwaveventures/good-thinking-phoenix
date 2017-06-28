@@ -59,10 +59,10 @@ defmodule App.Resources do
   def get_tags(topic \\ nil)
   def get_tags(topic) when topic == nil do
     tag_query = from tag in "taggit_tag",
-      full_join: rc in ^"resources_issuetag",
-      full_join: ra in ^"resources_reasontag",
-      full_join: rco in ^"resources_contenttag",
-      full_join: rt in ^"resources_topictag",
+      join: rc in ^"resources_issuetag",
+      join: ra in ^"resources_reasontag",
+      join: rco in ^"resources_contenttag",
+      join: rt in ^"resources_topictag",
       where: tag.id in [rc.tag_id, ra.tag_id, rco.tag_id, rt.tag_id],
       select: %{
         issue: rc.tag_id, reason: ra.tag_id, topic: rt.tag_id,
