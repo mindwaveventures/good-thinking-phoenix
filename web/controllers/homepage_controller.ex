@@ -88,15 +88,14 @@ defmodule App.HomepageController do
   end
 
   def get_content do
-    content = Task.async(fn ->
+    content =
       R.get_content [:body, :footer, :alpha, :alphatext, :lookingfor,
         :filter_label_1, :filter_label_2, :filter_label_3,
         :assessment_text, :crisis_text, :video_url]
-    end)
 
-    image_url = Task.async(fn -> R.get_image_url("hero_image", "home") end)
+    image_url = R.get_image_url("hero_image", "home")
 
-    Map.merge(Task.await(content), %{hero_image_url: Task.await(image_url)})
+    Map.merge(content, %{hero_image_url: image_url})
   end
 
   def get_all_topics do
