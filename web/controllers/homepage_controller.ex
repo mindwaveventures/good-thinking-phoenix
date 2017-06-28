@@ -6,20 +6,19 @@ defmodule App.HomepageController do
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
-    resources = Task.async(fn ->
+    resources = 
       "resource"
       |> R.all_query
       |> R.get_resources("resource", session)
       |> R.sort_priority
-    end)
 
-    content = Task.async(&get_content/0)
-    tags = Task.async(&R.get_tags/0)
-    topics = Task.async(&get_all_topics/0)
+    content = get_content()
+    tags = R.get_tags()
+    topics = get_all_topics()
 
-    render conn, "index.html", content: Task.await(content),
-                 tags: Task.await(tags), resources: Task.await(resources),
-                 topics: Task.await(topics)
+    render conn, "index.html", content: content,
+                 tags: tags, resources: resources,
+                 topics: topics
   end
 
   def show(conn, params = %{
@@ -61,21 +60,20 @@ defmodule App.HomepageController do
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
 
     session = get_session conn, "lm_session"
-    all_resources = Task.async(fn ->
+    all_resources = 
       filters
       |> R.get_all_filtered_resources(session)
       |> filter_search(params["q"])
-    end)
 
-    content = Task.async(&get_content/0)
-    tags = Task.async(fn -> R.get_tags topic end)
-    topics = Task.async(&get_all_topics/0)
+    content = get_content()
+    tags = R.get_tags(topic)
+    topics = get_all_topics()
 
     render conn, "index.html",
-      content: Task.await(content), tags: Task.await(tags),
-      resources: Task.await(all_resources),
+      content: content, tags: tags,
+      resources: all_resources,
       selected_tags: selected_tags, query: params["q"],
-      topics: Task.await(topics)
+      topics: topics
   end
 
   def check_empty(params) do
