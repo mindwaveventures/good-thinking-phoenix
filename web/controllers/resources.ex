@@ -98,9 +98,9 @@ defmodule App.Resources do
   def get_tags(topic) when is_list topic do
     query =
       from t in "taggit_tag",
-      full_join: top in "resources_topictag",
+      join: top in "resources_topictag",
       where: t.name in ^topic and top.tag_id == t.id,
-      full_join: r in "resources_resourcepage",
+      join: r in "resources_resourcepage",
       where: r.page_ptr_id == top.content_object_id,
       select: %{
         id: r.page_ptr_id,
