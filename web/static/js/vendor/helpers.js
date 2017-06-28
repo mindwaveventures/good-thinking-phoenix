@@ -84,3 +84,16 @@ function getFormData(form, data) {
 
   return formData;
 }
+
+function getResourceId(node) {
+  if(node.id.indexOf('resource_') > -1) {
+    return node.id.split('_')[1];
+  }
+
+  if(!node.parentNode) {
+    console.log('Could not find resource_id');
+    return;
+  }
+
+  return getResourceId(node.parentNode);
+}
