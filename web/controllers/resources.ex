@@ -41,7 +41,7 @@ defmodule App.Resources do
       false -> from [_page, h] in query, select: map(h, ^content)
     end
 
-    CMSRepo.all query
+    CMSRepo.one query
   end
 
   def get_image_url(col_name, view) do
@@ -172,7 +172,7 @@ defmodule App.Resources do
 
   def get_resources(query, type, lm_session) do
     query
-      |> CMSRepo.one
+      |> CMSRepo.all
       |> Enum.map(&get_all_tags(&1, type))
       |> Enum.map(&get_all_likes(&1, lm_session))
   end
