@@ -3,12 +3,12 @@
   <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
       <%= transform_html @content.body, @conn %>
-      <div class="mt3 dt-ns dt--fixed-ns tc tl-ns mb1">
+      <div class="mt4 dt-ns dt--fixed-ns tl mb4 mb3-l">
         <span class="nunito-bold">What are you looking for help with?</span>
         <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
-          <%= text_input f, :q, class: "w-70-ns w-100 dtc-ns db mt1 mr2 b--lm-dark-blue ba pa1 pa2-ns nunito f5 br1", placeholder: "Enter a word or phrase", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
+          <%= text_input f, :q, class: "w-70-ns w-60 dtc mt1 mr2 b--lm-dark-blue ba pa1 pa2-ns nunito f5 br1", placeholder: "Enter a word or phrase", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
           <%= hidden_input f, :query_string, value: @conn.query_string, id: "query_string_1" %>
-          <%= component "buttons/primary_button", value: "Search", class: "dtc-ns db mv2" %>
+          <%= component "buttons/primary_button", value: "Search", class: "dtc mv2" %>
         <% end %>
       </div>
     </div>
