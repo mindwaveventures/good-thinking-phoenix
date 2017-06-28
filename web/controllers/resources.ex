@@ -41,7 +41,7 @@ defmodule App.Resources do
       false -> from [_page, h] in query, select: map(h, ^content)
     end
 
-    CMSRepo.one query
+    CMSRepo.all query
   end
 
   def get_image_url(col_name, view) do
