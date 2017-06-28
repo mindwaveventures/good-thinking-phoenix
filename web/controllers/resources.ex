@@ -172,7 +172,7 @@ defmodule App.Resources do
 
   def get_resources(query, type, lm_session) do
     query
-      |> CMSRepo.all
+      |> CMSRepo.one
       |> Enum.map(&get_all_tags(&1, type))
       |> Enum.map(&get_all_likes(&1, lm_session))
   end
