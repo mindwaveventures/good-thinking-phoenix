@@ -56,37 +56,15 @@ defmodule App.Resources do
     "https://s3.amazonaws.com/#{@bucket_name}/#{url}"
   end
 
-  def get_tags(topic \\ nil)
-  def get_tags(topic) when topic == nil do
+  def get_tags(type) when type in [:issue, :reason, :content, :topic] do
     tag_query = from tag in "taggit_tag",
-      join: rc in ^"resources_issuetag",
-      join: ra in ^"resources_reasontag",
-      join: rco in ^"resources_contenttag",
-      join: rt in ^"resources_topictag",
-      where: tag.id in [rc.tag_id, ra.tag_id, rco.tag_id, rt.tag_id],
-      select: %{
-        issue: rc.tag_id, reason: ra.tag_id, topic: rt.tag_id,
-        content: rco.tag_id, name: tag.name, id: tag.id
-      },
+      full_join: l in ^"resources_#{type}tag",
+      where: l.tag_id == tag.id,
+      select: tag.name,
       order_by: tag.id,
       distinct: tag.id
 
-    tag_query
-    |> CMSRepo.all
-    |> Enum.reduce(%{}, fn %{
-        reason: aud, issue: cat, content: con, id: id, name: name, topic: topic
-      }, acc ->
-      cond do
-        aud == id -> Map.merge acc,
-          %{reason: Map.get(acc, :reason, []) ++ [name]}
-        cat == id -> Map.merge acc,
-          %{issue: Map.get(acc, :issue, []) ++ [name]}
-        con == id -> Map.merge acc,
-          %{content: Map.get(acc, :content, []) ++ [name]}
-        topic == id -> Map.merge acc,
-          %{topic: Map.get(acc, :topic, []) ++ [name]}
-      end
-    end)
+    CMSRepo.all tag_query
   end
 
   def get_tags(topic) when is_binary topic do

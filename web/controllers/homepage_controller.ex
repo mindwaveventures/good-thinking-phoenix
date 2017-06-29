@@ -6,19 +6,24 @@ defmodule App.HomepageController do
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
-    resources = 
+    resources =
       "resource"
       |> R.all_query
       |> R.get_resources("resource", session)
       |> R.sort_priority
 
     content = get_content()
-    tags = R.get_tags()
+    tags = get_tags()
     topics = get_all_topics()
 
     render conn, "index.html", content: content,
                  tags: tags, resources: resources,
                  topics: topics
+  end
+
+  def get_tags do
+    [:issue, :reason, :content, :topic]
+    |> Map.new(&({&1, R.get_tags(&1)}))
   end
 
   def show(conn, params = %{
@@ -60,7 +65,7 @@ defmodule App.HomepageController do
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
 
     session = get_session conn, "lm_session"
-    all_resources = 
+    all_resources =
       filters
       |> R.get_all_filtered_resources(session)
       |> filter_search(params["q"])
