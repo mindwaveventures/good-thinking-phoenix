@@ -71,7 +71,10 @@ defmodule App.HomepageController do
       |> filter_search(params["q"])
 
     content = get_content()
-    tags = R.get_tags(topic)
+    tags = case topic do
+      nil -> get_tags
+      _ -> R.get_tags(topic)
+    end
     topics = get_all_topics()
 
     render conn, "index.html",
