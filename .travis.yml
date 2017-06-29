@@ -6,6 +6,9 @@ python:
 addons:
   postgresql: '9.4'
 install:
+  - mix local.hex --force
+  - mix local.rebar --force
+  - mix deps.get
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
   - nvm use stable
@@ -18,9 +21,7 @@ cache:
 env:
   - MIX_ENV=test
 before_script:
-  - mix local.hex --force
   - mix do ecto.create, ecto.migrate
-  - mix deps.get
   - psql -c "create database cms"
   - git clone -b dumpdata https://github.com/ldmw/cms.git && cd cms
   - pip install --user -r requirements.txt
