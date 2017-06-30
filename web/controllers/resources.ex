@@ -113,7 +113,7 @@ defmodule App.Resources do
 
     query
     |> CMSRepo.all
-    |> Enum.map(&(&1 |> get_all_tags("resource", false) |> Map.get(:tags)))
+    |> Enum.map(&(&1 |> get_all_tags("resource", %{all: false}) |> Map.get(:tags)))
     |> Enum.reduce(%{
       "content" => [], "reason" => [], "issue" => [], "topic" => []
     }, fn el, acc -> merge_lists(acc, el) end)
@@ -131,7 +131,7 @@ defmodule App.Resources do
   def get_all_filtered_resources(filter, session_id) do
     "resource"
     |> all_query
-    |> get_resources("resource", session_id)
+    |> get_resources("resource", session_id, true)
     |> Enum.filter(&filter_by_topic(&1, filter))
     |> Enum.filter(&filter_by_issue(&1, filter))
     |> Enum.filter(&filter_tags(&1, filter))
@@ -170,10 +170,10 @@ defmodule App.Resources do
       }
   end
 
-  def get_resources(query, type, lm_session) do
+  def get_resources(query, type, lm_session, hidden \\ false) do
     query
       |> CMSRepo.all
-      |> Enum.map(&get_all_tags(&1, type))
+      |> Enum.map(&get_all_tags(&1, type, %{hidden: hidden}))
       |> Enum.map(&get_all_likes(&1, lm_session))
   end
 
@@ -218,13 +218,19 @@ defmodule App.Resources do
     Map.merge map, %{likes: likes, dislikes: dislikes, liked: liked}
   end
 
-  def get_all_tags(resource, type, all \\ true) do
+  def get_all_tags(resource, type, opts \\ %{}) do
+    opts = opts
+      |> Map.put_new(:all, true)
+      |> Map.put_new(:hidden, false)
+
     tags =
       ["issue", "reason", "content", "topic"]
+        |> Enum.into(if opts.hidden do ["hidden"] else [] end)
         |> Enum.map(&create_query(&1, resource, type))
         |> Enum.map(fn {type, query} -> {type, CMSRepo.all(query)} end)
-        |> Enum.map(&add_all_filter &1, all)
+        |> Enum.map(&add_all_filter &1, opts.all)
         |> Map.new
+
     Map.merge(%{tags: tags}, resource)
   end
 

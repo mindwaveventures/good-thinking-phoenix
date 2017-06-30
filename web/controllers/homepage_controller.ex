@@ -65,6 +65,7 @@ defmodule App.HomepageController do
       filters
       |> R.get_all_filtered_resources(session)
       |> filter_search(params["q"])
+      |> Enum.map(&Map.put(&1, :tags, Map.delete(&1[:tags], "hidden")))
     end)
 
     content = Task.async(&get_content/0)
