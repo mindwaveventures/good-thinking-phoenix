@@ -5,6 +5,12 @@ if (isNotIE8()) {
     selectAll([".like-form", ".dislike-form", ".resource-feedback"]).forEach(function(el) {
       el.addEventListener("submit", formListener);
     });
+
+    selectAll([".share-buttons > button"]).forEach(function(el) {
+      el.addEventListener("click", function(e) {
+        shareListener(e, el);
+      });
+    });
   })();
 
   function formListener(e) {
@@ -16,6 +22,11 @@ if (isNotIE8()) {
 
         resource.innerHTML = response.result;
         resource.addEventListener("submit", formListener);
+        selectAll([".share-buttons > button"], resource).forEach(function(el) {
+          addEventListener("click", function(e) {
+            shareListener(e, el);
+          });
+        });
         analytics.addAnalytics(select("button[name='like']", resource), "Like", "liked");
         analytics.addAnalytics(select("button[name='dislike']", resource), "Dislike", "disliked");
         analytics.addAnalytics(select(".share", resource), "Share", "shared");
@@ -38,6 +49,15 @@ function handle_ios () {
   if (navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
     ['like', 'dislike'].forEach(handle_ios_likes);
   }
+}
+
+function shareListener(e, el) {
+  var alert = select(".share-alert",  select("#resource_" + getResourceId(el)));
+  alert.innerHTML = "Sorry, this feature is not yet available"
+
+  setTimeout(function() {
+    alert.innerHTML = "";
+  }, 3000)
 }
 
 handle_ios();
