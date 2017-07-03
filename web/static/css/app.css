@@ -275,6 +275,11 @@ h2 > span.b {
   border-color: #c2c2c2;
 }
 
+.focus-lm-orange:focus {
+  outline: none;
+  border:1px solid #FAB781;
+}
+
 footer p a {
   padding: 0 2em 0 2em;
   text-decoration: none;
