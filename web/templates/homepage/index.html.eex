@@ -21,7 +21,7 @@
 </section>
 
 <div id="results" class="relative top--3 o-0"></div>
-<section class="pt3 ph4 ph3-m ph3-l blurred_background pb4 cover">
+<section class="pt3 ph4 ph3-m ph3-l blurred_background cover">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center tc tl-ns">
       <div class="tl lm-dark-blue mb3 nunito-bold">I am ...</div>
@@ -38,11 +38,9 @@
 
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
-    <div class="tl w-60-ns center mt3">
+    <div class="tl w-60-ns center mt3 relative pb5">
       <%= text_input f, :q, class: "mt1 mr2 w-100 pa2 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
-      <div class="tc tr-ns mt4">
-        <%= component "buttons/primary_button", value: "Search"%>
-      </div>
+      <%= component "buttons/primary_button", value: "Search", class: "absolute bottom--1 right-0 right"%>
     </div>
   <% end %>
 </section>
