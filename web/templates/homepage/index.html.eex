@@ -21,7 +21,7 @@
 </section>
 
 <div id="results" class="relative top--3 o-0"></div>
-<section class="pt3 ph4 ph3-m ph3-l lm-bg-dark-blue pb4">
+<section class="pt3 ph4 ph3-m ph3-l blurred_background pb4 cover">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center">
       <div class="tl white mb3">I am ...</div>

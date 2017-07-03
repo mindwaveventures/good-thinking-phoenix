@@ -344,6 +344,12 @@ footer p a {
   background-image: url("../images/whatsapp_hover.svg");
 }
 
+
+.blurred_background {
+  background-image: url("../images/blurred_gradient.png");
+  background-repeat: no-repeat;
+}
+
 /* Styleguide */
 
 code {
