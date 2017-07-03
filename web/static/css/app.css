@@ -223,7 +223,7 @@ h2 > span.b {
   color: #FAB781;
 }
 
-.lm-dark-blue {
+.lm-dark-blue, .lm-dark-blue-hover:hover {
   color: #242E50;
 }
 
