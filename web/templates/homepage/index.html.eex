@@ -6,7 +6,7 @@
       <div class="mt4 dt-ns dt--fixed-ns tl mb4 mb3-l">
         <span class="nunito-bold">What are you looking for help with?</span>
         <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
-          <%= text_input f, :q, class: "w-70-ns w-60 dtc mt1 mr2 b--lm-dark-blue ba pa1 pa2-ns nunito f5 br1", placeholder: "Enter a word or phrase", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
+          <%= text_input f, :q, class: "w-70-ns w-60 dtc mt1 mr2 b--white ba pa1 pa2-ns nunito f5 br1 bg-white-70 focus-lm-orange", placeholder: "Enter a word or phrase", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
           <%= hidden_input f, :query_string, value: @conn.query_string, id: "query_string_1" %>
           <%= component "buttons/primary_button", value: "Search", class: "dtc mv2" %>
         <% end %>
@@ -39,7 +39,7 @@
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
     <div class="tl w-60-ns center mt3">
-      <%= text_input f, :q, class: "mt1 mr2 w-50 b--none pa2 nunito br1 b--lm-dark-blue ba", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+      <%= text_input f, :q, class: "mt1 mr2 w-50 pa2 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search" %>
     </div>
   <% end %>
