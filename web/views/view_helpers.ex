@@ -99,7 +99,7 @@ defmodule App.ViewHelpers do
     |> Phoenix.HTML.raw
   end
 
-  @button_classes "f5 link dib ph3 pv2 br1 pointer nunito tracked "
+  @button_classes "f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active "
   def get_class("primary_button"),
     do: @button_classes <> "lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover"
   def get_class("secondary_button", "light"),
