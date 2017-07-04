@@ -9,11 +9,11 @@
       </div>
       <div class="mt1">
         <%= for {tag_type, tags} <- @resource.tags do %>
-        <%= for t <- tags do %>
-        <%= if t != "all-#{tag_type}" do %>
-        <%= component "tag", conn: @conn, tag_type: tag_type, tag_name: t %>
-        <% end %>
-        <% end %>
+          <%= for t <- tags do %>
+            <%= if t != "all-#{tag_type}" do %>
+              <%= component "tag", conn: @conn, tag_type: tag_type, tag_name: t %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
       <%= transform_html @resource[:body], @conn %>
