@@ -63,7 +63,6 @@
 </section>
 
   <%= transform_html @content.assessment_text, @conn %>
-  <%= component "buttons/secondary_button", background: "dark", value: "Take assessment", to: "/coming-soon", id: "assessment-banner" %>
 <section class="pv1 ph3 lm-bg-orange tl">
   <a href="/coming-soon" class="link">
     <div class="relative">
