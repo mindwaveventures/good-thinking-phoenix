@@ -4,7 +4,7 @@
     <%= if assigns[:selected_tags] do %>
       <div class="tl">
         <%= for tag <- @selected_tags do %>
-          <span class="b--lm-orange lm-bg-orange-20 ba br-pill ph2 pv0 lh-tag mh1 dib mb1 font nunito"><%= remove_hyphen tag %></span>
+          <span class="b--lm-orange lm-bg-orange-20 ba br-pill ph2 pv0 lh-tag mh1 dib mb1 font nunito f6"><%= remove_hyphen tag %></span>
         <% end %>
       </div>
     <% end %>
