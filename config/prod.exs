@@ -28,7 +28,9 @@ config :app, App.CMSRepo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("CMS_DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  ssl: true,
+  timeout: :infinity,
+  pool_timeout: :infinity
 
 # Do not print debug messages in production
 config :logger, level: :info

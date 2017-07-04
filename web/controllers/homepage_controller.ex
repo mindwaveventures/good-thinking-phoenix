@@ -6,20 +6,24 @@ defmodule App.HomepageController do
 
   def index(conn, _params) do
     session = get_session conn, :lm_session
-    resources = Task.async(fn ->
+    resources =
       "resource"
       |> R.all_query
       |> R.get_resources("resource", session)
       |> R.sort_priority
-    end)
 
-    content = Task.async(&get_content/0)
-    tags = Task.async(&R.get_tags/0)
-    topics = Task.async(&get_all_topics/0)
+    content = get_content()
+    tags = get_tags()
+    topics = get_all_topics()
 
-    render conn, "index.html", content: Task.await(content),
-                 tags: Task.await(tags), resources: Task.await(resources),
-                 topics: Task.await(topics)
+    render conn, "index.html", content: content,
+                 tags: tags, resources: resources,
+                 topics: topics
+  end
+
+  def get_tags do
+    [:issue, :reason, :content, :topic]
+    |> Map.new(&({&1, R.get_tags(&1)}))
   end
 
   def show(conn, params = %{
@@ -61,22 +65,24 @@ defmodule App.HomepageController do
       |> Enum.filter(&(!String.starts_with?(&1, "all-")))
 
     session = get_session conn, "lm_session"
-    all_resources = Task.async(fn ->
+    all_resources =
       filters
       |> R.get_all_filtered_resources(session)
       |> filter_search(params["q"])
       |> Enum.map(&Map.put(&1, :tags, Map.delete(&1[:tags], "hidden")))
-    end)
 
-    content = Task.async(&get_content/0)
-    tags = Task.async(fn -> R.get_tags topic end)
-    topics = Task.async(&get_all_topics/0)
+    content = get_content()
+    tags = case topic do
+      nil -> get_tags()
+      _ -> R.get_tags(topic)
+    end
+    topics = get_all_topics()
 
     render conn, "index.html",
-      content: Task.await(content), tags: Task.await(tags),
-      resources: Task.await(all_resources),
+      content: content, tags: tags,
+      resources: all_resources,
       selected_tags: selected_tags, query: params["q"],
-      topics: Task.await(topics)
+      topics: topics
   end
 
   def check_empty(params) do
@@ -91,15 +97,14 @@ defmodule App.HomepageController do
   end
 
   def get_content do
-    content = Task.async(fn ->
+    content =
       R.get_content [:body, :footer, :alpha, :alphatext, :lookingfor,
         :filter_label_1, :filter_label_2, :filter_label_3,
         :assessment_text, :crisis_text, :video_url]
-    end)
 
-    image_url = Task.async(fn -> R.get_image_url("hero_image", "home") end)
+    image_url = R.get_image_url("hero_image", "home")
 
-    Map.merge(Task.await(content), %{hero_image_url: Task.await(image_url)})
+    Map.merge(content, %{hero_image_url: image_url})
   end
 
   def get_all_topics do
