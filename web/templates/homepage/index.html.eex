@@ -2,7 +2,7 @@
   <%= component "images/london_minds_logo", class: "w-20-l w-30-m w-70", conn: @conn %>
   <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
-      <%= transform_html @content.body, @conn %>
+      <%= transform_html @content.header, @conn %>
       <div class="mt4 dt-ns dt--fixed-ns tl mb4 mb3-l">
         <span class="nunito-bold">What are you looking for help with?</span>
         <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
