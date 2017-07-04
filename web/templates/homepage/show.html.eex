@@ -11,13 +11,13 @@
   </div>
 </div>
 
-<section class="results">
+<section class="results w-60-ns center">
   <%= if is_ie8? @conn do %>
     <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
   <% else %>
-    <div class="tc">
+    <div class="tl">
       <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
-      <label class="<%= get_class("secondary_button", "light") %> mt2" id="open-filter-label" for="filter_filter">Filter</label>
+      <label class="<%= get_class("secondary_button", "light") %> mt2 ml4 ml3-ns" id="open-filter-label" for="filter_filter">Filter</label>
       <%= render "sidebar.html", conn: @conn, tags: @tags,
         filter_label_1: @content.filter_label_1,
         filter_label_2: @content.filter_label_2,
