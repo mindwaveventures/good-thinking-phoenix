@@ -60,7 +60,7 @@
 
 
 <section class="pv1 ph3 lm-bg-orange tl">
-  <a href="/coming-soon" class="link">
+  <a href="/coming-soon" class="link banners">
     <div class="relative">
       <%= transform_html @content.assessment_text, @conn %>
       <p class="absolute right-1 top--1 dn dib-ns b">></p>
@@ -69,7 +69,7 @@
 </section>
 
 <section class="pv1 ph3 tl lm-bg-white">
-  <a href="/crisis" class="link">
+  <a href="/crisis" class="link banners">
     <div class="relative">
       <%= transform_html @content.crisis_text, @conn, id: "crisis-link"%>
       <p class="absolute right-1 top--1 dn dib-ns b">></p>
