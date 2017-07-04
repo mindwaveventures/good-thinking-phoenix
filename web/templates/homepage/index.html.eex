@@ -58,20 +58,21 @@
 
 <%= component "alpha_section", conn: @conn, content: @content, show_email_submit: true %>
 
-<section>
-  <div class="lm-bg-orange pa3 ph4 tc ma0 w-100 tc lm-dark-turquoise crisis-banner">
     <%= transform_html @content.crisis_text, @conn, id: "crisis-link", class: "lm-white-hover" %>
   </div>
 </section>
 
-<section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc white">
   <%= transform_html @content.assessment_text, @conn %>
   <%= component "buttons/secondary_button", background: "dark", value: "Take assessment", to: "/coming-soon", id: "assessment-banner" %>
+<section class="pv1 ph3 lm-bg-orange tl">
   <a href="/coming-soon" class="link">
+    <div class="relative">
   </a>
 </section>
 
+<section class="pv1 ph3 tl lm-bg-white">
   <a href="/crisis" class="link">
+    <div class="relative">
   </a>
 
 <%= component "footer", content: @content, conn: @conn %>
