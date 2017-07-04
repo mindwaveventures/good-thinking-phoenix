@@ -488,6 +488,10 @@ code {
   box-shadow: inset 0 0 0 4px #fff;
 }
 
+.inner-shadow-active:active {
+  box-shadow: 0 2px 7px 0 #000000 inset;
+}
+
 .feedback-section h4,
 .feedback-section h3 {
   font-family: 'Segoe UI-Bold';
