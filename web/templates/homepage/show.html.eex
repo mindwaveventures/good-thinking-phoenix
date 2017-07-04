@@ -1,10 +1,10 @@
 <div class="pa1 ph4 ph3-m ph3-l">
   <div class="w-60-ns center">
-    <p class="tl b">Showing <%= number_of_results @conn, @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></p>
+    <h3 class="tl mt5 nunito">Showing <%= number_of_results @conn, @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></h3>
     <%= if assigns[:selected_tags] do %>
       <div class="tl">
         <%= for tag <- @selected_tags do %>
-          <span class="b--lm-orange lm-bg-white ba br2 ph2 pv1 lh-tag mh1 dib mb1 font nunito"><%= remove_hyphen tag %></span>
+          <span class="b--lm-orange lm-bg-orange-20 ba br-pill ph2 pv0 lh-tag mh1 dib mb1 font nunito"><%= remove_hyphen tag %></span>
         <% end %>
       </div>
     <% end %>

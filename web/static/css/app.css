@@ -199,6 +199,10 @@ h2 > span.b {
   background-color: #FAB781;
 }
 
+.lm-bg-orange-20 {
+  background-color: rgba(250, 183, 129, 0.2)
+}
+
 .lm-bg-dark-blue, .lm-bg-dark-blue-hover:hover {
   background-color: #242E50;
 }
@@ -284,7 +288,7 @@ footer p a {
 /* Landing Page - resource tags */
 
 .lh-tag {
-  line-height: 2;
+  line-height: 1.7;
 }
 
 /* Landing Page - resource like buttons */
