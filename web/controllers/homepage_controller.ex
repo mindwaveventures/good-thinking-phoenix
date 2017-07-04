@@ -98,7 +98,7 @@ defmodule App.HomepageController do
 
   def get_content do
     content =
-      R.get_content [:body, :footer, :alpha, :alphatext, :lookingfor,
+      R.get_content [:header, :body, :footer, :alpha, :alphatext, :lookingfor,
         :filter_label_1, :filter_label_2, :filter_label_3,
         :assessment_text, :crisis_text, :video_url]
 
