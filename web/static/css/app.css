@@ -189,6 +189,14 @@ h2 > span.b {
   display: none;
 }
 
+.link-visited:visited {
+  color: #9012FE;
+}
+
+.link-hover:hover {
+  background-color: rgba(0, 158, 226, 0.2)
+}
+
 /*color palette*/
 
 .lm-bg-orange {
