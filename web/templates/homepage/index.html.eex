@@ -20,6 +20,10 @@
   </div>
 </section>
 
+<section class="w-60-ns center">
+  <%= transform_html @content.body, @conn %>
+</section>
+
 <div id="results" class="relative top--3 o-0"></div>
 <section class="pt3 ph4 ph3-m ph3-l blurred_background cover bg-center">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
