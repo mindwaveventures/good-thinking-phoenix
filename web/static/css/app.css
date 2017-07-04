@@ -369,6 +369,10 @@ code {
   .h7-ns {
     height: 21.2rem;
   }
+  a.ph5-plus-ns {
+    padding-right: 13rem;
+    padding-left: 13rem;
+  }
 }
 .crisis-banner > p {
   margin: 0;

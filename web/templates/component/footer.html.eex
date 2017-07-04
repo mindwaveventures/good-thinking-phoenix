@@ -1,3 +1,3 @@
-<footer class="tc tl-ns ma4-ns ma3 f6 f5-ns tracked">
-  <%= transform_html @content.footer, @conn %>
+<footer class="lm-bg-dark-blue tc pa3 f6 f5-ns tracked">
+  <%= transform_html @content.footer, @conn, class: "ph2 ph5-plus-ns lm-white" %>
 </footer>
