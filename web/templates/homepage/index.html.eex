@@ -67,7 +67,11 @@
 <section class="pt1 pb3 pt3-l pb4-l ph4 ph5-m ph6-l lm-bg-dark-blue tc white">
   <%= transform_html @content.assessment_text, @conn %>
   <%= component "buttons/secondary_button", background: "dark", value: "Take assessment", to: "/coming-soon", id: "assessment-banner" %>
+  <a href="/coming-soon" class="link">
+  </a>
 </section>
 
+  <a href="/crisis" class="link">
+  </a>
 
 <%= component "footer", content: @content, conn: @conn %>
