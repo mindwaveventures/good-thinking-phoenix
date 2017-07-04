@@ -223,7 +223,7 @@ h2 > span.b {
   color: #FAB781;
 }
 
-.lm-dark-blue {
+.lm-dark-blue, .lm-dark-blue-hover:hover {
   color: #242E50;
 }
 
@@ -273,6 +273,11 @@ h2 > span.b {
 
 .b--lm-grey {
   border-color: #c2c2c2;
+}
+
+.focus-lm-orange:focus {
+  outline: none;
+  border:1px solid #FAB781;
 }
 
 footer p a {
@@ -337,6 +342,11 @@ footer p a {
 
 .share-whatsapp:hover {
   background-image: url("../images/whatsapp_hover.svg");
+}
+
+
+.blurred_background {
+  background-image: url("../images/blurred_gradient.png");
 }
 
 /* Styleguide */
@@ -480,6 +490,10 @@ code {
 .lm-feedback-radio:checked + .lm-feedback-label:before {
   background-color: #67CA39;
   box-shadow: inset 0 0 0 4px #fff;
+}
+
+.inner-shadow-active:active {
+  box-shadow: 0 2px 7px 0 #000000 inset;
 }
 
 .feedback-section h4,
