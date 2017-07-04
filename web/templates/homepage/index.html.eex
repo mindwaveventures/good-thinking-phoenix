@@ -67,12 +67,14 @@
 <section class="pv1 ph3 lm-bg-orange tl">
   <a href="/coming-soon" class="link">
     <div class="relative">
+      <p class="absolute right-1 top--1 dn dib-ns b">></p>
   </a>
 </section>
 
 <section class="pv1 ph3 tl lm-bg-white">
   <a href="/crisis" class="link">
     <div class="relative">
+      <p class="absolute right-1 top--1 dn dib-ns b">></p>
   </a>
 
 <%= component "footer", content: @content, conn: @conn %>
