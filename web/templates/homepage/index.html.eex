@@ -20,15 +20,15 @@
   </div>
 </section>
 
-<section class="w-60-ns center">
+<section class="w-60-ns w-80 pv2 pv0-ns center">
   <%= transform_html @content.body, @conn %>
 </section>
 
 <div id="results" class="relative top--3 o-0"></div>
-<section class="pt3 ph4 ph3-m ph3-l blurred_background cover bg-center">
+<section class="pt4 ph4 ph3-m ph3-l blurred_background cover bg-center">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center tc tl-ns">
-      <div class="tl lm-dark-blue mb3 nunito-bold">I am ...</div>
+      <div class="tl lm-dark-blue mb2 nunito-bold">I am ...</div>
         <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
           <%= for link <- @topics do %>
             <div class="dib relative mv2-ns mv1">
