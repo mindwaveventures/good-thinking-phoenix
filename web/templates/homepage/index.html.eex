@@ -2,7 +2,7 @@
   <%= component "images/london_minds_logo", class: "w-20-l w-30-m w-70", conn: @conn %>
   <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
-      <%= transform_html @content.body, @conn %>
+      <%= transform_html @content.header, @conn %>
       <div class="mt4 dt-ns dt--fixed-ns tl mb4 mb3-l">
         <span class="nunito-bold">What are you looking for help with?</span>
         <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
@@ -20,11 +20,15 @@
   </div>
 </section>
 
+<section class="w-60-ns w-80 pv2 pv0-ns center">
+  <%= transform_html @content.body, @conn %>
+</section>
+
 <div id="results" class="relative top--3 o-0"></div>
-<section class="pt3 ph4 ph3-m ph3-l blurred_background cover bg-center">
+<section class="pt4 ph4 ph3-m ph3-l blurred_background cover bg-center">
   <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
     <div class="w-60-ns center tc tl-ns">
-      <div class="tl lm-dark-blue mb3 nunito-bold">I am ...</div>
+      <div class="tl lm-dark-blue mb2 nunito-bold">I am ...</div>
         <%= inputs_for f, :topic, [as: :topic], fn fq -> %>
           <%= for link <- @topics do %>
             <div class="dib relative mv2-ns mv1">
@@ -38,8 +42,8 @@
 
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
-    <div class="tl w-60-ns center mt3 relative pb5">
-      <%= text_input f, :q, class: "mt1 mr2 w-100 pa2 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+    <div class="tl w-60-ns center relative pb4">
+      <%= text_input f, :q, class: "mt1 mr2 w-100 pa2 pl3 mb3 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search", class: "absolute bottom--1 right-0 right"%>
     </div>
   <% end %>
