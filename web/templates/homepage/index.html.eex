@@ -1,7 +1,7 @@
-  <div class="pt4 pb4 f5">
     <div class="dib w-40-l v-mid">
 <section class="pt4 ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('<%= @content.hero_image_url %>')">
   <%= component "images/london_minds_logo", class: "w-60 w-15-ns", conn: @conn %>
+  <div class="pb5 w-90-ns f1-ns f6 lh-title center">
       <%= transform_html @content.header, @conn %>
       <div class="mt4 dt-ns dt--fixed-ns tl mb4 mb3-l">
         <span class="nunito-bold">What are you looking for help with?</span>
