@@ -3,7 +3,6 @@
   <div class="pb5 w-90-ns f1-ns f6 lh-title center">
     <div class="mb4">
       <%= transform_html @content.header, @conn %>
-        <span class="nunito-bold">What are you looking for help with?</span>
         <%= form_for @conn, homepage_path(@conn, :search) <> "#results", [as: :query], fn f ->  %>
           <%= text_input f, :q, class: "w-50-ns w-100 db center mt1 b--white ba pa1 pa2-ns nunito f5 br1 bg-white-70 focus-lm-orange", placeholder: "What do you need support with?", "aria-label": "search", value: assigns[:query], id: "query_q_1"  %>
           <%= hidden_input f, :query_string, value: @conn.query_string, id: "query_string_1" %>
