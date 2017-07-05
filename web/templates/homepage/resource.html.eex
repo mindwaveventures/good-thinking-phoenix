@@ -1,6 +1,6 @@
 <%= if @resource[:url] do %>
   <div class="br1 shadow-2 tl w-60-ns center">
-    <div class="ba b--lm-dark-blue pa4 mt4">
+    <div class="ba b--lm-dark-blue ph2 pv3 pa4-ns mt4">
       <h2 class="mt0 mb1 ml2"><%= @resource[:heading] %></h2>
       <div class="word-wrap">
         <%= if String.length(@resource.url) > 0 do %>
@@ -20,7 +20,7 @@
         <%= transform_html @resource[:body], @conn %>
       </div>
     </div>
-    <div class="pb4 ph4 pt2">
+    <div class=" ph2 pv3 pb4-ns ph4-ns pt2-ns">
       <%= if String.length(@resource[:video]) > 0 do %>
         <div class="tc ma2">
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
