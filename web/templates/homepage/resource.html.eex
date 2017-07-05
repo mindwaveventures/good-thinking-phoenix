@@ -27,13 +27,13 @@
         </div>
       <% end %>
       <div class="w-100">
-        <div class="w-50 dib br b--lm-grey">
-          <div class="w-80 center">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey-ns">
+          <div class="w-80-ns center-ns">
             <%= transform_html @resource[:pros], @conn %>
           </div>
         </div>
-        <div class="w-50 dib fr">
-          <div class="w-80 center">
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
             <%= transform_html @resource[:cons], @conn %>
           </div>
         </div>
