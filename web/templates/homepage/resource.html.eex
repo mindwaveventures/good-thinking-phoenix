@@ -27,7 +27,12 @@
         </div>
       <% end %>
       <div class="w-100">
-        <div class="w-50-ns dib-ns br-ns b--lm-grey-ns">
+        <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
+          <div class="tc db dn-ns">
+            <%= component "buttons/secondary_button", value: "View pros and cons", background: "light" %>
+          </div>
+        <% end %>
+        <div class="w-50-ns dib-ns br-ns b--lm-grey">
           <div class="w-80-ns center-ns">
             <%= transform_html @resource[:pros], @conn %>
           </div>
