@@ -18,8 +18,6 @@
       </div>
       <div class="mh2">
         <%= transform_html @resource[:body], @conn %>
-        <%= transform_html @resource[:pros], @conn %>
-        <%= transform_html @resource[:cons], @conn %>
       </div>
     </div>
     <div class=" ph2 pv3 pb4-ns ph4-ns pt2-ns">
@@ -28,6 +26,18 @@
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
         </div>
       <% end %>
+      <div class="w-100">
+        <div class="w-50 dib br b--lm-grey">
+          <div class="w-80 center">
+            <%= transform_html @resource[:pros], @conn %>
+          </div>
+        </div>
+        <div class="w-50 dib fr">
+          <div class="w-80 center">
+            <%= transform_html @resource[:cons], @conn %>
+          </div>
+        </div>
+      </div>
       <p class="b">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
