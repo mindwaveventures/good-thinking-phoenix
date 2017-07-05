@@ -99,11 +99,11 @@ defmodule App.ViewHelpers do
     |> Phoenix.HTML.raw
   end
 
-  @button_classes "f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active "
+  @button_classes "f5 link dib pv2 br1 pointer nunito tracked inner-shadow-active "
   def get_class("primary_button"),
-    do: @button_classes <> "lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover"
+    do: @button_classes <> "lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover ph3"
   def get_class("secondary_button", "light"),
-    do: @button_classes <> "lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue"
+    do: @button_classes <> "lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue ph4"
   def get_class("secondary_button", "dark"),
     do: @button_classes <> "lm-bg-dark-blue b--lm-white-hover lm-orange ba bw1 b--lm-orange"
   def get_class("secondary_button", nil), do: get_class "secondary_button", "light"
