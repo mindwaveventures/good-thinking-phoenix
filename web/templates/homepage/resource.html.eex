@@ -1,29 +1,33 @@
 <%= if @resource[:url] do %>
-  <div class="br1 shadow-2 pa4 mt4 tl w-60-ns center">
-    <h2 class="mt0 mb1"><%= @resource[:heading] %></h2>
-    <div class="word-wrap">
-      <%= if String.length(@resource.url) > 0 do %>
-        <%= link @resource.url, to: @resource.url, class: "link f6 lm-turquoise resource-link", target: "_blank" %>
-      <% end %>
-    </div>
-    <div class="mt1">
-      <%= for {tag_type, tags} <- @resource.tags do %>
-        <%= for t <- tags do %>
-          <%= if t != "all-#{tag_type}" do %>
-            <%= component "tag", conn: @conn, tag_type: tag_type, tag_name: t %>
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pv3 pa4-ns mt4">
+      <h2 class="mt0 mb1 ml2"><%= @resource[:heading] %></h2>
+      <div class="word-wrap">
+        <%= if String.length(@resource.url) > 0 do %>
+        <%= link @resource.url, to: @resource.url, class: "f6 lm-turquoise resource-link link-hover link-visited pv1 ph2", target: "_blank" %>
+        <% end %>
+      </div>
+      <div class="mt1">
+        <%= for {tag_type, tags} <- @resource.tags do %>
+          <%= for t <- tags do %>
+            <%= if t != "all-#{tag_type}" do %>
+              <%= component "tag", conn: @conn, tag_type: tag_type, tag_name: t %>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <%= transform_html @resource[:body], @conn %>
-    <%= transform_html @resource[:pros], @conn %>
-    <%= transform_html @resource[:cons], @conn %>
-    <%= if String.length(@resource[:video]) > 0 do %>
-      <div class="tc ma2">
-        <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
       </div>
-    <% end %>
-    <div class="bt b--lm-grey">
+      <div class="mh2">
+        <%= transform_html @resource[:body], @conn %>
+        <%= transform_html @resource[:pros], @conn %>
+        <%= transform_html @resource[:cons], @conn %>
+      </div>
+    </div>
+    <div class=" ph2 pv3 pb4-ns ph4-ns pt2-ns">
+      <%= if String.length(@resource[:video]) > 0 do %>
+        <div class="tc ma2">
+          <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
+        </div>
+      <% end %>
       <p class="b">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
