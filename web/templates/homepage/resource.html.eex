@@ -16,6 +16,8 @@
       <% end %>
     </div>
     <%= transform_html @resource[:body], @conn %>
+    <%= transform_html @resource[:pros], @conn %>
+    <%= transform_html @resource[:cons], @conn %>
     <%= if String.length(@resource[:video]) > 0 do %>
       <div class="tc ma2">
         <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
