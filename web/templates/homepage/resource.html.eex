@@ -1,7 +1,7 @@
 <%= if @resource[:url] do %>
   <div class="br1 shadow-2 tl w-60-ns center">
     <div class="ba b--lm-dark-blue pa4 mt4">
-      <h2 class="mt0 mb1"><%= @resource[:heading] %></h2>
+      <h2 class="mt0 mb1 ml2"><%= @resource[:heading] %></h2>
       <div class="word-wrap">
         <%= if String.length(@resource.url) > 0 do %>
         <%= link @resource.url, to: @resource.url, class: "f6 lm-turquoise resource-link link-hover link-visited pv1 ph2", target: "_blank" %>
@@ -16,7 +16,9 @@
           <% end %>
         <% end %>
       </div>
-      <%= transform_html @resource[:body], @conn %>
+      <div class="mh2">
+        <%= transform_html @resource[:body], @conn %>
+      </div>
     </div>
     <div class="pb4 ph4 pt2">
       <%= if String.length(@resource[:video]) > 0 do %>
