@@ -1,4 +1,4 @@
 {
   "urls": ["http://localhost:4001"],
-  "hideElements": "iframe, .filter-arrow"
+  "hideElements": "iframe, .filter-arrow, .banners"
 }
