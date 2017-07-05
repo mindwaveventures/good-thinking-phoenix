@@ -1,23 +1,23 @@
 <div class="pa1 ph4 ph3-m ph3-l">
   <div class="w-60-ns center">
-    <p class="tl b">Showing <%= number_of_results @conn, @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></p>
+    <h3 class="tl mt5 nunito">Showing <%= number_of_results @conn, @resources %><%= if assigns[:selected_tags] && length(assigns[:selected_tags]) > 0 do " for" end%></h3>
     <%= if assigns[:selected_tags] do %>
       <div class="tl">
         <%= for tag <- @selected_tags do %>
-          <span class="b--lm-orange lm-bg-white ba br2 ph2 pv1 lh-tag mh1 dib mb1 font nunito"><%= remove_hyphen tag %></span>
+          <span class="b--lm-orange lm-bg-orange-20 ba br-pill ph2 pv0 lh-tag mh1 dib mb1 font nunito f6"><%= remove_hyphen tag %></span>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
 
-<section class="results">
+<section class="results w-60-ns center">
   <%= if is_ie8? @conn do %>
     <%= render "ie8_filters.html", content: @content, conn: @conn, tags: @tags%>
   <% else %>
-    <div class="tc">
+    <div class="tl">
       <%= checkbox :filter, :filter, class: "filter-check absolute o-0", "aria-labelledby": "open-filter-label close-filter-label" %>
-      <label class="<%= get_class("primary_button") %> mt2" id="open-filter-label" for="filter_filter">Filter</label>
+      <label class="<%= get_class("secondary_button", "light") %> mt2 ml4 ml2-ns" id="open-filter-label" for="filter_filter">Filter</label>
       <%= render "sidebar.html", conn: @conn, tags: @tags,
         filter_label_1: @content.filter_label_1,
         filter_label_2: @content.filter_label_2,
