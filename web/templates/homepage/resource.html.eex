@@ -26,12 +26,12 @@
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
         </div>
       <% end %>
-      <div class="w-100">
-        <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
-          <div class="tc db dn-ns">
-            <%= component "buttons/secondary_button", value: "View pros and cons", background: "light" %>
-          </div>
-        <% end %>
+      <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
+        <div class="tc db dn-ns view_pcs">
+          <%= component "buttons/secondary_button", value: "View pros and cons", background: "light" %>
+        </div>
+      <% end %>
+      <div class="w-100 dn db-ns" id="pros_cons<%= @resource.id %>">
         <div class="w-50-ns dib-ns br-ns b--lm-grey">
           <div class="w-80-ns center-ns">
             <%= transform_html @resource[:pros], @conn %>
