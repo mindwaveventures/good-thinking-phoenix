@@ -52,8 +52,8 @@
             <%= transform_html @banner, @conn, class: "underline lm-white dib", id: "feedback-link" %>
           </div>
           <div class="dtc-ns dn tr v-mid banner_buttons">
-            <%= component "buttons/secondary_button", background: "dark", value: "Take A Self-Assessment", to: "/coming-soon", id: "assessment", class: "f6 f7-m" %>
-            <%= component "buttons/secondary_button", background: "dark", value: "Get Urgent Support", to: "/crisis", id: "crisis", class: "f6 f7-m" %>
+            <%= component "buttons/secondary_button", value: "Take self-assessment", to: "/coming-soon", id: "assessment", class: "f6 f7-m" %>
+            <%= component "buttons/secondary_button", value: "Get urgent support", to: "/crisis", id: "crisis", class: "f6 f7-m" %>
           </div>
         </div>
       <% end %>
