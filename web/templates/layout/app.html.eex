@@ -47,7 +47,7 @@
         <div aria-hidden="true" class="pa3 lm-bg-dark-blue lm-dark-blue w-100 f6 f5-l f5-m banner banner-2 segoe">
           <%= transform_html @banner, @conn %>
         </div>
-        <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5 dt-ns dt--fixed-ns">
+        <div class="lm-bg-white pa3 w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5 dt-ns dt--fixed-ns" id="beta-banner">
           <div class="dtc-ns w-50-l w-40-m v-mid">
             <%= transform_html @banner, @conn, class: "underline dib", id: "feedback-link" %>
           </div>
