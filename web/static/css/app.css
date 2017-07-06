@@ -395,6 +395,9 @@ code {
     padding-right: 13rem;
     padding-left: 13rem;
   }
+  img.w-15-ns {
+    width: 15%;
+  }
 }
 
 #email_form h2 {
