@@ -49,7 +49,7 @@
         </div>
         <div class="pa3 lm-bg-dark-blue lm-white w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5 dt-ns dt--fixed-ns">
           <div class="dtc-ns w-50-l w-40-m v-mid">
-            <%= transform_html @banner, @conn, class: "underline lm-white dib", id: "feedback-link" %>
+            <%= transform_html @banner, @conn, class: "underline dib", id: "feedback-link" %>
           </div>
           <div class="dtc-ns dn tr v-mid banner_buttons">
             <%= component "buttons/secondary_button", value: "Take self-assessment", to: "/coming-soon", id: "assessment", class: "f6 f7-m" %>
