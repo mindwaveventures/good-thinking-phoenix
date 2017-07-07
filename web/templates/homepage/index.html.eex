@@ -1,4 +1,4 @@
-<section class="pt4 ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('<%= @content.hero_image_url %>')">
+<section class="pt5-plus ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('<%= @content.hero_image_url %>')">
   <%= component "images/london_minds_logo", class: "w-60 w-15-ns", conn: @conn %>
   <div class="pb5 w-90-ns f1-ns f6 lh-title center">
     <div class="mb4">
@@ -64,7 +64,7 @@
   <a href="/coming-soon" class="link banners">
     <div class="relative">
       <%= transform_html @content.assessment_text, @conn %>
-      <p class="absolute right-1 top--1 dn dib-ns b">></p>
+      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
     </div>
   </a>
 </section>
@@ -73,7 +73,7 @@
   <a href="/crisis" class="link banners">
     <div class="relative">
       <%= transform_html @content.crisis_text, @conn, id: "crisis-link"%>
-      <p class="absolute right-1 top--1 dn dib-ns b">></p>
+      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
     </div>
   </a>
 </section>
