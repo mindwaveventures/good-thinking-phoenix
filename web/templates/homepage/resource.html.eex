@@ -19,14 +19,31 @@
       <div class="mh2">
         <%= transform_html @resource[:body], @conn %>
       </div>
-    </div>
-    <div class=" ph2 pv3 pb4-ns ph4-ns pt2-ns">
       <%= if String.length(@resource[:video]) > 0 do %>
         <div class="tc ma2">
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
         </div>
       <% end %>
-      <p class="b">Would you recommend this?</p>
+    </div>
+    <div class="ph2 pv4 pb4-ns ph4-ns pt2-ns">
+      <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
+        <div class="tc db dn-ns">
+          <%= component "buttons/secondary_button", value: "View pros and cons", background: "light", class: "view_pcs", id: "view_pcs#{@resource.id}" %>
+        </div>
+      <% end %>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons<%= @resource.id %>">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+            <%= transform_html @resource[:pros], @conn %>
+          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+            <%= transform_html @resource[:cons], @conn %>
+          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
           <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
