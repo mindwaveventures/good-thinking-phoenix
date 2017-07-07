@@ -211,7 +211,7 @@ h2 > span.b {
   background-color: rgba(250, 183, 129, 0.2)
 }
 
-.lm-bg-dark-blue, .lm-bg-dark-blue-hover:hover {
+.lm-bg-dark-blue {
   background-color: #242E50;
 }
 
@@ -240,10 +240,6 @@ h2 > span.b {
 }
 
 .lm-white {
-  color: #FFFFFF;
-}
-
-.lm-white-hover:hover {
   color: #FFFFFF;
 }
 
@@ -398,6 +394,12 @@ code {
   a.ph5-plus-ns {
     padding-right: 13rem;
     padding-left: 13rem;
+  }
+  .lm-bg-dark-blue-hover:hover {
+    background-color: #242E50;
+  }
+  .lm-white-hover:hover {
+    color: #FFFFFF;
   }
   img.w-15-ns {
     width: 15%;

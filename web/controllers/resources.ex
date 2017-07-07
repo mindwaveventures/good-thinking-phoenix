@@ -143,6 +143,8 @@ defmodule App.Resources do
         heading: r.heading,
         url: r.resource_url,
         body: r.body,
+        pros: r.pros,
+        cons: r.cons,
         video: r.video_url,
         priority: r.priority
       }
@@ -165,6 +167,8 @@ defmodule App.Resources do
         heading: r.heading,
         url: r.resource_url,
         body: r.body,
+        pros: r.pros,
+        cons: r.cons,
         video: r.video_url,
         priority: r.priority
       }

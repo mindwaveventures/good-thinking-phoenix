@@ -40,7 +40,7 @@
       <%= hidden_input f, :query_string, value: @conn.query_string %>
     </div>
     <div class="tl w-60-ns center relative pb4">
-      <%= text_input f, :q, class: "mt1 mr2 w-100 pa2 pl3 mb3 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else...", "aria-label": "search", value: assigns[:query] %>
+      <%= text_input f, :q, class: "mt1 mr2 w-100 pa2 pl3 mb3 nunito br1 b--white ba bg-white-70 focus-lm-orange", placeholder: "Something Else? Enter a word or phrase...", "aria-label": "search", value: assigns[:query] %>
       <%= component "buttons/primary_button", value: "Search", class: "absolute bottom--1 right-0 right"%>
     </div>
   <% end %>
