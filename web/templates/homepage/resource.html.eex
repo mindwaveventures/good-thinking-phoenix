@@ -1,6 +1,6 @@
 <%= if @resource[:url] do %>
   <div class="br1 shadow-2 tl w-60-ns center">
-    <div class="ba b--lm-dark-blue ph2 pv3 pa4-ns mt4">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
       <h2 class="mt0 mb1 ml2"><%= @resource[:heading] %></h2>
       <div class="word-wrap">
         <%= if String.length(@resource.url) > 0 do %>
