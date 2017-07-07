@@ -28,11 +28,11 @@
       <% end %>
       <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
         <div class="tc db dn-ns">
-          <%= component "buttons/secondary_button", value: "View pros and cons", background: "light", class: "view_pcs" %>
+          <%= component "buttons/secondary_button", value: "View pros and cons", background: "light", class: "view_pcs", id: "view_pcs#{@resource.id}" %>
         </div>
       <% end %>
-      <div class="w-100 dn db-ns" id="pros_cons<%= @resource.id %>">
-        <div class="w-50-ns dib-ns br-ns b--lm-grey">
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons<%= @resource.id %>">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
           <div class="w-80-ns center-ns">
             <%= transform_html @resource[:pros], @conn %>
           </div>
