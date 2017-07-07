@@ -1,4 +1,4 @@
-<section class="f3 pt4 pt5-l ph4 ph5-m ph6-l">
+<section class="pt5-plus f3 ph4 ph5-m ph6-l">
   <%= component "images/london_minds_logo", class: "w-60 w-40-m w-25-l", conn: @conn %>
   <div class="pb4 f4-m f5 tc">
     <h3>This page is coming soon</h3>
