@@ -1,3 +1,3 @@
 <%= form_for @conn, homepage_path(@conn, :show, construct_params(@tag_type, @tag_name)) <> "#results", [as: :tags, class: "dib pointer"], fn _f -> %>
-  <%= submit remove_hyphen(@tag_name), class: "b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag mh2 dib mb1 pointer font nunito" %>
+  <%= submit remove_hyphen(@tag_name), class: "b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" %>
 <% end %>
