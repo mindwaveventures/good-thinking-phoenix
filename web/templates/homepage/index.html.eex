@@ -64,7 +64,7 @@
   <a href="/coming-soon" class="link banners">
     <div class="relative">
       <%= transform_html @content.assessment_text, @conn %>
-      <p class="absolute right-1 top--1 dn dib-ns b">></p>
+      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
     </div>
   </a>
 </section>
@@ -73,7 +73,7 @@
   <a href="/crisis" class="link banners">
     <div class="relative">
       <%= transform_html @content.crisis_text, @conn, id: "crisis-link"%>
-      <p class="absolute right-1 top--1 dn dib-ns b">></p>
+      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
     </div>
   </a>
 </section>
