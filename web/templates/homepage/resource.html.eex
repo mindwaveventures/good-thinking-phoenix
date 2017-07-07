@@ -20,7 +20,7 @@
         <%= transform_html @resource[:body], @conn %>
       </div>
     </div>
-    <div class=" ph2 pv3 pb4-ns ph4-ns pt2-ns">
+    <div class="ph2 pv4 pb4-ns ph4-ns pt2-ns">
       <%= if String.length(@resource[:video]) > 0 do %>
         <div class="tc ma2">
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <p class="b">Would you recommend this?</p>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
           <div class="dib mb3 v-mid tl"><span><%= @resource.likes %></span></div>
