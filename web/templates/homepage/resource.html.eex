@@ -19,13 +19,13 @@
       <div class="mh2">
         <%= transform_html @resource[:body], @conn %>
       </div>
-    </div>
-    <div class="ph2 pv4 pb4-ns ph4-ns pt2-ns">
       <%= if String.length(@resource[:video]) > 0 do %>
         <div class="tc ma2">
           <%= component "youtube_video", url: @resource[:video], class: "w-90-ns h7-ns" %>
         </div>
       <% end %>
+    </div>
+    <div class="ph2 pv4 pb4-ns ph4-ns pt2-ns">
       <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
         <div class="tc db dn-ns">
           <%= component "buttons/secondary_button", value: "View pros and cons", background: "light", class: "view_pcs", id: "view_pcs#{@resource.id}" %>
