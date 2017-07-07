@@ -103,7 +103,7 @@ defmodule App.ViewHelpers do
   def get_class("primary_button"),
     do: @button_classes <> "lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover ph3"
   def get_class("secondary_button", "light"),
-    do: @button_classes <> "lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue ph4"
+    do: @button_classes <> "lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue ph4"
   def get_class("secondary_button", "dark"),
     do: @button_classes <> "lm-bg-dark-blue b--lm-white-hover lm-orange ba bw1 b--lm-orange"
   def get_class("secondary_button", nil), do: get_class "secondary_button", "light"
