@@ -1,7 +1,11 @@
 function changeBackgroundColor () {
-  document.getElementById("beta-banner").style.backgroundColor="white";
+  banner.style.backgroundColor="white";
+  addClasses(banner, ["shadow-2"])
 }
+
 if (isNotIE8()) {
-  document.getElementById("beta-banner").style.backgroundColor="transparent";
-  window.onscroll = function(){changeBackgroundColor()};
+  var banner = select("#beta-banner")
+  banner.style.backgroundColor="transparent";
+  removeClasses(banner, ["shadow-2"]);
+  window.onscroll = function(){changeBackgroundColor(banner)};
 };
