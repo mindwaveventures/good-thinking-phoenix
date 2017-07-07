@@ -25,7 +25,7 @@
         </div>
       <% end %>
     </div>
-    <div class="ph2 pv4 pb4-ns ph4-ns pt2-ns">
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
       <%= if String.length(@resource[:pros]) > 0 or String.length(@resource[:cons]) > 0 do %>
         <div class="tc db dn-ns">
           <%= component "buttons/secondary_button", value: "View pros and cons", background: "light", class: "view_pcs", id: "view_pcs#{@resource.id}" %>
