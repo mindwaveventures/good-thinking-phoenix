@@ -7,7 +7,7 @@
         <%= link @resource.url, to: @resource.url, class: "f6 lm-turquoise resource-link link-hover link-visited pv1 ph2", target: "_blank" %>
         <% end %>
       </div>
-      <div class="mt1">
+      <div class="mt1 mh2">
         <%= for {tag_type, tags} <- @resource.tags do %>
           <%= for t <- tags do %>
             <%= if t != "all-#{tag_type}" do %>
