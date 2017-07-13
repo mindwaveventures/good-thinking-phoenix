@@ -26,4 +26,16 @@ defmodule App.SearchTest do
     |> Enum.filter(&(Search.find_matches &1, Search.split_text "community"))
     |> length == 2
   end
+
+  test "Search - multiple word tags" do
+    assert resources()
+    |> Enum.filter(&(Search.find_matches &1, Search.split_text "sleep deprivation"))
+    |> length == 1
+  end
+
+  test "Search - multiple word tags with stop words" do
+    assert resources()
+    |> Enum.filter(&(Search.find_matches &1, Search.split_text "peer to peer"))
+    |> length == 1
+  end
 end
