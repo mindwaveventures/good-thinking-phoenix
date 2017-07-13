@@ -29,10 +29,10 @@ defmodule App.Search do
 
   def find_matches(string1, string2)
   when is_binary string1 and is_binary string2 do
-    String.jaro_distance(
-      String.downcase(string1),
-      string2 |> String.replace(" ", "-") |> String.downcase
-    ) > 0.88
+    string1
+    |> String.downcase
+    |> String.split(~r/[\-\s]/)
+    |> Enum.any?(&(String.jaro_distance(&1, String.downcase(string2)) > 0.88))
   end
 
   def split_text(text) do

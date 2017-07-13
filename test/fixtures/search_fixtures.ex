@@ -28,6 +28,13 @@ defmodule App.SearchFixtures do
         tags: %{"reason" => ["all-reason"],
           "issue" => ["insomnia", "all-issue"],
           "content" => ["all-content", "CBT", "app", "free-trial", "mindfulness", "peer-to-peer", "subscription"]}
+      },
+      %{
+        body: "<p>Tips for sleeping</p>", dislikes: 0,
+        heading: "Tips", id: 9, liked: "none", likes: 1, priority: 5,
+        tags: %{"reason" => ["all-reason"],
+          "issue" => ["insomnia", "all-issue"],
+          "content" => ["all-content", "sleep deprivation"]}
       }
     ]
   end
