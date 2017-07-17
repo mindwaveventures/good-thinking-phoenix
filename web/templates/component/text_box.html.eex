@@ -1,7 +1,0 @@
-<%= label @form, name_to_atom(@name), class: "dn" %>
-<%= textarea @form, name_to_atom(@name), placeholder: assigns[:placeholder], class: "h4 f5 w-100 pa3 nr b--lm-grey " <> "#{assigns[:class]}", value: assigns[:value] || "" %>
-<%= if assigns[:submit] do %>
-  <div class="dib w-100">
-    <%= component "buttons/primary_button", value: "Submit", class: "bottom--1 mt2 fr" %>
-  </div>
-<% end %>
