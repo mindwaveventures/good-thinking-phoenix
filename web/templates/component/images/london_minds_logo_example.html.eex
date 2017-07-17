@@ -1,1 +1,0 @@
-<%= component "images/london_minds_logo", class: "w5", conn: @conn %>

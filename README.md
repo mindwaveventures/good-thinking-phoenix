@@ -4,17 +4,6 @@
 
 # app
 
-Built using the _PETE_ stack [`Phoenix`, `Elixir`](http://www.phoenixframework.org/), [`Tachyons`](http://tachyons.io/)
-
-This project works in tandem with the lmdw cms, for the admin section of the project see: https://github.com/ldmw/cms
-
-### Project Overview
-
-![ldmw-application-architecture-diagram](https://cloud.githubusercontent.com/assets/194400/25229096/cd075eb6-25c6-11e7-8233-5712d55a20fe.png)
-
-Click on image to see large version.
-To edit: https://docs.google.com/drawings/d/1NX710eQ_1fJgxctvF3--KOO4S-m-_lOouWg1V_lPtXY
-
 ### Project Design
 
 See: [zpl.io/ZDwoAh](zpl.io/ZDwoAh)
@@ -32,9 +21,8 @@ See the designs in the following links:
 
 To get up and running - make sure you have installed:
 
-+ [`node.js`](https://nodejs.org/en/download/) (v6.9)
-+ [`elixir`](http://elixir-lang.org/install.html) (1.4)
-+ [`phoenix`](http://www.phoenixframework.org/docs/installation) (1.3)
++ [`pip`](https://pypi.python.org/pypi/pip) (9.0)
++ [`python`](https://www.python.org/) (3.6)
 + [`postgres`](https://www.postgresql.org/download/) (9.6)
 
 #### Setup
@@ -60,65 +48,28 @@ Go into the app directory
 cd app
 ```
 
-Install the dependencies:
-
-```elixir
-mix deps.get
+```bash
+pip install -r requirements.txt
 ```
 
-Set up the database:
-
-```elixir
-mix do ecto.create, ecto.migrate
+Configure the database
+```bash
+python manage.py migrate
 ```
 
 Start the server
-
-```elixir
-mix phoenix.server
-```
-
-(For information on any of these commands run `mix help <command>`)
-
-The project should now be running at `https://localhost:4000`
-
-If you get the error:
-
 ```bash
-ERROR 42501 (insufficient_privilege): permission denied for relation wagtailcore_page
+python manage.py runserver
 ```
 
-You will need to grant access to the user "postgres"
-
-To do so try running this command:
-```bash
-$ psql -d cms -c "grant all privileges on all tables in schema public to postgres"
-```
-
-And try starting the server again
-
-If you get the error:
-
-```bash
-column articles_articlepage.heading does not exist
-LINE 1: ...reated_at", "articles_articlepage"."page_ptr_id", "articles_...
-```
-
-You can fix this with:
-
-```bash
-$ psql -d cms -c "alter table articles_articlepage add column heading varchar not null default ''"
-```
+The project should now be running at `https://localhost:8000`
 
 ### Local testing
 
-Ensure that your have the most up to date `dumpdata.json` file from the dumpdata branch on the cms repo
+To run the tests run:
 
-To do so, ensure you are on the `dumpdata` branch and `git pull origin dumpdata`
-
-Then run:
 ```bash
-python manage.py loaddata dumpdata.json
+python manage.py test
 ```
 
 ### Deployment
@@ -126,10 +77,6 @@ python manage.py loaddata dumpdata.json
 The app is set to automatically push from the master branch to the staging area (https://ldmw-app-staging.herokuapp.com/). When we're happy this is working, we will push manually to the production site.
 
 To deploy to the production site, make sure both the app and cms repos are in the same directory on your machine, then, from this directory (app), run `./deploy.sh {branch-you-want-to-deploy}`, for example, if you wanted to deploy a branch called `latest`, you would run `./deploy.sh latest`. If you don't include a branch in the command, it will deploy your master branch.
-
-### CMS
-
-The documentation for the CMS (Creating pages, tags etc) can be found at https://github.com/LDMW/cms#cms
 
 ### Analytics
 

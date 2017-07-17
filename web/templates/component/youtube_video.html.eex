@@ -1,1 +1,0 @@
-<iframe title="youtube_vid" src="https://www.youtube.com/embed/<%= getVideoId @url %>" frameborder="0" allowfullscreen class="<%= assigns[:class] %> w-100"></iframe>

@@ -1,5 +1,0 @@
-<a href="/">
-  <%= img_tag static_path(@conn, "/images/london_minds_logo.png"),
-      alt: "London Minds",
-      class: "#{assigns[:class]} logo" %>
-</a>

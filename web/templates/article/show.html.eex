@@ -1,3 +1,0 @@
-<h2><%= assigns.article[:heading] %></h2>
-
-<%= raw assigns.article[:body] %>
