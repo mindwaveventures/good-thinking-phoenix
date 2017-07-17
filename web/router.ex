@@ -31,6 +31,8 @@ defmodule App.Router do
     post "/feedback", FeedbackController, :post
     get "/crisis", CrisisController, :index
     post "/search", HomepageController, :search
+    # get "/sleep", LandingPageController, :index - Example landing page route
+    # get "/depression", LandingPageController, :index - Example landing page route
     get "/:page", StaticController, :index
     # Default route - will match any page - must stay at bottom
   end
