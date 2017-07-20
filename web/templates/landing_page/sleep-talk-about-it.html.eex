@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      dataLayer = [];
+    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PF8GGT7');</script>
+    <!-- End Google Tag Manager -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-97311089-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>London Minds</title>
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="<%= static_path @conn, "/css/app.css" %>">
+    <link rel="icon" href="favicon.png">
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PF8GGT7"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <div class="lm-bg-white pa3 w-100 f6 f5-l f5-m banner segoe fixed top-0 z-5 dt-ns dt--fixed-ns shadow-2" id="beta-banner">
+          <div class="dtc-ns w-50-l w-40-m v-mid">
+<p><b class="nunito-bold">BETA: </b>This is a prototype - your <a href="http://www.londonminds.co.uk/feedback" class="underline dib" id="feedback-link">feedback</a> will help to improve it. <a href="http://www.londonminds.co.uk/#alpha">Find out more</a></p>          </div>
+          <div class="dtc-ns dn tr v-mid banner_buttons">
+  <a class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue f6 f7-m" href="http://www.londonminds.co.uk/coming-soon" id="assessment">Take self-assessment</a>
+              <a class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue f6 f7-m" href="http://www.londonminds.co.uk/crisis" id="crisis">Get urgent support</a>
+
+          </div>
+        </div>
+      <p class="alert" role="alert"></p>
+      <p class="alert" role="alert"></p>
+
+      <main role="main">
+<section class="pt5-plus ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('https://static.pexels.com/photos/325521/pexels-photo-325521.jpeg')">
+<a href="http://www.londonminds.co.uk/">
+<img alt="London Minds" class="w-60 w-15-ns logo" src="http://www.londonminds.co.uk/images/london_minds_logo-d85d875d8d0f07696a653fa46f05d97f.png?vsn=d"></a>
+  <div class="pb5 w-90-ns f1-ns f6 lh-title center">
+    <div class="mb4">
+<h2>Connect with people like you.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="w-60-ns w-80 pv2 pv0-ns center">
+<p>Browse the suggested forums below to find ways to connect with like-minded others and chat with people in a similar situation to you.</p>
+</section>
+
+<div id="results" class="relative top--3 o-0"></div>
+
+<section class="tc-ns">
+    <div class="pa1 ph4 ph3-m ph3-l">
+  <div class="w-60-ns center">
+    <h3 class="tl mt5 nunito">Showing 5 results</h3>
+      <div class="tl">
+      </div>
+  </div>
+</div>
+
+<section class="results">
+    <div class="tl">
+      <div class="w-60-ns center">
+        <label class="f5 link dn ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue mt2 ml4 ml2-ns" id="open-filter-label" for="filter_filter">Filter</label>
+      </div>
+<input name="filter[filter]" type="hidden" value="false"><input aria-labelledby="open-filter-label close-filter-label" class="filter-check absolute o-0" id="filter_filter" name="filter[filter]" type="checkbox" value="true">      <div class="filter-sidebar">
+  <div class="fixed sidebar top-0 bg-white bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl shadow-2 z-9999">
+    <div class="tl lm-grey w-100 tr mb4">
+      <label class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt4" for="filter_filter">
+        <i class="fa fa-times f4" aria-hidden="true"><span id="close-filter-label" class="o-0 absolute">close</span></i>
+      </label>
+    </div>
+    <div class="ph1 sidebar-tag-blocks">
+<form accept-charset="UTF-8" action="/#results" id="filter-form" method="post"><input name="_csrf_token" type="hidden" value="HjErAyYiaRwiFkY3BzIJNzp3HxciNgAAgRJjMoYZAnufSTJnLXMViQ=="><input name="_utf8" type="hidden" value="✓">
+
+      <div class="mb5 relative">
+        <h4 class="w-70 mb1 mt2">Are you currently experiencing any of the following?</h4>
+          <div class="select-issue-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="issue-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 issue-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[all-issue]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-issue" id="tags_issue_all-issue" name="issue[all-issue]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_issue_all-issue"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[sleep deprivation]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_sleep deprivation" name="issue[sleep deprivation]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_sleep deprivation"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>sleep deprivation</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[trouble getting up]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_trouble getting up" name="issue[trouble getting up]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_trouble getting up"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>trouble getting up</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[can&#39;t sleep because I can&#39;t stop thinking]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_can&#39;t sleep because I can&#39;t stop thinking" name="issue[can&#39;t sleep because I can&#39;t stop thinking]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_can&#39;t sleep because I can&#39;t stop thinking"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>can't sleep because I can't stop thinking</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[low mood]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_low mood" name="issue[low mood]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_low mood"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>low mood</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[can&#39;t stop sleeping]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_can&#39;t stop sleeping" name="issue[can&#39;t stop sleeping]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_can&#39;t stop sleeping"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>can't stop sleeping</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[waking up at night]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_waking up at night" name="issue[waking up at night]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_waking up at night"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>waking up at night</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add issue" class="fr mt1 w-100" id="tags_issue_add_your_own" name="issue[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="mv5 relative">
+        <h4 class="w-70 mt4 mb1">Is anything in particular affecting your sleep?</h4>
+          <div class="select-reason-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="reason-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 reason-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[all-reason]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-reason" id="tags_reason_all-reason" name="reason[all-reason]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_reason_all-reason"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[self-esteem]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_self-esteem" name="reason[self-esteem]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_self-esteem"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>self esteem</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[loneliness]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_loneliness" name="reason[loneliness]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_loneliness"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>loneliness</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[stress]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_stress" name="reason[stress]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_stress"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>stress</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[anxiety]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_anxiety" name="reason[anxiety]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_anxiety"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>anxiety</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[relationships]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_relationships" name="reason[relationships]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_relationships"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>relationships</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[low mood]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_low mood" name="reason[low mood]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_low mood"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>low mood</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[depressed]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_depressed" name="reason[depressed]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_depressed"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>depressed</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[anxious]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_anxious" name="reason[anxious]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_anxious"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>anxious</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add reason" class="fr mt1 w-100" id="tags_reason_add_your_own" name="reason[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="mv5 relative">
+        <h4 class="w-70 mt4 mb1">What type of support are you looking for?</h4>
+          <div class="select-content-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="content-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 content-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[all-content]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-content" id="tags_content_all-content" name="content[all-content]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_content_all-content"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[tips]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_tips" name="content[tips]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_tips"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>tips</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[self-assessment]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_self-assessment" name="content[self-assessment]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_self-assessment"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>self assessment</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[tracking]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_tracking" name="content[tracking]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_tracking"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>tracking</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[something-to-do]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_something-to-do" name="content[something-to-do]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_something-to-do"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>something to do</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[quick-fix]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_quick-fix" name="content[quick-fix]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_quick-fix"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>quick fix</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[long-term solution]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_long-term solution" name="content[long-term solution]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_long-term solution"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>long term solution</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[something to do]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_something to do" name="content[something to do]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_something to do"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>something to do</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[quick fix]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_quick fix" name="content[quick fix]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_quick fix"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>quick fix</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[connections with others]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_connections with others" name="content[connections with others]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_connections with others"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>connections with others</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[immediate medical support]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_immediate medical support" name="content[immediate medical support]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_immediate medical support"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>immediate medical support</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[other peoples&#39; stories]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_other peoples&#39; stories" name="content[other peoples&#39; stories]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_other peoples&#39; stories"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>other peoples' stories</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[medical support]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_medical support" name="content[medical support]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_medical support"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>medical support</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[how to talk to others about my situation]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_how to talk to others about my situation" name="content[how to talk to others about my situation]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_how to talk to others about my situation"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>how to talk to others about my situation</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[other people&#39;s stories]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_other people&#39;s stories" name="content[other people&#39;s stories]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_other people&#39;s stories"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>other people's stories</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add content" class="fr mt1 w-100" id="tags_content_add_your_own" name="content[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="pv3 tr w-100 sidebar-buttons">
+        <div class="tr dib w-40">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover " type="submit">Search</button>
+        </div>
+      </div>
+</form>    </div>
+  </div>
+</div>
+<div class="fixed top-0 bottom-0 w-100 sidebar-overlay dn bg-gray o-70 z-999"></div>
+
+    </div>
+</section>
+
+        <div id="resource_77" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">HealthUnlocked</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://healthunlocked.com" target="_blank">https://healthunlocked.com</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[other+peoples%27+stories]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">other peoples&#39; stories</button>
+</form>
+
+
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+
+
+
+      </div>
+      <div class="mh2">
+<p>HealthUnlocked is a social networking site helping users to connect with others who share similar health conditions. The service has over 700 online communities focused on a range of health and wellbeing topics, including sleep and anxiety. </p><p></p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs77" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons77">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+<p>Pros:</p><ul><li>offers peer-to-peer support - connecting with others is proven to enhance wellbeing<br/></li><li>safe, secure and anonymous<br/></li><li>can be downloaded as an app or browsed online</li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:</p><p></p><ul><li>content can be difficult to filter</li><li>some threads less active than others </li></ul>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>0</span></div>
+<form accept-charset="UTF-8" action="/like/77#resource_77" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://healthunlocked.com"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/77#resource_77" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="LCo1NWYzMyp7HTMKJC45MBouBlcSJgAAIfGYMvpYIWTRRgXABekddQ=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://healthunlocked.com"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>0</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://healthunlocked.com"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://healthunlocked.com"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://healthunlocked.com"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+    </div>
+        <div id="resource_34" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">Big White Wall</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.bigwhitewall.com" target="_blank">https://www.bigwhitewall.com</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
+</form>
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[low+mood]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">low mood</button>
+</form>
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+</form>
+
+
+
+
+      </div>
+      <div class="mh2">
+<p>Big White Wall is an online community of people who are anxious, down or not coping, who support one another, guided by trained professionals. </p><p></p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs34" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons34">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+<p>Pros:</p><ul><li>Trained counsellors online 24/7</li><li>Anonymous</li><li>Monitored to ensure safety and support</li><li>Self-management, creative, and writing outlets/help </li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:</p><ul><li>Can be overwhelming at first</li><li>£24 a month subscription fee applies to some regions</li><li>Not sleep specific</li></ul>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>1</span></div>
+<form accept-charset="UTF-8" action="/like/34#resource_34" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/34#resource_34" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>-1</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="resource_127" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">Mumsnet - Talking about Sleep</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.mumsnet.com/Talk/sleep" target="_blank">https://www.mumsnet.com/Talk/sleep</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[other+people%27s+stories]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">other people's stories</button>
+</form>
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[sleep+deprivation]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">sleep deprivation</button>
+</form>
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+</form>
+
+
+
+
+      </div>
+      <div class="mh2">
+<p>A discussion forum for mums and dads to talk about all things sleep related.&nbsp;</p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs127" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons127">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+<p>Pros:</p><ul><li>A well-known and trusted forum</li><li>Easy to use and find the specific topic you want to talk about&nbsp;<br></li><li>Focused on sleep - with other subject areas available if needed&nbsp;<br></li><li>Quick responses and discussion with people in similar situations</li><li>By parents, for parents - &nbsp;but can still provide useful information for non-parents</li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:</p><ul><li>Not medical advice</li><li>Fairly advert heavy</li><li>Could be overwhelming as a lot of content</li></ul>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>0</span></div>
+<form accept-charset="UTF-8" action="/like/127#resource_127" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.mumsnet.com/Talk/sleep"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/127#resource_127" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.mumsnet.com/Talk/sleep"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>0</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.mumsnet.com/Talk/sleep"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.mumsnet.com/Talk/sleep"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.mumsnet.com/Talk/sleep"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+  </div>
+        </div>
+
+
+
+
+
+<div id="resource_67" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">Meetup</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.meetup.com" target="_blank">https://www.meetup.com</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[something+to+do]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">something to do</button>
+</form>
+
+
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+
+
+
+      </div>
+      <div class="mh2">
+<p>Meetup is a social networking site connecting you with others who share similar hobbies and interests. Join a movement, practice a language, learn to cook, or simply connect with others over tea or coffee.&nbsp;</p><p></p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs67" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons67">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+Pros:<br><br><ul><li>many events and activities are free<br></li><li>a good way to meet people and try new things in your local area<br></li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:&nbsp;</p><p></p><ul><li>&nbsp;vast variety of meetups on offer can feel overwhelming<br></li></ul><p></p>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>0</span></div>
+<form accept-charset="UTF-8" action="/like/67#resource_67" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.meetup.com"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/67#resource_67" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="DWchO0hqGQEBEgo9TwIGGCktIXRBNgAAh+SWc/Zr3Xme9KgiqfLG7A=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.meetup.com"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>0</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.meetup.com"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.meetup.com"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.meetup.com"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+  </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div id="resource_53" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">Reddit - get out of bed</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.reddit.com/r/GetOutOfBed" target="_blank">https://www.reddit.com/r/GetOutOfBed</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[something+to+do]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">something to do</button>
+</form>
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[trouble+getting+up]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">trouble getting up</button>
+</form>
+
+
+
+
+
+
+      </div>
+      <div class="mh2">
+Reddit is a social and news aggregator, with digital content reviews and ratings. Users can "upvote" or "downvote" a post, with comments often becoming extended discussion forums. This sub-reddit is for discussions on 'get out of bed'. <p></p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs53" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons53">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+<p>Pros:</p><ul><li>Easy to use and filter to personalise content<br/></li><li>Focused on topics related to getting out of bed <br/></li><li>A good guide to the most talked about topics, user advice, user reviews, and links for more information </li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:</p><ul><li>Partially moderated<br/></li><li>User cliques can bury articles they don't agree with (as posts with the upvotes are given prominence over those with downvotes)</li></ul>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>1</span></div>
+<form accept-charset="UTF-8" action="/like/53#resource_53" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.reddit.com/r/GetOutOfBed"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/53#resource_53" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.reddit.com/r/GetOutOfBed"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>-2</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.reddit.com/r/GetOutOfBed"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.reddit.com/r/GetOutOfBed"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.reddit.com/r/GetOutOfBed"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="tc mv4">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover dn-important" id="see_more" type="submit">See More</button>
+  </div>
+</section>
+
+<section class="tc-ns tl-m w-100 pa1 ph4 ph3-m ph3-l pb4 pb5-l" id="suggestion_form">
+  <div class="w-60-ns center">
+    <div class="pt3 pb2 mt4 tl center ma0-ns">
+<h2>What are you looking for?</h2><h4>Tell us what content you'd like to see</h4><p>We'd like you to tell us in your own words the type of content and topics you'd like to see on this service, so that we can start planning what to add next.</p>    </div>
+<form accept-charset="UTF-8" action="/submit#suggestion_form" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">      <label class="dn" for="suggestions_suggestions">Suggestions</label><textarea class="h4 f5 w-100 pa3 nr b--lm-grey " id="suggestions_suggestions" name="suggestions[suggestions]" placeholder="Add your suggestions for new topics">
+</textarea>
+  <div class="dib w-100">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover bottom--1 mt2 fr" type="submit">Submit</button>
+  </div>
+
+</form>
+  </div>
+</section>
+
+<section class="lm-white lm-bg-dark-blue pa1 ph4 ph3-m ph3-l pb4 pb5-l" id="email_form">
+  <div class="mv3 w-60-ns center" id="alpha">
+      <h2>BETA</h2><h3>What does it mean?</h3><p>'Beta' phase is all about testing, iterating, and continuing to build the service using valuable user feedback.</p>
+  </div>
+
+    <div id="alphasection" class="lm-dark-blue lm-bg-white pa1 ph4 ph3-m ph3-l pv1 pv3-l w-60-ns center tracked relative">
+        <h3>Take part in our BETA</h3><p>Share your email address with us and we will be in touch to find out how you'd like to get involved:</p><p></p><ul><li>user testing the service</li><li>one to one interviews</li><li>workshops (offline)</li><li>online chat groups (online)</li><li>sending feedback</li></ul>
+      <form accept-charset="UTF-8" action="/submit#email_form" id="email-submit" method="post"><input name="_csrf_token" type="hidden" value="LQ4kHXsPAEF8DiE/Tz4bAiwNXlgkAAAAHBVqPJC2NDFg9wzstF3kRw=="><input name="_utf8" type="hidden" value="✓">
+          <label class="db mv1" for="email_email">Email:</label>
+<input class="br2 pa2 mb2-l mb3 f5 fw3 ba w-100" id="email_email" name="email[email]" type="email">          <div class="relative w-100 mt3">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover absolute bottom--1 right-0" type="submit">Take part</button>
+          </div>
+          <div class="mt4 pt1">
+          </div>
+      </form>
+    </div>
+</section>
+
+
+<section class="pv1 ph3 lm-bg-orange tl">
+  <a href="http://www.londonminds.co.uk/coming-soon" class="link banners">
+    <div class="relative">
+<p>Take our clinically approved self-assessment to find out in more detail why you're struggling with sleep.<br/></p>      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
+    </div>
+  </a>
+</section>
+
+<section class="pv1 ph3 tl lm-bg-white">
+  <a href="http://www.londonminds.co.uk/crisis" class="link banners">
+    <div class="relative">
+<p>Find out where to get immediate, urgent support in the case of an emergency.<br/></p><a id="30" linktype="page"></a>      <p class="absolute right-1 top--1 dn dib-ns b pointer">></p>
+    </div>
+  </a>
+</section>
+
+<footer class="lm-bg-dark-blue tc pa3 f6 f5-ns tracked">
+<p><a href="http://www.londonminds.co.uk/terms-and-conditions" class="ph2 ph5-plus-ns lm-white" id="">Terms and Conditions</a> <a href="http://www.londonminds.co.uk/contact" class="ph2 ph5-plus-ns lm-white" id="">Contact Us</a></p></footer>
+      </main>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path @conn, "/js/app.js" %>"></script>
+  </body>
+</html>
