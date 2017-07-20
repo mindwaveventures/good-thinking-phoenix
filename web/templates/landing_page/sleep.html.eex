@@ -76,7 +76,177 @@
   </div>
 </div>
 
+<section class="results">
+    <div class="tl">
+      <div class="w-60-ns center">
+        <label class="f5 link dn ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue mt2 ml4 ml2-ns" id="open-filter-label" for="filter_filter">Filter</label>
+      </div>
+<input name="filter[filter]" type="hidden" value="false"><input aria-labelledby="open-filter-label close-filter-label" class="filter-check absolute o-0" id="filter_filter" name="filter[filter]" type="checkbox" value="true">      <div class="filter-sidebar">
+  <div class="fixed sidebar top-0 bg-white bottom-0 w-80 w-70-ns w-50-m w-30-l pa3 overflow-y-scroll tl shadow-2 z-9999">
+    <div class="tl lm-grey w-100 tr mb4">
+      <label class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt4" for="filter_filter">
+        <i class="fa fa-times f4" aria-hidden="true"><span id="close-filter-label" class="o-0 absolute">close</span></i>
+      </label>
+    </div>
+    <div class="ph1 sidebar-tag-blocks">
+<form accept-charset="UTF-8" action="/#results" id="filter-form" method="post"><input name="_csrf_token" type="hidden" value="HjErAyYiaRwiFkY3BzIJNzp3HxciNgAAgRJjMoYZAnufSTJnLXMViQ=="><input name="_utf8" type="hidden" value="✓">
 
+      <div class="mb5 relative">
+        <h4 class="w-70 mb1 mt2">Are you currently experiencing any of the following?</h4>
+          <div class="select-issue-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="issue-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 issue-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[all-issue]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-issue" id="tags_issue_all-issue" name="issue[all-issue]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_issue_all-issue"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[sleep deprivation]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_sleep deprivation" name="issue[sleep deprivation]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_sleep deprivation"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>sleep deprivation</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[trouble getting up]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_trouble getting up" name="issue[trouble getting up]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_trouble getting up"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>trouble getting up</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[can&#39;t sleep because I can&#39;t stop thinking]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_can&#39;t sleep because I can&#39;t stop thinking" name="issue[can&#39;t sleep because I can&#39;t stop thinking]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_can&#39;t sleep because I can&#39;t stop thinking"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>can't sleep because I can't stop thinking</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[low mood]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_low mood" name="issue[low mood]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_low mood"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>low mood</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[can&#39;t stop sleeping]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_can&#39;t stop sleeping" name="issue[can&#39;t stop sleeping]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_can&#39;t stop sleeping"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>can't stop sleeping</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="issue[waking up at night]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-issue" id="tags_issue_waking up at night" name="issue[waking up at night]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb issue-tag f5" for="tags_issue_waking up at night"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>waking up at night</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add issue" class="fr mt1 w-100" id="tags_issue_add_your_own" name="issue[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="mv5 relative">
+        <h4 class="w-70 mt4 mb1">Is anything in particular affecting your sleep?</h4>
+          <div class="select-reason-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="reason-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 reason-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[all-reason]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-reason" id="tags_reason_all-reason" name="reason[all-reason]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_reason_all-reason"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[self-esteem]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_self-esteem" name="reason[self-esteem]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_self-esteem"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>self esteem</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[loneliness]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_loneliness" name="reason[loneliness]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_loneliness"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>loneliness</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[stress]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_stress" name="reason[stress]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_stress"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>stress</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[anxiety]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_anxiety" name="reason[anxiety]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_anxiety"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>anxiety</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[relationships]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_relationships" name="reason[relationships]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_relationships"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>relationships</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[low mood]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_low mood" name="reason[low mood]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_low mood"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>low mood</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[depressed]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_depressed" name="reason[depressed]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_depressed"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>depressed</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="reason[anxious]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-reason" id="tags_reason_anxious" name="reason[anxious]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb reason-tag f5" for="tags_reason_anxious"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>anxious</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add reason" class="fr mt1 w-100" id="tags_reason_add_your_own" name="reason[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="mv5 relative">
+        <h4 class="w-70 mt4 mb1">What type of support are you looking for?</h4>
+          <div class="select-content-filters w-100 pv2 pl1 ph2-ns">
+  <h5 class="lm-dark-grey nunito-italic ma0 f5"><span class="content-filters-header">Select as many as are relevant</span> <span class="filter-arrow filter-arrow-hide fa-down nunito lm-orange fr">&#x25bc;</span><span class="filter-arrow filter-arrow-hide fa-up nunito lm-orange fr">&#x25b2;</span></h5>
+</div>
+<div class="mb4 content-filters">
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[all-content]" type="hidden" value="false"><input checked="checked" class="checked-fill absolute o-0 show-everything-content" id="tags_content_all-content" name="content[all-content]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb f5" for="tags_content_all-content"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>Show me everything</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[tips]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_tips" name="content[tips]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_tips"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>tips</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[self-assessment]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_self-assessment" name="content[self-assessment]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_self-assessment"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>self assessment</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[tracking]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_tracking" name="content[tracking]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_tracking"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>tracking</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[something-to-do]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_something-to-do" name="content[something-to-do]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_something-to-do"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>something to do</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[quick-fix]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_quick-fix" name="content[quick-fix]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_quick-fix"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>quick fix</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[long-term solution]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_long-term solution" name="content[long-term solution]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_long-term solution"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>long term solution</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[something to do]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_something to do" name="content[something to do]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_something to do"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>something to do</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[quick fix]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_quick fix" name="content[quick fix]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_quick fix"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>quick fix</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[connections with others]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_connections with others" name="content[connections with others]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_connections with others"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>connections with others</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[immediate medical support]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_immediate medical support" name="content[immediate medical support]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_immediate medical support"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>immediate medical support</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[other peoples&#39; stories]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_other peoples&#39; stories" name="content[other peoples&#39; stories]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_other peoples&#39; stories"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>other peoples' stories</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[medical support]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_medical support" name="content[medical support]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_medical support"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>medical support</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[how to talk to others about my situation]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_how to talk to others about my situation" name="content[how to talk to others about my situation]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_how to talk to others about my situation"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>how to talk to others about my situation</span></label>
+  </div>
+  <div class="ph1 lm-bg-orange-hover">
+<input name="content[other people&#39;s stories]" type="hidden" value="false"><input class="checked-fill absolute o-0 filters-content" id="tags_content_other people&#39;s stories" name="content[other people&#39;s stories]" type="checkbox" value="true">    <label class="db pa2 pr0 pointer b--lm-grey bb content-tag f5" for="tags_content_other people&#39;s stories"><div class="is-checked ba b--lm-dark-blue dib h05 w05 mr2"></div><span>other people's stories</span></label>
+  </div>
+  <div class="pa2 f5">
+    <span>None of these (add your own)</span>
+<input aria-label="add content" class="fr mt1 w-100" id="tags_content_add_your_own" name="content[add_your_own]" type="text">    <div class="dib w-100">
+      <div class="w-75-ns w-70 alert complete mb1 mt2 pa1 tc ba bw1-n bg--lm-green b--lm-green relative dib fl"></div>
+      <div class="w-75-ns w-70 alert pending mb1 mt2 pa1 tc relative dib fl"></div>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover mt2 fr add-own" type="submit">Add</button>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="pv3 tr w-100 sidebar-buttons">
+        <div class="tr dib w-40">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover " type="submit">Search</button>
+        </div>
+      </div>
+</form>    </div>
+  </div>
+</div>
+<div class="fixed top-0 bottom-0 w-100 sidebar-overlay dn bg-gray o-70 z-999"></div>
+
+    </div>
+</section>
 
         <div id="resource_33" class="resource">
   <div class="br1 shadow-2 tl w-60-ns center">
@@ -447,7 +617,7 @@
 </section>
 
 <footer class="lm-bg-dark-blue tc pa3 f6 f5-ns tracked">
-<p><a href="#" class="ph2 ph5-plus-ns lm-white" id="">Terms and Conditions</a> <a href="#" class="ph2 ph5-plus-ns lm-white" id="">Contact Us</a></p></footer>
+<p><a href="http://londonminds.co.uk/terms-and-conditions" class="ph2 ph5-plus-ns lm-white" id="">Terms and Conditions</a> <a href="http://londonminds.co.uk/contact" class="ph2 ph5-plus-ns lm-white" id="">Contact Us</a></p></footer>
       </main>
 
     </div> <!-- /container -->
