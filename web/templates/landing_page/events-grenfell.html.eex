@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,21 +53,21 @@
       <p class="alert" role="alert"></p>
 
       <main role="main">
-<section class="pt5-plus ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('https://static.pexels.com/photos/488412/pexels-photo-488412.jpeg')">
+<section class="pt5-plus ph4 ph5-m ph6-l tc lm-white cover lh-copy bg-center" style="background-image:url('https://static.pexels.com/photos/167835/pexels-photo-167835.jpeg')">
 <a href="http://www.londonminds.co.uk/">
 <img alt="London Minds" class="w-60 w-15-ns logo" src="http://www.londonminds.co.uk/images/london_minds_logo-d85d875d8d0f07696a653fa46f05d97f.png?vsn=d"></a>
   <div class="pb5 w-90-ns f1-ns f6 lh-title center">
     <div class="mb4">
-      <h2>Get a better night's sleep.</h2>
+<h2>Support and resources for those affected by recent events.</h2>
     </div>
   </div>
 </section>
 
 <section class="w-60-ns w-80 pv2 pv0-ns center">
-<p>Browse the resources below to discover tips, advice and things to try to help you or someone you know get a better night's sleep.</p><p></p></section>
+<p>Traumatic events can cause stress, worry, anxiety and other undesirable effects.</p>
+<p>Browse the resources below to find solutions, advice and tips to ease negative thoughts and calm an anxious mind.</p></section>
 
 <div id="results" class="relative top--3 o-0"></div>
-
 <section class="tc-ns">
     <div class="pa1 ph4 ph3-m ph3-l">
   <div class="w-60-ns center">
@@ -257,29 +258,29 @@
       </div>
       <div class="mt1 mh2">
 
-              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
+              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
 </form>
 
 
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[low+mood]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">low mood</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[low+mood]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">low mood</button>
 </form>
 
 
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
 </form>
 
 
@@ -307,8 +308,8 @@
       <div class="dt dt--fixed">
         <div class="dib dtc">
           <div class="dib mb3 v-mid tl"><span>0</span></div>
-<form accept-charset="UTF-8" action="/like/33#resource_33" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://bemindful.co.uk"><span class="fixed o-0">Recommend</span></button>
-</form>          <form accept-charset="UTF-8" action="/dislike/33#resource_33" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">
+<form accept-charset="UTF-8" action="/like/33#resource_33" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://bemindful.co.uk"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/33#resource_33" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">
             <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://bemindful.co.uk"><span class="fixed o-0">Don't Recommend</span></button>
 </form>          <div class="dib mb3 v-mid tl"><span>-1</span></div>
         </div>
@@ -322,33 +323,42 @@
 
     </div>
   </div>
-
-
-
- </div>
-        <div id="resource_37" class="resource">
+  </div>
+        <div id="resource_34" class="resource">
   <div class="br1 shadow-2 tl w-60-ns center">
     <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
-      <h2 class="mt0 mb1 ml2">Sleepio</h2>
+      <h2 class="mt0 mb1 ml2">Big White Wall</h2>
       <div class="word-wrap">
-        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.sleepio.com" target="_blank">https://www.sleepio.com</a>
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.bigwhitewall.com" target="_blank">https://www.bigwhitewall.com</a>
       </div>
       <div class="mt1 mh2">
 
-              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
 </form>
 
 
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[sleep+deprivation]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">sleep deprivation</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[low+mood]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">low mood</button>
 </form>
 
 
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
 </form>
 
 
@@ -356,196 +366,187 @@
 
       </div>
       <div class="mh2">
-<p>Sleepio is an online program to help you sleep better. The initial questionnaire personalises the course which also adapts to your progression. </p><p></p>      </div>
+<p>Big White Wall is an online community of people who are anxious, down or not coping, who support one another, guided by trained professionals. </p><p></p>      </div>
     </div>
     <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
         <div class="tc db dn-ns">
-  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs37" type="submit">View pros and cons</button>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs34" type="submit">View pros and cons</button>
         </div>
-      <div class="w-100 dn db-ns pros_cons" id="pros_cons37">
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons34">
         <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
           <div class="w-80-ns center-ns">
-<p>Pros:</p><ul><li>Proven long-term results</li><li>A variety of tools, resources, and support to help you improve your sleep </li></ul>          </div>
+<p>Pros:</p><ul><li>Trained counsellors online 24/7</li><li>Anonymous</li><li>Monitored to ensure safety and support</li><li>Self-management, creative, and writing outlets/help </li></ul>          </div>
         </div>
         <div class="w-50-ns dib-ns fr-ns">
           <div class="w-80-ns center-ns">
-<p>Cons:</p><ul><li>Requires commitment to the 6 week course</li><li>Around £230 for the full CBT course and year-long support</li></ul>          </div>
+<p>Cons:</p><ul><li>Can be overwhelming at first</li><li>£24 a month subscription fee applies to some regions</li><li>Not sleep specific</li></ul>          </div>
         </div>
       </div>
       <p class="nunito-bold mt4">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
-          <div class="dib mb3 v-mid tl"><span>18</span></div>
-<form accept-charset="UTF-8" action="/like/37#resource_37" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.sleepio.com"><span class="fixed o-0">Recommend</span></button>
-</form>          <form accept-charset="UTF-8" action="/dislike/37#resource_37" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">
-            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.sleepio.com"><span class="fixed o-0">Don't Recommend</span></button>
-</form>          <div class="dib mb3 v-mid tl"><span>-2</span></div>
+          <div class="dib mb3 v-mid tl"><span>1</span></div>
+<form accept-charset="UTF-8" action="/like/34#resource_34" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/34#resource_34" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="JCZBXkAENxsDATYWRywwOhx/OUQeJgAAAj32kAth1KQN1eQKD4TwhQ=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>-1</span></div>
         </div>
         <div class="share-buttons dtc">
-          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.sleepio.com"><span class="fixed o-0">Share with WhatsApp</span></button>
-          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.sleepio.com"><span class="fixed o-0">Share with Messenger</span></button>
-          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.sleepio.com"><span class="fixed o-0">Share with Email</span></button>
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.bigwhitewall.com"><span class="fixed o-0">Share with Email</span></button>
         </div>
       </div>
       <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
 
     </div>
+    </div>
   </div>
         </div>
 
 
-
-
-
-
-
-<div class="pa1 ph4 ph3-m ph3-l pb4 pb5-l">
-  <div class="w-60-ns center">
-    </div>
-        <div id="resource_39" class="resource">
+        <div id="resource_119" class="resource">
   <div class="br1 shadow-2 tl w-60-ns center">
     <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
-      <h2 class="mt0 mb1 ml2">Sleep Cycle</h2>
+      <h2 class="mt0 mb1 ml2">Breathe Sync</h2>
       <div class="word-wrap">
-        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://www.sleepcycle.com" target="_blank">https://www.sleepcycle.com</a>
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8" target="_blank">https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8</a>
       </div>
       <div class="mt1 mh2">
 
-              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
+              <form accept-charset="UTF-8" action="/?content[quick+fix]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">quick fix</button>
 </form>
 
-              <form accept-charset="UTF-8" action="/?content[quick+fix]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">quick fix</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[tracking]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">tracking</button>
+              <form accept-charset="UTF-8" action="/?content[tracking]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">tracking</button>
 </form>
 
 
 
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[trouble+getting+up]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">trouble getting up</button>
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[can%27t+sleep+because+I+can%27t+stop+thinking]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">can't sleep because I can't stop thinking</button>
 </form>
 
 
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+</form>
 
 
 
 
       </div>
       <div class="mh2">
-<p>Sleep Cycle is an intelligent alarm clock that tracks your sleep phases throughout the night to wake you during a light sleep phase, ensuring that your body is ready to wake up. </p><p></p>      </div>
+<p>Breathe Sync is an app that monitors your pulse using your phone's camera to calculate the optimum breathe cycle to match the rhythm of your heart.</p><p></p><p><br></p>      </div>
     </div>
     <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
         <div class="tc db dn-ns">
-  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs39" type="submit">View pros and cons</button>
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs119" type="submit">View pros and cons</button>
         </div>
-      <div class="w-100 dn db-ns pros_cons" id="pros_cons39">
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons119">
         <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
           <div class="w-80-ns center-ns">
-<p>Pros:</p><ul><li>Easy to use</li><li>Customisable</li><li>Detailed feedback on sleep patterns</li><li>Free app </li></ul>          </div>
+<p>Pros:</p><ul><li>A simple tool to check in with your breathing at times of stress or frustration<br></li><li>Inbuilt daily reminders</li><li>Free</li></ul>          </div>
         </div>
         <div class="w-50-ns dib-ns fr-ns">
           <div class="w-80-ns center-ns">
-<p>Cons:</p><ul><li>No in-built reminder to set the app each night</li><li>Can make users more anxious about their sleep</li></ul>          </div>
-        </div>
-      </div>
-      <p class="nunito-bold mt4">Would you recommend this?</p>
-      <div class="dt dt--fixed">
-        <div class="dib dtc">
-          <div class="dib mb3 v-mid tl"><span>7</span></div>
-<form accept-charset="UTF-8" action="/like/39#resource_39" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://www.sleepcycle.com"><span class="fixed o-0">Recommend</span></button>
-</form>          <form accept-charset="UTF-8" action="/dislike/39#resource_39" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">
-            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://www.sleepcycle.com"><span class="fixed o-0">Don't Recommend</span></button>
-</form>          <div class="dib mb3 v-mid tl"><span>-2</span></div>
-        </div>
-        <div class="share-buttons dtc">
-          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.sleepcycle.com"><span class="fixed o-0">Share with WhatsApp</span></button>
-          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://www.sleepcycle.com"><span class="fixed o-0">Share with Messenger</span></button>
-          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://www.sleepcycle.com"><span class="fixed o-0">Share with Email</span></button>
-        </div>
-      </div>
-      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
-
-    </div>
-  </div>
-        </div>
-
-
-
-
-
-
-        </div>
-        <div id="resource_73" class="resource">
-  <div class="br1 shadow-2 tl w-60-ns center">
-    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
-      <h2 class="mt0 mb1 ml2">Sleepstation</h2>
-      <div class="word-wrap">
-        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="https://sleepstation.org.uk" target="_blank">https://sleepstation.org.uk</a>
-      </div>
-      <div class="mt1 mh2">
-
-              <form accept-charset="UTF-8" action="/?content[long-term+solution]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">long term solution</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[tips]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">tips</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[tracking]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">tracking</button>
-</form>
-
-
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[sleep+deprivation]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">sleep deprivation</button>
-</form>
-
-
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
-</form>
-
-              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
-</form>
-
-      </div>
-      <div class="mh2">
-<p>Sleepstation is an online service for identifying and treating sleeping disorders. It offers a sleep assessment that is used to determine a diagnosis, along with tips on how to get better sleep. </p><p></p>      </div>
-    </div>
-    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
-        <div class="tc db dn-ns">
-  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs73" type="submit">View pros and cons</button>
-        </div>
-      <div class="w-100 dn db-ns pros_cons" id="pros_cons73">
-        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
-          <div class="w-80-ns center-ns">
-<p>Pros:</p><ul><li>Conducts a thorough, 7-day sleep assessment </li><li>Can provide reports for your doctor </li><li>Offers personalised 6-week treatment plans for insomnia, including weekly online therapy sessions</li></ul>          </div>
-        </div>
-        <div class="w-50-ns dib-ns fr-ns">
-          <div class="w-80-ns center-ns">
-<p>Cons:</p><ul><li>£25 for full assessment and diagnosis <i>or</i> free with a referral from your GP</li></ul>          </div>
+<p>Cons:</p><ul><li>Accuracy of pulse reading not guaranteed&nbsp;</li><li>Other apps have similar features plus additional tools such as guided meditations</li></ul>          </div>
         </div>
       </div>
       <p class="nunito-bold mt4">Would you recommend this?</p>
       <div class="dt dt--fixed">
         <div class="dib dtc">
           <div class="dib mb3 v-mid tl"><span>0</span></div>
-<form accept-charset="UTF-8" action="/like/73#resource_73" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://sleepstation.org.uk"><span class="fixed o-0">Recommend</span></button>
-</form>          <form accept-charset="UTF-8" action="/dislike/73#resource_73" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">
-            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://sleepstation.org.uk"><span class="fixed o-0">Don't Recommend</span></button>
+<form accept-charset="UTF-8" action="/like/119#resource_119" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/119#resource_119" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8"><span class="fixed o-0">Don't Recommend</span></button>
 </form>          <div class="dib mb3 v-mid tl"><span>0</span></div>
         </div>
         <div class="share-buttons dtc">
-          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://sleepstation.org.uk"><span class="fixed o-0">Share with WhatsApp</span></button>
-          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://sleepstation.org.uk"><span class="fixed o-0">Share with Messenger</span></button>
-          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://sleepstation.org.uk"><span class="fixed o-0">Share with Email</span></button>
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="https://itunes.apple.com/gb/app/breathesync/id722304193?mt=8"><span class="fixed o-0">Share with Email</span></button>
+        </div>
+      </div>
+      <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
+
+    </div>
+  </div>
+
+
+
+        <div id="resource_72" class="resource">
+  <div class="br1 shadow-2 tl w-60-ns center">
+    <div class="ba b--lm-dark-blue ph2 pt2 pb0 pt3-ns ph4-ns mt4">
+      <h2 class="mt0 mb1 ml2">The Mix</h2>
+      <div class="word-wrap">
+        <a class="f6 lm-turquoise resource-link link-hover link-visited pv1 ph2" href="http://www.themix.org.uk" target="_blank">http://www.themix.org.uk</a>
+      </div>
+      <div class="mt1 mh2">
+
+              <form accept-charset="UTF-8" action="/?content[connections+with+others]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">connections with others</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[other+peoples%27+stories]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">other peoples' stories</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[tips]=true&amp;issue[all-issue]=true&amp;reason[all-reason]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">tips</button>
+</form>
+
+
+
+
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[anxiety]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">anxiety</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[loneliness]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">loneliness</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[relationships]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">relationships</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[self-esteem]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">self esteem</button>
+</form>
+
+              <form accept-charset="UTF-8" action="/?content[all-content]=true&amp;issue[all-issue]=true&amp;reason[stress]=true#results" class="dib pointer" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">  <button class="b--lm-orange lm-bg-orange-20 ba br2 ph2 pv1 lh-tag dib mb1 pointer font nunito" type="submit">stress</button>
+</form>
+
+
+
+
+      </div>
+      <div class="mh2">
+<p>The Mix is an online support service providing free, confidential support for young people under 25 via online resources and phone, peer-to-peer, online and counselling services.&nbsp;</p>      </div>
+    </div>
+    <div class="ph2 pv4 pb4-ns pt2-ns mh2 mh0-ns">
+        <div class="tc db dn-ns">
+  <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-bg-white lm-bg-dark-blue-hover lm-dark-blue lm-white-hover ba b--lm-dark-blue view_pcs" id="view_pcs72" type="submit">View pros and cons</button>
+        </div>
+      <div class="w-100 dn db-ns pros_cons" id="pros_cons72">
+        <div class="w-50-ns dib-ns br-ns b--lm-grey pros">
+          <div class="w-80-ns center-ns">
+<p>Pros:</p><ul><li>Free and confidential</li><li>A mix of online resources and immediate support</li><li>A way of connecting with peers through online discussion boards</li></ul>          </div>
+        </div>
+        <div class="w-50-ns dib-ns fr-ns">
+          <div class="w-80-ns center-ns">
+<p>Cons:</p><ul><li>Telephone counselling currently unavailable<br></li><li>Limited hours for live support (helplines and one-to-one chat open 11am-11pm every day)&nbsp;</li></ul>          </div>
+        </div>
+      </div>
+      <p class="nunito-bold mt4">Would you recommend this?</p>
+      <div class="dt dt--fixed">
+        <div class="dib dtc">
+          <div class="dib mb3 v-mid tl"><span>1</span></div>
+<form accept-charset="UTF-8" action="/like/72#resource_72" class="dib like-form mr1" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">            <button name="like" type="submit" class="like w2 h2 bn bg-white fl p0 bg-left pointer" data-url="http://www.themix.org.uk"><span class="fixed o-0">Recommend</span></button>
+</form>          <form accept-charset="UTF-8" action="/dislike/72#resource_72" class="dib dislike-form" method="post"><input name="_csrf_token" type="hidden" value="NykLXEA1BhB8AiMPPh4NBCh/F2c9JgAARey0kpEcNHDWHWlup4zTKQ=="><input name="_utf8" type="hidden" value="✓">
+            <button name="dislike" type="submit" class="dislike w2 h2 bn bg-white p0 bg-right pointer" data-url="http://www.themix.org.uk"><span class="fixed o-0">Don't Recommend</span></button>
+</form>          <div class="dib mb3 v-mid tl"><span>0</span></div>
+        </div>
+        <div class="share-buttons dtc">
+          <button class="share-email share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="http://www.themix.org.uk"><span class="fixed o-0">Share with WhatsApp</span></button>
+          <button class="share-messenger share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer" data-url="http://www.themix.org.uk"><span class="fixed o-0">Share with Messenger</span></button>
+          <button class="share-whatsapp share cursor w-10-ns w-20 w-20-m mh1 h2 bn bg-white fr p0 bg-right pointer dn-ns" data-url="http://www.themix.org.uk"><span class="fixed o-0">Share with Email</span></button>
         </div>
       </div>
       <div class="alert share-alert db fr pa1 ba bw1-ns bg--lm-light-red b--dark-red black"></div>
@@ -557,12 +558,7 @@
 
 
 
-
-
-
-
-
-  <div class="tc">
+  <div class="tc mt4">
   <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover dn-important" id="see_more" type="submit">See More</button>
   </div>
 </section>
@@ -571,7 +567,7 @@
   <div class="w-60-ns center">
     <div class="pt3 pb2 mt4 tl center ma0-ns">
 <h2>What are you looking for?</h2><h4>Tell us what content you'd like to see</h4><p>We'd like you to tell us in your own words the type of content and topics you'd like to see on this service, so that we can start planning what to add next.</p>    </div>
-<form accept-charset="UTF-8" action="/submit#suggestion_form" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">      <label class="dn" for="suggestions_suggestions">Suggestions</label><textarea class="h4 f5 w-100 pa3 nr b--lm-grey " id="suggestions_suggestions" name="suggestions[suggestions]" placeholder="Add your suggestions for new topics">
+<form accept-charset="UTF-8" action="/submit#suggestion_form" method="post"><input name="_csrf_token" type="hidden" value="ByE4Jn0BDRt7HxQVMy8OAhEzCFAxJgAAbmJJVDNhIUsMEfosIxecGQ=="><input name="_utf8" type="hidden" value="✓">      <label class="dn" for="suggestions_suggestions">Suggestions</label><textarea class="h4 f5 w-100 pa3 nr b--lm-grey " id="suggestions_suggestions" name="suggestions[suggestions]" placeholder="Add your suggestions for new topics">
 </textarea>
   <div class="dib w-100">
   <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover bottom--1 mt2 fr" type="submit">Submit</button>
@@ -588,7 +584,7 @@
 
     <div id="alphasection" class="lm-dark-blue lm-bg-white pa1 ph4 ph3-m ph3-l pv1 pv3-l w-60-ns center tracked relative">
         <h3>Take part in our BETA</h3><p>Share your email address with us and we will be in touch to find out how you'd like to get involved:</p><p></p><ul><li>user testing the service</li><li>one to one interviews</li><li>workshops (offline)</li><li>online chat groups (online)</li><li>sending feedback</li></ul>
-      <form accept-charset="UTF-8" action="/submit#email_form" id="email-submit" method="post"><input name="_csrf_token" type="hidden" value="CiEKX2IgCzFCOT0yQg5RPTQhCnk8NgAAomx3IeHBpsZj4G0LljgJJA=="><input name="_utf8" type="hidden" value="✓">
+      <form accept-charset="UTF-8" action="/submit#email_form" id="email-submit" method="post"><input name="_csrf_token" type="hidden" value="ByE4Jn0BDRt7HxQVMy8OAhEzCFAxJgAAbmJJVDNhIUsMEfosIxecGQ=="><input name="_utf8" type="hidden" value="✓">
           <label class="db mv1" for="email_email">Email:</label>
 <input class="br2 pa2 mb2-l mb3 f5 fw3 ba w-100" id="email_email" name="email[email]" type="email">          <div class="relative w-100 mt3">
   <button class="f5 link dib ph3 pv2 br1 pointer nunito tracked inner-shadow-active lm-white lm-bg-dark-blue button lm-bg-orange-hover lm-dark-blue-hover absolute bottom--1 right-0" type="submit">Take part</button>
@@ -617,7 +613,7 @@
 </section>
 
 <footer class="lm-bg-dark-blue tc pa3 f6 f5-ns tracked">
-<p><a href="http://londonminds.co.uk/terms-and-conditions" class="ph2 ph5-plus-ns lm-white" id="">Terms and Conditions</a> <a href="http://londonminds.co.uk/contact" class="ph2 ph5-plus-ns lm-white" id="">Contact Us</a></p></footer>
+<p><a href="http://www.londonminds.co.uk/terms-and-conditions" class="ph2 ph5-plus-ns lm-white" id="">Terms and Conditions</a> <a href="http://www.londonminds.co.uk/contact" class="ph2 ph5-plus-ns lm-white" id="">Contact Us</a></p></footer>
       </main>
 
     </div> <!-- /container -->
