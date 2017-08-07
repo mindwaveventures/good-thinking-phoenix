@@ -63,8 +63,12 @@ defmodule App.ViewHelpers do
       where: p.content_type_id == c.id,
       select: %{content: c.app_label, page: p.slug}
 
-    data = CMSRepo.one(link_query)
-    ~s(<a href="/#{data.page}" class="#{classes}" id="#{html_id}">#{text}</a>)
+    case CMSRepo.one(link_query) do
+      %{page: page} ->
+        ~s(<a href="/#{page}" class="#{classes}" id="#{html_id}">#{text}</a>)
+      _ ->
+        ""
+    end
   end
 
   @segio_tags 1..6 |> Enum.to_list |> Enum.map(&("h#{&1}"))
