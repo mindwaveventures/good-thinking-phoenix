@@ -18,7 +18,6 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-97311089-1', 'auto');
-      ga('send', 'pageview');
 
     </script>
     <meta charset="utf-8">
@@ -50,7 +49,7 @@
           </div>
           <div class="dtc-ns dn tr v-mid banner_buttons">
             <%= component "buttons/secondary_button", value: "Take self-assessment", to: "/coming-soon", id: "assessment", class: "f6 f7-m", background: "transparent" %>
-            <%= component "buttons/secondary_button", value: "Get urgent support", to: "/crisis", id: "crisis", class: "f6 f7-m", background: "transparent" %>
+            <%= component "buttons/secondary_button", value: "Get urgent support", to: "/crisis", class: "crisis-link f6 f7-m", background: "transparent" %>
           </div>
         </div>
       <% end %>
