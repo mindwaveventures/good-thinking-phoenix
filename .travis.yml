@@ -32,7 +32,6 @@ script:
   - mix do compile --warnings-as-errors, coveralls.json, credo --strict
   - elixir --detached -e "File.write! 'pid', :os.getpid" -S mix phoenix.server
   - ./wait_script.sh
-  - npm run accessibility
   - npm run nightmare
 after_success:
   - bash <(curl -s https://codecov.io/bash)
